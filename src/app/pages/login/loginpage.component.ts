@@ -10,7 +10,6 @@ import { trigger, style, animate, transition } from '@angular/animations';
     ConfirmComponent
   ],
   templateUrl: './loginpage.component.html',
-  styleUrl: './loginpage.component.css',
   animations: [
     trigger('slideInOut', [
       transition(':enter', [
