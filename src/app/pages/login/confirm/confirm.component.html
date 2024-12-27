@@ -1,0 +1,20 @@
+<mat-card>
+  <mat-card-header>
+    <mat-card-title>
+      <h2>One Time Password</h2>
+      <p>Para su seguridad, le enviamos una contraseña de un solo uso {{text()}}</p>
+      <p>Se le solicitará que ingrese una contraseña de un solo uso que se le enviará que inicie sesión</p>
+    </mat-card-title>
+  </mat-card-header>
+  <mat-card-content>
+    <form>
+      <mat-form-field appearance="outline">
+        <mat-label>Introduzca On Time Password</mat-label>
+        <input matInput type="text" required autofocus>
+      </mat-form-field>
+      <div class="button-container">
+        <button mat-raised-button color="primary" type="submit">Login</button>
+      </div>
+    </form>
+  </mat-card-content>
+</mat-card>

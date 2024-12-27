@@ -1,0 +1,38 @@
+-Stepper
+	-Steep->Datos del alumno
+		-dni
+		-tarjeta sanitaria
+		-foto(tamaño dni)
+	-Steep->Situacion familiar
+	-Steep->Datos de la madre
+		-dni
+		-firma
+	-Steep->Datos del padre
+		-dni
+		-firma
+	-Steep->Asignaturas
+
+	-Steep->Seguros,transporte,ampa,etc...
+	-Steep->Declaración de salud del alumno
+
+Login
+Confirm Login
+Situacion familiar
+  -Soy el alumno y declaro ser mayor de edad
+  -Soy la madre del alumno
+  -Soy el padre del alumno
+  -Soy el tutor/a legal del alumno
+
+  Situación familiar->Soltero/Casados/Divorciados/Viudo
+
+  Datos-Alumno
+  Datos-Padre
+  Datos-Madre
+
+
+Elegir nivel
+  1   ESO         1 BACHILLER
+  2   ESO         2 BACHILLER
+  3   ESO
+  4   ESO
+Paso a Stepper
