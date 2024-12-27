@@ -4,7 +4,10 @@
   align-items: center;
   height: 100vh;
 }
-
+mat-card-header{
+  display: flex;
+  justify-content: center;
+}
 mat-card-title{
   margin-bottom: 25px;
 }
@@ -19,8 +22,4 @@ mat-form-field{
   display: flex;
   justify-content: right;
   margin-top: 20px;
-}
-h2{
-  display: flex;
-  justify-content: center;
 }
