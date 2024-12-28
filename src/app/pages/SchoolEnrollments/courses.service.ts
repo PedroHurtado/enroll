@@ -62,15 +62,13 @@ const courses: Course[] = [
 })
 export class CoursesService {
 
-  constructor() { }
-
   getAll(): Record<string, Course[]> {
     return courses.reduce((acc, course) => {
-      const categoryKey = course.category.description;
-      if (!acc[categoryKey]) {
-        acc[categoryKey] = [];
+      const key = `${course.category.id} ${course.category.description}`;
+      if (!acc[key]) {
+        acc[key] = [];
       }
-      acc[categoryKey].push(course);
+      acc[key].push(course);
       return acc;
     }, {} as Record<string, Course[]>);
   }
