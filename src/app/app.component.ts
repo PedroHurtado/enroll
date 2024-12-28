@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
-//import { LoginpageComponent } from './pages/login/loginpage.component';
-import { CoursesComponent } from './pages/SchoolEnrollments/courses/courses.component';
+import { CoursesComponent } from './pages/courses/courses/courses.component';
+
+
 
 
 @Component({
