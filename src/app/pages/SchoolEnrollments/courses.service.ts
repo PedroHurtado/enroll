@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { Course } from './Course';
+import { Course } from './course'
 
 const courses: Course[] = [
   {
