@@ -40,24 +40,6 @@ mat-sidenav-content {
 
 .card {
   width: 100%;
-  max-width: 250px;
   height: max-content;
-}
-
-a {
-  color: inherit; /* Hereda el color del elemento padre */
-  text-decoration: none; /* Elimina el subrayado */
-  font: inherit; /* Hereda la fuente del elemento padre */
-  cursor: pointer; /* Mantiene el cursor de enlace */
-}
-
-a:hover, a:focus, a:active {
-  text-decoration: none; /* Asegura que tampoco aparezca subrayado al interactuar */
-  color: inherit; /* Hereda el color en estados interactivos */
-  outline: none; /* Elimina los bordes de enfoque (opcional, para accesibilidad podría omitirse) */
-}
-
-a:visited {
-  color: inherit; /* Hereda el color en estado visitado */
 }
 

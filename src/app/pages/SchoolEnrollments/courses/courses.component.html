@@ -12,15 +12,17 @@
     <mat-sidenav #snav [mode]="isMobile() ? 'over' : 'side'" [opened]="!isMobile()" [fixedInViewport]="isMobile()"
       fixedTopGap="56">
       <mat-nav-list (click)="handlerItem($event)">
+
         @for (item of categories(); track item) {
-        <a mat-list-item [attr.data-key]="item">{{item}}</a>
+          <a mat-list-item [attr.data-key]="item">{{item}}</a>
         }
+
       </mat-nav-list>
     </mat-sidenav>
 
     <mat-sidenav-content>
       @for (item of courses(); track item.id) {
-      <a href="/courses/{{item.id}}">
+
         <mat-card class="card">
           <mat-card-header>
             <mat-card-title>{{item.description}}</mat-card-title>
@@ -30,8 +32,11 @@
             <p>{{subject.description}}</p>
             }
           </mat-card-content>
+          <mat-card-actions>
+            <a mat-button href="/courses/add/{{item.id}}">Nueva Matrícula</a>
+          </mat-card-actions>
         </mat-card>
-      </a>
+
       }
     </mat-sidenav-content>
   </mat-sidenav-container>
