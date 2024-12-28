@@ -3,7 +3,7 @@ import { Course } from './course'
 
 const courses: Course[] = [
   {
-    id: 1, description: '1º ESO', category: { id: 0, description: 'ESO' }, subjects: [
+    id: 1, description: '1º Eso', category: { id: 0, description: 'Eso' }, subjects: [
       { id: 1, description: 'Matemáticas' },
       { id: 2, description: 'Lengua' },
       { id: 3, description: 'Inglés' },
@@ -12,7 +12,7 @@ const courses: Course[] = [
     ]
   },
   {
-    id: 2, description: '2º ESO', category: { id: 0, description: 'ESO' }, subjects: [
+    id: 2, description: '2º Eso', category: { id: 0, description: 'Eso' }, subjects: [
       { id: 1, description: 'Matemáticas' },
       { id: 2, description: 'Lengua' },
       { id: 3, description: 'Inglés' },
@@ -21,7 +21,7 @@ const courses: Course[] = [
     ]
   },
   {
-    id: 3, description: '3º ESO', category: { id: 0, description: 'ESO' }, subjects: [
+    id: 3, description: '3º Eso', category: { id: 0, description: 'Eso' }, subjects: [
       { id: 1, description: 'Matemáticas' },
       { id: 2, description: 'Lengua' },
       { id: 3, description: 'Inglés' },
@@ -30,7 +30,7 @@ const courses: Course[] = [
     ]
   },
   {
-    id: 4, description: '4º ESO', category: { id: 0, description: 'ESO' }, subjects: [
+    id: 4, description: '4º Eso', category: { id: 0, description: 'Eso' }, subjects: [
       { id: 1, description: 'Matemáticas' },
       { id: 2, description: 'Lengua' },
       { id: 3, description: 'Inglés' },
@@ -64,7 +64,7 @@ export class CoursesService {
 
   getAll(): Record<string, Course[]> {
     return courses.reduce((acc, course) => {
-      const key = `${course.category.id} ${course.category.description}`;
+      const key = course.category.description;
       if (!acc[key]) {
         acc[key] = [];
       }
