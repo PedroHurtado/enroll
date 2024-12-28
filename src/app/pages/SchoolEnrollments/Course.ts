@@ -3,17 +3,16 @@
 export interface Course {
   id: number;
   description: string;
+  category: Category;
+  subjects: Subjects[];
 }
 
-export interface Level {
+export interface Category {
   id: number;
   description: string;
-  level:number
-  course: Course;
-  subjects: subjects[];
 }
 
-export interface subjects{
+export interface Subjects{
   id: number;
   description: string;
 }
