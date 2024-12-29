@@ -1,0 +1,84 @@
+<div class="container">
+  <h1>Matrícula</h1>
+  <h2>Declaración de Identidad</h2>
+  <mat-radio-group [(ngModel)]="identity">
+    <div class="radio-options">
+      <mat-radio-button value="student">Soy el alumno y declaro ser mayor de edad</mat-radio-button>
+      <mat-radio-button value="mother">Soy la madre del alumno</mat-radio-button>
+      <mat-radio-button value="father">Soy el padre del alumno</mat-radio-button>
+      <mat-radio-button value="guardian">Soy el tutor/a legal del alumno</mat-radio-button>
+    </div>
+  </mat-radio-group>
+  @if (identity==='mother' || identity =='father' ) {
+  <div>
+    <h2>Situación Familiar</h2>
+    <mat-form-field appearance="outline">
+      <mat-label>Seleccione su situación</mat-label>
+      <mat-select [(ngModel)]="situation">
+        <mat-option value="single">Soltero/a</mat-option>
+        <mat-option value="married">Casado/a</mat-option>
+        <mat-option value="divorced">Divorciado/a</mat-option>
+        <mat-option value="widowed">Viudo/a</mat-option>
+      </mat-select>
+    </mat-form-field>
+  </div>
+  }
+  <div>
+    <h2>Datos</h2>
+    <p>Introduzca los datos (nombre,direccion,código postal,poblacion,ciudad,dni,teléfono,email)</p>
+    <mat-form-field class="data" appearance="outline">
+      <mat-label>Datos del alumno</mat-label>
+      <textarea matInput cdkTextareaAutosize #autosize="cdkTextareaAutosize" cdkAutosizeMinRows="12"
+        cdkAutosizeMaxRows="12"></textarea>
+    </mat-form-field>
+    <div>
+      @if (
+      (identity==='mother' || identity =='father') &&
+      (situation==='married' || situation==='divorced')
+      ) {
+      <mat-form-field class="data" appearance="outline">
+        <mat-label>Datos de la madre</mat-label>
+        <textarea matInput cdkTextareaAutosize #autosize="cdkTextareaAutosize" cdkAutosizeMinRows="12"
+          cdkAutosizeMaxRows="12"></textarea>
+      </mat-form-field>
+      <mat-form-field class="data" appearance="outline">
+        <mat-label>Datos del padre</mat-label>
+        <textarea matInput cdkTextareaAutosize #autosize="cdkTextareaAutosize" cdkAutosizeMinRows="12"
+          cdkAutosizeMaxRows="12"></textarea>
+      </mat-form-field>
+      }
+      @else if (
+      (identity==='mother')
+      && (situation==='widowed' || situation==='single')
+      ) {
+      <mat-form-field class="data" appearance="outline">
+        <mat-label>Datos de la madre</mat-label>
+        <textarea matInput cdkTextareaAutosize #autosize="cdkTextareaAutosize" cdkAutosizeMinRows="12"
+          cdkAutosizeMaxRows="12"></textarea>
+      </mat-form-field>
+      }
+      @else if (
+      (identity==='father')
+      && (situation==='widowed' || situation==='single')
+      ) {
+      <mat-form-field class="data" appearance="outline">
+        <mat-label>Datos del padre</mat-label>
+        <textarea matInput cdkTextareaAutosize #autosize="cdkTextareaAutosize" cdkAutosizeMinRows="12"
+          cdkAutosizeMaxRows="12"></textarea>
+      </mat-form-field>
+      }
+      @else if(identity==='guardian') {
+        <mat-form-field class="data" appearance="outline">
+          <mat-label>Datos del tutor/a</mat-label>
+          <textarea matInput cdkTextareaAutosize #autosize="cdkTextareaAutosize" cdkAutosizeMinRows="12"
+            cdkAutosizeMaxRows="12"></textarea>
+        </mat-form-field>
+      }
+    </div>
+  </div>
+
+  <div class="button_row">
+    <a mat-raised-button [routerLink]="['/enrolls']">Cancelar</a>
+    <button mat-flat-button>Aceptar</button>
+  </div>
+</div>

@@ -23,7 +23,7 @@ Situacion familiar
   -Soy el padre del alumno
   -Soy el tutor/a legal del alumno
 
-  Situación familiar->Soltero/Casados/Divorciados/Viudo
+  Situación familiar->Soltero/Casado/Divorciado/Viudo
 
   Datos-Alumno
   Datos-Padre

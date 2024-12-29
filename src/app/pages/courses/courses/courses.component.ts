@@ -8,6 +8,7 @@ import { MatCardModule } from '@angular/material/card';
 import { MediaMatcher } from '@angular/cdk/layout';
 import { CoursesService } from '../courses.service';
 import { Course } from '../course';
+import { RouterLink } from '@angular/router';
 @Component({
   selector: 'app-courses',
   standalone: true,
@@ -17,7 +18,8 @@ import { Course } from '../course';
     MatListModule,
     MatIconModule,
     MatButtonModule,
-    MatCardModule
+    MatCardModule,
+    RouterLink
   ],
   templateUrl: './courses.component.html',
   styleUrl: './courses.component.css'

@@ -1,0 +1,13 @@
+.container{
+  height: 100vh;
+  margin: 0 1rem;
+}
+.data{
+  width: 100%;
+}
+.button_row{
+  display: flex;
+  justify-content: end;
+  gap: 1rem;
+}
+
