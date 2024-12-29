@@ -6,6 +6,7 @@ import { StepalumnoComponent } from './components/stepalumno/stepalumno.componen
 import { StepmotherComponent } from './components/stepmother/stepmother.component';
 import { StepfatherComponent } from './components/stepfather/stepfather.component';
 import { StepsituationComponent } from './components/stepsituation/stepsituation.component';
+import { StepothersComponent } from './components/stepothers/stepothers.component';
 
 @Component({
   selector: 'app-steppers',
@@ -17,7 +18,8 @@ import { StepsituationComponent } from './components/stepsituation/stepsituation
     StepalumnoComponent,
     StepmotherComponent,
     StepfatherComponent,
-    StepsituationComponent
+    StepsituationComponent,
+    StepothersComponent
   ],
   templateUrl: './steppers.component.html',
   styleUrl: './steppers.component.css'
