@@ -3,7 +3,7 @@
   <h2>Declaración de Identidad</h2>
   <mat-radio-group [(ngModel)]="identity">
     <div class="radio-options">
-      <mat-radio-button value="student">Soy el alumno y declaro ser mayor de edad</mat-radio-button>
+      <mat-radio-button value="student">Soy el alumno/a y declaro ser mayor de edad</mat-radio-button>
       <mat-radio-button value="mother">Soy la madre del alumno</mat-radio-button>
       <mat-radio-button value="father">Soy el padre del alumno</mat-radio-button>
       <mat-radio-button value="guardian">Soy el tutor/a legal del alumno</mat-radio-button>
@@ -27,7 +27,7 @@
     <h2>Datos</h2>
     <p>Introduzca los datos (nombre,direccion,código postal,poblacion,ciudad,dni,teléfono,email)</p>
     <mat-form-field class="data" appearance="outline">
-      <mat-label>Datos del alumno</mat-label>
+      <mat-label>Datos del alumno/a</mat-label>
       <textarea matInput cdkTextareaAutosize #autosize="cdkTextareaAutosize" cdkAutosizeMinRows="12"
         cdkAutosizeMaxRows="12"></textarea>
     </mat-form-field>

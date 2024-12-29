@@ -1,0 +1,31 @@
+<div class="image-upload-container">
+  @if (!imageUrl) {
+    <div class="upload-area"
+         [class.dragging]="isDragging"
+         (dragover)="onDragOver($event)"
+         (dragleave)="onDragLeave($event)"
+         (drop)="onDrop($event)">
+      <input type="file"
+             (change)="onFileSelected($event)"
+             accept="image/*"
+             #fileInput
+             style="display: none">
+      <button mat-raised-button color="primary" (click)="fileInput.click()">
+        <mat-icon>upload</mat-icon>
+        Seleccionar imagen
+      </button>
+      <p>O arrastra y suelta una imagen aquí</p>
+    </div>
+  }
+
+  @if (imageUrl) {
+    <div class="preview-container">
+      <button mat-icon-button color="warn" class="delete-button" (click)="deleteImage()">
+        <mat-icon>delete</mat-icon>
+      </button>
+      <div class="preview-area">
+        <img [src]="imageUrl" alt="Preview">
+      </div>
+    </div>
+  }
+</div>
