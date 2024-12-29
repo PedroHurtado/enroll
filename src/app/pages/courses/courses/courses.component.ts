@@ -1,5 +1,5 @@
-import { Component, OnDestroy, signal, inject } from '@angular/core';
-import { MatSidenavModule } from '@angular/material/sidenav';
+import { Component, OnDestroy, signal, inject, viewChild } from '@angular/core';
+import { MatSidenav, MatSidenavModule } from '@angular/material/sidenav';
 import { MatListModule } from '@angular/material/list';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatIconModule } from '@angular/material/icon';
@@ -26,6 +26,7 @@ export class CoursesComponent implements OnDestroy {
   protected readonly isMobile = signal(false);
   protected readonly categories = signal<string[]>([]);
   protected readonly courses = signal<Course[]>([]);
+  private sidenav = viewChild<MatSidenav>('snav');
 
   private readonly _mobileQuery: MediaQueryList;
   private readonly _mobileQueryListener: () => void;
@@ -60,6 +61,9 @@ export class CoursesComponent implements OnDestroy {
       } else if (key){
         this.courses.set(this._results[key]);
       }
+    }
+    if(this.isMobile()){
+      this.sidenav()?.close()
     }
   }
 }
