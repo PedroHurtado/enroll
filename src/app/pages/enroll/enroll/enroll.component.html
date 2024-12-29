@@ -1,0 +1,49 @@
+<div class="container" [class.is-mobile]="isMobile()">
+  <mat-toolbar class="toolbar">
+    @if(isMobile()){
+    <button mat-icon-button (click)="snav.toggle()">
+      <mat-icon>menu</mat-icon>
+    </button>
+    }
+    <h1>Responsive App</h1>
+  </mat-toolbar>
+
+  <mat-sidenav-container class="sidenav-container" [style.marginTop.px]="isMobile() ? 56 : 0">
+    <mat-sidenav #snav [mode]="isMobile() ? 'over' : 'side'" [opened]="!isMobile()" [fixedInViewport]="isMobile()"
+      fixedTopGap="56">
+      <mat-nav-list (click)="handlerItem($event)">
+
+        @for (item of categories(); track item) {
+        <a mat-list-item [attr.data-key]="item">{{item}}</a>
+        }
+
+      </mat-nav-list>
+    </mat-sidenav>
+
+    <mat-sidenav-content>
+      <div class="add">
+        <a mat-button href="/enrolls/add">Nueva Matrícula</a>
+      </div>
+      <div class="cards">
+        @for (item of enrolls(); track item.id) {
+
+        <mat-card class="card">
+          <mat-card-header>
+            <mat-card-title>{{item.studentName}}</mat-card-title>
+            <mat-card-subtitle>{{item.courseName}}</mat-card-subtitle>
+          </mat-card-header>
+          <mat-card-content>
+            <p>Periodo: {{item.start}}-{{item.end}}</p>
+            <p>Estado: {{item.status}}</p>
+          </mat-card-content>
+          <mat-card-actions>
+            <a mat-button href="/enrolls/edit/{{item.id}}">Editar</a>
+          </mat-card-actions>
+        </mat-card>
+
+        }
+      </div>
+
+    </mat-sidenav-content>
+  </mat-sidenav-container>
+</div>

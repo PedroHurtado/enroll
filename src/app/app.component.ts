@@ -1,5 +1,7 @@
 import { Component } from '@angular/core';
-import { CoursesComponent } from './pages/courses/courses/courses.component';
+
+import { RouterOutlet } from '@angular/router';
+
 
 
 
@@ -7,7 +9,7 @@ import { CoursesComponent } from './pages/courses/courses/courses.component';
 @Component({
   selector: 'app-root',
   imports: [
-    CoursesComponent
+    RouterOutlet
   ],
   templateUrl: './app.component.html',
   styleUrl: './app.component.css'
