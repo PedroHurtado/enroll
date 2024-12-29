@@ -6,12 +6,9 @@
 	-Steep->Situacion familiar
 	-Steep->Datos de la madre
 		-dni
-		-firma
 	-Steep->Datos del padre
 		-dni
-		-firma
 	-Steep->Asignaturas
-
 	-Steep->Seguros,transporte,ampa,etc...
 	-Steep->Declaración de salud del alumno
 
