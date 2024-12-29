@@ -8,6 +8,7 @@ import { MatCardModule } from '@angular/material/card';
 import { MediaMatcher } from '@angular/cdk/layout';
 import { EnrollService } from '../enroll.service';
 import { Enroll } from '../enroll';
+import { RouterLink } from '@angular/router';
 @Component({
   selector: 'app-enrolls',
   standalone: true,
@@ -17,7 +18,8 @@ import { Enroll } from '../enroll';
     MatListModule,
     MatIconModule,
     MatButtonModule,
-    MatCardModule
+    MatCardModule,
+    RouterLink
   ],
   templateUrl: './enroll.component.html',
   styleUrl: './enroll.component.css'

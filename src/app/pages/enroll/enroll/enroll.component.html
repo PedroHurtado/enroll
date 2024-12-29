@@ -22,7 +22,7 @@
 
     <mat-sidenav-content>
       <div class="add">
-        <a mat-button href="/enrolls/add">Nueva Matrícula</a>
+        <a mat-button [routerLink]="['/enrolls/add']">Nueva Matrícula</a>
       </div>
       <div class="cards">
         @for (item of enrolls(); track item.id) {

@@ -7,10 +7,10 @@
     </mat-card-title>
   </mat-card-header>
   <mat-card-content>
-    <form>
+    <form [formGroup]="loginForm" (ngSubmit)="handlerSubmit()">
       <mat-form-field appearance="outline">
         <mat-label>Introduzca On Time Password</mat-label>
-        <input matInput type="text" required autofocus>
+        <input matInput type="text" required autofocus formControlName="oneTime">
       </mat-form-field>
       <div class="button-container">
         <button mat-raised-button color="primary" type="submit">Login</button>

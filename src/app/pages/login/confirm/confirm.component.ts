@@ -1,15 +1,18 @@
-import { Component,input } from '@angular/core';
+import { Component, input } from '@angular/core';
 import { MatCardModule } from '@angular/material/card';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { MatButtonModule } from '@angular/material/button';
+import { FormControl, FormGroup, ReactiveFormsModule } from '@angular/forms';
+import { Router } from '@angular/router';
 @Component({
   selector: 'app-confirm',
   imports: [
     MatCardModule,
     MatFormFieldModule,
     MatInputModule,
-    MatButtonModule
+    MatButtonModule,
+    ReactiveFormsModule
 
   ],
   templateUrl: './confirm.component.html',
@@ -17,4 +20,11 @@ import { MatButtonModule } from '@angular/material/button';
 })
 export class ConfirmComponent {
   text = input.required<string>();
+  loginForm = new FormGroup({
+    oneTime: new FormControl(''),
+  });
+  constructor(private router:Router) { }
+  handlerSubmit() {
+    this.router.navigate(['/enrolls']);
+  }
 }
