@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 
 import { RouterOutlet } from '@angular/router';
+import { FileuploadComponent } from './components/fileupload/fileupload.component';
 
 
 
@@ -9,7 +10,8 @@ import { RouterOutlet } from '@angular/router';
 @Component({
   selector: 'app-root',
   imports: [
-    RouterOutlet
+    RouterOutlet,
+    FileuploadComponent
   ],
   templateUrl: './app.component.html',
   styleUrl: './app.component.css'

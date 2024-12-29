@@ -1,0 +1,25 @@
+<div class="upload-container">
+  <div class="drop-zone" [class.dragging]="isDragging" (dragover)="onDragOver($event)" (dragleave)="onDragLeave($event)"
+    (drop)="onDrop($event)">
+    <mat-icon>cloud_upload</mat-icon>
+    <p>Arrastra los archivos aquí</p>
+    <button mat-raised-button color="primary">
+      <label>
+        Seleccione archivos
+        <input type="file" multiple (change)="onFileSelected($event)" hidden>
+      </label>
+    </button>
+    @if (files.length > 0) {
+    <div class="file-list">
+      @for (file of files; track file; let i = $index) {
+      <div class="file-item">
+        <span>{{ file.name }}</span>
+        <button mat-icon-button color="warn" (click)="removeFile(i)">
+          <mat-icon class="mat-icon-delete">delete</mat-icon>
+        </button>
+      </div>
+      }
+    </div>
+    }
+  </div>
+</div>
