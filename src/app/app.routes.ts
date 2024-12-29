@@ -15,6 +15,10 @@ export const routes: Routes = [
     path: 'enrolls/situation',
     loadComponent: () => import('./pages/enroll/familysituation/familysituation.component').then(m => m.FamilysituationComponent)
   },
+  {
+    path: 'enrolls/steppers',
+    loadComponent: () => import('./pages/enroll/steppers/steppers.component').then(m => m.SteppersComponent)
+  },
 
   { path: '', redirectTo: 'login', pathMatch: 'full' },
 ];

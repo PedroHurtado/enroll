@@ -1,0 +1,55 @@
+<div class="container">
+  <h1>Matricula</h1>
+  <mat-stepper [linear]="true" #stepper [selectedIndex]="currentStep">
+    <mat-step label="Datos del alumno">
+      <div class="step-content">
+       <app-stepalumno/>
+      </div>
+    </mat-step>
+
+    <mat-step label="Situación familiar">
+      <div class="step-content">
+        <app-stepsituation/>
+      </div>
+    </mat-step>
+
+    <mat-step label="Datos de la madre">
+      <div class="step-content">
+        <app-stepmother/>
+      </div>
+    </mat-step>
+
+    <mat-step label="Datos del padre">
+      <div class="step-content">
+        <app-stepfather/>
+      </div>
+    </mat-step>
+
+    <mat-step label="Asignaturas">
+      <div class="step-content">
+        <!-- Contenido del paso 5 -->
+      </div>
+    </mat-step>
+
+    <mat-step label="Seguros, transporte, AMPA">
+      <div class="step-content">
+        <!-- Contenido del paso 6 -->
+      </div>
+    </mat-step>
+
+    <mat-step label="Declaración de salud">
+      <div class="step-content">
+        <!-- Contenido del paso 7 -->
+      </div>
+    </mat-step>
+  </mat-stepper>
+
+  <div class="stepper-buttons">
+    <button mat-button (click)="previousStep()" [disabled]="currentStep === 0">
+      Anterior
+    </button>
+    <button mat-button (click)="nextStep()" [disabled]="currentStep === totalSteps - 1">
+      Siguiente
+    </button>
+  </div>
+</div>

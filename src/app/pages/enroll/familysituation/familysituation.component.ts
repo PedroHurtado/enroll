@@ -7,7 +7,7 @@ import {CdkTextareaAutosize, TextFieldModule} from '@angular/cdk/text-field';
 import {MatInputModule} from '@angular/material/input';
 import {MatFormFieldModule} from '@angular/material/form-field'
 import {MatButtonModule} from '@angular/material/button';
-import { RouterLink } from '@angular/router';
+import { Router, RouterLink } from '@angular/router';
 @Component({
   selector: 'app-familysituation',
   imports: [
@@ -28,4 +28,8 @@ import { RouterLink } from '@angular/router';
 export class FamilysituationComponent {
   identity:string='student';
   situation:string='single' ;
+  constructor(private router:Router) { }
+  handlerClick(){
+   this.router.navigate(['enrolls/steppers']);
+  }
 }
