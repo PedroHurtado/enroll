@@ -10,4 +10,9 @@
   justify-content: end;
   gap: 1rem;
 }
-
+.logo{
+  display: grid;
+  grid-template-columns: 25% 1fr;
+  align-items: center;
+  gap:1rem
+}

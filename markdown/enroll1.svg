@@ -1,0 +1,21 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 300 200">
+  <!-- Fondo circular -->
+  <circle cx="100" cy="100" r="90" fill="#4A90E2"/>
+
+  <!-- Libro abierto estilizado -->
+  <path d="M50 120 L100 100 L150 120 L150 140 L100 120 L50 140 Z" fill="#FFFFFF"/>
+  <path d="M50 140 L100 120 L150 140" fill="none" stroke="#FFFFFF" stroke-width="3"/>
+
+  <!-- Birrete/Gorro de graduación -->
+  <path d="M70 70 L130 70 L100 40 Z" fill="#FFFFFF"/>
+  <rect x="95" y="35" width="10" height="10" fill="#FFFFFF"/>
+
+  <!-- Borla del birrete -->
+  <path d="M105 40 Q110 50 115 40" fill="none" stroke="#FFFFFF" stroke-width="2"/>
+
+  <!-- Texto estilizado "M" -->
+  <text x="85" y="105" font-family="Arial" font-size="40" fill="#FFFFFF" font-weight="bold">M</text>
+
+  <!-- Texto "enroll" añadido con más espacio -->
+  <text x="200" y="110" font-family="Arial" font-size="45" fill="#4A90E2" font-weight="bold">enroll</text>
+</svg>

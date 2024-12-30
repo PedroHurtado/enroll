@@ -8,6 +8,7 @@ import {MatInputModule} from '@angular/material/input';
 import {MatFormFieldModule} from '@angular/material/form-field'
 import {MatButtonModule} from '@angular/material/button';
 import { Router, RouterLink } from '@angular/router';
+import { LogoComponent } from '../../../components/logo/logo.component';
 @Component({
   selector: 'app-familysituation',
   imports: [
@@ -19,7 +20,8 @@ import { Router, RouterLink } from '@angular/router';
     CdkTextareaAutosize,
     TextFieldModule,
     RouterLink,
-    MatButtonModule
+    MatButtonModule,
+    LogoComponent
 
   ],
   templateUrl: './familysituation.component.html',
