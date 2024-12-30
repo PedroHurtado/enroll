@@ -1,11 +1,11 @@
-<div class="upload-container"
+<div
      [class.dragging]="isDragging"
      (dragover)="onDragOver($event)"
      (dragleave)="onDragLeave($event)"
      (drop)="onDrop($event)">
 
   @if (!imageFile) {
-    <div class="upload-prompt">
+    <div class="upload-area">
       <input type="file"
              #fileInput
              hidden
