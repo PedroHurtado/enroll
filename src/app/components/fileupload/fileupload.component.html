@@ -3,7 +3,7 @@
     (drop)="onDrop($event)">
     <mat-icon>cloud_upload</mat-icon>
     <p>Arrastra los archivos aquí</p>
-    <button mat-raised-button color="primary">
+    <button type="button" mat-raised-button color="primary">
       <label>
         Seleccione archivos
         <input type="file" multiple (change)="onFileSelected($event)" hidden>
@@ -14,7 +14,7 @@
       @for (file of files; track file; let i = $index) {
       <div class="file-item">
         <span>{{ file.name }}</span>
-        <button mat-icon-button color="warn" (click)="removeFile(i)">
+        <button type="button" mat-icon-button color="warn" (click)="removeFile(i)">
           <mat-icon class="mat-icon-delete">delete</mat-icon>
         </button>
       </div>

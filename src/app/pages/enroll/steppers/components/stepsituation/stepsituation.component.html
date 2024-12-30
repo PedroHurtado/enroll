@@ -1,4 +1,7 @@
+<form [formGroup]="form" (ngSubmit)="submit()">
 <div>
   <p>Suba los documentos necesarios que acrediten la situación familiar del alumno</p>
-  <app-fileupload />
+  <app-fileupload formControlName="files" />
 </div>
+<button type="submit" >Enviar</button>
+</form>
