@@ -1,13 +1,15 @@
-<div class="container">
-  <div class="row">
-    <div>
-      <p>Anverso del dni *</p>
-      <app-imageupload />
+<form [formGroup]="form" (ngSubmit)="submit()">
+  <div class="container">
+    <div class="row">
+      <div>
+        <p>Anverso del dni *</p>
+        <app-imageupload formControlName="anverso" />
+      </div>
+      <div>
+        <p>Reverso del dni *</p>
+        <app-imageupload formControlName="reverso" />
+      </div>
     </div>
-    <div>
-      <p>Reverso del dni *</p>
-      <app-imageupload />
-    </div>
+    <button type="submit">Enviar</button>
   </div>
-
-</div>
+</form>

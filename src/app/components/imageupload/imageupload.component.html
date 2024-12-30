@@ -1,30 +1,34 @@
-<div class="image-upload-container">
-  @if (!imageUrl) {
-    <div class="upload-area"
-         [class.dragging]="isDragging"
-         (dragover)="onDragOver($event)"
-         (dragleave)="onDragLeave($event)"
-         (drop)="onDrop($event)">
+<div class="upload-container"
+     [class.dragging]="isDragging"
+     (dragover)="onDragOver($event)"
+     (dragleave)="onDragLeave($event)"
+     (drop)="onDrop($event)">
+
+  @if (!imageFile) {
+    <div class="upload-prompt">
       <input type="file"
-             (change)="onFileSelected($event)"
-             accept="image/*"
              #fileInput
-             style="display: none">
-      <button mat-raised-button color="primary" (click)="fileInput.click()">
-        <mat-icon>upload</mat-icon>
+             hidden
+             accept="image/*"
+             (change)="onFileSelected($event)">
+      <button mat-raised-button type="button"
+              color="primary"
+              (click)="fileInput.click()"
+              [disabled]="disabled">
+        <mat-icon>cloud_upload</mat-icon>
         Seleccionar imagen
       </button>
       <p>O arrastra y suelta una imagen aquí</p>
     </div>
   }
 
-  @if (imageUrl) {
+  @if (imageFile) {
     <div class="preview-container">
       <button mat-icon-button color="warn" class="delete-button" (click)="deleteImage()">
         <mat-icon>delete</mat-icon>
       </button>
       <div class="preview-area">
-        <img [src]="imageUrl" alt="Preview">
+        <img [src]="preview" alt="Preview">
       </div>
     </div>
   }
