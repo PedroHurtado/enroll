@@ -5,7 +5,7 @@
       <mat-icon>menu</mat-icon>
     </button>
     }
-    <app-logomini/>
+    <app-logomini />
     <h1>Nueva matrícula</h1>
   </mat-toolbar>
 
@@ -15,14 +15,15 @@
       <mat-nav-list (click)="handlerItem($event)">
 
         @for (item of categories(); track item) {
-          <a mat-list-item [attr.data-key]="item">{{item}}</a>
+        <a mat-list-item [attr.data-key]="item">{{item}}</a>
         }
 
       </mat-nav-list>
     </mat-sidenav>
 
     <mat-sidenav-content>
-      @for (item of courses(); track item.id) {
+      <div class="cards">
+        @for (item of courses(); track item.id) {
 
         <mat-card class="card">
           <mat-card-header>
@@ -38,7 +39,9 @@
           </mat-card-actions>
         </mat-card>
 
-      }
+        }
+      </div>
+
     </mat-sidenav-content>
   </mat-sidenav-container>
 </div>
