@@ -1,5 +1,7 @@
 :host{
   display: flex;
-  max-height: 48px;
-  width: auto;
+}
+svg {
+  width: 100%; /* Adapta el ancho al contenedor */
+  height: auto; /* Mantiene la proporción */
 }

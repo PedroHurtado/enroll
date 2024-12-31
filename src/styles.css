@@ -3,9 +3,11 @@
 html, body { height: 100%; }
 body {
   margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif;
-  background-color: #faf9fd;
+  background-color: rgb(250, 249, 253);
 }
-
+main {
+  background-color: inherit; /* Usa el color del body */
+}
 /* Estilo para Webkit (Chrome, Safari, Edge) */
 ::-webkit-scrollbar {
   width: 8px;
