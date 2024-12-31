@@ -8,9 +8,9 @@
   top: 0;
   width: 100%;
   background-color: rgb(250, 249, 253);
-  padding: 1rem;
+  padding: 0 16px;
   z-index: 1000;
+  height: var(--mat-toolbar-standard-height, 64px);
 }
-h1{
-  margin: 0;
-}
+
+

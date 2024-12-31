@@ -8,6 +8,14 @@ body {
 main {
   background-color: inherit; /* Usa el color del body */
 }
+
+h1,h2,h3,h4,h5,h6 {
+  font-family: var(--mat-toolbar-title-text-font, var(--mat-sys-title-large-font));
+  font-size: var(--mat-toolbar-title-text-size, var(--mat-sys-title-large-size));
+  line-height: var(--mat-toolbar-title-text-line-height, var(--mat-sys-title-large-line-height));
+  font-weight: var(--mat-toolbar-title-text-weight, var(--mat-sys-title-large-weight));
+  letter-spacing: var(--mat-toolbar-title-text-tracking, var(--mat-sys-title-large-tracking));
+}
 /* Estilo para Webkit (Chrome, Safari, Edge) */
 ::-webkit-scrollbar {
   width: 8px;
