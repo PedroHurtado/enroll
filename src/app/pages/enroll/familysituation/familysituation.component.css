@@ -1,18 +1,12 @@
-.container{
-  height: 100vh;
-  margin: 0 1rem;
-}
-.data{
+
+
+.data {
   width: 100%;
 }
-.button_row{
+
+.button_row {
   display: flex;
   justify-content: end;
   gap: 1rem;
 }
-.logo{
-  display: grid;
-  grid-template-columns: 25% 1fr;
-  align-items: center;
-  gap:1rem
-}
+

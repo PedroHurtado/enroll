@@ -1,0 +1,7 @@
+:host {
+  height: calc(100vh - 6.25rem);
+  margin: 0 1rem;
+  overflow-y: auto;
+  padding-top: 6.25rem;
+  display: block;
+}

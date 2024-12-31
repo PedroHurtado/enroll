@@ -9,7 +9,7 @@ import { FormControl, FormGroup, ReactiveFormsModule } from '@angular/forms';
   styleUrl: './stepsituation.component.css'
 })
 export class StepsituationComponent {
-  form=new FormGroup({
+  protected form=new FormGroup({
     files: new FormControl([])
   })
   submit(): void {

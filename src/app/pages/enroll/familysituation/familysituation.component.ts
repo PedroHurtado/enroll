@@ -9,6 +9,8 @@ import {MatFormFieldModule} from '@angular/material/form-field'
 import {MatButtonModule} from '@angular/material/button';
 import { Router, RouterLink } from '@angular/router';
 import { LogoComponent } from '../../../components/logo/logo.component';
+import { HeaderComponent } from '../../../components/header/header.component';
+import { ContainerComponent } from '../../../components/container/container.component';
 @Component({
   selector: 'app-familysituation',
   imports: [
@@ -21,7 +23,8 @@ import { LogoComponent } from '../../../components/logo/logo.component';
     TextFieldModule,
     RouterLink,
     MatButtonModule,
-    LogoComponent
+    HeaderComponent,
+    ContainerComponent
 
   ],
   templateUrl: './familysituation.component.html',
@@ -29,7 +32,7 @@ import { LogoComponent } from '../../../components/logo/logo.component';
 })
 export class FamilysituationComponent {
   identity:string='student';
-  situation:string='single' ;
+  situation:string='married' ;
   constructor(private router:Router) { }
   handlerClick(){
    this.router.navigate(['enrolls/steppers']);

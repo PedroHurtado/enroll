@@ -1,9 +1,6 @@
-<div class="container">
-  <div class="logo">
-    <app-logo/>
-    <h1>Matrícula</h1>
-  </div>
+<app-header>Mátricula</app-header>
 
+<app-container>
   <h2>Declaración de Identidad</h2>
   <mat-radio-group [(ngModel)]="identity">
     <div class="radio-options">
@@ -85,4 +82,4 @@
     <a mat-raised-button [routerLink]="['/enrolls']">Cancelar</a>
     <button mat-flat-button (click)="handlerClick()">Aceptar</button>
   </div>
-</div>
+</app-container>

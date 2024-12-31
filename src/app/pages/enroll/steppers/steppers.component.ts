@@ -8,6 +8,9 @@ import { StepfatherComponent } from './components/stepfather/stepfather.componen
 import { StepsituationComponent } from './components/stepsituation/stepsituation.component';
 import { StepothersComponent } from './components/stepothers/stepothers.component';
 import { HealstepComponent } from './components/healstep/healstep.component';
+import { LoginComponent } from '../../login/login/login.component';
+import { ContainerComponent } from '../../../components/container/container.component';
+import { HeaderComponent } from '../../../components/header/header.component';
 
 @Component({
   selector: 'app-steppers',
@@ -22,23 +25,12 @@ import { HealstepComponent } from './components/healstep/healstep.component';
     StepsituationComponent,
     StepothersComponent,
     HealstepComponent,
+    HeaderComponent,
+    ContainerComponent
   ],
   templateUrl: './steppers.component.html',
   styleUrl: './steppers.component.css'
 })
 export class SteppersComponent {
-  currentStep = 0;
-  totalSteps = 7;
 
-  nextStep() {
-    if (this.currentStep < this.totalSteps - 1) {
-      this.currentStep++;
-    }
-  }
-
-  previousStep() {
-    if (this.currentStep > 0) {
-      this.currentStep--;
-    }
-  }
 }
