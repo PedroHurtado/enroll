@@ -5,6 +5,7 @@ import { MatInputModule } from '@angular/material/input';
 import { MatButtonModule } from '@angular/material/button';
 import { FormControl, FormGroup, ReactiveFormsModule } from '@angular/forms';
 import { getLoginOrPhone } from '../getloginorphone';
+import { LogominiComponent } from '../../../components/logomini/logomini.component';
 @Component({
   selector: 'app-login',
   imports: [
@@ -12,7 +13,9 @@ import { getLoginOrPhone } from '../getloginorphone';
     MatFormFieldModule,
     MatInputModule,
     MatButtonModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    LogominiComponent
+
   ],
   templateUrl: './login.component.html',
   styleUrl: './login.component.css'

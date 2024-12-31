@@ -5,6 +5,7 @@ import { MatInputModule } from '@angular/material/input';
 import { MatButtonModule } from '@angular/material/button';
 import { FormControl, FormGroup, ReactiveFormsModule } from '@angular/forms';
 import { Router } from '@angular/router';
+import { LogominiComponent } from '../../../components/logomini/logomini.component';
 @Component({
   selector: 'app-confirm',
   imports: [
@@ -12,7 +13,8 @@ import { Router } from '@angular/router';
     MatFormFieldModule,
     MatInputModule,
     MatButtonModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    LogominiComponent
 
   ],
   templateUrl: './confirm.component.html',
