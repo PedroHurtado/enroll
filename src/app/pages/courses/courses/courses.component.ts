@@ -9,6 +9,7 @@ import { MediaMatcher } from '@angular/cdk/layout';
 import { CoursesService } from '../courses.service';
 import { Course } from '../course';
 import { RouterLink } from '@angular/router';
+import { LogominiComponent } from '../../../components/logomini/logomini.component';
 @Component({
   selector: 'app-courses',
   standalone: true,
@@ -19,7 +20,8 @@ import { RouterLink } from '@angular/router';
     MatIconModule,
     MatButtonModule,
     MatCardModule,
-    RouterLink
+    RouterLink,
+    LogominiComponent
   ],
   templateUrl: './courses.component.html',
   styleUrl: './courses.component.css'
