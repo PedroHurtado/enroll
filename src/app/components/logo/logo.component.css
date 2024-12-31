@@ -1,7 +1,11 @@
 :host{
   display: flex;
+  align-items: center;
+  height: 100%;
+  line-height: 70px;
 }
 svg {
-  width: 100%; /* Adapta el ancho al contenedor */
-  height: auto; /* Mantiene la proporción */
+  height: 100%;
+  width: auto;
+  min-width: 200px;
 }

@@ -3,6 +3,7 @@
   grid-template-columns: 20% 1fr;
   gap: 1rem;
   position: fixed;
+  align-items: center;
   left: 0;
   top: 0;
   width: 100%;

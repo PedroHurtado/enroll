@@ -9,7 +9,7 @@ import { MediaMatcher } from '@angular/cdk/layout';
 import { EnrollService } from '../enroll.service';
 import { Enroll } from '../enroll';
 import { RouterLink } from '@angular/router';
-import { LogominiComponent } from '../../../components/logomini/logomini.component';
+import { LogoComponent } from '../../../components/logo/logo.component';
 @Component({
   selector: 'app-enrolls',
   standalone: true,
@@ -21,7 +21,7 @@ import { LogominiComponent } from '../../../components/logomini/logomini.compone
     MatButtonModule,
     MatCardModule,
     RouterLink,
-    LogominiComponent
+    LogoComponent
   ],
   templateUrl: './enroll.component.html',
   styleUrl: './enroll.component.css'
