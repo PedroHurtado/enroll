@@ -1,14 +1,15 @@
 :host {
   display: grid;
   grid-template-columns: 20% 1fr;
-  align-items: center;
   gap: 1rem;
   position: fixed;
   left: 0;
   top: 0;
   width: 100%;
   background-color: white;
-  /* O el color de fondo que prefieras */
   padding: 1rem;
   z-index: 1000;/
+}
+h1{
+  margin: 0;
 }
