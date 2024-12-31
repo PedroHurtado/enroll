@@ -1,5 +1,4 @@
 <app-header>Mátricula</app-header>
-
 <app-container>
   <h2>Declaración de Identidad</h2>
   <mat-radio-group [(ngModel)]="identity">
@@ -13,67 +12,116 @@
   @if (identity==='mother' || identity =='father' ) {
   <div>
     <h2>Situación Familiar</h2>
-    <mat-form-field appearance="outline">
-      <mat-label>Seleccione su situación</mat-label>
-      <mat-select [(ngModel)]="situation">
-        <mat-option value="single">Soltero/a</mat-option>
-        <mat-option value="married">Casado/a</mat-option>
-        <mat-option value="divorced">Divorciado/a</mat-option>
-        <mat-option value="widowed">Viudo/a</mat-option>
-      </mat-select>
-    </mat-form-field>
+    <div class="row">
+      <mat-form-field appearance="outline">
+        <mat-label>Seleccione su situación</mat-label>
+        <mat-select [(ngModel)]="situation">
+          <mat-option value="single">Soltero/a</mat-option>
+          <mat-option value="married">Casado/a</mat-option>
+          <mat-option value="divorced">Divorciado/a</mat-option>
+          <mat-option value="widowed">Viudo/a</mat-option>
+        </mat-select>
+      </mat-form-field>
+      @if(situation ==='divorced'){
+      <mat-form-field appearance="outline">
+        <mat-label>Custodia</mat-label>
+        <mat-select [(ngModel)]="custody">
+          <mat-option value="mother">Madre</mat-option>
+          <mat-option value="father">Padre</mat-option>
+          <mat-option value="both">Ambos</mat-option>
+        </mat-select>
+      </mat-form-field>
+
+      }
+    </div>
   </div>
   }
+
   <div>
     <h2>Datos</h2>
-    <p>Introduzca los datos (nombre,direccion,código postal,poblacion,ciudad,dni,teléfono,email)</p>
-    <mat-form-field class="data" appearance="outline">
-      <mat-label>Datos del alumno/a</mat-label>
-      <textarea matInput cdkTextareaAutosize #autosize="cdkTextareaAutosize" cdkAutosizeMinRows="12"
-        cdkAutosizeMaxRows="12"></textarea>
-    </mat-form-field>
+    <p>alumno/a</p>
+    <div class="row">
+      <mat-form-field class="data" appearance="outline">
+        <mat-label>Correo electronico alunmo/a</mat-label>
+        <input matInput required>
+      </mat-form-field>
+      <mat-form-field class="data" appearance="outline">
+        <mat-label>Teléfono alunmo/a</mat-label>
+        <input matInput required>
+      </mat-form-field>
+    </div>
     <div>
       @if (
       (identity==='mother' || identity =='father') &&
       (situation==='married' || situation==='divorced')
       ) {
-      <mat-form-field class="data" appearance="outline">
-        <mat-label>Datos de la madre</mat-label>
-        <textarea matInput cdkTextareaAutosize #autosize="cdkTextareaAutosize" cdkAutosizeMinRows="12"
-          cdkAutosizeMaxRows="12"></textarea>
-      </mat-form-field>
-      <mat-form-field class="data" appearance="outline">
-        <mat-label>Datos del padre</mat-label>
-        <textarea matInput cdkTextareaAutosize #autosize="cdkTextareaAutosize" cdkAutosizeMinRows="12"
-          cdkAutosizeMaxRows="12"></textarea>
-      </mat-form-field>
+      <p>madre</p>
+      <div class="row">
+        <mat-form-field class="data" appearance="outline">
+          <mat-label>Correo electronico madre</mat-label>
+          <input matInput required>
+        </mat-form-field>
+        <mat-form-field class="data" appearance="outline">
+          <mat-label>Teléfono madre</mat-label>
+          <input matInput required>
+        </mat-form-field>
+      </div>
+      <p>padre</p>
+      <div class="row">
+        <mat-form-field class="data" appearance="outline">
+          <mat-label>Correo electronico padre</mat-label>
+          <input matInput required>
+        </mat-form-field>
+        <mat-form-field class="data" appearance="outline">
+          <mat-label>Teléfono padre</mat-label>
+          <input matInput required>
+        </mat-form-field>
+      </div>
       }
       @else if (
       (identity==='mother')
       && (situation==='widowed' || situation==='single')
       ) {
-      <mat-form-field class="data" appearance="outline">
-        <mat-label>Datos de la madre</mat-label>
-        <textarea matInput cdkTextareaAutosize #autosize="cdkTextareaAutosize" cdkAutosizeMinRows="12"
-          cdkAutosizeMaxRows="12"></textarea>
-      </mat-form-field>
+      <p>madre</p>
+      <div class="row">
+        <mat-form-field class="data" appearance="outline">
+          <mat-label>Correo electronico madre</mat-label>
+          <input matInput required>
+        </mat-form-field>
+        <mat-form-field class="data" appearance="outline">
+          <mat-label>Teléfono madre</mat-label>
+          <input matInput required>
+        </mat-form-field>
+      </div>
       }
       @else if (
       (identity==='father')
       && (situation==='widowed' || situation==='single')
       ) {
-      <mat-form-field class="data" appearance="outline">
-        <mat-label>Datos del padre</mat-label>
-        <textarea matInput cdkTextareaAutosize #autosize="cdkTextareaAutosize" cdkAutosizeMinRows="12"
-          cdkAutosizeMaxRows="12"></textarea>
-      </mat-form-field>
+      <p>padre</p>
+      <div class="row">
+        <mat-form-field class="data" appearance="outline">
+          <mat-label>Correo electronico padre</mat-label>
+          <input matInput required>
+        </mat-form-field>
+        <mat-form-field class="data" appearance="outline">
+          <mat-label>Teléfono padre</mat-label>
+          <input matInput required>
+        </mat-form-field>
+      </div>
       }
       @else if(identity==='guardian') {
+      <p>tutor/a</p>
+      <div class="row">
         <mat-form-field class="data" appearance="outline">
-          <mat-label>Datos del tutor/a</mat-label>
-          <textarea matInput cdkTextareaAutosize #autosize="cdkTextareaAutosize" cdkAutosizeMinRows="12"
-            cdkAutosizeMaxRows="12"></textarea>
+          <mat-label>Correo electronico tutor/a</mat-label>
+          <input matInput required>
         </mat-form-field>
+        <mat-form-field class="data" appearance="outline">
+          <mat-label>Teléfono tutor/a</mat-label>
+          <input matInput required>
+        </mat-form-field>
+      </div>
       }
     </div>
   </div>
