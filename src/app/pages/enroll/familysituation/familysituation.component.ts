@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { FormsModule } from '@angular/forms';
+import { FormGroup, FormsModule, ReactiveFormsModule } from '@angular/forms';
 import {MatRadioModule} from '@angular/material/radio';
 import {MatSelectModule} from '@angular/material/select';
 
@@ -24,8 +24,8 @@ import { ContainerComponent } from '../../../components/container/container.comp
     RouterLink,
     MatButtonModule,
     HeaderComponent,
-    ContainerComponent
-
+    ContainerComponent,
+    ReactiveFormsModule
   ],
   templateUrl: './familysituation.component.html',
   styleUrl: './familysituation.component.css'
@@ -33,6 +33,9 @@ import { ContainerComponent } from '../../../components/container/container.comp
 export class FamilysituationComponent {
   identity:string='student';
   situation:string='married' ;
+  form=new FormGroup({
+
+  })
   constructor(private router:Router) { }
   handlerClick(){
    this.router.navigate(['enrolls/steppers']);
