@@ -52,3 +52,9 @@ mat-icon {
 .file-item:last-child {
   border-bottom: none;
 }
+
+@media screen and (max-width: 720px) {
+  .file-list {
+    grid-template-columns: 1fr;
+  }
+}

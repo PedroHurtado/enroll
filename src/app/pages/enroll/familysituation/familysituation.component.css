@@ -9,8 +9,18 @@
   justify-content: end;
   gap: 1rem;
 }
+
+
 .row{
-  display: flex;
-  gap: 1rem;
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap : 1rem;
 }
+
+@media screen and (max-width: 720px) {
+  .row {
+    grid-template-columns:1fr;
+  }
+}
+
 
