@@ -1,7 +1,10 @@
 /* You can add global styles to this file, and also import other style files */
 
 html, body { height: 100%; }
-body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+body {
+  margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif;
+  background-color: #faf9fd;
+}
 
 /* Estilo para Webkit (Chrome, Safari, Edge) */
 ::-webkit-scrollbar {
@@ -23,6 +26,7 @@ body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
 ::-webkit-scrollbar-thumb:hover {
   background: #666;
 }
+/* Estilo para Webkit Firefox */
 * {
   scrollbar-width: thin;
   scrollbar-color: #888 #f1f1f1;
