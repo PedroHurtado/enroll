@@ -24,3 +24,8 @@ mat-form-field{
   justify-content: right;
   margin-top: 20px;
 }
+@media screen and (max-width: 720px) {
+  mat-card {  /* Cambiado de .file-item a .file-list */
+    width: max-content
+  }
+}
