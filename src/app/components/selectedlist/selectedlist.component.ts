@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, input, signal } from '@angular/core';
 import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
 import { MatListModule, MatSelectionListChange } from '@angular/material/list';
 @Component({
@@ -15,7 +15,9 @@ import { MatListModule, MatSelectionListChange } from '@angular/material/list';
   styleUrl: './selectedlist.component.css'
 })
 export class SelectedlistComponent implements ControlValueAccessor {
-  selectedItems: any[] = ['item1', 'item2', 'item3'];
+  selectedItems=input.required<any[]>();
+  text=input.required<string>();
+  multiple=input<boolean>(true);
   disabled = false;
   selected: any[] = [];
   onChange: (value: any[]) => void = () => {};

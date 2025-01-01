@@ -1,7 +1,7 @@
 <main>
   <form (ngSubmit)="submit()" [formGroup]="form">
-    <app-selectedlist  formControlName="selectedItems"/>
-    <button type="submit" (click)="submit()">submit</button>
+    <app-selectedlist [text]="text" [multiple]="false" [selectedItems]="selectedItems" formControlName="selectedItems"/>
+    <button type="submit">submit</button>
   </form>
 
   <router-outlet></router-outlet>

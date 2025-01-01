@@ -22,10 +22,12 @@ import { selectedlistValidator } from './components/selectedlist/selectedlistval
 })
 export class AppComponent {
   title = 'my-app';
+  selectedItems = ['Fisica', 'Biologia', 'Historia'];
+  text = 'Elija dos asignaturas';
   form= new FormGroup({
     selectedItems: new FormControl([],[selectedlistValidator(2)]),
   });
   submit(){
-    console.log(this.form.value);
+    console.log(this.form.value.selectedItems);
   }
 }
