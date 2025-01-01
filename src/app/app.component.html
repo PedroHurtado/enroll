@@ -1,6 +1,6 @@
 <main>
   <form (ngSubmit)="submit()" [formGroup]="form">
-    <app-sortedlist [text]="text" [items]="selectedItems" formControlName="selectedItems"/>
+    <app-sortedlist [text]="text" [max]="3" [items]="selectedItems" formControlName="selectedItems"/>
     <button type="submit">submit</button>
   </form>
 

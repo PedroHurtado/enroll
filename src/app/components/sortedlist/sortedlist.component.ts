@@ -23,6 +23,7 @@ import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
 export class SortedlistComponent implements ControlValueAccessor {
   items = input.required<any[]>();
   text = input.required<string>();
+  max = input.required<number>();
   disabled = false;
   selected: any[] = [];
   onChange: (value: any[]) => void = () => {};
