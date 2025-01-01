@@ -1,4 +1,4 @@
-Formularios
-Asignaturas
-Edit?
-Confirmation?
+Formularios(steppers)
+Info
+Confirmation
+Asignaturas revisar validation
