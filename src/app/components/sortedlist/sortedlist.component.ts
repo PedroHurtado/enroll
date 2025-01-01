@@ -7,9 +7,10 @@ import {
   moveItemInArray,
 } from '@angular/cdk/drag-drop';
 import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
+import { CommonModule } from '@angular/common';
 @Component({
   selector: 'app-sortedlist',
-  imports: [CdkDropList, CdkDrag, CdkDragPlaceholder],
+  imports: [CdkDropList, CdkDrag, CdkDragPlaceholder, CommonModule],
   providers: [
     {
       provide: NG_VALUE_ACCESSOR,
@@ -23,7 +24,7 @@ import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
 export class SortedlistComponent implements ControlValueAccessor {
   items = input.required<any[]>();
   text = input.required<string>();
-  max = input.required<number>();
+  limit = input.required<number>();
   disabled = false;
   selected: any[] = [];
   onChange: (value: any[]) => void = () => {};
@@ -44,5 +45,11 @@ export class SortedlistComponent implements ControlValueAccessor {
     moveItemInArray(this.items(), event.previousIndex, event.currentIndex);
     this.onChange(this.items());
     this.onTouched();
+  }
+  underLine(index:number) {
+    if (index > this.limit()){
+      return "underline";
+    }
+    return "";
   }
 }
