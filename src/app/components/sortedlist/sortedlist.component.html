@@ -1,0 +1,9 @@
+<p>{{text()}}</p>
+<div cdkDropList class="example-list" (cdkDropListDropped)="drop($event)">
+  @for (item of items(); track item) {
+    <div class="example-box" cdkDrag>
+      <div class="example-custom-placeholder" *cdkDragPlaceholder></div>
+      {{item}}
+    </div>
+  }
+</div>
