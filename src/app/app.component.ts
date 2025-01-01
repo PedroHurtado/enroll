@@ -23,7 +23,19 @@ import { SortedlistComponent } from './components/sortedlist/sortedlist.componen
 })
 export class AppComponent {
   title = 'my-app';
-  selectedItems = ['Fisica', 'Biologia', 'Historia'];
+  selectedItems =  [
+    "Segunda Lengua Extranjera FRANCÉS I",
+    "Segunda Lengua Extranjera ITALIANO I",
+    "Cultura Audiovisual",
+    "Lenguaje y Práctica Musical",
+    "Tecnología e Ingeniería I",
+    "Dibujo Técnico I",
+    "Biología, Geología y Ciencias Ambientales",
+    "Física y Química",
+    "Economía",
+    "Historia del Mundo Contemporáneo",
+    "Dibujo Técnico Aplicado a las Artes Plásticas y al Diseño I"
+  ]
   text = 'Ordene las asignaturas en order de preferencia, cursaras una';
   form= new FormGroup({
     selectedItems: new FormControl(this.selectedItems),
