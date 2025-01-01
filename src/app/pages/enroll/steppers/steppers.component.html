@@ -34,10 +34,11 @@
       </div>
     </mat-step>
 
-    <mat-step label="Asignaturas">
+    <mat-step label="Asignaturas" >
       <div class="step-content">
+        <app-subjects #subjects />
         <button mat-button matStepperPrevious>Anterior</button>
-        <button mat-button matStepperNext>Siguiente</button>
+        <button mat-button (click)="subjects.submit()" matStepperNext>Siguiente</button>
       </div>
     </mat-step>
 

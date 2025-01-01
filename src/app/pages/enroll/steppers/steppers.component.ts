@@ -11,6 +11,7 @@ import { HealstepComponent } from './components/healstep/healstep.component';
 import { LoginComponent } from '../../login/login/login.component';
 import { ContainerComponent } from '../../../components/container/container.component';
 import { HeaderComponent } from '../../../components/header/header.component';
+import { SubjectsComponent } from './components/subjects/subjects.component';
 
 @Component({
   selector: 'app-steppers',
@@ -26,7 +27,8 @@ import { HeaderComponent } from '../../../components/header/header.component';
     StepothersComponent,
     HealstepComponent,
     HeaderComponent,
-    ContainerComponent
+    ContainerComponent,
+    SubjectsComponent
   ],
   templateUrl: './steppers.component.html',
   styleUrl: './steppers.component.css'

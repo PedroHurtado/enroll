@@ -1,0 +1,42 @@
+<form [formGroup]="form" (ngSubmit)="submit()">
+  <div>
+    <h2>Asignaturs comunes</h2>
+    <div class="row row-padding">
+      @for (item of subjects.commonSubjects; track item) {
+      <span>{{ item }}</span>
+      }
+    </div>
+  </div>
+
+  <div>
+    <h2>Asignaturas de modalidad obligatoria</h2>
+    <div class="row row-padding">
+      @for (item of subjects.compulsorySubjects; track item) {
+      <span>{{ item }}</span>
+      }
+    </div>
+  </div>
+  <div class="row">
+    @if(subjects.specializationSubjects){
+    <div>
+      <h2>Asignaturas de modalidad ({{subjects.specializationSubjects.limit}})</h2>
+      <app-selectedlist formControlName="specializationSubjects" [items]="subjects.specializationSubjects.subjects" [text]="''" />
+    </div>
+    }
+    @if(subjects.electives){
+    <div>
+      <h2>Asignaturas optativas ({{subjects.electives.limit}})</h2>
+      <app-sortedlist formControlName="electives" [items]="subjects.electives.subjects" [text]="''" [limit]="subjects.electives.limit" />
+    </div>
+    }
+  </div>
+
+  <div class="row">
+    @if(subjects.religion){
+    <div>
+      <h2>Religión / Atención educativa </h2>
+      <app-selectedlist formControlName="religion" [multiple]=subjects.religion.multiple [items]="subjects.religion.subjects" [text]="''" />
+    </div>
+    }
+  </div>
+</form>

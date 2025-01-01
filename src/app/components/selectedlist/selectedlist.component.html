@@ -1,8 +1,10 @@
-<p>{{text()}}</p>
+@if (text()) {
+  <p>{{text()}}</p>
+}
 <mat-selection-list
   (selectionChange)="onSelectionChange($event)"
   [multiple]="multiple()">
-  @for (item of selectedItems(); track item) {
+  @for (item of items(); track item) {
     <mat-list-option [value]="item">{{item}}</mat-list-option>
   }
 </mat-selection-list>

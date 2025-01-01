@@ -1,0 +1,14 @@
+.row{
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1rem;
+}
+.row-padding{
+  padding: 1rem;
+}
+@media screen and (max-width: 720px) {
+  .row {
+    grid-template-columns: 1fr;
+  }
+}
+

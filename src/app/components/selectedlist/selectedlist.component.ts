@@ -15,7 +15,7 @@ import { MatListModule, MatSelectionListChange } from '@angular/material/list';
   styleUrl: './selectedlist.component.css'
 })
 export class SelectedlistComponent implements ControlValueAccessor {
-  selectedItems=input.required<any[]>();
+  items=input.required<any[]>();
   text=input.required<string>();
   multiple=input<boolean>(true);
   disabled = false;
