@@ -1,12 +1,14 @@
-<div>
-  <p>Suba el justificante de pago del seguro escolar *</p>
-  <app-fileupload />
-</div>
-<div>
-  <p>Impreso del AMPA y recibo de pago(voluntario)</p>
-  <app-fileupload />
-</div>
-<div>
-  <p>En el caso de solicitar transporte escolar y <strong>CONDICIONADO A LA EXISTENCIA DE PLAZAS</strong> </p>
-  <app-fileupload />
-</div>
+<form [formGroup]="form">
+  <div>
+    <p>Suba el justificante de pago del seguro escolar *</p>
+    <app-fileupload formControlName="school_insurance" />
+  </div>
+  <div>
+    <p>Impreso del AMPA y recibo de pago(voluntario)</p>
+    <app-fileupload  formControlName="ampa"/>
+  </div>
+  <div>
+    <p>En el caso de solicitar transporte escolar y <strong>CONDICIONADO A LA EXISTENCIA DE PLAZAS</strong> </p>
+    <app-fileupload formControlName="school_transportation" />
+  </div>
+</form>

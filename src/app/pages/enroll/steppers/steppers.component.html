@@ -44,9 +44,9 @@
 
     <mat-step label="Seguros, transporte, AMPA">
       <div class="step-content">
-        <app-stepothers />
+        <app-stepothers #others />
         <button mat-button matStepperPrevious>Anterior</button>
-        <button mat-button matStepperNext>Siguiente</button>
+        <button (click)="others.submit()" mat-button matStepperNext>Siguiente</button>
       </div>
     </mat-step>
 
