@@ -23,6 +23,9 @@ export const routes: Routes = [
     path: 'enrolls/steppers',
     loadComponent: () => import('./pages/enroll/steppers/steppers.component').then(m => m.SteppersComponent)
   },
-
+  {
+    path: 'enrolls/confirm',
+    loadComponent: () => import('./pages/enroll/confirm/confirm.component').then(m => m.ConfirmComponent)
+  },
   { path: '', redirectTo: 'login', pathMatch: 'full' },
 ];

@@ -3,6 +3,7 @@ import { FileuploadComponent } from '../../../../../components/fileupload/fileup
 import {MatCheckboxModule} from '@angular/material/checkbox';
 import { FormControl, FormGroup, ReactiveFormsModule } from '@angular/forms';
 import { selectedlistValidator } from '../../../../../components/selectedlist/selectedlistvalidator';
+import { Router } from '@angular/router';
 @Component({
   selector: 'app-healstep',
   imports: [FileuploadComponent, MatCheckboxModule, ReactiveFormsModule],
@@ -10,6 +11,7 @@ import { selectedlistValidator } from '../../../../../components/selectedlist/se
   styleUrl: './healstep.component.css'
 })
 export class HealstepComponent {
+  constructor(private route:Router) { }
   protected form=new FormGroup({
     condition1: new FormControl(false),
     condition2: new FormControl(false),
@@ -19,5 +21,6 @@ export class HealstepComponent {
   });
   submit(){
     console.log(this.form.value);
+    this.route.navigate(['/enrolls/confirm']);
   }
 }

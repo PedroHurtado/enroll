@@ -12,6 +12,7 @@ import { LoginComponent } from '../../login/login/login.component';
 import { ContainerComponent } from '../../../components/container/container.component';
 import { HeaderComponent } from '../../../components/header/header.component';
 import { SubjectsComponent } from './components/subjects/subjects.component';
+import { RouterLink } from '@angular/router';
 
 @Component({
   selector: 'app-steppers',
@@ -28,7 +29,7 @@ import { SubjectsComponent } from './components/subjects/subjects.component';
     HealstepComponent,
     HeaderComponent,
     ContainerComponent,
-    SubjectsComponent
+    SubjectsComponent,
   ],
   templateUrl: './steppers.component.html',
   styleUrl: './steppers.component.css'

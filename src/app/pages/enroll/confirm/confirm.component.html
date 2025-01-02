@@ -1,0 +1,43 @@
+<app-header>Mátricula</app-header>
+<app-container>
+  <h2>Confirmación de la matrícula</h2>
+  <form [formGroup]="form" (ngSubmit)="submit()">
+    <mat-radio-group formControlName="information">
+      <p>DECLARO BAJO JURAMENTO que el otro progenitor / tutor está informado de la presentación de esta matrícula:</p>
+      <div class="radio-options">
+        <mat-radio-button [value]="true">Sí</mat-radio-button>
+        <mat-radio-button [value]="false">No</mat-radio-button>
+      </div>
+    </mat-radio-group>
+    <mat-radio-group formControlName="publish">
+      <p>¿Autoriza a que se publique, con fines educativos, el NOMBRE / APELLIDOS de su hijo/a en: la página WEB del
+        centro y webs relacionadas con ella, las REDES SOCIALES del centro y de otras entidades relacionada?</p>
+      <div class="radio-options">
+        <mat-radio-button [value]="true">Sí</mat-radio-button>
+        <mat-radio-button [value]="false">No</mat-radio-button>
+      </div>
+    </mat-radio-group>
+    <mat-radio-group formControlName="exit">
+      <p>Autoriza a que su hijo/a pueda salir del centro si no tuvieran clase a última hora de la mañana (13:20). En
+        caso
+        contrario, permanecerá en la biblioteca del Centro con el profesor de Guardia. *</p>
+      <div class="radio-options">
+        <mat-radio-button [value]="true">Sí</mat-radio-button>
+        <mat-radio-button [value]="false">No</mat-radio-button>
+      </div>
+    </mat-radio-group>
+    <div>
+      <p>Por favor, marque las siguientes opciones para darle validez a la matrícula realizada. *</p>
+      <p><mat-checkbox formControlName="legal">Soy el tutor legal del alumno/a por el que se realiza la
+          matrícula.</mat-checkbox></p>
+      <p><mat-checkbox formControlName="truthful">Declaro que todos los datos aquí introducidos son
+          veraces.</mat-checkbox></p>
+      <p><mat-checkbox formControlName="oficial"> Entiendo que los datos aquí introducidos serán los utilizados para
+          matricular oficialmente al alumno/a.</mat-checkbox></p>
+    </div>
+    <div class="button_row">
+      <button type="submit" mat-flat-button>Aceptar</button>
+    </div>
+  </form>
+
+</app-container>
