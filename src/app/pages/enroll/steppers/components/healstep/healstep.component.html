@@ -1,15 +1,16 @@
+<form [formGroup]="form"></form>
 <div>
   <p>Datos médicos / psicopedagógicos. Informe solo en caso necesario</p>
-  <app-fileupload/>
+  <app-fileupload formControlName="files"/>
 </div>
 <section>
   <p>Si el alumno/a tiene alguna de estas patologías,  marque la que corresponda. Si tiene la documentación que lo acredite, inclúyala en el apartado anterior. Nos pondremos en contacto con usted a principio de curso.</p>
   <section>
 
-    <p><mat-checkbox>Cardiopatías con riesgo de muerte súbita</mat-checkbox></p>
-    <p><mat-checkbox>Diabetes Mellitus tipo I</mat-checkbox></p>
-    <p><mat-checkbox>Crisis Epilépticas/convulsión</mat-checkbox></p>
-    <p><mat-checkbox>Anafilaxia grave: reacciones alérgicas que tengan prescrita adrenalina</mat-checkbox></p>
+    <p><mat-checkbox formControlName="condition1">Cardiopatías con riesgo de muerte súbita</mat-checkbox></p>
+    <p><mat-checkbox formControlName="condition2">Diabetes Mellitus tipo I</mat-checkbox></p>
+    <p><mat-checkbox formControlName="condition3">Crisis Epilépticas/convulsión</mat-checkbox></p>
+    <p><mat-checkbox formControlName="condition4">Anafilaxia grave: reacciones alérgicas que tengan prescrita adrenalina</mat-checkbox></p>
   </section>
 </section>
 
