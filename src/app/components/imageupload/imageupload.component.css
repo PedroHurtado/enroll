@@ -1,4 +1,7 @@
 
+.image-upload {
+ padding-bottom: 20px;
+}
 .upload-area {
   border: 2px dashed #ccc;
   border-radius: 4px;

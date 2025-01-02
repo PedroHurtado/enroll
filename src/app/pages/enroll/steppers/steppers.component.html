@@ -6,7 +6,7 @@
     <mat-step label="Datos del alumno">
       <div class="step-content">
         <app-stepalumno #alumn/>
-        <button (click)="alumn.submit()" mat-button matStepperNext>Siguiente</button>
+        <button (click)="alumn.submit()" mat-flat-button matStepperNext>Siguiente</button>
       </div>
     </mat-step>
 
@@ -14,7 +14,7 @@
       <div class="step-content">
         <app-stepsituation #situation />
         <button mat-button matStepperPrevious>Anterior</button>
-        <button (click)="situation.submit()" mat-button matStepperNext>Siguiente</button>
+        <button (click)="situation.submit()" mat-flat-button matStepperNext>Siguiente</button>
       </div>
     </mat-step>
 
@@ -22,7 +22,7 @@
       <div class="step-content">
         <app-stepmother #mother />
         <button mat-button matStepperPrevious>Anterior</button>
-        <button (click)="mother.submit()" mat-button matStepperNext>Siguiente</button>
+        <button (click)="mother.submit()" mat-flat-button matStepperNext>Siguiente</button>
       </div>
     </mat-step>
 
@@ -30,7 +30,7 @@
       <div class="step-content">
         <app-stepfather #father/>
         <button  mat-button matStepperPrevious>Anterior</button>
-        <button (click)="father.submit()" mat-button matStepperNext>Siguiente</button>
+        <button (click)="father.submit()" mat-flat-button matStepperNext>Siguiente</button>
       </div>
     </mat-step>
 
@@ -38,7 +38,7 @@
       <div class="step-content">
         <app-subjects #subjects />
         <button mat-button matStepperPrevious>Anterior</button>
-        <button mat-button (click)="subjects.submit()" matStepperNext>Siguiente</button>
+        <button mat-flat-button (click)="subjects.submit()" matStepperNext>Siguiente</button>
       </div>
     </mat-step>
 
@@ -46,7 +46,7 @@
       <div class="step-content">
         <app-stepothers #others />
         <button mat-button matStepperPrevious>Anterior</button>
-        <button (click)="others.submit()" mat-button matStepperNext>Siguiente</button>
+        <button (click)="others.submit()" mat-flat-button matStepperNext>Siguiente</button>
       </div>
     </mat-step>
 
@@ -54,7 +54,7 @@
       <div class="step-content">
         <app-healstep #healt />
         <button mat-button matStepperPrevious>Anterior</button>
-        <button (click)="healt.submit()" mat-button matStepperNext>Siguiente</button>
+        <button (click)="healt.submit()" mat-flat-button matStepperNext>Siguiente</button>
       </div>
     </mat-step>
   </mat-stepper>
