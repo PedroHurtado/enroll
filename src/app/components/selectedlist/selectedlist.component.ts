@@ -44,7 +44,8 @@ export class SelectedlistComponent implements ControlValueAccessor {
   }
   onSelectionChange(select: MatSelectionListChange) {
     const result = select.source.selectedOptions.selected.map(item => item.value)
-    this.onChange(result);
+    this.selected = result;
+    this.onChange(this.selected);
     this.onTouched();
   }
   isSelected(item: any) {
