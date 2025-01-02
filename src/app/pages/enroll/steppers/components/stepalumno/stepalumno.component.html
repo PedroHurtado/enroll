@@ -1,33 +1,36 @@
 <div class="container">
-  <p>Puedes verlo en tu correo electrónico oficial (ejemplo:
-    <strong>1234567&#64;alu.murciaeduca.es</strong> en este caso <strong>1234567</strong> es tu NRE)</p>
-  <mat-form-field appearance="outline">
-    <mat-label>NRE del alumno</mat-label>
-    <input matInput type="text" required autofocus>
-  </mat-form-field>
-  <div class="row">
-    <div>
-      <p>Anverso del dni *</p>
-      <app-imageupload />
+  <form [formGroup]="form">
+    <p>Puedes verlo en tu correo electrónico oficial (ejemplo:
+      <strong>1234567&#64;alu.murciaeduca.es</strong> en este caso <strong>1234567</strong> es tu NRE)
+    </p>
+    <mat-form-field appearance="outline">
+      <mat-label>NRE del alumno</mat-label>
+      <input matInput type="text" required autofocus formControlName="nre" />
+    </mat-form-field>
+    <div class="row">
+      <div>
+        <p>Anverso del dni *</p>
+        <app-imageupload formControlName="dni_observe" />
+      </div>
+      <div>
+        <p>Reverso del dni *</p>
+        <app-imageupload formControlName="dni_reverse" />
+      </div>
     </div>
-    <div>
-      <p>Reverso del dni *</p>
-      <app-imageupload />
-    </div>
-  </div>
 
-  <div class="row">
-    <div>
-      <p>Anverso de la tarjeta sanitaria *</p>
-      <app-imageupload />
+    <div class="row">
+      <div>
+        <p>Anverso de la tarjeta sanitaria *</p>
+        <app-imageupload formControlName="healthcards_observe" />
+      </div>
+      <div>
+        <p>Reverso de la tarjeta sanitaria *</p>
+        <app-imageupload formControlName="healthcards_reverse" />
+      </div>
     </div>
     <div>
-      <p>Reverso de la tarjeta sanitaria *</p>
-      <app-imageupload />
+      <p>Certificación académica (Solamente en el caso de que venga de un centro privado o de fuera de la CCAA)</p>
+      <app-fileupload formControlName="academic_record" />
     </div>
-  </div>
-  <div>
-    <p>Certificación académica (Solamente en el caso de que venga de un centro privado o de fuera de la CCAA)</p>
-    <app-fileupload />
-  </div>
+  </form>
 </div>

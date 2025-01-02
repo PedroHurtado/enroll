@@ -2,11 +2,11 @@
   Mátricula
 </app-header>
 <app-container>
-  <mat-stepper orientation="vertical" [linear]="true" #stepper>
+  <mat-stepper orientation="vertical" [linear]="true">
     <mat-step label="Datos del alumno">
       <div class="step-content">
-        <app-stepalumno />
-        <button mat-button matStepperNext>Siguiente</button>
+        <app-stepalumno #alumn/>
+        <button (click)="alumn.submit()" mat-button matStepperNext>Siguiente</button>
       </div>
     </mat-step>
 
