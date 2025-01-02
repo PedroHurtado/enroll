@@ -34,6 +34,9 @@ export class SubjectsComponent {
     this.form.controls.specializationSubjects.setValidators(
       selectedlistValidator(this.subjects.specializationSubjects.limit)
     );
+    this.form.controls.electives.setValidators(
+      selectedlistValidator(this.subjects.electives.limit)
+    );
     this.form.controls.religion.setValidators(
       selectedlistValidator(this.subjects.religion.limit)
     );

@@ -19,13 +19,13 @@
   <div class="row">
     @if(subjects.specializationSubjects){
     <div>
-      <h2>Asignaturas de modalidad ({{subjects.specializationSubjects.limit}})</h2>
+      <h2>Asignaturas de modalidad. Seleccione ({{subjects.specializationSubjects.limit}}) *</h2>
       <app-selectedlist (ngModelChange)="onModelChange($event)" formControlName="specializationSubjects" [items]="subjects.specializationSubjects.subjects" [text]="''" />
     </div>
     }
     @if(subjects.electives){
     <div>
-      <h2>Asignaturas optativas ({{subjects.electives.limit}})</h2>
+      <h2>Asignaturas optativas. Seleccione ({{subjects.electives.limit}}) *</h2>
       <app-sortedlist
         formControlName="electives"
         [items]="subjectsElectives"
