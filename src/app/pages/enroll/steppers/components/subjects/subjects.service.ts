@@ -16,9 +16,9 @@ const subjects: Subjects = {
     limit: 2,
     subjects: [
       "Física y Química",
-      "Biología, Geología y Ambientales",
-      "Dibujo Técnico",
-      "Tecnología e Ingeniería"
+      "Biología, Geología y Ciencias Ambientales",
+      "Dibujo Técnico I",
+      "Tecnología e Ingeniería I"
     ]
   },
   electives: {

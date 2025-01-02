@@ -22,11 +22,13 @@ export class SubjectsComponent {
     religion: new FormControl()
   })
   protected readonly subjects: Subjects;
+  protected subjectsElectives: string[];
   constructor(service: SubjectsService) {
     this.subjects = service.getAll();
+    this.subjectsElectives = [...this.subjects.electives.subjects];
     this.form.patchValue({
       specializationSubjects: this.subjects.specializationSubjects.subjects,
-      electives: this.subjects.electives.subjects,
+      electives: this.subjectsElectives,
       religion: this.subjects.religion.subjects
     });
     this.form.controls.specializationSubjects.setValidators(
@@ -38,5 +40,12 @@ export class SubjectsComponent {
   }
   submit(){
     console.log(this.form.value);
+  }
+  protected onModelChange(value: any[]) {
+    this.subjectsElectives = this.subjects.electives.subjects.filter(item=>!value.includes(item));
+    this.form.patchValue({
+      electives: this.subjectsElectives
+    });
+
   }
 }
