@@ -20,6 +20,7 @@ export class SelectedlistComponent implements ControlValueAccessor {
   default=input<any>();
   multiple=input<boolean>(true);
   disabled = false;
+  load=false;
   selected: any[] = [];
   onChange: (value: any[]) => void = () => {};
   onTouched: () => void = () => {};
@@ -49,8 +50,10 @@ export class SelectedlistComponent implements ControlValueAccessor {
     this.onTouched();
   }
   isSelected(item: any) {
-    if(this.default() === item) {
-      this.onChange([item]);
+    if(this.default() === item && !this.load) {
+      this.load = true;
+      this.selected = [item];
+      this.onChange(this.selected);
       this.onTouched();
       return true;
     }
