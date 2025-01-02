@@ -1,5 +1,5 @@
 Formularios(steppers)(x)
 familysituation Form(x)
-Info
-Confirmation
+Info(x)
+Confirmation(x)
 Asignaturas revisar validation(x)
