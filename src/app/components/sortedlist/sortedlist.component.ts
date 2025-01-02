@@ -33,6 +33,8 @@ export class SortedlistComponent implements ControlValueAccessor {
 
   writeValue(obj: any): void {
     this.selected = (obj||[]).slice(0, this.limit());
+    this.onChange(this.selected);
+    this.onTouched();
   }
   registerOnChange(fn: any): void {
     this.onChange = fn;
