@@ -20,17 +20,19 @@
     @if(subjects.specializationSubjects){
     <div>
       <h2>Asignaturas de modalidad. Seleccione ({{subjects.specializationSubjects.limit}}) *</h2>
-      <app-selectedlist (ngModelChange)="onModelChange($event)" formControlName="specializationSubjects" [items]="subjects.specializationSubjects.subjects" [text]="''" />
+      <app-selectedlist (ngModelChange)="onModelChange($event)" formControlName="specializationSubjects"
+        [items]="subjects.specializationSubjects.subjects" [text]="''" />
     </div>
     }
     @if(subjects.electives){
     <div>
       <h2>Asignaturas optativas. Ordene ({{subjects.electives.limit}}) *</h2>
-      <app-sortedlist
-        formControlName="electives"
-        [items]="subjectsElectives"
-        [text]="''" [limit]="subjects.electives.limit"
-        />
+      <mat-radio-group formControlName="hour_elective" class="row">
+          <mat-radio-button [value]="4">Una optativa de 4 horas</mat-radio-button>
+          <mat-radio-button [value]="2">Dos optativas de 2 horas</mat-radio-button>
+      </mat-radio-group>
+      <app-sortedlist formControlName="electives" [items]="subjectsElectives" [text]="''"
+        [limit]="subjects.electives.limit" />
     </div>
     }
   </div>
@@ -39,12 +41,8 @@
     @if(subjects.religion){
     <div>
       <h2>Religión / Atención educativa </h2>
-      <app-selectedlist
-      formControlName="religion"
-      [multiple]=subjects.religion.multiple
-      [items]="subjects.religion.subjects" [text]="''"
-      [default]="subjects.religion.defaultValue"
-      />
+      <app-selectedlist formControlName="religion" [multiple]=subjects.religion.multiple
+        [items]="subjects.religion.subjects" [text]="''" [default]="subjects.religion.defaultValue" />
     </div>
     }
   </div>

@@ -5,12 +5,14 @@ import { SubjectsService } from './subjects.service';
 import { Subjects } from './subjects';
 import { FormControl, FormGroup, ReactiveFormsModule } from '@angular/forms';
 import { selectedlistValidator } from '../../../../../components/selectedlist/selectedlistvalidator';
+import { MatRadioModule } from '@angular/material/radio';
 @Component({
   selector: 'app-subjects',
   imports: [
     SortedlistComponent,
     SelectedlistComponent,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    MatRadioModule
   ],
   templateUrl: './subjects.component.html',
   styleUrl: './subjects.component.css'
@@ -19,6 +21,7 @@ export class SubjectsComponent {
   protected form = new FormGroup({
     specializationSubjects: new FormControl(),
     electives: new FormControl(),
+    hour_elective: new FormControl(4),
     religion: new FormControl()
   })
   protected readonly subjects: Subjects;
