@@ -1,0 +1,13 @@
+<app-header>Mátricula</app-header>
+<app-container>
+  <h2>Información de la matrícula</h2>
+  @for (item of info; track item) {
+    <h3>{{item.description}}</h3>
+    @for (text of item.texts; track text) {
+      <p>-{{text}}</p>
+    }
+  }
+  <div class="button_row">
+    <a mat-raised-button [routerLink]="['/enrolls/situation']">Siguiente</a>
+  </div>
+</app-container>
