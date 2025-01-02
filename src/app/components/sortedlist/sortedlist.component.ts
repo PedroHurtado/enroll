@@ -1,4 +1,4 @@
-import { Component, input } from '@angular/core';
+import { Component, input, OnInit } from '@angular/core';
 import {
   CdkDrag,
   CdkDragDrop,
@@ -22,6 +22,7 @@ import { CommonModule } from '@angular/common';
   styleUrl: './sortedlist.component.css'
 })
 export class SortedlistComponent implements ControlValueAccessor {
+
   items = input.required<any[]>();
   text = input.required<string>();
   limit = input.required<number>();
@@ -29,21 +30,24 @@ export class SortedlistComponent implements ControlValueAccessor {
   selected: any[] = [];
   onChange: (value: any[]) => void = () => {};
   onTouched: () => void = () => {};
+
   writeValue(obj: any): void {
-    this.selected = obj||[];
+    this.selected = (obj||[]).slice(0, this.limit());
   }
   registerOnChange(fn: any): void {
     this.onChange = fn;
   }
   registerOnTouched(fn: any): void {
-    this.onTouched
+    this.onTouched=fn;
+    this.onChange(this.selected);
+    this.onTouched();
   }
   setDisabledState?(isDisabled: boolean): void {
     this.disabled = isDisabled;
   }
   drop(event: CdkDragDrop<string[]>) {
     moveItemInArray(this.items(), event.previousIndex, event.currentIndex);
-    this.onChange(this.items());
+    this.onChange(this.items().slice(0, this.limit()));
     this.onTouched();
   }
   underLine(index:number) {

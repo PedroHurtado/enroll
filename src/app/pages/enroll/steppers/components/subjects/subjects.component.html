@@ -26,7 +26,11 @@
     @if(subjects.electives){
     <div>
       <h2>Asignaturas optativas ({{subjects.electives.limit}})</h2>
-      <app-sortedlist formControlName="electives" [items]="subjects.electives.subjects" [text]="''" [limit]="subjects.electives.limit" />
+      <app-sortedlist
+        formControlName="electives"
+        [items]="subjects.electives.subjects"
+        [text]="''" [limit]="subjects.electives.limit"
+        />
     </div>
     }
   </div>
@@ -35,7 +39,12 @@
     @if(subjects.religion){
     <div>
       <h2>Religión / Atención educativa </h2>
-      <app-selectedlist formControlName="religion" [multiple]=subjects.religion.multiple [items]="subjects.religion.subjects" [text]="''" />
+      <app-selectedlist
+      formControlName="religion"
+      [multiple]=subjects.religion.multiple
+      [items]="subjects.religion.subjects" [text]="''"
+      [default]="subjects.religion.defaultValue"
+      />
     </div>
     }
   </div>

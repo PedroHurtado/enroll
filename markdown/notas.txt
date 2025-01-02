@@ -1,4 +1,4 @@
 Formularios(steppers)
 Info
 Confirmation
-Asignaturas revisar validation
+Asignaturas revisar validation(x)

@@ -42,6 +42,7 @@ const subjects: Subjects = {
   },
   religion: {
     type: "selectedlist",
+    limit: 1,
     multiple: false,
     subjects: [
       "ATENCIÓN EDUCATIVA",

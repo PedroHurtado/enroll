@@ -1,4 +1,4 @@
-import { Component, input, signal } from '@angular/core';
+import { Component, input } from '@angular/core';
 import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
 import { MatListModule, MatSelectionListChange } from '@angular/material/list';
 @Component({
@@ -17,6 +17,7 @@ import { MatListModule, MatSelectionListChange } from '@angular/material/list';
 export class SelectedlistComponent implements ControlValueAccessor {
   items=input.required<any[]>();
   text=input.required<string>();
+  default=input<any>();
   multiple=input<boolean>(true);
   disabled = false;
   selected: any[] = [];
@@ -24,7 +25,13 @@ export class SelectedlistComponent implements ControlValueAccessor {
   onTouched: () => void = () => {};
   constructor() { }
   writeValue(ob: any[]): void {
-    this.selected = ob || [];
+    if(this.default()) {
+      this.selected = (ob || []).filter(item => item === this.default());
+    }
+    else{
+      this.selected = ob || [];
+    }
+
   }
   registerOnChange(fn: any): void {
    this.onChange = fn;
@@ -39,5 +46,13 @@ export class SelectedlistComponent implements ControlValueAccessor {
     const result = select.source.selectedOptions.selected.map(item => item.value)
     this.onChange(result);
     this.onTouched();
+  }
+  isSelected(item: any) {
+    if(this.default() === item) {
+      this.onChange([item]);
+      this.onTouched();
+      return true;
+    }
+    return false;
   }
 }

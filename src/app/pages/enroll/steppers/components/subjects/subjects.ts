@@ -20,6 +20,7 @@ export interface Electives {
 }
 export interface Religion {
   type: "selectedlist";
+  limit: number;
   multiple: boolean;
   subjects: string[];
   defaultValue: string;

@@ -30,9 +30,11 @@ export class SubjectsComponent {
       religion: this.subjects.religion.subjects
     });
     this.form.controls.specializationSubjects.setValidators(
-      selectedlistValidator(this.subjects.electives.limit)
+      selectedlistValidator(this.subjects.specializationSubjects.limit)
     );
-    this.form.controls.religion.setValue(this.subjects.religion.defaultValue);
+    this.form.controls.religion.setValidators(
+      selectedlistValidator(this.subjects.religion.limit)
+    );
   }
   submit(){
     console.log(this.form.value);

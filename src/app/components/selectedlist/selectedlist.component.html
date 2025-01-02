@@ -5,6 +5,6 @@
   (selectionChange)="onSelectionChange($event)"
   [multiple]="multiple()">
   @for (item of items(); track item) {
-    <mat-list-option [value]="item">{{item}}</mat-list-option>
+    <mat-list-option [value]="item" [selected]="isSelected(item)">{{item}}</mat-list-option>
   }
 </mat-selection-list>
