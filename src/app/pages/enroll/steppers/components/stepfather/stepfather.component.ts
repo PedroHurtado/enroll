@@ -9,9 +9,9 @@ import { FormBuilder, FormControl, FormGroup, ReactiveFormsModule } from '@angul
   styleUrl: './stepfather.component.css'
 })
 export class StepfatherComponent {
-  form= new FormGroup({
-    anverso: new FormControl(null),
-    reverso:new FormControl(null),
+  protected form= new FormGroup({
+    dni_observe: new FormControl(null),
+    dni_reverse:new FormControl(null),
   })
   constructor(form:FormBuilder) {
 

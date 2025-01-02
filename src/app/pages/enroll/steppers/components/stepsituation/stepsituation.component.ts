@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { FileuploadComponent } from '../../../../../components/fileupload/fileupload.component';
 import { FormControl, FormGroup, ReactiveFormsModule } from '@angular/forms';
+import { selectedlistValidator } from '../../../../../components/selectedlist/selectedlistvalidator';
 
 @Component({
   selector: 'app-stepsituation',
@@ -10,7 +11,7 @@ import { FormControl, FormGroup, ReactiveFormsModule } from '@angular/forms';
 })
 export class StepsituationComponent {
   protected form=new FormGroup({
-    files: new FormControl([])
+    files: new FormControl(null,selectedlistValidator(1)),
   })
   submit(): void {
     console.log(this.form.value);

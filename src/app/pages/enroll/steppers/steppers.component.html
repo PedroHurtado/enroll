@@ -20,17 +20,17 @@
 
     <mat-step label="Datos de la madre">
       <div class="step-content">
-        <app-stepmother />
+        <app-stepmother #mother />
         <button mat-button matStepperPrevious>Anterior</button>
-        <button mat-button matStepperNext>Siguiente</button>
+        <button (click)="mother.submit()" mat-button matStepperNext>Siguiente</button>
       </div>
     </mat-step>
 
     <mat-step label="Datos del padre">
       <div class="step-content">
-        <app-stepfather />
-        <button mat-button matStepperPrevious>Anterior</button>
-        <button mat-button matStepperNext>Siguiente</button>
+        <app-stepfather #father/>
+        <button  mat-button matStepperPrevious>Anterior</button>
+        <button (click)="father.submit()" mat-button matStepperNext>Siguiente</button>
       </div>
     </mat-step>
 
