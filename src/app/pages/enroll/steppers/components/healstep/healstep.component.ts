@@ -11,10 +11,10 @@ import { selectedlistValidator } from '../../../../../components/selectedlist/se
 })
 export class HealstepComponent {
   protected form=new FormGroup({
-    condition1: new FormControl(null),
-    condition2: new FormControl(null),
-    condition3: new FormControl(null),
-    condition4: new FormControl(null),
+    condition1: new FormControl(false),
+    condition2: new FormControl(false),
+    condition3: new FormControl(false),
+    condition4: new FormControl(false),
     files: new FormControl(null)
   });
   submit(){
