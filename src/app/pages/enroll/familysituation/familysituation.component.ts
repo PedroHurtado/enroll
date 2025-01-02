@@ -69,7 +69,7 @@ export class FamilysituationComponent implements OnInit {
 
   submit(): void {
     console.log(this.form.value);
-    // this.router.navigate(['/enrolls/steppers']);
+    this.router.navigate(['/enrolls/steppers']);
   }
 
   identity(): string {
