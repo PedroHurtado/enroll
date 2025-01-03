@@ -5,15 +5,16 @@ import { MatIconModule } from '@angular/material/icon';
 import { MatListModule } from '@angular/material/list';
 import { HeaderComponent } from '../../../components/header/header.component';
 import { ContainerComponent } from '../../../components/container/container.component';
-import { Level } from './level';
-import { LevelService } from './level.service';
+import { Level } from '../levels/level';
+import { LevelService } from '../levels/level.service';
 import { FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
-import { Status } from './status';
-import { RouterLink } from '@angular/router';
+import { Status } from '../levels/status';
+import { ActivatedRoute, RouterLink } from '@angular/router';
+import { Mode } from './mode';
+import { ModalitiesService } from './modalities.service';
 
 @Component({
-  selector: 'app-levels',
-  standalone: true,
+  selector: 'app-modalities',
   imports: [
     MatInputModule,
     MatButtonModule,
@@ -24,41 +25,46 @@ import { RouterLink } from '@angular/router';
     ReactiveFormsModule,
     RouterLink
   ],
-  templateUrl: './levels.component.html',
-  styleUrls: ['./levels.component.css']
+  templateUrl: './modalities.component.html',
+  styleUrl: './modalities.component.css'
 })
-export class LevelsComponent {
+export class ModalitiesComponent {
   protected form: FormGroup = new FormGroup({
     name: new FormControl('', Validators.required)
   });
-  protected levels: Level[] = [];
+  protected modalities: Mode[] = [];
   protected currentLevel?: Level;
+  protected currentMode?: Mode;
   protected status: Status = Status.Add;
-  protected input= viewChild<ElementRef>('input');
+  protected input = viewChild<ElementRef>('input');
 
-  constructor(private readonly levelService: LevelService) {
-    this.loadLevels();
+  constructor(
+      private route: ActivatedRoute,
+      private readonly levelService: LevelService,
+      private readonly modalitiesService: ModalitiesService
+    ) {
+    this.loadLevel(route.snapshot.params['id']);
   }
 
-  private loadLevels(): void {
-    this.levels = this.levelService.getAll();
+  private loadLevel(id:string): void {
+    this.currentLevel = this.levelService.get(id);
   }
 
   protected update(id: string): void {
-    const levelToUpdate = this.levels.find(level => level.id === id);
-    if (levelToUpdate) {
-      this.currentLevel = levelToUpdate;
-      this.form.setValue({ name: levelToUpdate.name });
+    const modeToUpdate = this.modalities.find(mode => mode.id === id);
+    if (modeToUpdate) {
+      this.currentMode = modeToUpdate;
+      this.form.setValue({ name: modeToUpdate.name });
       this.status = Status.Update;
       this.input()?.nativeElement.focus();
     }
   }
 
   protected remove(id: string): void {
-    const levelToRemove = this.levels.find(level => level.id === id);
+    const levelToRemove = this.modalities.find(mode => mode.id === id);
     if (levelToRemove) {
       this.levelService.remove(levelToRemove);
-      this.levels = this.levels.filter(level => level.id !== id);
+      this.modalities = this.modalities.filter(level => level.id !== id);
       this.resetForm();
     }
   }
@@ -68,12 +74,16 @@ export class LevelsComponent {
     if (!name) return;
 
     if (this.status === Status.Add) {
-      this.levels.push(this.levelService.add(name));
+      this.modalities.push(this.modalitiesService.add(name, this.currentMode?.id));
     } else if (this.status === Status.Update && this.currentLevel) {
-      const updatedLevel = { id: this.currentLevel.id, name };
-      const index = this.levels.indexOf(this.currentLevel);
-      this.levels[index] = updatedLevel;
-      this.levelService.update(updatedLevel);
+      const updatedLevel = {
+        id: this.currentLevel.id,
+        name ,
+        levelId: this.currentMode?.id
+      };
+      const index = this.modalities.indexOf(this.currentLevel);
+      this.modalities[index] = updatedLevel;
+      this.modalitiesService.update(updatedLevel);
     }
 
     this.resetForm();

@@ -17,6 +17,10 @@ export class LevelService {
   getAll():Level[]{
     return levels;
   }
+  get(id:string):Level|undefined{
+    return levels.find(level => level.id === id);
+  }
+
   add(name:string):Level{
     return {
       id: self.crypto.randomUUID(),

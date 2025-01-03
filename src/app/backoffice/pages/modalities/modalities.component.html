@@ -1,0 +1,36 @@
+<app-header>Modalidades {{currentLevel?.name}}</app-header>
+<app-container>
+  <div class="container">
+    <mat-list role="list">
+      @for (mode of modalities; track mode.id) {
+      <mat-list-item role="listitem">
+        <div class="row">
+          <span mat-line>{{mode.name}}</span>
+          <button mat-icon-button (click)="update(mode.id)" color="primary" aria-label="Editar">
+            <mat-icon>edit</mat-icon>
+          </button>
+          <button mat-icon-button (click)="remove(mode.id)" color="warn" aria-label="Eliminar">
+            <mat-icon>delete</mat-icon>
+          </button>
+          <a mat-button [routerLink]="['/modalities',mode.id]">Modalidades</a>
+        </div>
+      </mat-list-item>
+      }
+      @empty {
+      <mat-list-item role="listitem">No hay modalidades registradas</mat-list-item>
+      }
+    </mat-list>
+    <form [formGroup]="form" (ngSubmit)="submit()">
+      <div class="form">
+        <mat-form-field appearance="outline">
+          <mat-label>Modalidad</mat-label>
+          <input #input matInput type="text" required autofocus formControlName="name" />
+        </mat-form-field>
+        <div>
+          <button type="reset" mat-button (click)="resetForm()">Limpiar</button>
+          <button type="submit" mat-flat-button>Aceptar</button>
+        </div>
+      </div>
+    </form>
+  </div>
+</app-container>

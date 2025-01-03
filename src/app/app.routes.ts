@@ -31,5 +31,9 @@ export const routes: Routes = [
     path: 'levels',
     loadComponent: () => import('./backoffice/pages/levels/levels.component').then(m => m.LevelsComponent)
   },
+  {
+    path: 'modalities/:id',
+    loadComponent: () => import('./backoffice/pages/modalities/modalities.component').then(m => m.ModalitiesComponent)
+  },
   { path: '', redirectTo: 'login', pathMatch: 'full' },
 ];
