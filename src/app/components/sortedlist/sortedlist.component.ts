@@ -52,10 +52,7 @@ export class SortedlistComponent implements ControlValueAccessor {
     this.onChange(this.items().slice(0, this.limit()));
     this.onTouched();
   }
-  underLine(index:number) {
-    if (index > this.limit()){
-      return "underline";
-    }
-    return "";
+  maxLimit(index:number) {
+    return (index >= this.limit());
   }
 }

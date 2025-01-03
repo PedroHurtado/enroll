@@ -51,8 +51,4 @@
 p{
   padding-left: 1rem;
 }
-.underline{
-  text-decoration: line-through;
-  text-decoration-thickness: 3px;
-  color: red;
-}
+

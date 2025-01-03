@@ -1,9 +1,14 @@
 <p>{{text()}}</p>
 <div cdkDropList class="example-list" (cdkDropListDropped)="drop($event)">
   @for (item of items(); track item;let idx = $index) {
-  <div class="example-box" cdkDrag [ngClass]="underLine(idx+1)">
+  <div class="example-box" cdkDrag>
     <div class="example-custom-placeholder" *cdkDragPlaceholder></div>
-    {{idx+1}}-{{item}}
+    @if(!maxLimit(idx)){
+      {{idx+1}}-{{item}}
+    }
+    @else {
+      {{item}}
+    }
   </div>
   }
 </div>
