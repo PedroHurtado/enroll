@@ -1,4 +1,4 @@
-import { Component, ElementRef, viewChild } from '@angular/core';
+import { ChangeDetectionStrategy, Component, ElementRef, viewChild } from '@angular/core';
 import { MatInputModule } from '@angular/material/input';
 import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
@@ -25,7 +25,8 @@ import { RouterLink } from '@angular/router';
     RouterLink
   ],
   templateUrl: './levels.component.html',
-  styleUrls: ['./levels.component.css']
+  styleUrls: ['./levels.component.css'],
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class LevelsComponent {
   protected form: FormGroup = new FormGroup({

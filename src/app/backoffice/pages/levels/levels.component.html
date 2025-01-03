@@ -3,8 +3,8 @@
   <div class="container">
     <mat-list role="list">
       @for (level of levels; track level.id) {
-      <mat-list-item role="listitem">
-        <div class="row">
+      <mat-list-item role="listitem" style="height: max-content;">
+        <div class="edit">
           <span mat-line>{{level.name}}</span>
           <button mat-icon-button (click)="update(level.id)" color="primary" aria-label="Editar">
             <mat-icon>edit</mat-icon>
@@ -12,6 +12,8 @@
           <button mat-icon-button (click)="remove(level.id)" color="warn" aria-label="Eliminar">
             <mat-icon>delete</mat-icon>
           </button>
+        </div>
+        <div class="actions">
           <a mat-button [routerLink]="['/modalities',level.id]">Modalidades</a>
         </div>
       </mat-list-item>

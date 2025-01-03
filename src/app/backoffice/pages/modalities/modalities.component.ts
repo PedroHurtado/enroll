@@ -1,4 +1,4 @@
-import { Component, ElementRef, viewChild } from '@angular/core';
+import { ChangeDetectionStrategy, Component, ElementRef, viewChild } from '@angular/core';
 import { MatInputModule } from '@angular/material/input';
 import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
@@ -23,10 +23,11 @@ import { ModalitiesService } from './modalities.service';
     HeaderComponent,
     ContainerComponent,
     ReactiveFormsModule,
-    RouterLink
+    RouterLink,
   ],
   templateUrl: './modalities.component.html',
-  styleUrl: './modalities.component.css'
+  styleUrl: './modalities.component.css',
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class ModalitiesComponent {
   protected form: FormGroup = new FormGroup({

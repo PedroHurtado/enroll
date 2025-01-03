@@ -6,10 +6,15 @@
 .form,mat-form-field{
     width: 100%;
 }
-.row{
+.edit{
   display: grid;
-  grid-template-columns: 1fr 48px 48px auto;
+  grid-template-columns: 1fr 48px 48px;
   align-items: center;
   gap:1rem
 }
-
+.actions{
+  display: flex;
+  gap:1rem;
+  justify-content: space-between;
+  padding: 0.25rem 0;
+}
