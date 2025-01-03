@@ -85,7 +85,6 @@ export class CommonComponent {
 
     protected resetForm(): void {
       this.form.reset();
-      this.currentSubject = undefined;
       this.status = Status.Add;
       this.input()?.nativeElement.focus();
     }

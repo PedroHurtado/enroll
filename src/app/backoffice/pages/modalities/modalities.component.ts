@@ -92,7 +92,6 @@ export class ModalitiesComponent {
 
   protected resetForm(): void {
     this.form.reset();
-    //this.currentLevel = undefined;
     this.status = Status.Add;
     this.input()?.nativeElement.focus();
   }
