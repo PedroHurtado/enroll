@@ -27,5 +27,9 @@ export const routes: Routes = [
     path: 'enrolls/confirm',
     loadComponent: () => import('./pages/enroll/confirm/confirm.component').then(m => m.ConfirmComponent)
   },
+  {
+    path: 'levels',
+    loadComponent: () => import('./backoffice/pages/levels/levels.component').then(m => m.LevelsComponent)
+  },
   { path: '', redirectTo: 'login', pathMatch: 'full' },
 ];

@@ -1,0 +1,35 @@
+<app-header>Niveles del sistema eductivo</app-header>
+<app-container>
+  <div class="container">
+    <mat-list role="list">
+      @for (level of levels; track level.id) {
+      <mat-list-item role="listitem">
+        <div class="row">
+          <span mat-line>{{level.name}}</span>
+          <button mat-icon-button (click)="update(level.id)" color="primary" aria-label="Editar">
+            <mat-icon>edit</mat-icon>
+          </button>
+          <button mat-icon-button (click)="remove(level.id)" color="warn" aria-label="Eliminar">
+            <mat-icon>delete</mat-icon>
+          </button>
+        </div>
+      </mat-list-item>
+      }
+      @empty {
+      <mat-list-item role="listitem">No hay niveles registrados</mat-list-item>
+      }
+    </mat-list>
+    <form [formGroup]="form" (ngSubmit)="submit()">
+      <div class="form">
+        <mat-form-field appearance="outline">
+          <mat-label>Nivel educativo</mat-label>
+          <input #input matInput type="text" required autofocus formControlName="name" />
+        </mat-form-field>
+        <div>
+          <button type="reset" mat-button (click)="resetForm()">Limpiar</button>
+          <button type="submit" mat-flat-button>Aceptar</button>
+        </div>
+      </div>
+    </form>
+  </div>
+</app-container>
