@@ -48,6 +48,7 @@ export class LevelsComponent {
       this.currentLevel = levelToUpdate;
       this.form.setValue({ name: levelToUpdate.name });
       this.status = Status.Update;
+      this.input()?.nativeElement.focus();
     }
   }
 
