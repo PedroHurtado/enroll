@@ -34,20 +34,20 @@ export class ModalitiesComponent {
     name: new FormControl('', Validators.required)
   });
   protected modalities: Mode[] = [];
-  protected currentLevel?: Level;
-  protected currentMode?: Mode;
+  protected currentLevel?: Level | undefined;
+  protected currentMode?: Mode | undefined;
   protected status: Status = Status.Add;
   protected input = viewChild<ElementRef>('input');
 
   constructor(
-      private route: ActivatedRoute,
-      private readonly levelService: LevelService,
-      private readonly modalitiesService: ModalitiesService
-    ) {
+    private route: ActivatedRoute,
+    private readonly levelService: LevelService,
+    private readonly modalitiesService: ModalitiesService
+  ) {
     this.loadLevel(route.snapshot.params['id']);
   }
 
-  private loadLevel(id:string): void {
+  private loadLevel(id: string): void {
     this.currentLevel = this.levelService.get(id);
   }
 
@@ -76,15 +76,22 @@ export class ModalitiesComponent {
 
     if (this.status === Status.Add) {
       this.modalities.push(this.modalitiesService.add(name, this.currentMode?.id));
-    } else if (this.status === Status.Update && this.currentLevel) {
+    } else if (
+      this.status === Status.Update &&
+      this.currentMode &&
+      this.currentLevel
+    ) {
       const updatedLevel = {
         id: this.currentLevel.id,
-        name ,
+        name,
         levelId: this.currentMode?.id
       };
-      const index = this.modalities.indexOf(this.currentLevel);
+
+      const index = this.modalities.indexOf(this.currentMode);
       this.modalities[index] = updatedLevel;
       this.modalitiesService.update(updatedLevel);
+
+
     }
 
     this.resetForm();
