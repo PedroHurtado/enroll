@@ -9,6 +9,7 @@ import { Level } from './level';
 import { LevelService } from './level.service';
 import { FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { Status } from './status';
+import { RouterLink } from '@angular/router';
 
 @Component({
   selector: 'app-levels',
@@ -20,7 +21,8 @@ import { Status } from './status';
     MatListModule,
     HeaderComponent,
     ContainerComponent,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    RouterLink
   ],
   templateUrl: './levels.component.html',
   styleUrls: ['./levels.component.css']

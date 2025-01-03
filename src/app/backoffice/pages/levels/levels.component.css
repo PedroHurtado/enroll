@@ -8,7 +8,7 @@
 }
 .row{
   display: grid;
-  grid-template-columns: 1fr 48px 48px;
+  grid-template-columns: 1fr 48px 48px auto;
   align-items: center;
   gap:1rem
 }
