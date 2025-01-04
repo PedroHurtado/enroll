@@ -57,27 +57,20 @@ export class ModalitiesComponent {
     this.currentLevel = this.levelService.get(id);
   }
 
-  protected update(id: string): void {
-    const modeToUpdate = this.modalities.find(mode => mode.id === id);
-    if (modeToUpdate) {
-      this.currentMode = modeToUpdate;
-      this.form.setValue({
-        name: modeToUpdate.name,
-        common: modeToUpdate.common,
-        specific: modeToUpdate.specific,
-        elective: modeToUpdate.elective,
-        electiveOne: modeToUpdate.electiveOne
-      });
+  protected update(mode:Mode): void {
+    if (mode) {
+      this.currentMode = mode;
+      this.form.setValue(mode);
       this.status = Status.Update;
       this.input()?.nativeElement.focus();
     }
   }
 
-  protected remove(id: string): void {
-    const levelToRemove = this.modalities.find(mode => mode.id === id);
-    if (levelToRemove) {
-      this.levelService.remove(levelToRemove);
-      this.modalities = this.modalities.filter(level => level.id !== id);
+  protected remove(mode:Mode): void {
+
+    if (mode) {
+      this.levelService.remove(mode);
+      this.modalities = this.modalities.filter(m=>m!==mode);
       this.currentMode=undefined;
       this.resetForm();
     }
@@ -100,7 +93,7 @@ export class ModalitiesComponent {
       this.currentLevel
     ) {
       const updatedLevel = {
-        id: this.currentLevel.id,
+        id:this.currentMode.id,
         name,
         levelId: this.currentMode?.id,
         common,
