@@ -1,18 +1,18 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { ElectivestwoComponent } from './electivestwo.component';
+import { ElectivesoneComponent } from './electivesone.component';
 
-describe('ElectivestwoComponent', () => {
-  let component: ElectivestwoComponent;
-  let fixture: ComponentFixture<ElectivestwoComponent>;
+describe('ElectivesoneComponent', () => {
+  let component: ElectivesoneComponent;
+  let fixture: ComponentFixture<ElectivesoneComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [ElectivestwoComponent]
+      imports: [ElectivesoneComponent]
     })
     .compileComponents();
 
-    fixture = TestBed.createComponent(ElectivestwoComponent);
+    fixture = TestBed.createComponent(ElectivesoneComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });
