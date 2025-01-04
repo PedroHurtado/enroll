@@ -14,6 +14,7 @@
           </button>
         </div>
         <div class="actions">
+          <a mat-button [routerLink]="['/modalities',course.id]">Modalidades</a>
           @if(course.common){
             <a mat-button [routerLink]="['/common',course.id]">Comunes</a>
           }
