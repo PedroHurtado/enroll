@@ -24,3 +24,6 @@ const optativas=[
     ]
 optativas.map((v,i)=>({pos:i+1,asignatura:v}))
 
+educaweb
+https://www.educaweb.com/contenidos/educativos/sistema-educativo/conoce-cuales-son-niveles-educativos-espana/
+
