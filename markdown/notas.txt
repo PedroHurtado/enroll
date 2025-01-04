@@ -28,3 +28,7 @@ educaweb
 https://www.educaweb.com/contenidos/educativos/sistema-educativo/conoce-cuales-son-niveles-educativos-espana/
 
 https://www.todofp.es/que-estudiar/grados-d/grado-superior.html
+
+niveles
+  cursos
+    modalidades
