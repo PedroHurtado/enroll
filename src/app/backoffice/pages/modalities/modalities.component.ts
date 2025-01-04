@@ -3,6 +3,7 @@ import { MatInputModule } from '@angular/material/input';
 import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
 import { MatListModule } from '@angular/material/list';
+import { MatCheckboxModule } from '@angular/material/checkbox';
 import { HeaderComponent } from '../../../components/header/header.component';
 import { ContainerComponent } from '../../../components/container/container.component';
 import { Level } from '../levels/level';
@@ -20,6 +21,7 @@ import { ModalitiesService } from './modalities.service';
     MatButtonModule,
     MatIconModule,
     MatListModule,
+    MatCheckboxModule,
     HeaderComponent,
     ContainerComponent,
     ReactiveFormsModule,
@@ -31,7 +33,11 @@ import { ModalitiesService } from './modalities.service';
 })
 export class ModalitiesComponent {
   protected form: FormGroup = new FormGroup({
-    name: new FormControl('', Validators.required)
+    name: new FormControl('', Validators.required),
+    common: new FormControl(false),
+    specific: new FormControl(false),
+    elective: new FormControl(false),
+    electiveOne: new FormControl(false)
   });
   protected modalities: Mode[] = [];
   protected currentLevel?: Level | undefined;
@@ -55,7 +61,13 @@ export class ModalitiesComponent {
     const modeToUpdate = this.modalities.find(mode => mode.id === id);
     if (modeToUpdate) {
       this.currentMode = modeToUpdate;
-      this.form.setValue({ name: modeToUpdate.name });
+      this.form.setValue({
+        name: modeToUpdate.name,
+        common: modeToUpdate.common,
+        specific: modeToUpdate.specific,
+        elective: modeToUpdate.elective,
+        electiveOne: modeToUpdate.electiveOne
+      });
       this.status = Status.Update;
       this.input()?.nativeElement.focus();
     }
@@ -66,16 +78,22 @@ export class ModalitiesComponent {
     if (levelToRemove) {
       this.levelService.remove(levelToRemove);
       this.modalities = this.modalities.filter(level => level.id !== id);
+      this.currentMode=undefined;
       this.resetForm();
     }
   }
 
   protected submit(): void {
-    const { name } = this.form.value;
+    const { name, common, specific, elective, electiveOne } = this.form.value as Mode;
     if (!name) return;
 
     if (this.status === Status.Add) {
-      this.modalities.push(this.modalitiesService.add(name, this.currentMode?.id));
+      this.currentMode = this.modalitiesService.add(
+        {
+          name, common, specific, elective, electiveOne
+        } as Mode,
+        this.currentMode?.id);
+      this.modalities.push(this.currentMode)
     } else if (
       this.status === Status.Update &&
       this.currentMode &&
@@ -84,7 +102,11 @@ export class ModalitiesComponent {
       const updatedLevel = {
         id: this.currentLevel.id,
         name,
-        levelId: this.currentMode?.id
+        levelId: this.currentMode?.id,
+        common,
+        specific,
+        elective,
+        electiveOne
       };
 
       const index = this.modalities.indexOf(this.currentMode);

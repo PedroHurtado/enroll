@@ -9,11 +9,23 @@ export class ModalitiesService {
   constructor() {
 
   }
-   add(name:string,levelId:string|undefined ):Mode{
+   add(mode:Mode,levelId:string|undefined ):Mode{
+    const {
+      name,
+      common,
+      specific,
+      elective,
+      electiveOne
+    } = mode
       return {
         id: self.crypto.randomUUID(),
-        name: name,
-        levelId
+        name,
+        levelId,
+        common,
+        specific,
+        elective,
+        electiveOne
+
       }
     }
     remove(level:Mode){
