@@ -84,7 +84,9 @@ export class ModalitiesComponent {
   }
 
   protected submit(): void {
-
+    if(!this.form.get('name')) {
+      return;
+    }
     if (this.status === Status.Add && this.currentCourse) {
 
       this.currentMode = this.modalitiesService.add(

@@ -80,6 +80,11 @@ export class CoursesComponent {
     }
   }
   protected submit(){
+
+    if (!this.form.get("name")){
+      return
+    }
+
     if(this.status === Status.Add && this.currentLevel){
       const course = this.coursesService.add(
         this.form.value, this.currentLevel.id
