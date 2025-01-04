@@ -54,7 +54,12 @@ export class CoursesComponent {
   ) {
     const levelId = this.route.snapshot.paramMap.get('id')
     this.loasLevel(levelId || '' )
+    this.loadCourses()
   }
+  private loadCourses() {
+    this.courses = this.coursesService.getAll()
+  }
+
   private loasLevel(id: string) {
     this.currentLevel = this.levelService.get(id)
   }
@@ -88,11 +93,9 @@ export class CoursesComponent {
     }
 
     if(this.status === Status.Add && this.currentLevel){
-      const course = this.coursesService.add(
+      this.coursesService.add(
         this.form.value, this.currentLevel.id
       )
-      this.courses.push(course)
-
     }else if(
       this.status === Status.Update
       && this.currentCourse

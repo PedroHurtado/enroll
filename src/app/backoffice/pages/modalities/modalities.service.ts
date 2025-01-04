@@ -32,4 +32,7 @@ export class ModalitiesService {
         modes[index] = mode;
       }
     }
+    getAll():Mode[]{
+      return modes;
+    }
 }

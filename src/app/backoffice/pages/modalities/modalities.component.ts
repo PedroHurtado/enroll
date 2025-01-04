@@ -51,6 +51,10 @@ export class ModalitiesComponent {
     private readonly modalitiesService: ModalitiesService
   ) {
     this.loadCourse(route.snapshot.params['id']);
+    this.loadModalities();
+  }
+  private loadModalities(): void {
+    this.modalities = this.modalitiesService.getAll();
   }
 
   private loadCourse(id: string): void {
@@ -90,11 +94,9 @@ export class ModalitiesComponent {
       return;
     }
     if (this.status === Status.Add && this.currentCourse) {
-
-      this.currentMode = this.modalitiesService.add(
+      this.modalitiesService.add(
         this.form.value as Mode,
         this.currentCourse.id);
-      this.modalities.push(this.currentMode)
 
     } else if (
       this.status === Status.Update &&

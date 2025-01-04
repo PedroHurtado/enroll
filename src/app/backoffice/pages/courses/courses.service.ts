@@ -29,4 +29,7 @@ export class CoursesService {
   remove(course: Courses) {
     courses.splice(courses.indexOf(course), 1)
   }
+  getAll(): Courses[] {
+    return courses
+  }
 }
