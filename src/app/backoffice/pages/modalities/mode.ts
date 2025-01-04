@@ -1,7 +1,7 @@
 export interface Mode {
   id: string;
   name: string;
-  levelId?: string;
+  courseId?: string;
   common:boolean,
   specific:boolean,
   elective:boolean,

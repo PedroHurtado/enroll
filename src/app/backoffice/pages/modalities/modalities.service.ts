@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { Mode } from './mode';
 
+const modes:Mode[] = [];
 @Injectable({
   providedIn: 'root'
 })
@@ -9,29 +10,26 @@ export class ModalitiesService {
   constructor() {
 
   }
-   add(mode:Mode,levelId:string|undefined ):Mode{
-    const {
-      name,
-      common,
-      specific,
-      elective,
-      electiveOne
-    } = mode
-      return {
-        id: self.crypto.randomUUID(),
-        name,
-        levelId,
-        common,
-        specific,
-        elective,
-        electiveOne
+   add(mode:Mode,courseId:string|undefined ):Mode{
 
+      const newMode:Mode = {
+        ...mode,
+        id: self.crypto.randomUUID(),
+        courseId
+      }
+      modes.push(newMode);
+      return newMode;
+    }
+    remove(mode:Mode){
+      const index = modes.findIndex((m)=>m===mode);
+      if(index >= 0){
+        modes.splice(index,1);
       }
     }
-    remove(level:Mode){
-
-    }
-    update(level:Mode){
-
+    update(mode:Mode){
+      const index = modes.findIndex((m)=>m===mode);
+      if(index >= 0){
+        modes[index] = mode;
+      }
     }
 }

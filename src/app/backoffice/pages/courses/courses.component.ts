@@ -85,7 +85,7 @@ export class CoursesComponent {
         this.form.value, this.currentLevel.id
       )
       this.courses.push(course)
-      this.reset()
+
     }else if(
       this.status === Status.Update
       && this.currentCourse
@@ -99,8 +99,9 @@ export class CoursesComponent {
       this.courses[index] = courseToUpdate;
       this.coursesService.update(courseToUpdate)
       this.currentCourse = undefined
-      this.reset()
+
     }
+    this.reset()
   }
   protected reset() {
     this.status = Status.Add

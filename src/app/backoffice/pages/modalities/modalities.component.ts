@@ -6,13 +6,13 @@ import { MatListModule } from '@angular/material/list';
 import { MatCheckboxModule } from '@angular/material/checkbox';
 import { HeaderComponent } from '../../../components/header/header.component';
 import { ContainerComponent } from '../../../components/container/container.component';
-import { Level } from '../levels/level';
-import { LevelService } from '../levels/level.service';
 import { FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { Status } from '../levels/status';
 import { ActivatedRoute, RouterLink } from '@angular/router';
 import { Mode } from './mode';
 import { ModalitiesService } from './modalities.service';
+import { CoursesService } from '../courses/courses.service';
+import { Courses } from '../courses/courses';
 
 @Component({
   selector: 'app-modalities',
@@ -40,21 +40,21 @@ export class ModalitiesComponent {
     electiveOne: new FormControl(false)
   });
   protected modalities: Mode[] = [];
-  protected currentLevel?: Level | undefined;
+  protected currentCourse?: Courses | undefined;
   protected currentMode?: Mode | undefined;
   protected status: Status = Status.Add;
   protected input = viewChild<ElementRef>('input');
 
   constructor(
     private route: ActivatedRoute,
-    private readonly levelService: LevelService,
+    private readonly coursesService: CoursesService,
     private readonly modalitiesService: ModalitiesService
   ) {
-    this.loadLevel(route.snapshot.params['id']);
+    this.loadCourse(route.snapshot.params['id']);
   }
 
-  private loadLevel(id: string): void {
-    this.currentLevel = this.levelService.get(id);
+  private loadCourse(id: string): void {
+    this.currentCourse = this.coursesService.get(id);
   }
 
   protected update(mode:Mode): void {
@@ -69,14 +69,14 @@ export class ModalitiesComponent {
         electiveOne
       });
       this.status = Status.Update;
-      this.input()?.nativeElement.focus();
+      this.ngAfterViewInit();
     }
   }
 
   protected remove(mode:Mode): void {
 
     if (mode) {
-      this.levelService.remove(mode);
+      this.modalitiesService.remove(mode);
       this.modalities = this.modalities.filter(m=>m!==mode);
       this.currentMode=undefined;
       this.resetForm();
@@ -84,45 +84,38 @@ export class ModalitiesComponent {
   }
 
   protected submit(): void {
-    const { name, common, specific, elective, electiveOne } = this.form.value as Mode;
-    if (!name) return;
 
-    if (this.status === Status.Add) {
+    if (this.status === Status.Add && this.currentCourse) {
+
       this.currentMode = this.modalitiesService.add(
-        {
-          name, common, specific, elective, electiveOne
-        } as Mode,
-        this.currentMode?.id);
+        this.form.value as Mode,
+        this.currentCourse.id);
       this.modalities.push(this.currentMode)
+
     } else if (
       this.status === Status.Update &&
       this.currentMode &&
-      this.currentLevel
+      this.currentCourse
     ) {
-      const updatedLevel = {
-        id:this.currentMode.id,
-        name,
-        levelId: this.currentMode?.id,
-        common,
-        specific,
-        elective,
-        electiveOne
-      };
+      const updateMode:Mode = {
+        ...this.form.value as Mode,
+        id: this.currentMode.id,
+        courseId: this.currentCourse.id
+      }
 
       const index = this.modalities.indexOf(this.currentMode);
-      this.modalities[index] = updatedLevel;
-      this.modalitiesService.update(updatedLevel);
+      this.modalities[index] = updateMode;
+      this.modalitiesService.update(updateMode);
 
 
     }
-
     this.resetForm();
   }
 
   protected resetForm(): void {
     this.form.reset();
     this.status = Status.Add;
-    this.input()?.nativeElement.focus();
+    this.ngAfterViewInit();
   }
   ngAfterViewInit(): void {
     this.input()?.nativeElement.focus();

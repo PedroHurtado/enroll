@@ -9,7 +9,8 @@ export class CoursesService {
 
   constructor() { }
 
-  get(){
+  get(id:string): Courses | undefined {
+    return courses.find(course => course.id === id)
 
   }
   add(course: Courses, levelId: string): Courses {
