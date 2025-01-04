@@ -59,8 +59,15 @@ export class ModalitiesComponent {
 
   protected update(mode:Mode): void {
     if (mode) {
+      const { name, common, specific, elective, electiveOne } = mode;
       this.currentMode = mode;
-      this.form.setValue(mode);
+      this.form.setValue({
+        name,
+        common,
+        specific,
+        elective,
+        electiveOne
+      });
       this.status = Status.Update;
       this.input()?.nativeElement.focus();
     }
