@@ -84,7 +84,9 @@ export class ModalitiesComponent {
   }
 
   protected submit(): void {
-    if(!this.form.get('name')) {
+    const {name} = this.form.value;
+    if (!name) {
+      this.resetForm();
       return;
     }
     if (this.status === Status.Add && this.currentCourse) {

@@ -81,7 +81,9 @@ export class CoursesComponent {
   }
   protected submit(){
 
-    if (!this.form.get("name")){
+    const {name} = this.form.value
+    if(!name){
+      this.reset()
       return
     }
 
