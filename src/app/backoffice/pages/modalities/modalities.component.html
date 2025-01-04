@@ -15,16 +15,16 @@
         </div>
         <div class="actions">
           @if(mode.common){
-            <a mat-button [routerLink]="['/common',mode.id]">Comunes</a>
+            <a mat-button [routerLink]="['/subjects',mode.id,'common']">Comunes</a>
           }
           @if(mode.specific){
-            <a mat-button [routerLink]="['/modalities',mode.id]">Especificas</a>
+            <a mat-button [routerLink]="['/subjects',mode.id,'specific']">Especificas</a>
           }
           @if(mode.elective){
-            <a mat-button [routerLink]="['/modalities',mode.id]">Optativas</a>
+            <a mat-button [routerLink]="['/subjects',mode.id,'elective']">Optativas</a>
           }
           @if(mode.electiveOne){
-            <a mat-button [routerLink]="['/modalities',mode.id]">Optativas I</a>
+            <a mat-button [routerLink]="['/subjects',mode.id,'electiveOne']">Optativas I</a>
           }
         </div>
       </mat-list-item>

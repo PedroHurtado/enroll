@@ -1,21 +1,19 @@
 import { ChangeDetectionStrategy, Component, ElementRef, viewChild } from '@angular/core';
-import { HeaderComponent } from '../../../../components/header/header.component';
-import { ContainerComponent } from '../../../../components/container/container.component';
+import { HeaderComponent } from '../../../components/header/header.component';
+import { ContainerComponent } from '../../../components/container/container.component';
 import { MatInputModule } from '@angular/material/input';
 import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
 import { MatListModule } from '@angular/material/list';
-
-//import { LevelService } from '../levels/level.service';
 import { FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
-import { Status } from '../../levels/status';
+import { Status } from '../levels/status';
 import { ActivatedRoute } from '@angular/router';
-import { Mode } from '../../modalities/mode';
-import { Subject } from '../subject';
-//import { ModalitiesService } from './modalities.service';
+
+import { Subject } from './subject';
+
 
 @Component({
-  selector: 'app-common',
+  selector: 'app-subjects',
   imports: [
     MatInputModule,
     MatButtonModule,
@@ -25,11 +23,11 @@ import { Subject } from '../subject';
     ContainerComponent,
     ReactiveFormsModule,
   ],
-  templateUrl: './common.component.html',
-  styleUrl: './common.component.css',
+  templateUrl: './subjects.component.html',
+  styleUrl: './subjects.component.css',
   changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class CommonComponent {
+export class SubjectsComponent {
   protected form: FormGroup = new FormGroup({
     name: new FormControl('', Validators.required)
   });
