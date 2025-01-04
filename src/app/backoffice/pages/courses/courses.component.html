@@ -1,1 +1,55 @@
-<p>courses works!</p>
+<app-header>Cursos de {{currentLevel?.name}}</app-header>
+<app-container>
+  <div class="container">
+    <mat-list role="list">
+      @for (course of courses; track course.id) {
+      <mat-list-item role="listitem" style="height: max-content;">
+        <div class="edit">
+          <span mat-line>{{course.name}}</span>
+          <button mat-icon-button (click)="update(course)" color="primary" aria-label="Editar">
+            <mat-icon>edit</mat-icon>
+          </button>
+          <button mat-icon-button (click)="remove(course)" color="warn" aria-label="Eliminar">
+            <mat-icon>delete</mat-icon>
+          </button>
+        </div>
+        <div class="actions">
+          @if(course.common){
+            <a mat-button [routerLink]="['/common',course.id]">Comunes</a>
+          }
+          @if(course.specific){
+            <a mat-button [routerLink]="['/modalities',course.id]">Especificas</a>
+          }
+          @if(course.elective){
+            <a mat-button [routerLink]="['/modalities',course.id]">Optativas</a>
+          }
+          @if(course.electiveOne){
+            <a mat-button [routerLink]="['/modalities',course.id]">Optativas I</a>
+          }
+        </div>
+      </mat-list-item>
+      }
+      @empty {
+      <mat-list-item role="listitem">No hay cursos registradas</mat-list-item>
+      }
+    </mat-list>
+    <form [formGroup]="form" (ngSubmit)="submit()">
+      <div class="form">
+        <mat-form-field appearance="outline">
+          <mat-label>Curso</mat-label>
+          <input #input matInput type="text" required formControlName="name" />
+        </mat-form-field>
+        <div>
+          <mat-checkbox formControlName="common">Comunes</mat-checkbox>
+          <mat-checkbox formControlName="specific">Especificas</mat-checkbox>
+          <mat-checkbox formControlName="elective">Optativas</mat-checkbox>
+          <mat-checkbox formControlName="electiveOne">Optativas I</mat-checkbox>
+        </div>
+        <div>
+          <button type="reset" mat-button (click)="reset()">Limpiar</button>
+          <button type="submit" mat-flat-button>Aceptar</button>
+        </div>
+      </div>
+    </form>
+  </div>
+</app-container>
