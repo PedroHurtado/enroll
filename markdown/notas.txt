@@ -22,7 +22,7 @@ const optativas=[
       "Materias de diseño propio",
       "Otras materias autorizadas por la Administración"
     ]
-optativas.map((v,i)=>({pos:i+1,asignatura:v}))
+const result = optativas.map((asignatura,i)=>({asignatura,pos:i+1}))
 
 educaweb
 https://www.educaweb.com/contenidos/educativos/sistema-educativo/conoce-cuales-son-niveles-educativos-espana/
