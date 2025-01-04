@@ -6,3 +6,21 @@ Asignaturas revisar validation(x)
 
 https://www.juntadeandalucia.es/educacion/portals/web/educacion-permanente/bachillerato/modalidades
 
+const optativas=[
+      "Biología",
+      "Dibujo Técnico II",
+      "Física",
+      "Geología y Ciencias Ambientales",
+      "Química",
+      "Tecnología e Ingeniería II",
+      "Matemáticas II",
+      "Ciencias de la Tierra y del Medio Ambiente",
+      "Electrotecnia",
+      "Tecnologías de la Información y la Comunicación II",
+      "Psicología",
+      "Segunda Lengua Extranjera II",
+      "Materias de diseño propio",
+      "Otras materias autorizadas por la Administración"
+    ]
+optativas.map((v,i)=>({pos:i+1,asignatura:v}))
+
