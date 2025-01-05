@@ -1,4 +1,14 @@
 .container{
   padding: 1rem;
-  width: min-content;
+  width: 50%;
+  margin: auto;
+}
+.row{
+  display: grid;
+  grid-template-columns: repeat(3,1fr);
+  gap: 1rem;
+  width: 80%;
+}
+.text{
+  width: 80%;
 }

@@ -1,27 +1,35 @@
 <div class="container">
   <form [formGroup]="form" (ngSubmit)="submit()">
-    <div>
-      <mat-form-field appearance="outline">
+
+      <mat-form-field appearance="outline" class="text">
         <mat-label>Texto</mat-label>
-        <input type="text" matInput formControlName="text">
+        <input type="text" matInput formControlName="text" required>
       </mat-form-field>
+
+    <div class="row">
+      <mat-form-field appearance="outline">
+        <mat-label>Tipo</mat-label>
+        <mat-select formControlName="type">
+          <mat-option value="all">Todas</mat-option>
+          <mat-option value="selectlist">Lista</mat-option>
+          <mat-option value="orderlist">Lista Ordenada</mat-option>
+        </mat-select>
+      </mat-form-field>
+      @if (type()!=='all') {
+
+      @if(type()==='selectlist'){
+      <mat-radio-group id="radio-group" formControlName="multiple" aria-label="Selecciona una option">
+        <label for="radio-group">Multiple:</label>
+        <mat-radio-button [value]="true">Si</mat-radio-button>
+        <mat-radio-button [value]="false">No</mat-radio-button>
+      </mat-radio-group>
+      }
+      <mat-form-field appearance="outline">
+        <mat-label>Límite</mat-label>
+        <input type="number" min="0" matInput formControlName="limit">
+      </mat-form-field>
+      }
     </div>
-    <mat-form-field appearance="outline">
-      <mat-label>Tipo</mat-label>
-      <mat-select formControlName="type">
-        <mat-option value="all">Todas</mat-option>
-        <mat-option value="selectlist">Lista</mat-option>
-        <mat-option value="orderlist">Lista Ordenada</mat-option>
-      </mat-select>
-    </mat-form-field>
-    <mat-radio-group formControlName="multiple" aria-label="Selecciona una option">
-      <mat-radio-button value="true">Si</mat-radio-button>
-      <mat-radio-button value="false">No</mat-radio-button>
-    </mat-radio-group>
-    <mat-form-field appearance="outline">
-      <mat-label>Límite</mat-label>
-      <input type="number" matInput formControlName="limit">
-    </mat-form-field>
     <div>
       <button type="submit" mat-flat-button>enviar</button>
     </div>
