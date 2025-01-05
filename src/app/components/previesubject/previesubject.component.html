@@ -1,0 +1,16 @@
+<div class="container">
+  @if(config().type==='all'){
+  <h2>{{config().text}}</h2>
+  <div>
+    @for (item of items; track item) {
+    <p>{{item}}</p>
+    }
+  </div>
+  }
+  @if(config().type==="selectlist"){
+  <app-selectedlist [text]="config().text" [items]="items" [multiple]="config().multiple" />
+  }
+  @if(config().type==="orderlist"){
+  <app-sortedlist [text]="config().text" [items]="items" [limit]="config().limit" />
+  }
+</div>
