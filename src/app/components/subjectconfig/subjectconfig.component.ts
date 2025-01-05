@@ -29,8 +29,8 @@ export class SubjectconfigComponent {
   protected type = signal("all")
   protected config = signal<Config>(defaultConfig)
   protected form = new FormGroup({
-    text: new FormControl('', Validators.required),
     type: new FormControl("all"),
+    title: new FormControl('', Validators.required),
     multiple: new FormControl(false),
     limit: new FormControl(0)
   })
@@ -53,9 +53,9 @@ export class SubjectconfigComponent {
       }
     });
     this.form.valueChanges.subscribe(values => {
-      const { text, type, multiple, limit } = values as Config
+      const { type, title, multiple, limit } = values as Config
       this.config.set({
-        text, type, multiple, limit
+        type, title, multiple, limit
       })
     })
   }

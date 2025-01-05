@@ -1,16 +1,16 @@
 <div class="container">
   @if(config().type==='all'){
-  <h2>{{config().text}}</h2>
-  <div class="all">
-    @for (item of items; track item) {
-    <p>{{item}}</p>
-    }
-  </div>
+    <h2>{{config().title}}</h2>
+    <mat-list role="list">
+      @for (item of items; track item) {
+      <mat-list-item role="listitem">{{item}}</mat-list-item>
+      }
+    </mat-list>
   }
   @if(config().type==="selectlist"){
-  <app-selectedlist [text]="config().text" [items]="items" [multiple]="config().multiple" />
+    <app-selectedlist [text]="config().title" [items]="items" [multiple]="config().multiple" />
   }
   @if(config().type==="orderlist"){
-  <app-sortedlist [text]="config().text" [items]="items" [limit]="config().limit" />
+    <app-sortedlist [text]="config().title" [items]="items" [limit]="config().limit" />
   }
 </div>

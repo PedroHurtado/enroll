@@ -1,13 +1,13 @@
 export interface Config {
   type:string,
-  text:string,
+  title:string,
   multiple:boolean,
   limit:number
 }
 
 export const defaultConfig:Config ={
   type:'all',
-  text:'',
+  title:'',
   multiple:false,
   limit:0
 }
