@@ -1,7 +1,7 @@
 <div class="container">
   @if(config().type==='all'){
   <h2>{{config().text}}</h2>
-  <div>
+  <div class="all">
     @for (item of items; track item) {
     <p>{{item}}</p>
     }

@@ -4,11 +4,5 @@ En la url pasar el tipo de servicio y el tipo de asignaturas
 Hacer un fachada que resuelva un servicio o el otro
   crear los metodos get,remove,update,add,getall
 
-(x)Tipo de asignaturas:common,specific,elective,electiveOne
-  common
-    type:all|selectlist|sortedlist
-    text:texto a mostrar
-    limit:solo visible si selectlist|sortedlist
-    multiple:solo visible si selectlist
-    default:solo visible si multiple(false) y selectlist
+Default Value cuando selectList and multiple = false
 

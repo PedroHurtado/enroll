@@ -63,6 +63,9 @@ export class SubjectconfigComponent {
   protected shouldShowLimit(): boolean {
     return this.form.get('multiple')?.value === true || this.type() === 'orderlist';
   }
+  protected shouldShowDefault(): boolean {
+    return this.form.get('multiple')?.value === false && this.type() === 'selectlist';
+  }
   submit() {
     console.log(this.form.value)
   }
