@@ -7,3 +7,6 @@
   grid-template-columns: repeat(3,1fr);
   gap: 1rem;
 }
+.row_field{
+  width: 100%;
+}
