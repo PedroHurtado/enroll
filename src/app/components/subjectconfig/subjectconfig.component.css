@@ -1,14 +1,9 @@
 .container{
-  padding: 1rem;
-  width: 50%;
-  margin: auto;
+  padding: 1rem 0;
+  width: 100%;
 }
 .row{
   display: grid;
   grid-template-columns: repeat(3,1fr);
   gap: 1rem;
-  width: 80%;
-}
-.text{
-  width: 80%;
 }

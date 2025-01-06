@@ -10,6 +10,7 @@ import { Status } from '../levels/status';
 import { ActivatedRoute } from '@angular/router';
 
 import { Subject } from './subject';
+import { SubjectconfigComponent } from '../../../components/subjectconfig/subjectconfig.component';
 
 
 @Component({
@@ -22,6 +23,7 @@ import { Subject } from './subject';
     HeaderComponent,
     ContainerComponent,
     ReactiveFormsModule,
+    SubjectconfigComponent
   ],
   templateUrl: './subjects.component.html',
   styleUrl: './subjects.component.css',

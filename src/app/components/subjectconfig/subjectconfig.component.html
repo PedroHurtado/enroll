@@ -1,7 +1,7 @@
 <div class="container">
   <form [formGroup]="form" (ngSubmit)="submit()">
 
-    <mat-form-field appearance="outline" class="text">
+    <mat-form-field appearance="outline">
       <mat-label>Título</mat-label>
       <input type="text" matInput formControlName="title" required>
     </mat-form-field>
@@ -43,7 +43,7 @@
       }
     </div>
     @if(shouldShowDefault()){
-      <mat-form-field appearance="outline" class="text">
+      <mat-form-field appearance="outline">
         <mat-label>Asignatura por defecto</mat-label>
         <mat-select formControlName="defaultSubject">
           @for (item of items; track item) {
@@ -60,9 +60,9 @@
       </mat-form-field>
     }
     <div>
-      <button type="submit" mat-flat-button>enviar</button>
+      <button type="submit" mat-flat-button>Aceptar</button>
     </div>
-    <div class="text">
+    <div>
       <app-previesubject [config]="config()"></app-previesubject>
     </div>
 

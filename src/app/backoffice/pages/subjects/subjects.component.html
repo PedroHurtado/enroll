@@ -22,7 +22,7 @@
     <form [formGroup]="form" (ngSubmit)="submit()">
       <div class="form">
         <mat-form-field appearance="outline">
-          <mat-label>Modalidad</mat-label>
+          <mat-label>Asignatura</mat-label>
           <input #input matInput type="text" required formControlName="name" />
         </mat-form-field>
         <div>
@@ -31,6 +31,9 @@
         </div>
       </div>
     </form>
+    <div>
+      <app-subjectconfig/>
+    </div>
   </div>
 </app-container>
 
