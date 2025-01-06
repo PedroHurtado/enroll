@@ -14,19 +14,8 @@
           </button>
         </div>
         <div class="actions">
+          <a mat-button [routerLink]="['/modalities',course.id]">Asignaturas</a>
           <a mat-button [routerLink]="['/modalities',course.id]">Modalidades</a>
-          @if(course.common){
-            <a mat-button [routerLink]="['/subjects',course.id ,'common']">Comunes</a>
-          }
-          @if(course.specific){
-            <a mat-button [routerLink]="['/subjects',course.id, 'specific']">Especificas</a>
-          }
-          @if(course.elective){
-            <a mat-button [routerLink]="['/subjects',course.id, 'elective']">Optativas</a>
-          }
-          @if(course.electiveOne){
-            <a mat-button [routerLink]="['/subjects',course.id, 'electiveOne']">Optativas I</a>
-          }
         </div>
       </mat-list-item>
       }
@@ -40,12 +29,6 @@
           <mat-label>Curso</mat-label>
           <input #input matInput type="text" required formControlName="name" />
         </mat-form-field>
-        <div>
-          <mat-checkbox formControlName="common">Comunes</mat-checkbox>
-          <mat-checkbox formControlName="specific">Especificas</mat-checkbox>
-          <mat-checkbox formControlName="elective">Optativas</mat-checkbox>
-          <mat-checkbox formControlName="electiveOne">Optativas I</mat-checkbox>
-        </div>
         <div>
           <button type="reset" mat-button (click)="reset()">Limpiar</button>
           <button type="submit" mat-flat-button>Aceptar</button>

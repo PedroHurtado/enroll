@@ -34,10 +34,6 @@ import { Courses } from '../courses/courses';
 export class ModalitiesComponent {
   protected form: FormGroup = new FormGroup({
     name: new FormControl('', Validators.required),
-    common: new FormControl(false),
-    specific: new FormControl(false),
-    elective: new FormControl(false),
-    electiveOne: new FormControl(false)
   });
   protected modalities: Mode[] = [];
   protected currentCourse?: Courses | undefined;
@@ -63,14 +59,10 @@ export class ModalitiesComponent {
 
   protected update(mode:Mode): void {
     if (mode) {
-      const { name, common, specific, elective, electiveOne } = mode;
+      const { name} = mode;
       this.currentMode = mode;
       this.form.setValue({
         name,
-        common,
-        specific,
-        elective,
-        electiveOne
       });
       this.status = Status.Update;
       this.ngAfterViewInit();

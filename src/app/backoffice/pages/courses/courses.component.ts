@@ -42,10 +42,6 @@ export class CoursesComponent {
   protected input= viewChild<ElementRef>('input');
   protected form: FormGroup = new FormGroup({
       name: new FormControl('', Validators.required),
-      common: new FormControl(false),
-      specific: new FormControl(false),
-      elective: new FormControl(false),
-      electiveOne: new FormControl(false)
     });
   public constructor(
     private route: ActivatedRoute,
@@ -72,13 +68,9 @@ export class CoursesComponent {
     const courseToUpdate = this.courses.find(c => c === course)
     if (courseToUpdate) {
       this.currentCourse = courseToUpdate
-      const {name,common,specific,elective,electiveOne} = courseToUpdate
+      const {name} = courseToUpdate
       this.form.setValue({
         name,
-        common,
-        specific,
-        elective,
-        electiveOne
       })
       this.status = Status.Update
       this.ngAfterViewInit()
