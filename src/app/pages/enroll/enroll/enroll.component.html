@@ -9,9 +9,18 @@
     <h1>Mis matrículas</h1>
   </mat-toolbar>
 
+
   <mat-sidenav-container class="sidenav-container" [style.marginTop.px]="isMobile() ? 56 : 0">
     <mat-sidenav #snav [mode]="isMobile() ? 'over' : 'side'" [opened]="!isMobile()" [fixedInViewport]="isMobile()"
       fixedTopGap="56">
+      <div class="add">
+        <a mat-button [routerLink]="['/enrolls/add']">
+          <div class="new-enroll-link">
+            Nueva Matrícula
+            <mat-icon>add</mat-icon>
+          </div>
+        </a>
+      </div>
       <mat-nav-list (click)="handlerItem($event)">
 
         @for (item of categories(); track item) {
@@ -22,9 +31,6 @@
     </mat-sidenav>
 
     <mat-sidenav-content>
-      <div class="add">
-        <a mat-button [routerLink]="['/enrolls/add']">Nueva Matrícula</a>
-      </div>
       <div class="cards">
         @for (item of enrolls(); track item.id) {
 
