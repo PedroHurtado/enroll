@@ -8,7 +8,7 @@
     </mat-list>
   }
   @if(config().type==="selectlist"){
-    <app-selectedlist [text]="config().title" [items]="items" [multiple]="config().multiple" />
+    <app-selectedlist [text]="config().title" [items]="items" [multiple]="config().multiple" [default]="config().defaultSubject" [designMode]="true" />
   }
   @if(config().type==="orderlist"){
     <app-sortedlist [text]="config().title" [items]="items" [limit]="config().limit" />

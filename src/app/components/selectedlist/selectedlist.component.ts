@@ -19,6 +19,7 @@ export class SelectedlistComponent implements ControlValueAccessor {
   text=input.required<string>();
   default=input<any>();
   multiple=input<boolean>(true);
+  designMode=input<boolean>(false)
   disabled = false;
   load=false;
   selected: any[] = [];
@@ -50,7 +51,10 @@ export class SelectedlistComponent implements ControlValueAccessor {
     this.onTouched();
   }
   isSelected(item: any) {
-    if(this.default() === item && !this.load) {
+    if(this.designMode() && this.default() === item){
+      return true
+    }
+    else if(this.default() === item && !this.load) {
       this.load = true;
       this.selected = [item];
       this.onChange(this.selected);

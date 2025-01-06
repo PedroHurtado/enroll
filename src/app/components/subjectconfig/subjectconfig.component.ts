@@ -8,6 +8,7 @@ import { MatRadioModule } from '@angular/material/radio';
 import { MatSelectModule } from '@angular/material/select';
 import { PreviesubjectComponent } from '../previesubject/previesubject.component';
 import { Config, defaultConfig } from '../previesubject/config';
+import { ItemsService } from '../previesubject/items.service';
 
 @Component({
   selector: 'app-subjectconfig',
@@ -32,16 +33,20 @@ export class SubjectconfigComponent {
     type: new FormControl("all"),
     title: new FormControl('', Validators.required),
     multiple: new FormControl(false),
-    limit: new FormControl(0)
+    limit: new FormControl(0),
+    defaultSubject:new FormControl(null)
   })
-  constructor() {
+  protected items:any[]=[]
+  constructor(private service:ItemsService) {
+    this.items = [null,...this.service.items];
     this.form.get('type')?.valueChanges.subscribe((newValue) => {
       if (newValue) {
         this.type.set(newValue)
         if (this.type() === 'all' || this.type() === 'orderlist') {
           this.form.patchValue({
             multiple: false,
-            limit: 0
+            limit: 0,
+            defaultSubject:null
           })
         }
         else if (this.type() === "selectlist") {
@@ -53,9 +58,9 @@ export class SubjectconfigComponent {
       }
     });
     this.form.valueChanges.subscribe(values => {
-      const { type, title, multiple, limit } = values as Config
+      const { type, title, multiple, limit, defaultSubject } = values as Config
       this.config.set({
-        type, title, multiple, limit
+        type, title, multiple, limit, defaultSubject
       })
     })
   }

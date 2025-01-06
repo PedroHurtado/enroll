@@ -42,6 +42,23 @@
         }
       }
     </div>
+    @if(shouldShowDefault()){
+      <mat-form-field appearance="outline" class="text">
+        <mat-label>Asignatura por defecto</mat-label>
+        <mat-select formControlName="defaultSubject">
+          @for (item of items; track item) {
+            <mat-option [value]="item">
+              @if(item===null){
+                Ninguna
+              }
+              @else{
+                {{item}}
+              }
+            </mat-option>
+          }
+        </mat-select>
+      </mat-form-field>
+    }
     <div>
       <button type="submit" mat-flat-button>enviar</button>
     </div>
