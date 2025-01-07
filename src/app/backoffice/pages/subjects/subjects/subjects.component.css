@@ -19,3 +19,8 @@
   gap:1rem;
   padding: 0.25rem 0;
 }
+.buttons{
+  display: grid;
+  grid-template-columns: 1fr auto;
+  gap:1rem;
+}

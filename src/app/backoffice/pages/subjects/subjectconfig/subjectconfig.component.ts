@@ -6,9 +6,12 @@ import { MatInputModule } from '@angular/material/input';
 import { MatListModule } from '@angular/material/list';
 import { MatRadioModule } from '@angular/material/radio';
 import { MatSelectModule } from '@angular/material/select';
-import { PreviesubjectComponent } from '../previesubject/previesubject.component';
+import { PreviesubjectComponent } from '../../../../components/previesubject/previesubject.component';
+import { Config, defaultConfig } from '../../../../components/previesubject/config';
+import { ItemsService } from '../../../../components/previesubject/items.service';
+/*import { PreviesubjectComponent } from '../previesubject/previesubject.component';
 import { Config, defaultConfig } from '../previesubject/config';
-import { ItemsService } from '../previesubject/items.service';
+import { ItemsService } from '../previesubject/items.service';*/
 
 @Component({
   selector: 'app-subjectconfig',

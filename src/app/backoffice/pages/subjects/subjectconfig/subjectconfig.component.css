@@ -1,6 +1,7 @@
 .container{
   padding: 1rem 0;
-  width: 100%;
+  width: 50%;
+  margin: auto;
 }
 .row{
   display: grid;

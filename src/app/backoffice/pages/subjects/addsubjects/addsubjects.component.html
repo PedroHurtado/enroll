@@ -1,0 +1,9 @@
+<app-header>Asignaturas</app-header>
+<app-container>
+  @if(config){
+    <app-subjectconfig/>
+  }
+  @else {
+    <app-subjects (onChangeView)="changeView()"/>
+  }
+</app-container>

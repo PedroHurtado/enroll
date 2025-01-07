@@ -1,17 +1,13 @@
-import { ChangeDetectionStrategy, Component, ElementRef, viewChild } from '@angular/core';
-import { HeaderComponent } from '../../../components/header/header.component';
-import { ContainerComponent } from '../../../components/container/container.component';
+import { ChangeDetectionStrategy, Component, ElementRef, output, viewChild } from '@angular/core';
 import { MatInputModule } from '@angular/material/input';
 import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
 import { MatListModule } from '@angular/material/list';
 import { FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
-import { Status } from '../levels/status';
+
 import { ActivatedRoute } from '@angular/router';
-
 import { Subject } from './subject';
-import { SubjectconfigComponent } from '../../../components/subjectconfig/subjectconfig.component';
-
+import { Status } from '../../levels/status';
 
 @Component({
   selector: 'app-subjects',
@@ -20,10 +16,7 @@ import { SubjectconfigComponent } from '../../../components/subjectconfig/subjec
     MatButtonModule,
     MatIconModule,
     MatListModule,
-    HeaderComponent,
-    ContainerComponent,
     ReactiveFormsModule,
-    SubjectconfigComponent
   ],
   templateUrl: './subjects.component.html',
   styleUrl: './subjects.component.css',
@@ -37,7 +30,7 @@ export class SubjectsComponent {
   protected currentSubject?: Subject|undefined;
   protected status: Status = Status.Add;
   protected input = viewChild<ElementRef>('input');
-
+  onChangeView=output();
   constructor(
     private route: ActivatedRoute,
   ) {

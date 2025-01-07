@@ -1,0 +1,35 @@
+<div class="container">
+  <mat-list role="list">
+    @for (subject of subjects; track subject.id) {
+    <mat-list-item role="listitem" style="height: max-content;">
+      <div class="edit">
+        <span mat-line>{{subject.name}}</span>
+        <button mat-icon-button (click)="update(subject.id)" color="primary" aria-label="Editar">
+          <mat-icon>edit</mat-icon>
+        </button>
+        <button mat-icon-button (click)="remove(subject.id)" color="warn" aria-label="Eliminar">
+          <mat-icon>delete</mat-icon>
+        </button>
+      </div>
+    </mat-list-item>
+    }
+    @empty {
+    <mat-list-item role="listitem">No hay asignaturas registradas</mat-list-item>
+    }
+  </mat-list>
+  <form [formGroup]="form" (ngSubmit)="submit()">
+    <div class="form">
+      <mat-form-field appearance="outline">
+        <mat-label>Asignatura</mat-label>
+        <input #input matInput type="text" required formControlName="name" />
+      </mat-form-field>
+      <div class="buttons">
+        <div>
+          <button type="reset" mat-button (click)="resetForm()">Limpiar</button>
+          <button type="submit" mat-flat-button>Aceptar</button>
+        </div>
+        <button type="button" mat-button (click)="onChangeView.emit()">Siguiente</button>
+      </div>
+    </div>
+  </form>
+</div>
