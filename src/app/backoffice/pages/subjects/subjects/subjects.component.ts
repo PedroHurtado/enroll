@@ -4,11 +4,11 @@ import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
 import { MatListModule } from '@angular/material/list';
 import { FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
-
 import { ActivatedRoute } from '@angular/router';
-import { Subject } from './subject';
 import { Status } from '../../levels/status';
 import { ItemsService } from '../../../../components/previesubject/items.service';
+import { CourseDomain, LevelDomain, ModeDomain, SubjectDomain } from '../../../domain/levels';
+import { LevelService } from '../../levels/level.service';
 
 @Component({
   selector: 'app-subjects',
@@ -27,68 +27,77 @@ export class SubjectsComponent {
   protected form: FormGroup = new FormGroup({
     name: new FormControl('', Validators.required)
   });
-  protected subjects: Subject[] = [];
-  protected currentSubject?: Subject|undefined;
+  protected subjects: SubjectDomain[] = [];
+
+  protected currentSubject?: SubjectDomain | undefined;
+  protected currenLevelDomain: LevelDomain | undefined;
+  protected currentCourseDomain: CourseDomain | undefined;
+  protected currentModeDomain: ModeDomain | undefined;
+
   protected status: Status = Status.Add;
   protected input = viewChild<ElementRef>('input');
-  onChangeView=output();
+  onChangeView = output();
   constructor(
     private route: ActivatedRoute,
-    private itemService :ItemsService
+    private itemService: ItemsService,
+    private levelService: LevelService
   ) {
+    this.loadLevel(this.route.snapshot.params["levelId"])
+    this.loadCourse(this.route.snapshot.params["courseId"])
 
   }
-
-  protected update(id: string): void {
-      const modeToUpdate = this.subjects.find(subject => subject.id === id);
-      if (modeToUpdate) {
-        this.currentSubject = modeToUpdate;
-        this.form.setValue({ name: modeToUpdate.name });
-        this.status = Status.Update;
-        this.input()?.nativeElement.focus();
+  private loadLevel(id:string){
+    this.currenLevelDomain = this.levelService.get(id)
+  }
+  private loadCourse(id:string){
+    if(this.currenLevelDomain){
+      this.currentCourseDomain = this.currenLevelDomain.courses.find(c=>c.id === id)
+      if(this.currentCourseDomain){
+        this.subjects = this.currentCourseDomain.subjects
       }
     }
+  }
 
-    protected remove(id: string): void {
-      const levelToRemove = this.subjects.find(subject => subject.id === id);
-      if (levelToRemove) {
-        this.subjects = this.subjects.filter(subject => subject.id !== id);
-        this.resetForm();
-      }
+  protected update(subject: SubjectDomain): void {
+    this.currentSubject = subject;
+    this.status = Status.Update;
+    this.form.setValue({
+      name:subject.name
+    })
+    this.ngAfterViewInit()
+  }
+
+  protected remove(subject: SubjectDomain): void {
+    this.currentCourseDomain?.removeSubject(subject)
+    this.resetForm()
+  }
+
+  protected submit(): void {
+    const { name } = this.form.value;
+    if (!name) return;
+
+    if (this.status === Status.Add && this.currenLevelDomain && this.currentCourseDomain) {
+      this.currentCourseDomain.addSubject(
+        SubjectDomain.create(name)
+      );
+    } else if (this.status === Status.Update && this.currentSubject) {
+        this.currentSubject.updateName(name)
     }
 
-    protected submit(): void {
-      const { name } = this.form.value;
-      if (!name) return;
+    this.resetForm();
+  }
 
-      if (this.status === Status.Add) {
-        this.subjects.push({
-          id: crypto.randomUUID(),
-          name:name
-        });
-      } else if (this.status === Status.Update && this.currentSubject) {
-        const updatedLevel = {
-          id: this.currentSubject.id,
-          name,
-        };
-        const index = this.subjects.indexOf(this.currentSubject);
-        this.subjects[index] = updatedLevel;
-      }
-
-      this.resetForm();
-    }
-
-    protected resetForm(): void {
-      this.form.reset();
-      this.status = Status.Add;
-      this.input()?.nativeElement.focus();
-    }
-    ngAfterViewInit(): void {
-      this.input()?.nativeElement.focus();
-    }
-    next(){
-      this.itemService.items = this.subjects.map(s=>s.name);
-      this.onChangeView.emit()
-    }
+  protected resetForm(): void {
+    this.form.reset();
+    this.status = Status.Add;
+    this.input()?.nativeElement.focus();
+  }
+  ngAfterViewInit(): void {
+    this.input()?.nativeElement.focus();
+  }
+  next() {
+    this.itemService.items = this.subjects.map(s => s.name);
+    this.onChangeView.emit()
+  }
 
 }

@@ -4,10 +4,10 @@
     <mat-list-item role="listitem" style="height: max-content;">
       <div class="edit">
         <span mat-line>{{subject.name}}</span>
-        <button mat-icon-button (click)="update(subject.id)" color="primary" aria-label="Editar">
+        <button mat-icon-button (click)="update(subject)" color="primary" aria-label="Editar">
           <mat-icon>edit</mat-icon>
         </button>
-        <button mat-icon-button (click)="remove(subject.id)" color="warn" aria-label="Eliminar">
+        <button mat-icon-button (click)="remove(subject)" color="warn" aria-label="Eliminar">
           <mat-icon>delete</mat-icon>
         </button>
       </div>

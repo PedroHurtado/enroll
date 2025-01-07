@@ -40,7 +40,11 @@ export const routes: Routes = [
     loadComponent: () => import('./backoffice/pages/modalities/modalities.component').then(m => m.ModalitiesComponent)
   },
   {
-    path: 'subjects/:id/add',
+    path: 'subjects/:levelId/:courseId/add',
+    loadComponent: () => import('./backoffice/pages/subjects/addsubjects/addsubjects.component').then(m => m.AddsubjectsComponent)
+  },
+  {
+    path: 'subjects/:levelId/:courseId/:id/add',
     loadComponent: () => import('./backoffice/pages/subjects/addsubjects/addsubjects.component').then(m => m.AddsubjectsComponent)
   },
   { path: '', redirectTo: 'login', pathMatch: 'full' },

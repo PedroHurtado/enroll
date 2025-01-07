@@ -1,23 +1,19 @@
-export interface Descriptor {
-  id: string,
-  name: string
+export interface Descriptor{
+  id:string,
+  name:string
 }
-export interface Level extends Descriptor {
-  courses: Course[]
+interface DefaultSubject{
+    type: string;
+    multiple: boolean;
+    limit: number;
+    defaultSubject?: Descriptor;
+    subjects: Descriptor[];
 }
-export interface Course extends Descriptor {
-  subjects: Subject[],
-  modalities: Mode[],
-}
-export interface Subject extends Descriptor {
-  type: string,
-  multiple: boolean,
-  limit: number,
-  defaultSubject: any
-  subjects: Descriptor[]
-}
-export interface Mode extends Descriptor {
-  subjects: Subject[]
+const defaultSubject:DefaultSubject= {
+  type:"all",
+  multiple:false,
+  limit:0,
+  subjects:[]
 }
 export class LevelDomain {
   protected _courses: CourseDomain[] = []
@@ -92,7 +88,7 @@ export class CourseDomain {
   updateSubject(subject: SubjectDomain) {
     const updatedSubject = Utils.builder(this._subjects).get(subject)
     if (updatedSubject) {
-      updatedSubject.update(subject)
+      //updatedSubject.update(subject)
 
     }
   }
@@ -115,7 +111,7 @@ export class CourseDomain {
 }
 
 export class ModeDomain {
-  protected _subjects: Subject[] = []
+  protected _subjects: SubjectDomain[] = []
   protected _id: string
   protected _name: string
   private constructor({ id, name }: { id: string; name: string }) {
@@ -125,20 +121,20 @@ export class ModeDomain {
   update(name: string) {
     this._name = name
   }
-  addSubject(subject: Subject) {
+  addSubject(subject: SubjectDomain) {
     Utils.builder(this._subjects).add(subject)
   }
-  removeSubject(subject: Subject) {
+  removeSubject(subject: SubjectDomain) {
     Utils.builder(this._subjects).remove(subject)
 
   }
-  updateSubject(subject: Subject) {
+  updateSubject(subject: SubjectDomain) {
     const updatedMode = Utils.builder(this._subjects).get(subject)
     if (updatedMode) {
-      updatedMode.name = subject.name
+      updatedMode.updateSubject(subject)
     }
   }
-  get subjects(): Subject[] {
+  get subjects(): SubjectDomain[] {
     return [...this.subjects]
   }
   get id(): string {
@@ -153,13 +149,13 @@ export class ModeDomain {
   }
 }
 
-export class SubjectDomain {
+export class SubjectDomain implements Descriptor {
   protected _id: string;
   protected _name: string;
   protected _type: string;
   protected _multiple: boolean;
   protected _limit: number;
-  protected _defaultSubject: Subject;
+  protected _defaultSubject?: Descriptor;
   protected _subjects: Descriptor[];
 
   private constructor({
@@ -176,7 +172,7 @@ export class SubjectDomain {
     type: string;
     multiple: boolean;
     limit: number;
-    defaultSubject: Subject;
+    defaultSubject?: Descriptor;
     subjects: Descriptor[];
   }) {
     this._id = id;
@@ -220,13 +216,17 @@ export class SubjectDomain {
     return this._limit;
   }
 
-  get defaultSubject(): Subject {
+  get defaultSubject(): Descriptor | undefined {
     return this._defaultSubject;
   }
 
   get subjects(): Descriptor[] {
     return this._subjects;
   }
+  updateName(name:string){
+    this._name = name;
+  }
+
   update({
     name,
     type,
@@ -239,7 +239,7 @@ export class SubjectDomain {
     type: string;
     multiple: boolean;
     limit: number;
-    defaultSubject: Subject;
+    defaultSubject: Descriptor;
     subjects: Descriptor[];
   }): void {
     this._name = name;
@@ -249,31 +249,13 @@ export class SubjectDomain {
     this._defaultSubject = defaultSubject;
     this._subjects = subjects;
   }
-  static create({
-
-    name,
-    type,
-    multiple,
-    limit,
-    defaultSubject,
-    subjects,
-  }: {
-
-    name: string;
-    type: string;
-    multiple: boolean;
-    limit: number;
-    defaultSubject: Subject;
-    subjects: Descriptor[];
-  }): SubjectDomain {
-    return new SubjectDomain({
-      ...createDescriptor(name),
-      type,
-      multiple,
-      limit,
-      defaultSubject,
-      subjects,
-    });
+  static create(name:string): SubjectDomain {
+    return new SubjectDomain(
+      {
+        ...createDescriptor(name),
+        ...defaultSubject
+      }
+    );
   }
 }
 
