@@ -4,6 +4,11 @@
     <app-subjectconfig (onChangeView)="changeView()" />
   }
   @else {
-    <app-subjects (onChangeView)="changeView()"/>
+    <app-subjects
+    [currenLevelDomain]="currenLevelDomain"
+    [currentCourseDomain]="currentCourseDomain"
+    [subjects]="subjects"
+     (onChangeView)="changeView()"
+     />
   }
 </app-container>

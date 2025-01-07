@@ -1,14 +1,14 @@
-import { ChangeDetectionStrategy, Component, ElementRef, output, viewChild } from '@angular/core';
+import { ChangeDetectionStrategy, Component, ElementRef, input, output, viewChild } from '@angular/core';
 import { MatInputModule } from '@angular/material/input';
 import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
 import { MatListModule } from '@angular/material/list';
 import { FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
-import { ActivatedRoute } from '@angular/router';
+
 import { Status } from '../../levels/status';
 import { ItemsService } from '../../../../components/previesubject/items.service';
 import { CourseDomain, LevelDomain, ModeDomain, SubjectDomain } from '../../../domain/levels';
-import { LevelService } from '../../levels/level.service';
+
 
 @Component({
   selector: 'app-subjects',
@@ -27,39 +27,26 @@ export class SubjectsComponent {
   protected form: FormGroup = new FormGroup({
     name: new FormControl('', Validators.required)
   });
-  protected subjects: SubjectDomain[] = [];
-
-  protected currentSubject?: SubjectDomain | undefined;
-  protected currenLevelDomain: LevelDomain | undefined;
-  protected currentCourseDomain: CourseDomain | undefined;
-  protected currentModeDomain: ModeDomain | undefined;
+  public subjects= input<SubjectDomain[]>();
+  public currenLevelDomain=input<LevelDomain>()
+  public currentCourseDomain=input<CourseDomain>();
+  public currentModeDomain= input<ModeDomain>();
+  private currentSubject:SubjectDomain|undefined;
 
   protected status: Status = Status.Add;
   protected input = viewChild<ElementRef>('input');
   onChangeView = output();
   constructor(
-    private route: ActivatedRoute,
     private itemService: ItemsService,
-    private levelService: LevelService
+
   ) {
-    this.loadLevel(this.route.snapshot.params["levelId"])
-    this.loadCourse(this.route.snapshot.params["courseId"])
+
 
   }
-  private loadLevel(id:string){
-    this.currenLevelDomain = this.levelService.get(id)
-  }
-  private loadCourse(id:string){
-    if(this.currenLevelDomain){
-      this.currentCourseDomain = this.currenLevelDomain.courses.find(c=>c.id === id)
-      if(this.currentCourseDomain){
-        this.subjects = this.currentCourseDomain.subjects
-      }
-    }
-  }
+
 
   protected update(subject: SubjectDomain): void {
-    this.currentSubject = subject;
+    this.currentSubject = subject
     this.status = Status.Update;
     this.form.setValue({
       name:subject.name
@@ -68,7 +55,7 @@ export class SubjectsComponent {
   }
 
   protected remove(subject: SubjectDomain): void {
-    this.currentCourseDomain?.removeSubject(subject)
+    this.currentCourseDomain()?.removeSubject(subject)
     this.resetForm()
   }
 
@@ -76,8 +63,9 @@ export class SubjectsComponent {
     const { name } = this.form.value;
     if (!name) return;
 
-    if (this.status === Status.Add && this.currenLevelDomain && this.currentCourseDomain) {
-      this.currentCourseDomain.addSubject(
+    if (this.status === Status.Add &&
+      this.currenLevelDomain() && this.currentCourseDomain()) {
+      this.currentCourseDomain()?.addSubject(
         SubjectDomain.create(name)
       );
     } else if (this.status === Status.Update && this.currentSubject) {
@@ -90,13 +78,14 @@ export class SubjectsComponent {
   protected resetForm(): void {
     this.form.reset();
     this.status = Status.Add;
-    this.input()?.nativeElement.focus();
+    this.currentSubject=undefined
+    this.ngAfterViewInit();
   }
   ngAfterViewInit(): void {
     this.input()?.nativeElement.focus();
   }
   next() {
-    this.itemService.items = this.subjects.map(s => s.name);
+    this.itemService.items = this.subjects()?.map(s => s.name) || [];
     this.onChangeView.emit()
   }
 
