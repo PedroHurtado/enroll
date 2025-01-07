@@ -1,4 +1,4 @@
-import { ChangeDetectionStrategy, Component, signal } from '@angular/core';
+import { ChangeDetectionStrategy, Component, output, signal } from '@angular/core';
 import { FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { MatButtonModule } from '@angular/material/button';
 import { MatFormFieldModule } from '@angular/material/form-field';
@@ -39,6 +39,7 @@ export class SubjectconfigComponent {
     limit: new FormControl(0),
     defaultSubject:new FormControl(null)
   })
+  public onChangeView=output()
   protected items:any[]=[]
   constructor(private service:ItemsService) {
     this.items = [null,...this.service.items];

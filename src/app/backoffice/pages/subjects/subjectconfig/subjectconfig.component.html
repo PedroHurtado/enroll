@@ -59,8 +59,9 @@
         </mat-select>
       </mat-form-field>
     }
-    <div>
-      <button type="submit" mat-flat-button>Aceptar</button>
+    <div class="buttons">
+      <button type="submit" mat-flat-button class="submit">Aceptar</button>
+      <button type="submit" mat-button (click)="onChangeView.emit()">Anterior</button>
     </div>
     <div>
       <app-previesubject [config]="config()"></app-previesubject>
