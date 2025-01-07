@@ -96,10 +96,10 @@ export class CourseDomain {
 
     }
   }
-  get subjects(): Subject[] {
+  get subjects(): SubjectDomain[] {
     return this._subjects
   }
-  get modalities(): Mode[] {
+  get modalities(): ModeDomain[] {
     return this._modalities
   }
   get id(): string {
@@ -225,7 +225,7 @@ export class SubjectDomain {
   }
 
   get subjects(): Descriptor[] {
-    return [...this._subjects];
+    return this._subjects;
   }
   update({
     name,

@@ -36,7 +36,7 @@ export const routes: Routes = [
     loadComponent: () => import('./backoffice/pages/courses/courses.component').then(m => m.CoursesComponent)
   },
   {
-    path: 'modalities/:id',
+    path: 'modalities/:levelId/:id',
     loadComponent: () => import('./backoffice/pages/modalities/modalities.component').then(m => m.ModalitiesComponent)
   },
   {

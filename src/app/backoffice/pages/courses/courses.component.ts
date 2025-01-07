@@ -62,7 +62,11 @@ export class CoursesComponent {
   }
   protected update(course: CourseDomain) {
     this.currentCourse = course;
-    this.currentLevel?.updateCourse(course)
+    this.form.setValue({
+      name:course.name
+    })
+    this.status =Status.Update
+    this.ngAfterViewInit()
   }
   protected submit(){
 
@@ -78,7 +82,7 @@ export class CoursesComponent {
       && this.currentCourse
       && this.currentLevel
     ){
-
+      this.currentCourse.update(name)
       this.currentLevel.updateCourse(this.currentCourse)
     }
     this.reset()

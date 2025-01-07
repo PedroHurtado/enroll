@@ -9,10 +9,8 @@ import { ContainerComponent } from '../../../components/container/container.comp
 import { FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { Status } from '../levels/status';
 import { ActivatedRoute, RouterLink } from '@angular/router';
-import { Mode } from './mode';
-import { ModalitiesService } from './modalities.service';
-import { CoursesService } from '../courses/courses.service';
-import { Courses } from '../courses/courses';
+import { CourseDomain, LevelDomain, ModeDomain } from '../../domain/levels';
+import { LevelService } from '../levels/level.service';
 
 @Component({
   selector: 'app-modalities',
@@ -35,77 +33,66 @@ export class ModalitiesComponent {
   protected form: FormGroup = new FormGroup({
     name: new FormControl('', Validators.required),
   });
-  protected modalities: Mode[] = [];
-  protected currentCourse?: Courses | undefined;
-  protected currentMode?: Mode | undefined;
+  protected modalities: ModeDomain[] = [];
+  protected currentLevel?: LevelDomain | undefined
+  protected currentCourse?: CourseDomain | undefined;
+  protected currentMode?: ModeDomain | undefined;
   protected status: Status = Status.Add;
   protected input = viewChild<ElementRef>('input');
 
   constructor(
+    private levelService: LevelService,
     private route: ActivatedRoute,
-    private readonly coursesService: CoursesService,
-    private readonly modalitiesService: ModalitiesService
+
   ) {
-    this.loadCourse(route.snapshot.params['id']);
-    this.loadModalities();
-  }
-  private loadModalities(): void {
-    this.modalities = this.modalitiesService.getAll();
-  }
-
-  private loadCourse(id: string): void {
-    this.currentCourse = this.coursesService.get(id);
-  }
-
-  protected update(mode:Mode): void {
-    if (mode) {
-      const { name} = mode;
-      this.currentMode = mode;
-      this.form.setValue({
-        name,
-      });
-      this.status = Status.Update;
-      this.ngAfterViewInit();
+    this.loadLevel(route.snapshot.params['levelId']);
+    this.loadCourse(route.snapshot.params['id'])
+    if(this.currentCourse){
+      this.loadModalities(this.currentCourse)
     }
   }
 
-  protected remove(mode:Mode): void {
 
-    if (mode) {
-      this.modalitiesService.remove(mode);
-      this.modalities = this.modalities.filter(m=>m!==mode);
-      this.currentMode=undefined;
-      this.resetForm();
-    }
+  private loadLevel(id: string): void {
+    this.currentLevel = this.levelService.get(id)
+  }
+  private loadCourse(id:string){
+     this.currentCourse = this.currentLevel?.courses.find(c=>c.id===id)
+  }
+  private loadModalities(course:CourseDomain){
+    this.modalities = course.modalities
+  }
+
+  protected update(mode: ModeDomain): void {
+    this.currentMode = mode;
+    this.form.setValue({
+      name:mode.name,
+    });
+    this.status = Status.Update;
+    this.ngAfterViewInit();
+  }
+
+  protected remove(mode: ModeDomain): void {
+    this.currentCourse?.removeMode(mode);
+    this.resetForm()
   }
 
   protected submit(): void {
-    const {name} = this.form.value;
+    const { name } = this.form.value;
     if (!name) {
       this.resetForm();
       return;
     }
-    if (this.status === Status.Add && this.currentCourse) {
-      this.modalitiesService.add(
-        this.form.value as Mode,
-        this.currentCourse.id);
-
+    if (this.status === Status.Add && this.currentLevel && this.currentCourse) {
+      this.currentCourse.addMode(ModeDomain.create(name))
     } else if (
       this.status === Status.Update &&
-      this.currentMode &&
-      this.currentCourse
+      this.currentLevel &&
+      this.currentCourse &&
+      this.currentMode
     ) {
-      const updateMode:Mode = {
-        ...this.form.value as Mode,
-        id: this.currentMode.id,
-        courseId: this.currentCourse.id
-      }
-
-      const index = this.modalities.indexOf(this.currentMode);
-      this.modalities[index] = updateMode;
-      this.modalitiesService.update(updateMode);
-
-
+      this.currentMode.update(name)
+      this.currentCourse.updateMode(this.currentMode)
     }
     this.resetForm();
   }

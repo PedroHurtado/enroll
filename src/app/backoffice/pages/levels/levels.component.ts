@@ -47,6 +47,11 @@ export class LevelsComponent {
 
   protected update(level:LevelDomain): void {
     this.currentLevel = level
+    this.form.setValue({
+      name:level.name
+    })
+    this.status = Status.Update
+    this.ngAfterViewInit()
   }
 
   protected remove(level:LevelDomain): void {
