@@ -12,12 +12,13 @@ import { SubjectsComponent } from '../subjects/subjects.component';
     SubjectconfigComponent,
     SubjectsComponent
   ],
+
   templateUrl: './addsubjects.component.html',
   styleUrl: './addsubjects.component.css'
 })
 export class AddsubjectsComponent {
-  protected config:boolean = false
-  changeView(){
-    this.config=!this.config
+  protected config: boolean = false
+  changeView() {
+    this.config = !this.config
   }
 }

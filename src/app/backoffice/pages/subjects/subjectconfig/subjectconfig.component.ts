@@ -1,4 +1,4 @@
-import { ChangeDetectionStrategy, Component, output, signal } from '@angular/core';
+import { ChangeDetectionStrategy, Component, ElementRef, output, signal, viewChild } from '@angular/core';
 import { FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { MatButtonModule } from '@angular/material/button';
 import { MatFormFieldModule } from '@angular/material/form-field';
@@ -41,8 +41,11 @@ export class SubjectconfigComponent {
   })
   public onChangeView=output()
   protected items:any[]=[]
+  protected defaults:any[]=[]
+  protected input = viewChild<ElementRef>('input');
   constructor(private service:ItemsService) {
-    this.items = [null,...this.service.items];
+    this.items = this.service.items;
+    this.defaults = [null,...this.items]
     this.form.get('type')?.valueChanges.subscribe((newValue) => {
       if (newValue) {
         this.type.set(newValue)
@@ -76,6 +79,10 @@ export class SubjectconfigComponent {
     return this.form.get('multiple')?.value === false && this.type() === 'selectlist';
   }
   submit() {
+    console.log(this.items)
     console.log(this.form.value)
+  }
+  ngAfterViewInit(): void {
+    this.input()?.nativeElement.focus();
   }
 }

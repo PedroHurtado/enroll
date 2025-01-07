@@ -47,9 +47,5 @@ mat-sidenav-content {
   margin-bottom: 1rem;
   padding: 0 1rem;
 }
-.new-enroll-link {
-  display: flex;
-  align-items: center;
-  gap:1rem;
-}
+
 
