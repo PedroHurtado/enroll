@@ -4,12 +4,14 @@ import { SelectedlistComponent } from '../selectedlist/selectedlist.component';
 import { SortedlistComponent } from '../sortedlist/sortedlist.component';
 import { ItemsService } from './items.service';
 import {MatListModule} from '@angular/material/list';
+import { AlllistComponent } from '../alllist/alllist.component';
 
 @Component({
   selector: 'app-previesubject',
   imports: [
     SelectedlistComponent,
     SortedlistComponent,
+    AlllistComponent,
     MatListModule
   ],
   templateUrl: './previesubject.component.html',

@@ -1,11 +1,6 @@
 <div class="container">
   @if(config().type==='all'){
-    <h2>{{config().title}}</h2>
-    <mat-list role="list">
-      @for (item of items; track item) {
-      <mat-list-item role="listitem">{{item}}</mat-list-item>
-      }
-    </mat-list>
+    <app-alllist [text]="config().title" [items]="items"/>
   }
   @if(config().type==="selectlist"){
     <app-selectedlist [text]="config().title" [items]="items" [multiple]="config().multiple" [default]="config().defaultSubject" [designMode]="true" />
