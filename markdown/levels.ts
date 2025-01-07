@@ -1,54 +1,49 @@
-interface Descriptor {
+export interface Descriptor {
   id: string,
   name: string
 }
-interface Level extends Descriptor {
-  courses: Course[]
+export  interface Level extends Descriptor {
+  subjects: subject[]
 }
-interface Subject {
-  title: string,
+export interface Subject extends Descriptor {
   type: string,
   multiple: boolean,
   limit: number,
   defaultSubject: any
   subjects: Descriptor[]
 }
-interface Course extends Descriptor {
+export interface subject extends Descriptor {
   modalities: Mode[],
   subjects: Subject[]
 }
-interface Mode extends Descriptor {
+export interface Mode extends Descriptor {
   subjects: Subject[]
 }
-class LevelDomain {
-  protected _courses: Course[] = []
-  protected  _id: string
-  protected  _name: string
+export class LevelDomain {
+  protected _subjects: subject[] = []
+  protected _id: string
+  protected _name: string
   private constructor({ id, name }: { id: string; name: string }) {
     this._id = id
     this._name = name
   }
-  update({ name }: { name: string }){
+  update({ name }: { name: string }) {
     this._name = name
   }
-  addCourse(course: Course) {
-    this._courses.push(course)
+  addsubject(subject: subject) {
+    Utils.add(this.subjects,subject)
   }
-  removeCourse(course: Course) {
-    const index = this._courses.findIndex(c => c.id === course.id)
-    if (index !== 1) {
-      this._courses.splice(index, 1)
+  removesubject(subject: subject) {
+    Utils.remove(this.subjects,subject)
+  }
+  updatesubject(subject:subject) {
+    const updatedsubject = Utils.get(this.subjects,subject)
+    if(updatedsubject){
+      updatedsubject.name = subject.name
     }
   }
-  updateCourse({ id, name }: { id: string; name: string }) {
-    const index = this._courses.findIndex(c => c.id === id)
-    if (index !== 1) {
-      const updatedCourse = this._courses[index]
-      updatedCourse.name = name
-    }
-  }
-  get courses(): Course[] {
-    return [...this._courses]
+  get subjects(): subject[] {
+    return [...this.subjects]
   }
   get id(): string {
     return this._id
@@ -63,34 +58,48 @@ class LevelDomain {
 
 }
 
-class CourseDomain{
+export class subjectDomain {
   protected _id: string
   protected _name: string
-  protected _modalities:Mode[] =[]
-  private constructor({ id, name }: { id: string; name: string }){
+  protected _modalities: Mode[] = []
+  protected _subjects: Subject[] = []
+  private constructor({ id, name }: { id: string; name: string }) {
     this._id = id
     this._name = name;
   }
-  update({ name }: {  name: string }){
+  update({ name }: { name: string }) {
     this._name = name
   }
-  addMode(mode:Mode){
-    this._modalities.push(mode)
+  addMode(mode: Mode) {
+    Utils.add(this._modalities, mode);
   }
-  updateMode({ id, name }: { id: string; name: string }){
-    const index = this._modalities.findIndex(m=>m.id===id)
-    if(index!==-1){
-      const updatedMode = this._modalities[index]
-      updatedMode.name = name
+  updateMode(mode: Mode) {
+    const updatedMode = Utils.get(this._modalities, mode)
+    if (updatedMode) {
+      updatedMode.name = mode.name
     }
   }
-  removeMode(mode:Mode){
-    const index = this._modalities.findIndex(m=>m.id===mode.id)
-    if(index!==-1){
-      this._modalities.splice(index,1)
+  removeMode(mode: Mode) {
+    Utils.add(this._modalities, mode);
+  }
+  addSubject(subject:Subject){
+    Utils.add(this._subjects,subject)
+  }
+  removeSubject(subject:Subject){
+    Utils.remove(this._subjects, subject)
+  }
+  updateSubject(subject:Subject){
+    const updatedSubject = Utils.get(this._subjects,subject)
+    if(updatedSubject){
+      updatedSubject.name = subject.name
+      updatedSubject.defaultSubject = subject.defaultSubject
+      updatedSubject.limit =subject.limit
+      updatedSubject.multiple = subject.multiple
+      updatedSubject.type = subject.type
+      updatedSubject.subjects = [...subject.subjects]
     }
   }
-  get modalities():Mode[]{
+  get modalities(): Mode[] {
     return [...this._modalities]
   }
   get id(): string {
@@ -99,11 +108,80 @@ class CourseDomain{
   get name(): string {
     return this._name
   }
-  static create(name:string):CourseDomain{
+  static create(name: string): subjectDomain {
     const descriptor = createDescriptor(name)
-    return new CourseDomain(descriptor)
+    return new subjectDomain(descriptor)
   }
 }
+
+export class ModeDomain{
+  protected _subjects: Subject[] = []
+  protected _id: string
+  protected _name: string
+  private constructor({ id, name }: { id: string; name: string }) {
+    this._id = id
+    this._name = name
+  }
+  update({ name }: { name: string }) {
+    this._name = name
+  }
+  addSubject(subject: Subject) {
+    Utils.add(this._subjects,subject)
+  }
+  removeSubject(subject: Subject) {
+    Utils.remove(this._subjects,subject)
+  }
+  updateSubject(subject:Subject) {
+    const updatedSubject = Utils.get(this._subjects, subject)
+    if(updatedSubject){
+      updatedSubject.name = subject.name
+      updatedSubject.defaultSubject = subject.defaultSubject
+      updatedSubject.limit =subject.limit
+      updatedSubject.multiple = subject.multiple
+      updatedSubject.type = subject.type
+      updatedSubject.subjects = [...subject.subjects]
+    }
+  }
+  get subjects(): subject[] {
+    return [...this.subjects]
+  }
+  get id(): string {
+    return this._id
+  }
+  get name(): string {
+    return this._name
+  }
+  static create(name: string): ModeDomain {
+    const descriptor = createDescriptor(name)
+    return new ModeDomain(descriptor)
+  }
+}
+
+class Utils<T extends Descriptor> {
+  static add<T extends Descriptor>(array: T[], entity: T): void {
+    array.push(entity);
+  }
+
+  static remove<T extends Descriptor>(array: T[], entity: T): void {
+    const index = this.getIndex(array, entity);
+    if (index > -1) {
+      array.splice(index, 1);
+    }
+  }
+
+  static get<T extends Descriptor>(array: T[], entity: T): T | undefined {
+    const index = this.getIndex(array, entity);
+    if (index > -1) {
+      return array[index];
+    }
+    return undefined;
+  }
+
+  private static getIndex<T extends Descriptor>(array: T[], entity: T): number {
+    return array.findIndex(e => e.id === entity.id);
+  }
+}
+
 function createDescriptor(name: string): Descriptor {
   return {
     id: crypto.randomUUID(),
