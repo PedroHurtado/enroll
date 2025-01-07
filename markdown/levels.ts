@@ -2,8 +2,12 @@ export interface Descriptor {
   id: string,
   name: string
 }
-export  interface Level extends Descriptor {
-  subjects: subject[]
+export interface Level extends Descriptor {
+  courses: Course[]
+}
+export interface Course extends Descriptor {
+  subjects: Subject[],
+  modalities: Mode[],
 }
 export interface Subject extends Descriptor {
   type: string,
@@ -12,15 +16,11 @@ export interface Subject extends Descriptor {
   defaultSubject: any
   subjects: Descriptor[]
 }
-export interface subject extends Descriptor {
-  modalities: Mode[],
-  subjects: Subject[]
-}
 export interface Mode extends Descriptor {
   subjects: Subject[]
 }
 export class LevelDomain {
-  protected _subjects: subject[] = []
+  protected _courses: Course[] = []
   protected _id: string
   protected _name: string
   private constructor({ id, name }: { id: string; name: string }) {
@@ -30,20 +30,20 @@ export class LevelDomain {
   update({ name }: { name: string }) {
     this._name = name
   }
-  addsubject(subject: subject) {
-    Utils.builder(this._subjects).add(subject)
+  addCourse(course: Course) {
+    Utils.builder(this._courses).add(course)
   }
-  removesubject(subject: subject) {
-    Utils.builder(this._subjects).remove(subject)
+  removeCourse(course: Course) {
+    Utils.builder(this._courses).remove(course)
   }
-  updatesubject(subject:subject) {
-    const updatedsubject = Utils.builder(this._subjects).get(subject)
-    if(updatedsubject){
-      updatedsubject.name = subject.name
+  updateCourse(course: Course) {
+    const updateCourse = Utils.builder(this._courses).get(course)
+    if (updateCourse) {
+      updateCourse.name = course.name
     }
   }
-  get subjects(): subject[] {
-    return [...this.subjects]
+  get courses(): Course[] {
+    return [...this._courses]
   }
   get id(): string {
     return this._id
@@ -58,7 +58,7 @@ export class LevelDomain {
 
 }
 
-export class SubjectDomain {
+export class CourseDomain {
   protected _id: string
   protected _name: string
   protected _modalities: Mode[] = []
@@ -82,22 +82,26 @@ export class SubjectDomain {
   removeMode(mode: Mode) {
     Utils.builder(this._modalities).add(mode);
   }
-  addSubject(subject:Subject){
+
+  addSubject(subject: Subject) {
     Utils.builder(this._subjects).add(subject)
   }
-  removeSubject(subject:Subject){
+  removeSubject(subject: Subject) {
     Utils.builder(this._subjects).remove(subject)
   }
-  updateSubject(subject:Subject){
+  updateSubject(subject: Subject) {
     const updatedSubject = Utils.builder(this._subjects).get(subject)
-    if(updatedSubject){
+    if (updatedSubject) {
       updatedSubject.name = subject.name
       updatedSubject.defaultSubject = subject.defaultSubject
-      updatedSubject.limit =subject.limit
+      updatedSubject.limit = subject.limit
       updatedSubject.multiple = subject.multiple
       updatedSubject.type = subject.type
       updatedSubject.subjects = [...subject.subjects]
     }
+  }
+  get subjects(): Subject[] {
+    return [...this._subjects]
   }
   get modalities(): Mode[] {
     return [...this._modalities]
@@ -108,13 +112,13 @@ export class SubjectDomain {
   get name(): string {
     return this._name
   }
-  static create(name: string): SubjectDomain {
+  static create(name: string): CourseDomain {
     const descriptor = createDescriptor(name)
-    return new SubjectDomain(descriptor)
+    return new CourseDomain(descriptor)
   }
 }
 
-export class ModeDomain{
+export class ModeDomain {
   protected _subjects: Subject[] = []
   protected _id: string
   protected _name: string
@@ -132,18 +136,13 @@ export class ModeDomain{
     Utils.builder(this._subjects).remove(subject)
 
   }
-  updateSubject(subject:Subject) {
-    const updatedSubject = Utils.builder(this._subjects).get(subject)
-    if(updatedSubject){
-      updatedSubject.name = subject.name
-      updatedSubject.defaultSubject = subject.defaultSubject
-      updatedSubject.limit =subject.limit
-      updatedSubject.multiple = subject.multiple
-      updatedSubject.type = subject.type
-      updatedSubject.subjects = [...subject.subjects]
+  updateSubject(subject: Subject) {
+    const updatedMode = Utils.builder(this._subjects).get(subject)
+    if (updatedMode) {
+      updatedMode.name = subject.name
     }
   }
-  get subjects(): subject[] {
+  get subjects(): Subject[] {
     return [...this.subjects]
   }
   get id(): string {
@@ -157,6 +156,132 @@ export class ModeDomain{
     return new ModeDomain(descriptor)
   }
 }
+
+export class SubjectDomain {
+  protected  _id: string;
+  protected  _name: string;
+  protected  _type: string;
+  protected  _multiple: boolean;
+  protected  _limit: number;
+  protected _defaultSubject: Subject;
+  protected _subjects: Descriptor[];
+
+  private constructor({
+    id,
+    name,
+    type,
+    multiple,
+    limit,
+    defaultSubject,
+    subjects,
+  }: {
+    id: string;
+    name: string;
+    type: string;
+    multiple: boolean;
+    limit: number;
+    defaultSubject: Subject;
+    subjects: Descriptor[];
+  }) {
+    this._id = id;
+    this._name = name;
+    this._type = type;
+    this._multiple = multiple;
+    this._limit = limit;
+    this._defaultSubject = defaultSubject;
+    this._subjects = subjects;
+  }
+
+  addSubject(subject:Descriptor){
+    Utils.builder(this._subjects).add(subject)
+  }
+  removeSubject(subject:Descriptor){
+    Utils.builder(this._subjects).remove(subject)
+  }
+  updateSubject(subject:Descriptor){
+    const updatedDescriptor = Utils.builder(this._subjects).get(subject)
+    if(updatedDescriptor){
+      updatedDescriptor.name = subject.name
+    }
+  }
+  get id(): string {
+    return this._id;
+  }
+
+  get name(): string {
+    return this._name;
+  }
+
+  get type(): string {
+    return this._type;
+  }
+
+  get multiple(): boolean {
+    return this._multiple;
+  }
+
+  get limit(): number {
+    return this._limit;
+  }
+
+  get defaultSubject(): Subject {
+    return this._defaultSubject;
+  }
+
+  get subjects(): Descriptor[] {
+    return [...this._subjects];
+  }
+  update({
+    name,
+    type,
+    multiple,
+    limit,
+    defaultSubject,
+    subjects,
+  }: {
+    name: string;
+    type: string;
+    multiple: boolean;
+    limit: number;
+    defaultSubject: Subject;
+    subjects: Descriptor[];
+  }): void {
+    this._name = name;
+    this._type = type;
+    this._multiple = multiple;
+    this._limit = limit;
+    this._defaultSubject = defaultSubject;
+    this._subjects = subjects;
+  }
+  static create({
+
+    name,
+    type,
+    multiple,
+    limit,
+    defaultSubject,
+    subjects,
+  }: {
+
+    name: string;
+    type: string;
+    multiple: boolean;
+    limit: number;
+    defaultSubject: Subject;
+    subjects: Descriptor[];
+  }): SubjectDomain {
+    return new SubjectDomain({
+      ...createDescriptor(name),
+      type,
+      multiple,
+      limit,
+      defaultSubject,
+      subjects,
+    });
+  }
+}
+
+
 
 class Utils<T extends Descriptor> {
   protected readonly items: T[] = [];
