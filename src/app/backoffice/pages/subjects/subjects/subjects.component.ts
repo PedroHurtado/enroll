@@ -8,6 +8,7 @@ import { FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angula
 import { ActivatedRoute } from '@angular/router';
 import { Subject } from './subject';
 import { Status } from '../../levels/status';
+import { ItemsService } from '../../../../components/previesubject/items.service';
 
 @Component({
   selector: 'app-subjects',
@@ -33,6 +34,7 @@ export class SubjectsComponent {
   onChangeView=output();
   constructor(
     private route: ActivatedRoute,
+    private itemService :ItemsService
   ) {
 
   }
@@ -83,6 +85,10 @@ export class SubjectsComponent {
     }
     ngAfterViewInit(): void {
       this.input()?.nativeElement.focus();
+    }
+    next(){
+      this.itemService.items = this.subjects.map(s=>s.name);
+      this.onChangeView.emit()
     }
 
 }

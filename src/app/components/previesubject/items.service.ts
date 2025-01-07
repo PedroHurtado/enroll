@@ -4,14 +4,7 @@ import { Injectable } from '@angular/core';
   providedIn: 'root'
 })
 export class ItemsService {
-  private _items:any[] = [
-    "Biología",
-    "Dibujo Técnico II",
-    "Física",
-    "Geología y Ciencias Ambientales",
-    "Química",
-    "Tecnología e Ingeniería II",
-  ]
+  private _items:any[] = []
   constructor() { }
   get items(){
     return this._items
