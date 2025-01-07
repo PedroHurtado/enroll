@@ -20,30 +20,30 @@ export interface Mode extends Descriptor {
   subjects: Subject[]
 }
 export class LevelDomain {
-  protected _courses: Course[] = []
+  protected _courses: CourseDomain[] = []
   protected _id: string
   protected _name: string
   private constructor({ id, name }: { id: string; name: string }) {
     this._id = id
     this._name = name
   }
-  update(name:string) {
+  update(name: string) {
     this._name = name
   }
-  addCourse(course: Course) {
+  addCourse(course: CourseDomain) {
     Utils.builder(this._courses).add(course)
   }
-  removeCourse(course: Course) {
+  removeCourse(course: CourseDomain) {
     Utils.builder(this._courses).remove(course)
   }
-  updateCourse(course: Course) {
+  updateCourse(course: CourseDomain) {
     const updateCourse = Utils.builder(this._courses).get(course)
     if (updateCourse) {
-      updateCourse.name = course.name
+      updateCourse.update(course.name)
     }
   }
-  get courses(): Course[] {
-    return [...this._courses]
+  get courses(): CourseDomain[] {
+    return this._courses
   }
   get id(): string {
     return this._id
@@ -61,50 +61,46 @@ export class LevelDomain {
 export class CourseDomain {
   protected _id: string
   protected _name: string
-  protected _modalities: Mode[] = []
-  protected _subjects: Subject[] = []
+  protected _modalities: ModeDomain[] = []
+  protected _subjects: SubjectDomain[] = []
   private constructor({ id, name }: { id: string; name: string }) {
     this._id = id
     this._name = name;
   }
-  update({ name }: { name: string }) {
+  update(name: string) {
     this._name = name
   }
-  addMode(mode: Mode) {
+  addMode(mode: ModeDomain) {
     Utils.builder(this._modalities).add(mode);
   }
-  updateMode(mode: Mode) {
+  updateMode(mode: ModeDomain) {
     const updatedMode = Utils.builder(this._modalities).get(mode)
     if (updatedMode) {
-      updatedMode.name = mode.name
+      updatedMode.update(updatedMode.name)
     }
   }
-  removeMode(mode: Mode) {
+  removeMode(mode: ModeDomain) {
     Utils.builder(this._modalities).add(mode);
   }
 
-  addSubject(subject: Subject) {
+  addSubject(subject: SubjectDomain) {
     Utils.builder(this._subjects).add(subject)
   }
-  removeSubject(subject: Subject) {
+  removeSubject(subject: SubjectDomain) {
     Utils.builder(this._subjects).remove(subject)
   }
-  updateSubject(subject: Subject) {
+  updateSubject(subject: SubjectDomain) {
     const updatedSubject = Utils.builder(this._subjects).get(subject)
     if (updatedSubject) {
-      updatedSubject.name = subject.name
-      updatedSubject.defaultSubject = subject.defaultSubject
-      updatedSubject.limit = subject.limit
-      updatedSubject.multiple = subject.multiple
-      updatedSubject.type = subject.type
-      updatedSubject.subjects = [...subject.subjects]
+      updatedSubject.update(subject)
+
     }
   }
   get subjects(): Subject[] {
-    return [...this._subjects]
+    return this._subjects
   }
   get modalities(): Mode[] {
-    return [...this._modalities]
+    return this._modalities
   }
   get id(): string {
     return this._id
@@ -126,7 +122,7 @@ export class ModeDomain {
     this._id = id
     this._name = name
   }
-  update( name:string ) {
+  update(name: string) {
     this._name = name
   }
   addSubject(subject: Subject) {

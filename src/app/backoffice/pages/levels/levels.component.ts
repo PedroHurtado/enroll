@@ -5,7 +5,7 @@ import { MatIconModule } from '@angular/material/icon';
 import { MatListModule } from '@angular/material/list';
 import { HeaderComponent } from '../../../components/header/header.component';
 import { ContainerComponent } from '../../../components/container/container.component';
-import { LevelDomain } from '../../domain/levels';
+import { LevelDomain, Utils } from '../../domain/levels';
 import { LevelService } from './level.service';
 import { FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { Status } from './status';
@@ -45,22 +45,12 @@ export class LevelsComponent {
     this.levels = this.levelService.getAll();
   }
 
-  protected update(id: string): void {
-    const levelToUpdate = this.levelService.get(id)
-    if (levelToUpdate) {
-      this.currentLevel = levelToUpdate;
-      this.form.setValue({ name: levelToUpdate.name });
-      this.status = Status.Update;
-      this.input()?.nativeElement.focus();
-    }
+  protected update(level:LevelDomain): void {
+    this.currentLevel = level
   }
 
-  protected remove(id: string): void {
-    const levelToRemove = this.levelService.get(id)
-    if (levelToRemove) {
-      this.levels = this.levelService.remove(levelToRemove)
-      this.resetForm();
-    }
+  protected remove(level:LevelDomain): void {
+    Utils.builder(this.levels).remove(level)
   }
 
   protected submit(): void {

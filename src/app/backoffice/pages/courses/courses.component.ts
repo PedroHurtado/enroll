@@ -8,14 +8,12 @@ import { MatListModule } from '@angular/material/list';
 import { MatCheckboxModule } from '@angular/material/checkbox';
 import { HeaderComponent } from '../../../components/header/header.component';
 import { ContainerComponent } from '../../../components/container/container.component';
-
-import { Courses } from './courses';
 import { Status } from '../levels/status';
 import { LevelService } from '../levels/level.service';
 import { ActivatedRoute, RouterLink } from '@angular/router';
-import { Level } from '../levels/level';
+import { LevelDomain, CourseDomain } from '../../domain/levels';
 import { FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
-import { CoursesService } from './courses.service';
+
 
 @Component({
   selector: 'app-courses',
@@ -35,10 +33,10 @@ import { CoursesService } from './courses.service';
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class CoursesComponent {
-  protected courses: Courses[] = []
-  protected currentCourse?: Courses|undefined
+  protected courses:CourseDomain [] = []
+  protected currentCourse?: CourseDomain|undefined
+  protected currentLevel?:LevelDomain|undefined
   protected status: Status= Status.Add
-  protected currentLevel:Level|undefined
   protected input= viewChild<ElementRef>('input');
   protected form: FormGroup = new FormGroup({
       name: new FormControl('', Validators.required),
@@ -46,35 +44,25 @@ export class CoursesComponent {
   public constructor(
     private route: ActivatedRoute,
     private levelService: LevelService,
-    private coursesService: CoursesService
   ) {
     const levelId = this.route.snapshot.paramMap.get('id')
-    this.loasLevel(levelId || '' )
+    this.loadLevel(levelId || '' )
     this.loadCourses()
   }
   private loadCourses() {
-    this.courses = this.coursesService.getAll()
+    this.courses = this.currentLevel?.courses || []
   }
 
-  private loasLevel(id: string) {
+  private loadLevel(id: string) {
     this.currentLevel = this.levelService.get(id)
   }
-  protected remove(course: Courses) {
-    this.courses = this.courses.filter(c => c!== course);
-    this.coursesService.remove(course)
+  protected remove(course: CourseDomain) {
+    this.currentLevel?.removeCourse(course)
     this.reset()
   }
-  protected update(course: Courses) {
-    const courseToUpdate = this.courses.find(c => c === course)
-    if (courseToUpdate) {
-      this.currentCourse = courseToUpdate
-      const {name} = courseToUpdate
-      this.form.setValue({
-        name,
-      })
-      this.status = Status.Update
-      this.ngAfterViewInit()
-    }
+  protected update(course: CourseDomain) {
+    this.currentCourse = course;
+    this.currentLevel?.updateCourse(course)
   }
   protected submit(){
 
@@ -83,31 +71,22 @@ export class CoursesComponent {
       this.reset()
       return
     }
-
     if(this.status === Status.Add && this.currentLevel){
-      this.coursesService.add(
-        this.form.value, this.currentLevel.id
-      )
+      this.currentLevel.addCourse(CourseDomain.create(name))
     }else if(
       this.status === Status.Update
       && this.currentCourse
       && this.currentLevel
     ){
-      const courseToUpdate = {
-        ...(this.form.value as Courses),
-        levelId: this.currentLevel.id
-      }
-      const index = this.courses.indexOf(this.currentCourse)
-      this.courses[index] = courseToUpdate;
-      this.coursesService.update(courseToUpdate)
-      this.currentCourse = undefined
 
+      this.currentLevel.updateCourse(this.currentCourse)
     }
     this.reset()
   }
   protected reset() {
     this.status = Status.Add
     this.form.reset()
+    this.currentCourse = undefined;
     this.ngAfterViewInit()
   }
   ngAfterViewInit(): void {
