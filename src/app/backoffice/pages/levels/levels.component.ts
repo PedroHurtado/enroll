@@ -5,7 +5,7 @@ import { MatIconModule } from '@angular/material/icon';
 import { MatListModule } from '@angular/material/list';
 import { HeaderComponent } from '../../../components/header/header.component';
 import { ContainerComponent } from '../../../components/container/container.component';
-import { Level } from './level';
+import { LevelDomain } from '../../domain/levels';
 import { LevelService } from './level.service';
 import { FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { Status } from './status';
@@ -32,8 +32,8 @@ export class LevelsComponent {
   protected form: FormGroup = new FormGroup({
     name: new FormControl('', Validators.required)
   });
-  protected levels: Level[] = [];
-  protected currentLevel?: Level;
+  protected levels: LevelDomain[] = [];
+  protected currentLevel?: LevelDomain;
   protected status: Status = Status.Add;
   protected input= viewChild<ElementRef>('input');
 
@@ -46,7 +46,7 @@ export class LevelsComponent {
   }
 
   protected update(id: string): void {
-    const levelToUpdate = this.levels.find(level => level.id === id);
+    const levelToUpdate = this.levelService.get(id)
     if (levelToUpdate) {
       this.currentLevel = levelToUpdate;
       this.form.setValue({ name: levelToUpdate.name });
@@ -56,10 +56,9 @@ export class LevelsComponent {
   }
 
   protected remove(id: string): void {
-    const levelToRemove = this.levels.find(level => level.id === id);
+    const levelToRemove = this.levelService.get(id)
     if (levelToRemove) {
-      this.levelService.remove(levelToRemove);
-      this.levels = this.levels.filter(level => level.id !== id);
+      this.levels = this.levelService.remove(levelToRemove)
       this.resetForm();
     }
   }
@@ -67,16 +66,11 @@ export class LevelsComponent {
   protected submit(): void {
     const { name } = this.form.value;
     if (!name) return;
-
     if (this.status === Status.Add) {
-      this.levels.push(this.levelService.add(name));
+      this.levelService.add(name);
     } else if (this.status === Status.Update && this.currentLevel) {
-      const updatedLevel = { id: this.currentLevel.id, name };
-      const index = this.levels.indexOf(this.currentLevel);
-      this.levels[index] = updatedLevel;
-      this.levelService.update(updatedLevel);
+      this.currentLevel.update(name)
     }
-
     this.resetForm();
   }
 

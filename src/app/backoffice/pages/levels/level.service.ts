@@ -1,36 +1,28 @@
 import { Injectable } from '@angular/core';
-import { Level } from './level';
+import { Level, LevelDomain, Utils } from '../../domain/levels';
+import { lastValueFrom } from 'rxjs';
 
-const levels:Level[] = [
-  {id: self.crypto.randomUUID(), name: 'Eso'},
-  {id: self.crypto.randomUUID(), name: 'Bachiller'},
-  {id: self.crypto.randomUUID(), name: 'FP básica'},
-  {id: self.crypto.randomUUID(), name: 'Ciclos formativos de grado medio'},
-  {id: self.crypto.randomUUID(), name: 'Ciclos formativos de grado superior'},
-]
+
 @Injectable({
   providedIn: 'root'
 })
 export class LevelService {
-
+  protected levels:LevelDomain[] =[]
   constructor() { }
-  getAll():Level[]{
-    return levels;
+  getAll():LevelDomain[]{
+    return this.levels;
   }
-  get(id:string):Level|undefined{
-    return levels.find(level => level.id === id);
+  get(id:string):LevelDomain|undefined{
+    return this.levels.find(l=>l.id ===id)
   }
 
-  add(name:string):Level{
-    return {
-      id: self.crypto.randomUUID(),
-      name: name
-    }
+  add(name:string):LevelDomain{
+   const level= LevelDomain.create(name)
+   this.levels.push(level)
+   return level
   }
-  remove(level:Level){
-
-  }
-  update(level:Level){
-
+  remove(level:LevelDomain){
+    this.levels = this.levels.filter(l=>l!==level)
+    return this.levels;
   }
 }

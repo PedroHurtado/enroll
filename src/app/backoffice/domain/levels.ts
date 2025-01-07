@@ -27,7 +27,7 @@ export class LevelDomain {
     this._id = id
     this._name = name
   }
-  update({ name }: { name: string }) {
+  update(name:string) {
     this._name = name
   }
   addCourse(course: Course) {
@@ -126,7 +126,7 @@ export class ModeDomain {
     this._id = id
     this._name = name
   }
-  update({ name }: { name: string }) {
+  update( name:string ) {
     this._name = name
   }
   addSubject(subject: Subject) {
@@ -283,7 +283,7 @@ export class SubjectDomain {
 
 
 
-class Utils<T extends Descriptor> {
+export class Utils<T extends Descriptor> {
   protected readonly items: T[] = [];
 
   constructor(items: T[]) {
