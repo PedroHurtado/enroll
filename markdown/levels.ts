@@ -31,13 +31,13 @@ export class LevelDomain {
     this._name = name
   }
   addsubject(subject: subject) {
-    Utils.add(this.subjects,subject)
+    Utils.builder(this._subjects).add(subject)
   }
   removesubject(subject: subject) {
-    Utils.remove(this.subjects,subject)
+    Utils.builder(this._subjects).remove(subject)
   }
   updatesubject(subject:subject) {
-    const updatedsubject = Utils.get(this.subjects,subject)
+    const updatedsubject = Utils.builder(this._subjects).get(subject)
     if(updatedsubject){
       updatedsubject.name = subject.name
     }
@@ -58,7 +58,7 @@ export class LevelDomain {
 
 }
 
-export class subjectDomain {
+export class SubjectDomain {
   protected _id: string
   protected _name: string
   protected _modalities: Mode[] = []
@@ -71,25 +71,25 @@ export class subjectDomain {
     this._name = name
   }
   addMode(mode: Mode) {
-    Utils.add(this._modalities, mode);
+    Utils.builder(this._modalities).add(mode);
   }
   updateMode(mode: Mode) {
-    const updatedMode = Utils.get(this._modalities, mode)
+    const updatedMode = Utils.builder(this._modalities).get(mode)
     if (updatedMode) {
       updatedMode.name = mode.name
     }
   }
   removeMode(mode: Mode) {
-    Utils.add(this._modalities, mode);
+    Utils.builder(this._modalities).add(mode);
   }
   addSubject(subject:Subject){
-    Utils.add(this._subjects,subject)
+    Utils.builder(this._subjects).add(subject)
   }
   removeSubject(subject:Subject){
-    Utils.remove(this._subjects, subject)
+    Utils.builder(this._subjects).remove(subject)
   }
   updateSubject(subject:Subject){
-    const updatedSubject = Utils.get(this._subjects,subject)
+    const updatedSubject = Utils.builder(this._subjects).get(subject)
     if(updatedSubject){
       updatedSubject.name = subject.name
       updatedSubject.defaultSubject = subject.defaultSubject
@@ -108,9 +108,9 @@ export class subjectDomain {
   get name(): string {
     return this._name
   }
-  static create(name: string): subjectDomain {
+  static create(name: string): SubjectDomain {
     const descriptor = createDescriptor(name)
-    return new subjectDomain(descriptor)
+    return new SubjectDomain(descriptor)
   }
 }
 
@@ -126,13 +126,14 @@ export class ModeDomain{
     this._name = name
   }
   addSubject(subject: Subject) {
-    Utils.add(this._subjects,subject)
+    Utils.builder(this._subjects).add(subject)
   }
   removeSubject(subject: Subject) {
-    Utils.remove(this._subjects,subject)
+    Utils.builder(this._subjects).remove(subject)
+
   }
   updateSubject(subject:Subject) {
-    const updatedSubject = Utils.get(this._subjects, subject)
+    const updatedSubject = Utils.builder(this._subjects).get(subject)
     if(updatedSubject){
       updatedSubject.name = subject.name
       updatedSubject.defaultSubject = subject.defaultSubject
@@ -158,29 +159,40 @@ export class ModeDomain{
 }
 
 class Utils<T extends Descriptor> {
-  static add<T extends Descriptor>(array: T[], entity: T): void {
-    array.push(entity);
+  protected readonly items: T[] = [];
+
+  constructor(items: T[]) {
+    this.items = items;
   }
 
-  static remove<T extends Descriptor>(array: T[], entity: T): void {
-    const index = this.getIndex(array, entity);
+  add(entity: T): void {
+    this.items.push(entity);
+  }
+
+  remove(entity: T): void {
+    const index = this.getIndex(entity);
     if (index > -1) {
-      array.splice(index, 1);
+      this.items.splice(index, 1);
     }
   }
 
-  static get<T extends Descriptor>(array: T[], entity: T): T | undefined {
-    const index = this.getIndex(array, entity);
+  get(entity: T): T | undefined {
+    const index = this.getIndex(entity);
     if (index > -1) {
-      return array[index];
+      return this.items[index];
     }
     return undefined;
   }
 
-  private static getIndex<T extends Descriptor>(array: T[], entity: T): number {
-    return array.findIndex(e => e.id === entity.id);
+  private getIndex(entity: T): number {
+    return this.items.findIndex(e => e.id === entity.id);
+  }
+
+  static builder<T extends Descriptor>(array: T[]): Utils<T> {
+    return new Utils<T>(array);
   }
 }
+
 
 function createDescriptor(name: string): Descriptor {
   return {
