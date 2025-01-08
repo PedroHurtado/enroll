@@ -7,7 +7,7 @@ import { FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angula
 
 import { Status } from '../../levels/status';
 import { ItemsService } from '../../../../components/previesubject/items.service';
-import { CourseDomain, LevelDomain, ModeDomain, SubjectDomain } from '../../../domain/levels';
+import { CourseDomain, Descriptor, ISubjectDomain, LevelDomain, ModeDomain, SubjectDomain } from '../../../domain/levels';
 
 
 @Component({
@@ -27,12 +27,9 @@ export class SubjectsComponent {
   protected form: FormGroup = new FormGroup({
     name: new FormControl('', Validators.required)
   });
-  public subjects= input<SubjectDomain[]>();
-  public currenLevelDomain=input<LevelDomain>()
-  public currentCourseDomain=input<CourseDomain>();
-  public currentModeDomain= input<ModeDomain>();
-  private currentSubject:SubjectDomain|undefined;
-
+  public ISubjectDomain= input<ISubjectDomain>();
+  private currentSubject:Descriptor|undefined;
+  protected subjects:Descriptor[] = []
   protected status: Status = Status.Add;
   protected input = viewChild<ElementRef>('input');
   onChangeView = output();
@@ -40,12 +37,11 @@ export class SubjectsComponent {
     private itemService: ItemsService,
 
   ) {
-
-
+    this.subjects = this.ISubjectDomain()?.subjects || []
   }
 
 
-  protected update(subject: SubjectDomain): void {
+  protected update(subject: Descriptor): void {
     this.currentSubject = subject
     this.status = Status.Update;
     this.form.setValue({
@@ -54,8 +50,8 @@ export class SubjectsComponent {
     this.ngAfterViewInit()
   }
 
-  protected remove(subject: SubjectDomain): void {
-    this.currentCourseDomain()?.removeSubject(subject)
+  protected remove(subject: Descriptor): void {
+    this.ISubjectDomain()?.removeSubject(subject)
     this.resetForm()
   }
 
@@ -63,13 +59,12 @@ export class SubjectsComponent {
     const { name } = this.form.value;
     if (!name) return;
 
-    if (this.status === Status.Add &&
-      this.currenLevelDomain() && this.currentCourseDomain()) {
-      this.currentCourseDomain()?.addSubject(
+    if (this.status === Status.Add) {
+      this.ISubjectDomain()?.addSubject(
         SubjectDomain.create(name)
       );
     } else if (this.status === Status.Update && this.currentSubject) {
-        this.currentSubject.updateName(name)
+        this.currentSubject.name = name;
     }
 
     this.resetForm();
@@ -85,7 +80,7 @@ export class SubjectsComponent {
     this.input()?.nativeElement.focus();
   }
   next() {
-    this.itemService.items = this.subjects()?.map(s => s.name) || [];
+    this.itemService.items = this.subjects.map(s => s.name) || [];
     this.onChangeView.emit()
   }
 

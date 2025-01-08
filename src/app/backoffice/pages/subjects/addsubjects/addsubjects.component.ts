@@ -6,7 +6,7 @@ import { SubjectsComponent } from '../subjects/subjects.component';
 
 import { ItemsService } from '../../../../components/previesubject/items.service';
 import { ActivatedRoute } from '@angular/router';
-import { CourseDomain, LevelDomain, ModeDomain, SubjectDomain } from '../../../domain/levels';
+import { CourseDomain, IAddSubject, ISubjectDomain, LevelDomain, ModeDomain, SubjectDomain } from '../../../domain/levels';
 import { LevelService } from '../../levels/level.service';
 
 @Component({
@@ -24,14 +24,13 @@ import { LevelService } from '../../levels/level.service';
 export class AddsubjectsComponent {
   protected config: boolean = false
 
-  protected subjects: SubjectDomain[] = [];
+  protected subjectDomain: ISubjectDomain|undefined;
   protected currenLevelDomain?: LevelDomain | undefined;
   protected currentCourseDomain?: CourseDomain | undefined;
   protected currentModeDomain?: ModeDomain | undefined;
 
   constructor(
     private route: ActivatedRoute,
-    private itemService: ItemsService,
     private levelService: LevelService
   ) {
     this.loadLevel(this.route.snapshot.params["levelId"])
@@ -45,9 +44,14 @@ export class AddsubjectsComponent {
     if(this.currenLevelDomain){
       this.currentCourseDomain = this.currenLevelDomain.courses.find(c=>c.id === id)
       if(this.currentCourseDomain){
-        this.subjects = this.currentCourseDomain.subjects
+        this.subjectDomain = this.creatSubjectDomain(this.currentCourseDomain)
       }
     }
+  }
+  private creatSubjectDomain(addSubject:IAddSubject) :ISubjectDomain{
+    const subjectDomain = SubjectDomain.create('')
+    addSubject.addSubject(subjectDomain)
+    return subjectDomain
   }
   changeView() {
     this.config = !this.config

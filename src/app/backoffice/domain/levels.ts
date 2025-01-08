@@ -1,19 +1,52 @@
-export interface Descriptor{
-  id:string,
-  name:string
+export interface Descriptor {
+  id: string,
+  name: string
 }
-interface DefaultSubject{
+interface DefaultSubject {
+  type: string;
+  multiple: boolean;
+  limit: number;
+  defaultSubject?: Descriptor;
+  subjects: Descriptor[];
+}
+export interface IAddSubject {
+  addSubject(subject: SubjectDomain): void;
+}
+export interface ISubjectDomain extends Descriptor {
+  id: string;
+  name: string;
+  type: string;
+  multiple: boolean;
+  limit: number;
+  defaultSubject?: Descriptor;
+  subjects: Descriptor[];
+
+  addSubject(subject: Descriptor): void;
+  removeSubject(subject: Descriptor): void;
+  updateSubject(subject: Descriptor): void;
+  updateName(name: string): void;
+  update({
+    name,
+    type,
+    multiple,
+    limit,
+    defaultSubject,
+    subjects,
+  }: {
+    name: string;
     type: string;
     multiple: boolean;
     limit: number;
-    defaultSubject?: Descriptor;
+    defaultSubject: Descriptor;
     subjects: Descriptor[];
+  }): void;
 }
-const defaultSubject:DefaultSubject= {
-  type:"all",
-  multiple:false,
-  limit:0,
-  subjects:[]
+
+const defaultSubject: DefaultSubject = {
+  type: "all",
+  multiple: false,
+  limit: 0,
+  subjects: []
 }
 export class LevelDomain {
   protected _courses: CourseDomain[] = []
@@ -54,7 +87,7 @@ export class LevelDomain {
 
 }
 
-export class CourseDomain {
+export class CourseDomain implements IAddSubject {
   protected _id: string
   protected _name: string
   protected _modalities: ModeDomain[] = []
@@ -110,7 +143,7 @@ export class CourseDomain {
   }
 }
 
-export class ModeDomain {
+export class ModeDomain implements IAddSubject  {
   protected _subjects: SubjectDomain[] = []
   protected _id: string
   protected _name: string
@@ -149,7 +182,7 @@ export class ModeDomain {
   }
 }
 
-export class SubjectDomain implements Descriptor {
+export class SubjectDomain implements ISubjectDomain {
   protected _id: string;
   protected _name: string;
   protected _type: string;
@@ -223,7 +256,7 @@ export class SubjectDomain implements Descriptor {
   get subjects(): Descriptor[] {
     return this._subjects;
   }
-  updateName(name:string){
+  updateName(name: string) {
     this._name = name;
   }
 
@@ -249,7 +282,7 @@ export class SubjectDomain implements Descriptor {
     this._defaultSubject = defaultSubject;
     this._subjects = subjects;
   }
-  static create(name:string): SubjectDomain {
+  static create(name: string): SubjectDomain {
     return new SubjectDomain(
       {
         ...createDescriptor(name),
