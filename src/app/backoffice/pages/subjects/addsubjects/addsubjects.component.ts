@@ -40,9 +40,8 @@ export class AddsubjectsComponent {
       this.currenLevelDomain = level;
       const course = courseId ? this.loadCourse(level, courseId) : undefined;
       const mode = modeId && course ? this.loadMode(course, modeId) : undefined;
-
-      this.subjectDomain = this.createSubjectDomain(mode || course);
       this.updateTitle(course, mode);
+      this.subjectDomain = this.createSubjectDomain(mode || course);
     }
   }
 
@@ -70,7 +69,7 @@ export class AddsubjectsComponent {
 
   private createSubjectDomain(addSubject?: IAddSubject): ISubjectDomain | undefined {
     if (addSubject) {
-      const subjectDomain = SubjectDomain.create('');
+      const subjectDomain = SubjectDomain.create(this.title);
       addSubject.addSubject(subjectDomain);
       return subjectDomain;
     }
