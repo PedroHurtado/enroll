@@ -1,4 +1,4 @@
-<app-header>Asignaturas {{currentCourseDomain?.name}}</app-header>
+<app-header>Asignaturas {{title}}</app-header>
 <app-container>
   @if(config){
     <app-subjectconfig [ISubjectDomain]="subjectDomain" (onChangeView)="changeView()" />

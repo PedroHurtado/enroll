@@ -4,9 +4,8 @@ import { ContainerComponent } from '../../../../components/container/container.c
 import { SubjectconfigComponent } from '../subjectconfig/subjectconfig.component';
 import { SubjectsComponent } from '../subjects/subjects.component';
 
-import { ItemsService } from '../../../../components/previesubject/items.service';
 import { ActivatedRoute } from '@angular/router';
-import { CourseDomain, IAddSubject, ISubjectDomain, LevelDomain, ModeDomain, SubjectDomain } from '../../../domain/levels';
+import { IAddSubject, ISubjectDomain, LevelDomain, SubjectDomain, ModeDomain, CourseDomain } from '../../../domain/levels';
 import { LevelService } from '../../levels/level.service';
 
 @Component({
@@ -17,43 +16,68 @@ import { LevelService } from '../../levels/level.service';
     SubjectconfigComponent,
     SubjectsComponent
   ],
-
   templateUrl: './addsubjects.component.html',
   styleUrl: './addsubjects.component.css'
 })
 export class AddsubjectsComponent {
-  protected config: boolean = false
-
-  protected subjectDomain: ISubjectDomain|undefined;
-  protected currenLevelDomain?: LevelDomain | undefined;
-  protected currentCourseDomain?: CourseDomain | undefined;
-  protected currentModeDomain?: ModeDomain | undefined;
+  protected config: boolean = false;
+  protected subjectDomain?: ISubjectDomain;
+  protected currenLevelDomain?: LevelDomain;
+  protected title: string = '';
 
   constructor(
     private route: ActivatedRoute,
     private levelService: LevelService
   ) {
-    this.loadLevel(this.route.snapshot.params["levelId"])
-    this.loadCourse(this.route.snapshot.params["courseId"])
+    this.initializeSubjectDomain();
+  }
 
-  }
-  private loadLevel(id:string){
-    this.currenLevelDomain = this.levelService.get(id)
-  }
-  private loadCourse(id:string){
-    if(this.currenLevelDomain){
-      this.currentCourseDomain = this.currenLevelDomain.courses.find(c=>c.id === id)
-      if(this.currentCourseDomain){
-        this.subjectDomain = this.creatSubjectDomain(this.currentCourseDomain)
-      }
+  private initializeSubjectDomain(): void {
+    const { levelId, courseId, modeId } = this.route.snapshot.params;
+    const level = this.loadLevel(levelId);
+
+    if (level) {
+      this.currenLevelDomain = level;
+      const course = courseId ? this.loadCourse(level, courseId) : undefined;
+      const mode = modeId && course ? this.loadMode(course, modeId) : undefined;
+
+      this.subjectDomain = this.createSubjectDomain(mode || course);
+      this.updateTitle(course, mode);
     }
   }
-  private creatSubjectDomain(addSubject:IAddSubject) :ISubjectDomain{
-    const subjectDomain = SubjectDomain.create('')
-    addSubject.addSubject(subjectDomain)
-    return subjectDomain
+
+  private updateTitle(course?: CourseDomain, mode?: ModeDomain): void {
+    if (course && mode) {
+      this.title = `${course.name} - (${mode.name})`;
+    } else if (course) {
+      this.title = course.name;
+    } else {
+      this.title = '';
+    }
   }
-  changeView() {
-    this.config = !this.config
+
+  private loadLevel(id: string): LevelDomain | undefined {
+    return this.levelService.get(id);
+  }
+
+  private loadCourse(level: LevelDomain, id: string): CourseDomain | undefined {
+    return level.courses.find(course => course.id === id);
+  }
+
+  private loadMode(course: CourseDomain, id: string): ModeDomain | undefined {
+    return course.modalities.find(mode => mode.id === id);
+  }
+
+  private createSubjectDomain(addSubject?: IAddSubject): ISubjectDomain | undefined {
+    if (addSubject) {
+      const subjectDomain = SubjectDomain.create('');
+      addSubject.addSubject(subjectDomain);
+      return subjectDomain;
+    }
+    return undefined;
+  }
+
+  changeView(): void {
+    this.config = !this.config;
   }
 }
