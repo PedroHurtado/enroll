@@ -3,15 +3,15 @@
 }
 @if(multiple()){
 <mat-selection-list (selectionChange)="onSelectionChange($event)" >
-  @for (item of items(); track item) {
-  <mat-list-option [value]="item" [selected]="isSelected(item)">{{item}}</mat-list-option>
+  @for (item of items(); track item.id) {
+  <mat-list-option [value]="item.id" [selected]="isSelected(item)">{{item.name}}</mat-list-option>
   }
 </mat-selection-list>
 }
 @else{
   <mat-selection-list (selectionChange)="onSelectionChange($event)" [multiple]="multiple()">
-    @for (item of items(); track item) {
-    <mat-list-option [value]="item" [selected]="isSelected(item)">{{item}}</mat-list-option>
+    @for (item of items(); track item.id) {
+    <mat-list-option [value]="item.id" [selected]="isSelected(item)">{{item.name}}</mat-list-option>
     }
   </mat-selection-list>
 }

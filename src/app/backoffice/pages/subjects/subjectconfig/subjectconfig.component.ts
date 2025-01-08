@@ -7,9 +7,8 @@ import { MatListModule } from '@angular/material/list';
 import { MatRadioModule } from '@angular/material/radio';
 import { MatSelectModule } from '@angular/material/select';
 import { PreviesubjectComponent } from '../../../../components/previesubject/previesubject.component';
-import { Config, defaultConfig } from '../../../../components/previesubject/config';
 import { ItemsService } from '../../../../components/previesubject/items.service';
-import {DefaultSubject, ISubjectDomain} from '../../../domain/levels'
+import {defaultSubject, DefaultSubject, Descriptor, ISubjectDomain} from '../../../domain/levels'
 @Component({
   selector: 'app-subjectconfig',
   imports: [
@@ -29,7 +28,7 @@ import {DefaultSubject, ISubjectDomain} from '../../../domain/levels'
 export class SubjectconfigComponent {
   public ISubjectDomain = input<ISubjectDomain>()
   protected type = signal("all")
-  protected config = signal<Config>(defaultConfig)
+  protected config = signal<DefaultSubject>(defaultSubject)
   protected form = new FormGroup({
     name: new FormControl('', Validators.required),
     type: new FormControl("all"),
@@ -38,12 +37,16 @@ export class SubjectconfigComponent {
     defaultSubject:new FormControl(null)
   })
   public onChangeView=output()
-  protected items:any[]=[]
-  protected defaults:any[]=[]
+
+  protected items:Descriptor[]=[]
+  protected defaults:(Descriptor|null)[]=[]
+
   protected input = viewChild<ElementRef>('input');
   constructor(private service:ItemsService) {
+
     this.items = this.service.items;
     this.defaults = [null,...this.items]
+
     this.form.get('type')?.valueChanges.subscribe((newValue) => {
       if (newValue) {
         this.type.set(newValue)
@@ -63,9 +66,9 @@ export class SubjectconfigComponent {
       }
     });
     this.form.valueChanges.subscribe(values => {
-      const { type, title, multiple, limit, defaultSubject } = values as Config
+      const data = values as DefaultSubject
       this.config.set({
-        type, title, multiple, limit, defaultSubject
+        ...data
       })
     })
   }

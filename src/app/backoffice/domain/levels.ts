@@ -40,7 +40,7 @@ export interface ISubjectDomain extends Descriptor {
   }): void;
 }
 
-const defaultSubject: DefaultSubject = {
+export const defaultSubject: DefaultSubject = {
   name:'',
   type: "all",
   multiple: false,

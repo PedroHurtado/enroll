@@ -1,10 +1,10 @@
 import { Component, input } from '@angular/core';
-import { Config } from './config';
 import { SelectedlistComponent } from '../selectedlist/selectedlist.component';
 import { SortedlistComponent } from '../sortedlist/sortedlist.component';
 import { ItemsService } from './items.service';
 import {MatListModule} from '@angular/material/list';
 import { AlllistComponent } from '../alllist/alllist.component';
+import { DefaultSubject, Descriptor } from '../../backoffice/domain/levels';
 
 @Component({
   selector: 'app-previesubject',
@@ -18,8 +18,8 @@ import { AlllistComponent } from '../alllist/alllist.component';
   styleUrl: './previesubject.component.css'
 })
 export class PreviesubjectComponent {
-  config=input.required<Config>()
-  protected items:any[];
+  config=input.required<DefaultSubject>()
+  protected items:Descriptor[];
   constructor(service:ItemsService){
     this.items = service.items;
   }

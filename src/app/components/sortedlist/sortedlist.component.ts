@@ -8,6 +8,7 @@ import {
 } from '@angular/cdk/drag-drop';
 import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
 import { CommonModule } from '@angular/common';
+import { Descriptor } from '../../backoffice/domain/levels';
 @Component({
   selector: 'app-sortedlist',
   imports: [CdkDropList, CdkDrag, CdkDragPlaceholder, CommonModule],
@@ -23,11 +24,11 @@ import { CommonModule } from '@angular/common';
 })
 export class SortedlistComponent implements ControlValueAccessor {
 
-  items = input.required<any[]>();
+  items = input.required<Descriptor[]>();
   text = input.required<string>();
   limit = input.required<number>();
   disabled = false;
-  selected: any[] = [];
+  selected: Descriptor[] = [];
   onChange: (value: any[]) => void = () => {};
   onTouched: () => void = () => {};
 

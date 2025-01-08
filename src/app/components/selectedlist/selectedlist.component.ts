@@ -1,6 +1,7 @@
 import { Component, input } from '@angular/core';
 import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
 import { MatListModule, MatSelectionListChange } from '@angular/material/list';
+import { Descriptor } from '../../backoffice/domain/levels';
 @Component({
   selector: 'app-selectedlist',
   imports: [MatListModule],
@@ -15,14 +16,14 @@ import { MatListModule, MatSelectionListChange } from '@angular/material/list';
   styleUrl: './selectedlist.component.css'
 })
 export class SelectedlistComponent implements ControlValueAccessor {
-  items=input.required<any[]>();
+  items=input.required<Descriptor[]>();
   text=input.required<string>();
-  default=input<any>();
+  default=input<Descriptor>();
   multiple=input<boolean>(true);
   designMode=input<boolean>(false)
   disabled = false;
   load=false;
-  selected: any[] = [];
+  selected: Descriptor[] = [];
   onChange: (value: any[]) => void = () => {};
   onTouched: () => void = () => {};
   constructor() { }

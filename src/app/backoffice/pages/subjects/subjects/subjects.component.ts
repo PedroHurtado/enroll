@@ -79,7 +79,7 @@ export class SubjectsComponent {
     this.input()?.nativeElement.focus();
   }
   next() {
-    this.itemService.items = this.ISubjectDomain()?.subjects.map(s => s.name) || [];
+    this.itemService.items = this.ISubjectDomain()?.subjects || []
     this.onChangeView.emit()
   }
 

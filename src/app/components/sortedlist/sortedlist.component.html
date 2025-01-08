@@ -1,13 +1,13 @@
 <h2>{{text()}}</h2>
 <div cdkDropList class="example-list" (cdkDropListDropped)="drop($event)">
-  @for (item of items(); track item;let idx = $index) {
+  @for (item of items(); track item.id;let idx = $index) {
   <div class="example-box" cdkDrag>
     <div class="example-custom-placeholder" *cdkDragPlaceholder></div>
     @if(!maxLimit(idx)){
-      {{idx+1}}-{{item}}
+      {{idx+1}}-{{item.name}}
     }
     @else {
-      {{item}}
+      {{item.name}}
     }
   </div>
   }
