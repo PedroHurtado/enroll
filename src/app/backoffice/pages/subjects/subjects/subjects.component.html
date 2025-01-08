@@ -1,7 +1,7 @@
 <div class="container">
 
   <mat-list role="list">
-    @for (subject of subjects(); track subject.id) {
+    @for (subject of ISubjectDomain()?.subjects; track subject.id) {
     <mat-list-item role="listitem">
       <div class="edit">
         <span mat-line>{{subject.name}}</span>

@@ -7,7 +7,7 @@ import { FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angula
 
 import { Status } from '../../levels/status';
 import { ItemsService } from '../../../../components/previesubject/items.service';
-import { CourseDomain, Descriptor, ISubjectDomain, LevelDomain, ModeDomain, SubjectDomain } from '../../../domain/levels';
+import { CourseDomain, Descriptor, DescriptorDomain, ISubjectDomain, LevelDomain, ModeDomain, SubjectDomain } from '../../../domain/levels';
 
 
 @Component({
@@ -28,8 +28,7 @@ export class SubjectsComponent {
     name: new FormControl('', Validators.required)
   });
   public ISubjectDomain= input<ISubjectDomain>();
-  private currentSubject:Descriptor|undefined;
-  protected subjects:Descriptor[] = []
+  private currentSubject:DescriptorDomain|undefined;
   protected status: Status = Status.Add;
   protected input = viewChild<ElementRef>('input');
   onChangeView = output();
@@ -37,11 +36,11 @@ export class SubjectsComponent {
     private itemService: ItemsService,
 
   ) {
-    this.subjects = this.ISubjectDomain()?.subjects || []
+
   }
 
 
-  protected update(subject: Descriptor): void {
+  protected update(subject: DescriptorDomain): void {
     this.currentSubject = subject
     this.status = Status.Update;
     this.form.setValue({
@@ -50,7 +49,7 @@ export class SubjectsComponent {
     this.ngAfterViewInit()
   }
 
-  protected remove(subject: Descriptor): void {
+  protected remove(subject: DescriptorDomain): void {
     this.ISubjectDomain()?.removeSubject(subject)
     this.resetForm()
   }
@@ -61,10 +60,10 @@ export class SubjectsComponent {
 
     if (this.status === Status.Add) {
       this.ISubjectDomain()?.addSubject(
-        SubjectDomain.create(name)
+        DescriptorDomain.create(name)
       );
     } else if (this.status === Status.Update && this.currentSubject) {
-        this.currentSubject.name = name;
+        this.currentSubject.update(name)
     }
 
     this.resetForm();
@@ -80,7 +79,7 @@ export class SubjectsComponent {
     this.input()?.nativeElement.focus();
   }
   next() {
-    this.itemService.items = this.subjects.map(s => s.name) || [];
+    this.itemService.items = this.ISubjectDomain()?.subjects.map(s => s.name) || [];
     this.onChangeView.emit()
   }
 

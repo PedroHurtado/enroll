@@ -6,8 +6,8 @@ interface DefaultSubject {
   type: string;
   multiple: boolean;
   limit: number;
-  defaultSubject?: Descriptor;
-  subjects: Descriptor[];
+  defaultSubject?:DescriptorDomain;
+  subjects: DescriptorDomain[];
 }
 export interface IAddSubject {
   addSubject(subject: SubjectDomain): void;
@@ -18,8 +18,8 @@ export interface ISubjectDomain extends Descriptor {
   type: string;
   multiple: boolean;
   limit: number;
-  defaultSubject?: Descriptor;
-  subjects: Descriptor[];
+  defaultSubject?: DescriptorDomain;
+  subjects: DescriptorDomain[];
 
   addSubject(subject: Descriptor): void;
   removeSubject(subject: Descriptor): void;
@@ -37,8 +37,8 @@ export interface ISubjectDomain extends Descriptor {
     type: string;
     multiple: boolean;
     limit: number;
-    defaultSubject: Descriptor;
-    subjects: Descriptor[];
+    defaultSubject: DescriptorDomain;
+    subjects: DescriptorDomain[];
   }): void;
 }
 
@@ -164,7 +164,7 @@ export class ModeDomain implements IAddSubject  {
   updateSubject(subject: SubjectDomain) {
     const updatedMode = Utils.builder(this._subjects).get(subject)
     if (updatedMode) {
-      updatedMode.updateSubject(subject)
+      //updatedMode.updateSubject(subject)
     }
   }
   get subjects(): SubjectDomain[] {
@@ -188,8 +188,8 @@ export class SubjectDomain implements ISubjectDomain {
   protected _type: string;
   protected _multiple: boolean;
   protected _limit: number;
-  protected _defaultSubject?: Descriptor;
-  protected _subjects: Descriptor[];
+  protected _defaultSubject?: DescriptorDomain;
+  protected _subjects: DescriptorDomain[];
 
   private constructor({
     id,
@@ -205,8 +205,8 @@ export class SubjectDomain implements ISubjectDomain {
     type: string;
     multiple: boolean;
     limit: number;
-    defaultSubject?: Descriptor;
-    subjects: Descriptor[];
+    defaultSubject?: DescriptorDomain;
+    subjects: DescriptorDomain[];
   }) {
     this._id = id;
     this._name = name;
@@ -217,16 +217,16 @@ export class SubjectDomain implements ISubjectDomain {
     this._subjects = subjects;
   }
 
-  addSubject(subject: Descriptor) {
+  addSubject(subject: DescriptorDomain) {
     Utils.builder(this._subjects).add(subject)
   }
-  removeSubject(subject: Descriptor) {
+  removeSubject(subject: DescriptorDomain) {
     Utils.builder(this._subjects).remove(subject)
   }
-  updateSubject(subject: Descriptor) {
+  updateSubject(subject: DescriptorDomain) {
     const updatedDescriptor = Utils.builder(this._subjects).get(subject)
     if (updatedDescriptor) {
-      updatedDescriptor.name = subject.name
+      updatedDescriptor.update(subject.name)
     }
   }
   get id(): string {
@@ -249,11 +249,11 @@ export class SubjectDomain implements ISubjectDomain {
     return this._limit;
   }
 
-  get defaultSubject(): Descriptor | undefined {
+  get defaultSubject(): DescriptorDomain | undefined {
     return this._defaultSubject;
   }
 
-  get subjects(): Descriptor[] {
+  get subjects(): DescriptorDomain[] {
     return this._subjects;
   }
   updateName(name: string) {
@@ -272,8 +272,8 @@ export class SubjectDomain implements ISubjectDomain {
     type: string;
     multiple: boolean;
     limit: number;
-    defaultSubject: Descriptor;
-    subjects: Descriptor[];
+    defaultSubject: DescriptorDomain;
+    subjects: DescriptorDomain[];
   }): void {
     this._name = name;
     this._type = type;
@@ -293,7 +293,29 @@ export class SubjectDomain implements ISubjectDomain {
 }
 
 
-
+export class DescriptorDomain implements Descriptor{
+  private _id:string;
+  private _name:string
+  protected constructor(
+    {id,name}:{id:string;name:string}
+  ){
+    this._id = id;
+    this._name = name
+  }
+  update(name:string){
+    this._name = name
+  }
+  public get id():string{
+    return this._id
+  }
+  public get name():string{
+    return this._name
+  }
+  static create(name:string): DescriptorDomain{
+    const descriptor = createDescriptor(name)
+    return new DescriptorDomain(descriptor)
+  }
+}
 export class Utils<T extends Descriptor> {
   protected readonly items: T[] = [];
 
