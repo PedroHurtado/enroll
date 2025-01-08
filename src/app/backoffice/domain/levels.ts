@@ -2,12 +2,12 @@ export interface Descriptor {
   id: string,
   name: string
 }
-interface DefaultSubject {
+export interface DefaultSubject {
+  name:string,
   type: string;
   multiple: boolean;
   limit: number;
-  defaultSubject?:DescriptorDomain;
-  subjects: DescriptorDomain[];
+  defaultSubject?:DescriptorDomain
 }
 export interface IAddSubject {
   addSubject(subject: SubjectDomain): void;
@@ -31,22 +31,20 @@ export interface ISubjectDomain extends Descriptor {
     multiple,
     limit,
     defaultSubject,
-    subjects,
   }: {
     name: string;
     type: string;
     multiple: boolean;
     limit: number;
-    defaultSubject: DescriptorDomain;
-    subjects: DescriptorDomain[];
+    defaultSubject?: DescriptorDomain;
   }): void;
 }
 
 const defaultSubject: DefaultSubject = {
+  name:'',
   type: "all",
   multiple: false,
   limit: 0,
-  subjects: []
 }
 export class LevelDomain {
   protected _courses: CourseDomain[] = []
@@ -189,7 +187,7 @@ export class SubjectDomain implements ISubjectDomain {
   protected _multiple: boolean;
   protected _limit: number;
   protected _defaultSubject?: DescriptorDomain;
-  protected _subjects: DescriptorDomain[];
+  protected _subjects: DescriptorDomain[] =[];
 
   private constructor({
     id,
@@ -198,7 +196,6 @@ export class SubjectDomain implements ISubjectDomain {
     multiple,
     limit,
     defaultSubject,
-    subjects,
   }: {
     id: string;
     name: string;
@@ -206,7 +203,6 @@ export class SubjectDomain implements ISubjectDomain {
     multiple: boolean;
     limit: number;
     defaultSubject?: DescriptorDomain;
-    subjects: DescriptorDomain[];
   }) {
     this._id = id;
     this._name = name;
@@ -214,7 +210,6 @@ export class SubjectDomain implements ISubjectDomain {
     this._multiple = multiple;
     this._limit = limit;
     this._defaultSubject = defaultSubject;
-    this._subjects = subjects;
   }
 
   addSubject(subject: DescriptorDomain) {
@@ -266,21 +261,20 @@ export class SubjectDomain implements ISubjectDomain {
     multiple,
     limit,
     defaultSubject,
-    subjects,
+
   }: {
     name: string;
     type: string;
     multiple: boolean;
     limit: number;
-    defaultSubject: DescriptorDomain;
-    subjects: DescriptorDomain[];
+    defaultSubject?: DescriptorDomain;
+
   }): void {
     this._name = name;
     this._type = type;
     this._multiple = multiple;
     this._limit = limit;
     this._defaultSubject = defaultSubject;
-    this._subjects = subjects;
   }
   static create(name: string): SubjectDomain {
     return new SubjectDomain(
