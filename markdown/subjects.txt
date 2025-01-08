@@ -1,8 +1,0 @@
-En la url pasar el tipo de servicio y el tipo de asignaturas
-  Tipo de servicio:curso|modalidad
-  Tipo de asignaturas:common,specific,elective,electiveOne
-Hacer un fachada que resuelva un servicio o el otro
-  crear los metodos get,remove,update,add,getall
-
-Default Value cuando selectList and multiple = false
-
