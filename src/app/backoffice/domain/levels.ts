@@ -119,8 +119,7 @@ export class CourseDomain implements IAddSubject {
   updateSubject(subject: SubjectDomain) {
     const updatedSubject = Utils.builder(this._subjects).get(subject)
     if (updatedSubject) {
-      //updatedSubject.update(subject)
-
+      updatedSubject.update(subject)
     }
   }
   get subjects(): SubjectDomain[] {
@@ -162,7 +161,7 @@ export class ModeDomain implements IAddSubject  {
   updateSubject(subject: SubjectDomain) {
     const updatedMode = Utils.builder(this._subjects).get(subject)
     if (updatedMode) {
-      //updatedMode.updateSubject(subject)
+      updatedMode.update(subject)
     }
   }
   get subjects(): SubjectDomain[] {
