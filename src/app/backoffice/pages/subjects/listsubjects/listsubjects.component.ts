@@ -9,7 +9,8 @@ import { MediaMatcher } from '@angular/cdk/layout';
 import { ActivatedRoute, Router, RouterLink } from '@angular/router';
 import { LogoComponent } from '../../../../components/logo/logo.component';
 import { LevelService } from '../../levels/level.service';
-import { CourseDomain, DescriptorParams, LevelDomain, ModeDomain } from '../../../domain/levels';
+import { CourseDomain, DescriptorParams, LevelDomain, ModeDomain, SubjectDomain, Utils } from '../../../domain/levels';
+import { AlllistComponent } from '../../../../components/alllist/alllist.component';
 
 @Component({
   selector: 'app-listsubjects',
@@ -20,6 +21,7 @@ import { CourseDomain, DescriptorParams, LevelDomain, ModeDomain } from '../../.
     MatIconModule,
     MatButtonModule,
     MatCardModule,
+    AlllistComponent,
     RouterLink,
     LogoComponent
   ],
@@ -66,6 +68,10 @@ export class ListsubjectsComponent implements OnDestroy {
 
   ngOnDestroy(): void {
     this.mobileQuery.removeEventListener('change', this.mobileQueryListener);
+  }
+  remove(subjectDomain:SubjectDomain){
+    const subjects = this.currentCourse()?.subjects || []
+    Utils.builder(subjects).remove(subjectDomain)
   }
 
   private loadData(): void {

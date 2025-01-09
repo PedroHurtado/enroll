@@ -29,8 +29,24 @@
           </button>
         </div>
       </div>
+      <div class="subjects">
+        @for (item of currentCourse()?.subjects; track item.id) {
+        <div class="subject-items">
+          <app-alllist [items]="item.subjects" [text]="item.name" />
+          <div class="actions">
+            <a  mat-button>
+              <mat-icon>edit</mat-icon>
+              Editar
+            </a>
+            <button mat-button (click)="remove(item)">
+              <mat-icon>delete</mat-icon>
+              Eliminar
+            </button>
+          </div>
+        </div>
+        }
+      </div>
 
-      Contenido
     </mat-sidenav-content>
   </mat-sidenav-container>
 </div>

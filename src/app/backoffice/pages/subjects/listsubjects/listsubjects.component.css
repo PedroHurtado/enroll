@@ -37,7 +37,27 @@ mat-sidenav-content {
 }
 .row{
   display: grid;
-  grid-template-columns: 1fr auto;
+  grid-template-columns: 1fr max-content;
   justify-content: center;
   align-items: center;
+}
+.mat-drawer-content{
+  overflow: hidden;
+}
+.subjects{
+  height: 85%;
+  overflow: auto;
+  padding-right: 1rem;
+}
+.subject-items{
+    border: 2px dashed #ccc;
+    box-sizing: border-box;
+    padding: 1rem;
+    display: block;
+    margin: 0.5rem 0;
+}
+.actions{
+  display: grid;
+  grid-template-columns: repeat(2, max-content);
+  gap:1rem
 }

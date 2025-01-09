@@ -23,7 +23,7 @@ export interface ISubjectDomain extends Descriptor {
   type: string;
   multiple: boolean;
   limit: number;
-  defaultSubject?: DescriptorDomain;
+  defaultSubject: DescriptorDomain|null|undefined;
   subjects: DescriptorDomain[];
 
   addSubject(subject: Descriptor): void;
@@ -170,7 +170,7 @@ export class ModeDomain implements IActionSubject  {
     }
   }
   get subjects(): SubjectDomain[] {
-    return [...this.subjects]
+    return this._subjects
   }
   get id(): string {
     return this._id

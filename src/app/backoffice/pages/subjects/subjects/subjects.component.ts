@@ -6,8 +6,7 @@ import { MatListModule } from '@angular/material/list';
 import { FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 
 import { Status } from '../../levels/status';
-import { ItemsService } from '../../../../components/previesubject/items.service';
-import { CourseDomain, Descriptor, DescriptorDomain, ISubjectDomain, LevelDomain, ModeDomain, SubjectDomain } from '../../../domain/levels';
+import { DescriptorDomain, ISubjectDomain } from '../../../domain/levels';
 
 
 @Component({
@@ -33,7 +32,6 @@ export class SubjectsComponent {
   protected input = viewChild<ElementRef>('input');
   onChangeView = output();
   constructor(
-    private itemService: ItemsService,
 
   ) {
 
@@ -79,7 +77,6 @@ export class SubjectsComponent {
     this.input()?.nativeElement.focus();
   }
   next() {
-    this.itemService.items = this.ISubjectDomain()?.subjects || []
     this.onChangeView.emit()
   }
 
