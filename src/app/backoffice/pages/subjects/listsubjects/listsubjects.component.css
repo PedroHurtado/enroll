@@ -30,3 +30,14 @@ mat-sidenav-content {
   padding-left: 0.5rem;
   padding-top: 0.5rem;
 }
+.add{
+  display: flex;
+  justify-content: end;
+  padding-right: 1rem;
+}
+.row{
+  display: grid;
+  grid-template-columns: 1fr auto;
+  justify-content: center;
+  align-items: center;
+}

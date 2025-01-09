@@ -5,7 +5,7 @@ import { SubjectconfigComponent } from '../subjectconfig/subjectconfig.component
 import { SubjectsComponent } from '../subjects/subjects.component';
 
 import { ActivatedRoute } from '@angular/router';
-import { IAddSubject, ISubjectDomain, LevelDomain, SubjectDomain, ModeDomain, CourseDomain } from '../../../domain/levels';
+import { IActionSubject, ISubjectDomain, LevelDomain, SubjectDomain, ModeDomain, CourseDomain } from '../../../domain/levels';
 import { LevelService } from '../../levels/level.service';
 
 @Component({
@@ -24,6 +24,8 @@ export class AddsubjectsComponent {
   protected subjectDomain?: ISubjectDomain;
   protected currenLevelDomain?: LevelDomain;
   protected title: string = '';
+  private action: string = ''
+  private actionSubject?: IActionSubject
 
   constructor(
     private route: ActivatedRoute,
@@ -33,15 +35,19 @@ export class AddsubjectsComponent {
   }
 
   private initializeSubjectDomain(): void {
-    const { levelId, courseId, modeId } = this.route.snapshot.params;
+    const { levelId, courseId, modeId, action } = this.route.snapshot.params;
     const level = this.loadLevel(levelId);
+    this.action = action
 
     if (level) {
       this.currenLevelDomain = level;
       const course = courseId ? this.loadCourse(level, courseId) : undefined;
       const mode = modeId && course ? this.loadMode(course, modeId) : undefined;
       this.updateTitle(course, mode);
-      this.subjectDomain = this.createSubjectDomain(mode || course);
+      this.actionSubject = course || mode
+      if (this.action === 'add') {
+        this.subjectDomain = this.createSubjectDomain(mode || course);
+      }
     }
   }
 
@@ -67,10 +73,10 @@ export class AddsubjectsComponent {
     return course.modalities.find(mode => mode.id === id);
   }
 
-  private createSubjectDomain(addSubject?: IAddSubject): ISubjectDomain | undefined {
-    if (addSubject) {
+  private createSubjectDomain(actionSubject?: IActionSubject): ISubjectDomain | undefined {
+    if (actionSubject) {
       const subjectDomain = SubjectDomain.create(this.title);
-      addSubject.addSubject(subjectDomain);
+      actionSubject.addSubject(subjectDomain);
       return subjectDomain;
     }
     return undefined;
@@ -78,5 +84,13 @@ export class AddsubjectsComponent {
 
   changeView(): void {
     this.config = !this.config;
+  }
+  ngOnDestroy() {
+    if (this.action === 'add' && this.subjectDomain && this.actionSubject) {
+      const isEmpty = this.subjectDomain.subjects.length===0;
+      if (isEmpty) {
+        this.actionSubject.removeSubject(this.subjectDomain as SubjectDomain);
+      }
+    }
   }
 }

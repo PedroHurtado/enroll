@@ -2,6 +2,10 @@ export interface Descriptor {
   id: string,
   name: string
 }
+export interface DescriptorParams extends Descriptor{
+  params:any[]
+  subjects:SubjectDomain[]
+}
 export interface DefaultSubject {
   name:string,
   type: string;
@@ -9,8 +13,9 @@ export interface DefaultSubject {
   limit: number;
   defaultSubject?:DescriptorDomain
 }
-export interface IAddSubject {
+export interface IActionSubject {
   addSubject(subject: SubjectDomain): void;
+  removeSubject(subject: SubjectDomain):void
 }
 export interface ISubjectDomain extends Descriptor {
   id: string;
@@ -85,7 +90,7 @@ export class LevelDomain {
 
 }
 
-export class CourseDomain implements IAddSubject {
+export class CourseDomain implements IActionSubject {
   protected _id: string
   protected _name: string
   protected _modalities: ModeDomain[] = []
@@ -140,7 +145,7 @@ export class CourseDomain implements IAddSubject {
   }
 }
 
-export class ModeDomain implements IAddSubject  {
+export class ModeDomain implements IActionSubject  {
   protected _subjects: SubjectDomain[] = []
   protected _id: string
   protected _name: string
@@ -278,8 +283,8 @@ export class SubjectDomain implements ISubjectDomain {
   static create(name: string): SubjectDomain {
     return new SubjectDomain(
       {
+        ...defaultSubject,
         ...createDescriptor(name),
-        ...defaultSubject
       }
     );
   }

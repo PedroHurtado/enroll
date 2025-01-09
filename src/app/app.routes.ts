@@ -40,11 +40,11 @@ export const routes: Routes = [
     loadComponent: () => import('./backoffice/pages/modalities/modalities.component').then(m => m.ModalitiesComponent)
   },
   {
-    path: 'subjects/:levelId/:courseId/add',
+    path: 'subjects/:levelId/:courseId/:action',
     loadComponent: () => import('./backoffice/pages/subjects/addsubjects/addsubjects.component').then(m => m.AddsubjectsComponent)
   },
   {
-    path: 'subjects/:levelId/:courseId/:modeId/add',
+    path: 'subjects/:levelId/:courseId/:modeId/:action',
     loadComponent: () => import('./backoffice/pages/subjects/addsubjects/addsubjects.component').then(m => m.AddsubjectsComponent)
   },
   {

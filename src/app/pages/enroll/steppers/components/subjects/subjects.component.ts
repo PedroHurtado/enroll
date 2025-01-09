@@ -9,8 +9,8 @@ import { MatRadioModule } from '@angular/material/radio';
 @Component({
   selector: 'app-subjects',
   imports: [
-    SortedlistComponent,
-    SelectedlistComponent,
+    //SortedlistComponent,
+    //SelectedlistComponent,
     ReactiveFormsModule,
     MatRadioModule
   ],
