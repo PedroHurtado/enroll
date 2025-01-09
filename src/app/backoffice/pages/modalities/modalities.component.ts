@@ -8,7 +8,7 @@ import { HeaderComponent } from '../../../components/header/header.component';
 import { ContainerComponent } from '../../../components/container/container.component';
 import { FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { Status } from '../levels/status';
-import { ActivatedRoute, RouterLink } from '@angular/router';
+import { ActivatedRoute} from '@angular/router';
 import { CourseDomain, LevelDomain, ModeDomain } from '../../domain/levels';
 import { LevelService } from '../levels/level.service';
 
@@ -23,7 +23,6 @@ import { LevelService } from '../levels/level.service';
     HeaderComponent,
     ContainerComponent,
     ReactiveFormsModule,
-    RouterLink,
   ],
   templateUrl: './modalities.component.html',
   styleUrl: './modalities.component.css',
