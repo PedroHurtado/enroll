@@ -1,4 +1,4 @@
-import { Component, OnDestroy, signal, inject, viewChild, computed } from '@angular/core';
+import { Component, OnDestroy, signal, viewChild} from '@angular/core';
 import { MatSidenav, MatSidenavModule } from '@angular/material/sidenav';
 import { MatListModule } from '@angular/material/list';
 import { MatToolbarModule } from '@angular/material/toolbar';
@@ -6,7 +6,7 @@ import { MatIconModule } from '@angular/material/icon';
 import { MatButtonModule } from '@angular/material/button';
 import { MatCardModule } from '@angular/material/card';
 import { MediaMatcher } from '@angular/cdk/layout';
-import { ActivatedRoute, Router, RouterLink } from '@angular/router';
+import { ActivatedRoute, Router} from '@angular/router';
 import { LogoComponent } from '../../../../components/logo/logo.component';
 import { LevelService } from '../../levels/level.service';
 import { CourseDomain, DescriptorParams, LevelDomain, ModeDomain, SubjectDomain, Utils } from '../../../domain/levels';
@@ -22,7 +22,6 @@ import { AlllistComponent } from '../../../../components/alllist/alllist.compone
     MatButtonModule,
     MatCardModule,
     AlllistComponent,
-    RouterLink,
     LogoComponent
   ],
   templateUrl: './listsubjects.component.html',
@@ -54,11 +53,14 @@ export class ListsubjectsComponent implements OnDestroy {
     this.loadData();
   }
 
-  navigate(): void {
+  toAddRoute(): void {
     const params = this.currentCourse()?.params || [];
     this.router.navigate(['subjects', ...params, 'add']);
   }
-
+  toEditRoute(subjectDomain:SubjectDomain){
+    const params = this.currentCourse()?.params || []
+     this.router.navigate(['subjects',...params, subjectDomain.id, 'edit'])
+  }
   clickItem(descriptorParams: DescriptorParams): void {
     this.currentCourse.set(descriptorParams);
     if (this.isMobile()) {

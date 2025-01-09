@@ -23,7 +23,7 @@
       <div class="row">
         <h2>{{currentCourse()?.name}}</h2>
         <div class="add">
-          <button type="button" mat-button (click)="navigate()">
+          <button type="button" mat-button (click)="toAddRoute()">
             <mat-icon>add</mat-icon>
             Asignaturas
           </button>
@@ -34,10 +34,10 @@
         <div class="subject-items">
           <app-alllist [items]="item.subjects" [text]="item.name" />
           <div class="actions">
-            <a  mat-button>
+            <button  mat-button (click)="toEditRoute(item)">
               <mat-icon>edit</mat-icon>
               Editar
-            </a>
+            </button>
             <button mat-button (click)="remove(item)">
               <mat-icon>delete</mat-icon>
               Eliminar
