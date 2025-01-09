@@ -2,20 +2,21 @@ export interface Descriptor {
   id: string,
   name: string
 }
-export interface DescriptorParams extends Descriptor{
-  params:any[]
-  subjects:SubjectDomain[]
+export interface DescriptorParams extends Descriptor {
+  params: any[]
+  subjects: SubjectDomain[]
 }
 export interface DefaultSubject {
-  name:string,
+  name: string,
   type: string;
   multiple: boolean;
   limit: number;
-  defaultSubject?:DescriptorDomain
+  defaultSubject?: DescriptorDomain
 }
 export interface IActionSubject {
   addSubject(subject: SubjectDomain): void;
-  removeSubject(subject: SubjectDomain):void
+  removeSubject(subject: SubjectDomain): void;
+  getSubjectById(id:string): SubjectDomain | undefined
 }
 export interface ISubjectDomain extends Descriptor {
   id: string;
@@ -23,7 +24,7 @@ export interface ISubjectDomain extends Descriptor {
   type: string;
   multiple: boolean;
   limit: number;
-  defaultSubject: DescriptorDomain|null|undefined;
+  defaultSubject: DescriptorDomain | null | undefined;
   subjects: DescriptorDomain[];
 
   addSubject(subject: Descriptor): void;
@@ -46,7 +47,7 @@ export interface ISubjectDomain extends Descriptor {
 }
 
 export const defaultSubject: DefaultSubject = {
-  name:'',
+  name: '',
   type: "all",
   multiple: false,
   limit: 0,
@@ -99,6 +100,10 @@ export class CourseDomain implements IActionSubject {
     this._id = id
     this._name = name;
   }
+  getSubjectById(id: string): SubjectDomain | undefined {
+    return Utils.builder(this._subjects).getById(id)
+  }
+
   update(name: string) {
     this._name = name
   }
@@ -145,7 +150,7 @@ export class CourseDomain implements IActionSubject {
   }
 }
 
-export class ModeDomain implements IActionSubject  {
+export class ModeDomain implements IActionSubject {
   protected _subjects: SubjectDomain[] = []
   protected _id: string
   protected _name: string
@@ -153,6 +158,10 @@ export class ModeDomain implements IActionSubject  {
     this._id = id
     this._name = name
   }
+  getSubjectById(id: string): SubjectDomain | undefined {
+    return Utils.builder(this._subjects).getById(id)
+  }
+
   update(name: string) {
     this._name = name
   }
@@ -191,7 +200,7 @@ export class SubjectDomain implements ISubjectDomain {
   protected _multiple: boolean;
   protected _limit: number;
   protected _defaultSubject?: DescriptorDomain;
-  protected _subjects: DescriptorDomain[] =[];
+  protected _subjects: DescriptorDomain[] = [];
 
   private constructor({
     id,
@@ -291,25 +300,25 @@ export class SubjectDomain implements ISubjectDomain {
 }
 
 
-export class DescriptorDomain implements Descriptor{
-  private _id:string;
-  private _name:string
+export class DescriptorDomain implements Descriptor {
+  private _id: string;
+  private _name: string
   protected constructor(
-    {id,name}:{id:string;name:string}
-  ){
+    { id, name }: { id: string; name: string }
+  ) {
     this._id = id;
     this._name = name
   }
-  update(name:string){
+  update(name: string) {
     this._name = name
   }
-  public get id():string{
+  public get id(): string {
     return this._id
   }
-  public get name():string{
+  public get name(): string {
     return this._name
   }
-  static create(name:string): DescriptorDomain{
+  static create(name: string): DescriptorDomain {
     const descriptor = createDescriptor(name)
     return new DescriptorDomain(descriptor)
   }
@@ -338,6 +347,9 @@ export class Utils<T extends Descriptor> {
       return this.items[index];
     }
     return undefined;
+  }
+  getById(id: string): T | undefined {
+    return this.items.find(i => i.id === id)
   }
 
   private getIndex(entity: T): number {

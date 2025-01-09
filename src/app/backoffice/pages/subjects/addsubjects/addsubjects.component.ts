@@ -35,7 +35,7 @@ export class AddsubjectsComponent {
   }
 
   private initializeSubjectDomain(): void {
-    const { levelId, courseId, modeId, action } = this.route.snapshot.params;
+    const { levelId, courseId, modeId, action, subjectId } = this.route.snapshot.params;
     const level = this.loadLevel(levelId);
     this.action = action
 
@@ -44,9 +44,12 @@ export class AddsubjectsComponent {
       const course = courseId ? this.loadCourse(level, courseId) : undefined;
       const mode = modeId && course ? this.loadMode(course, modeId) : undefined;
       this.updateTitle(course, mode);
-      this.actionSubject = course || mode
+      this.actionSubject =  mode || course
       if (this.action === 'add') {
         this.subjectDomain = this.createSubjectDomain(mode || course);
+      }
+      else if(this.action === 'edit'){
+        this.subjectDomain = this.actionSubject?.getSubjectById(subjectId)
       }
     }
   }

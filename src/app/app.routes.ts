@@ -39,24 +39,31 @@ export const routes: Routes = [
     path: 'modalities/:levelId/:id',
     loadComponent: () => import('./backoffice/pages/modalities/modalities.component').then(m => m.ModalitiesComponent)
   },
+  //add subjects
   {
     path: 'subjects/:levelId/:courseId/:action',
-    loadComponent: () => import('./backoffice/pages/subjects/addsubjects/addsubjects.component').then(m => m.AddsubjectsComponent)
-  },
-  {
-    path: 'subjects/:levelId/:courseId/:subjectId/:action',
     loadComponent: () => import('./backoffice/pages/subjects/addsubjects/addsubjects.component').then(m => m.AddsubjectsComponent)
   },
   {
     path: 'subjects/:levelId/:courseId/:modeId/:action',
     loadComponent: () => import('./backoffice/pages/subjects/addsubjects/addsubjects.component').then(m => m.AddsubjectsComponent)
   },
+  //update
+  {
+    path: 'subjects/:levelId/:courseId/:subjectId/:action',
+    loadComponent: () => import('./backoffice/pages/subjects/addsubjects/addsubjects.component').then(m => m.AddsubjectsComponent)
+  },
   {
     path: 'subjects/:levelId/:courseId/:modeId/:subjectId/:action',
     loadComponent: () => import('./backoffice/pages/subjects/addsubjects/addsubjects.component').then(m => m.AddsubjectsComponent)
   },
+
   {
     path: 'subjects/:levelId/:courseId',
+    loadComponent: () => import('./backoffice/pages/subjects/listsubjects/listsubjects.component').then(m => m.ListsubjectsComponent)
+  },
+  {
+    path: 'subjects/:levelId/:courseId/:modeId',
     loadComponent: () => import('./backoffice/pages/subjects/listsubjects/listsubjects.component').then(m => m.ListsubjectsComponent)
   },
 
