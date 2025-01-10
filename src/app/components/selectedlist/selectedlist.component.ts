@@ -1,7 +1,7 @@
-import { Component, input } from '@angular/core';
+import { Component, computed, input } from '@angular/core';
 import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
 import { MatListModule, MatSelectionListChange } from '@angular/material/list';
-import { Descriptor } from '../../backoffice/domain/levels';
+import { addFeature, Descriptor, ISubjectDomain } from '../../backoffice/domain/levels';
 @Component({
   selector: 'app-selectedlist',
   imports: [MatListModule],
@@ -16,28 +16,29 @@ import { Descriptor } from '../../backoffice/domain/levels';
   styleUrl: './selectedlist.component.css'
 })
 export class SelectedlistComponent implements ControlValueAccessor {
-  items=input.required<Descriptor[]>();
-  text=input.required<string>();
-  default=input<Descriptor>();
-  multiple=input<boolean>(true);
-  designMode=input<boolean>(false)
+  subjectDomain = input.required<ISubjectDomain>()
+  designMode = input<boolean>(false)
+  characteristics = computed(() => {
+    return addFeature(this.subjectDomain())
+  })
+  showText = input<boolean>(false)
   disabled = false;
-  load=false;
+  load = false;
   selected: Descriptor[] = [];
-  onChange: (value: any[]) => void = () => {};
-  onTouched: () => void = () => {};
+  onChange: (value: any[]) => void = () => { };
+  onTouched: () => void = () => { };
   constructor() { }
   writeValue(ob: any[]): void {
-    if(this.default()) {
-      this.selected = (ob || []).filter(item => item === this.default());
+    if (this.subjectDomain().defaultSubject) {
+      this.selected = (ob || []).filter(item => item === this.subjectDomain().defaultSubject);
     }
-    else{
+    else {
       this.selected = ob || [];
     }
 
   }
   registerOnChange(fn: any): void {
-   this.onChange = fn;
+    this.onChange = fn;
   }
   registerOnTouched(fn: any): void {
     this.onTouched = fn;
@@ -52,10 +53,10 @@ export class SelectedlistComponent implements ControlValueAccessor {
     this.onTouched();
   }
   isSelected(item: any) {
-    if(this.designMode() && this.default() === item){
+    if (this.designMode() && this.subjectDomain().defaultSubject === item) {
       return true
     }
-    else if(this.default() === item && !this.load) {
+    else if (this.subjectDomain().defaultSubject === item && !this.load) {
       this.load = true;
       this.selected = [item];
       this.onChange(this.selected);

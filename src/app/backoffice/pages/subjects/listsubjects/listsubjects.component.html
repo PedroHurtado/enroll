@@ -32,7 +32,7 @@
       <div class="subjects">
         @for (item of currentCourse()?.subjects; track item.id) {
         <div class="subject-items">
-          <app-alllist [items]="item.subjects" [text]="item.name" />
+          <app-alllist  [subjectDomain]="item" [showText]="true"  />
           <div class="actions">
             <a  mat-button href="" (click)="toEditRoute(item, $event)">
               <mat-icon>edit</mat-icon>

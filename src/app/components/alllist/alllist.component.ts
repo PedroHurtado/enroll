@@ -1,6 +1,6 @@
-import { Component, input } from '@angular/core';
+import { Component, computed, input } from '@angular/core';
 import { MatListModule } from '@angular/material/list';
-import { Descriptor } from '../../backoffice/domain/levels';
+import { addFeature, DescriptorDomain, ISubjectDomain, SubjectDomain } from '../../backoffice/domain/levels';
 
 @Component({
   selector: 'app-alllist',
@@ -9,6 +9,11 @@ import { Descriptor } from '../../backoffice/domain/levels';
   styleUrl: './alllist.component.css'
 })
 export class AlllistComponent {
-  text = input.required<string>()
-  items=input.required<Descriptor[]>()
+  subjectDomain = input.required<ISubjectDomain>()
+  showText = input<boolean>(false)
+  characteristics = computed(() => {
+    return addFeature(this.subjectDomain())
+  })
+
 }
+

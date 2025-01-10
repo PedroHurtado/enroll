@@ -1,16 +1,19 @@
-@if (text()) {
-<h2>{{text()}}</h2>
+
+<h2>{{subjectDomain().name}}</h2>
+@if(showText()){
+  <p>{{characteristics()}}</p>
 }
-@if(multiple()){
+
+@if(subjectDomain().multiple){
 <mat-selection-list (selectionChange)="onSelectionChange($event)" >
-  @for (item of items(); track item.id) {
+  @for (item of subjectDomain().subjects; track item.id) {
   <mat-list-option [value]="item.id" [selected]="isSelected(item)">{{item.name}}</mat-list-option>
   }
 </mat-selection-list>
 }
 @else{
-  <mat-selection-list (selectionChange)="onSelectionChange($event)" [multiple]="multiple()">
-    @for (item of items(); track item.id) {
+  <mat-selection-list (selectionChange)="onSelectionChange($event)" [multiple]="subjectDomain().multiple">
+    @for (item of subjectDomain().subjects; track item.id) {
     <mat-list-option [value]="item.id" [selected]="isSelected(item)">{{item.name}}</mat-list-option>
     }
   </mat-selection-list>

@@ -4,7 +4,7 @@ import { SortedlistComponent } from '../sortedlist/sortedlist.component';
 
 import {MatListModule} from '@angular/material/list';
 import { AlllistComponent } from '../alllist/alllist.component';
-import { DefaultSubject, Descriptor, DescriptorDomain } from '../../backoffice/domain/levels';
+import {ISubjectDomain } from '../../backoffice/domain/levels';
 
 @Component({
   selector: 'app-previesubject',
@@ -18,9 +18,7 @@ import { DefaultSubject, Descriptor, DescriptorDomain } from '../../backoffice/d
   styleUrl: './previesubject.component.css'
 })
 export class PreviesubjectComponent {
-  config=input.required<DefaultSubject>()
-  items=input<DescriptorDomain[]>([])
-  //protected items:Descriptor[] = [];
+  subjectDomain = input.required<ISubjectDomain>()
   constructor(){
   }
 }

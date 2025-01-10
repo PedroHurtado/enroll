@@ -1,6 +1,9 @@
-<h2>{{text()}}</h2>
+<h2>{{subjectDomain().name}}</h2>
+@if(showText()){
+  <p>{{characteristics()}}</p>
+}
 <div cdkDropList class="example-list" (cdkDropListDropped)="drop($event)">
-  @for (item of items(); track item.id;let idx = $index) {
+  @for (item of subjectDomain().subjects; track item.id;let idx = $index) {
   <div class="example-box" cdkDrag>
     <div class="example-custom-placeholder" *cdkDragPlaceholder></div>
     @if(!maxLimit(idx)){

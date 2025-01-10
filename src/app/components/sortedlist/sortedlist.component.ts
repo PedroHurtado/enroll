@@ -1,4 +1,4 @@
-import { Component, input, OnInit } from '@angular/core';
+import { Component, computed, input } from '@angular/core';
 import {
   CdkDrag,
   CdkDragDrop,
@@ -8,7 +8,7 @@ import {
 } from '@angular/cdk/drag-drop';
 import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
 import { CommonModule } from '@angular/common';
-import { Descriptor } from '../../backoffice/domain/levels';
+import { addFeature, Descriptor, ISubjectDomain } from '../../backoffice/domain/levels';
 @Component({
   selector: 'app-sortedlist',
   imports: [CdkDropList, CdkDrag, CdkDragPlaceholder, CommonModule],
@@ -23,17 +23,18 @@ import { Descriptor } from '../../backoffice/domain/levels';
   styleUrl: './sortedlist.component.css'
 })
 export class SortedlistComponent implements ControlValueAccessor {
-
-  items = input.required<Descriptor[]>();
-  text = input.required<string>();
-  limit = input.required<number>();
+  subjectDomain = input.required<ISubjectDomain>()
+  characteristics = computed(() => {
+    return addFeature(this.subjectDomain())
+  })
+  showText = input<boolean>(false)
   disabled = false;
   selected: Descriptor[] = [];
-  onChange: (value: any[]) => void = () => {};
-  onTouched: () => void = () => {};
+  onChange: (value: any[]) => void = () => { };
+  onTouched: () => void = () => { };
 
   writeValue(obj: any): void {
-    this.selected = (obj||[]).slice(0, this.limit());
+    this.selected = (obj || []).slice(0, this.subjectDomain().limit);
     this.onChange(this.selected);
     this.onTouched();
   }
@@ -41,7 +42,7 @@ export class SortedlistComponent implements ControlValueAccessor {
     this.onChange = fn;
   }
   registerOnTouched(fn: any): void {
-    this.onTouched=fn;
+    this.onTouched = fn;
     this.onChange(this.selected);
     this.onTouched();
   }
@@ -49,11 +50,11 @@ export class SortedlistComponent implements ControlValueAccessor {
     this.disabled = isDisabled;
   }
   drop(event: CdkDragDrop<string[]>) {
-    moveItemInArray(this.items(), event.previousIndex, event.currentIndex);
-    this.onChange(this.items().slice(0, this.limit()));
+    moveItemInArray(this.subjectDomain().subjects, event.previousIndex, event.currentIndex);
+    this.onChange(this.subjectDomain().subjects.slice(0, this.subjectDomain().limit));
     this.onTouched();
   }
-  maxLimit(index:number) {
-    return (index >= this.limit());
+  maxLimit(index: number) {
+    return (index >= this.subjectDomain().limit);
   }
 }

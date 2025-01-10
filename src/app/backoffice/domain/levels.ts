@@ -16,8 +16,9 @@ export interface DefaultSubject {
 export interface IActionSubject {
   addSubject(subject: SubjectDomain): void;
   removeSubject(subject: SubjectDomain): void;
-  getSubjectById(id:string): SubjectDomain | undefined
+  getSubjectById(id: string): SubjectDomain | undefined
 }
+
 export interface ISubjectDomain extends Descriptor {
   id: string;
   name: string;
@@ -369,5 +370,26 @@ function createDescriptor(name: string): Descriptor {
   }
 }
 
+export function addFeature(subjectDomain: ISubjectDomain): string {
+  const { type, multiple, limit } = subjectDomain;
 
+  switch (type) {
+    case "all":
+      return "Todas son obligatorias".trim();
+
+    case "selectlist":
+      return multiple
+        ? `Tienes que elegir ${pluralize(limit || 0, "asignatura", "asignaturas")} de la lista`.trim()
+        : "Tienes que elegir 1 asignatura de la lista";
+
+    case "orderlist":
+      return `Ordena ${limit} de la lista segun tus preferencias`.trim();
+
+    default:
+      return "Tipo: Desconocido".trim();
+  }
+}
+function pluralize(count: number, singular: string, plural: string): string {
+  return count === 1 ? `${count} ${singular}` : `${count} ${plural}`;
+}
 

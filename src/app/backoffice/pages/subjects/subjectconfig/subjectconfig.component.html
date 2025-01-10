@@ -64,7 +64,10 @@
       <button type="button" mat-button (click)="onChangeView.emit()">Anterior</button>
     </div>
     <div>
-      <app-previesubject [config]="config()" [items]="items()"></app-previesubject>
+
+      <app-previesubject [subjectDomain]="ISubjectDomain()"/>
+
+
     </div>
 
   </form>

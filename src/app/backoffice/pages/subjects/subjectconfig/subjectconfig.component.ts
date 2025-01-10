@@ -1,5 +1,5 @@
 import { ChangeDetectionStrategy,
-  Component, ElementRef, input, output, signal, viewChild
+  Component, ElementRef, input, model, output, signal, viewChild
 } from '@angular/core';
 import {Location} from '@angular/common';
 import { FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
@@ -28,9 +28,8 @@ import {defaultSubject, DefaultSubject, Descriptor, DescriptorDomain, ISubjectDo
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class SubjectconfigComponent {
-  public ISubjectDomain = input<ISubjectDomain>()
+  public ISubjectDomain = model.required<ISubjectDomain>()
   protected type = signal("all")
-  protected config = signal<DefaultSubject>(defaultSubject)
   protected form = new FormGroup({
     name: new FormControl('', Validators.required),
     type: new FormControl("all"),
@@ -70,14 +69,12 @@ export class SubjectconfigComponent {
     });
     this.form.valueChanges.subscribe(values => {
       const data = values as DefaultSubject
-      this.config.set({
-        ...data
-      })
+      this.ISubjectDomain().update(data)
     })
   }
   ngOnInit(){
     this.items.set(
-       this.ISubjectDomain()?.subjects as DescriptorDomain[]
+       this.ISubjectDomain().subjects as DescriptorDomain[]
     )
     this.defaults = [null,...this.items()]
     const {name,type,multiple,limit,defaultSubject} = this.ISubjectDomain() as ISubjectDomain

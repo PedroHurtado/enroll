@@ -1,11 +1,14 @@
 <div class="container">
-  @if(config().type==='all'){
-    <app-alllist [text]="config().name" [items]="items()"/>
+  @if(subjectDomain().type==='all'){
+    <app-alllist [subjectDomain]="subjectDomain()"/>
   }
-  @if(config().type==="selectlist"){
-    <app-selectedlist [text]="config().name" [items]="items()" [multiple]="config().multiple" [default]="config().defaultSubject" [designMode]="true" />
+
+  @if(subjectDomain().type ==="selectlist"){
+    <app-selectedlist [subjectDomain]="subjectDomain()" [designMode]="true" />
   }
-  @if(config().type==="orderlist"){
-    <app-sortedlist [text]="config().name" [items]="items()" [limit]="config().limit" />
+
+  @if(subjectDomain().type==="orderlist"){
+    <app-sortedlist [subjectDomain]="subjectDomain()"/>
   }
+
 </div>

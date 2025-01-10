@@ -1,6 +1,9 @@
-<h2>{{text()}}</h2>
+<h2>{{subjectDomain().name}}</h2>
+@if(showText()){
+  <p>{{characteristics()}}</p>
+}
 <mat-list role="list">
-  @for (item of items(); track item.id) {
+  @for (item of subjectDomain().subjects; track item.id) {
   <mat-list-item role="listitem">{{item.name}}</mat-list-item>
   }
 </mat-list>
