@@ -1,7 +1,7 @@
 <div class="container">
 
   <mat-list role="list">
-    @for (subject of ISubjectDomain()?.subjects; track subject.id) {
+    @for (subject of ISubjectDomain().subjects; track subject.id) {
     <mat-list-item role="listitem">
       <div class="edit">
         <span mat-line>{{subject.name}}</span>
@@ -28,7 +28,7 @@
       <div class="buttons">
         <div>
           <button type="reset" mat-button (click)="resetForm()">Limpiar</button>
-          <button type="submit" mat-flat-button>Aceptar</button>
+          <button type="submit" mat-flat-button>Añadir</button>
         </div>
         <button type="button" mat-button (click)="next()">Siguiente</button>
       </div>

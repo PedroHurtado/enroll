@@ -425,11 +425,11 @@ export function addFeature(subjectDomain: ISubjectDomain): string {
 
     case "selectlist":
       return multiple
-        ? `Tienes que elegir ${pluralize(limit || 0, "asignatura", "asignaturas")} de la lista`.trim()
-        : "Tienes que elegir 1 asignatura de la lista";
+        ? `Tienes que elegir ${pluralize(limit || 0, "asignatura", "asignaturas")}`.trim()
+        : "Tienes que elegir 1 asignatura";
 
     case "orderlist":
-      return `Ordena ${limit} de la lista segun tus preferencias`.trim();
+      return `Ordena ${limit} segun tus preferencias`.trim();
 
     default:
       return "Tipo: Desconocido".trim();

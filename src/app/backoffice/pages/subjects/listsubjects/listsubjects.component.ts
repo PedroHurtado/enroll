@@ -11,6 +11,8 @@ import { LogoComponent } from '../../../../components/logo/logo.component';
 import { LevelService } from '../../levels/level.service';
 import { CourseDomain, DescriptorParams, LevelDomain, ModeDomain, SubjectDomain, Utils } from '../../../domain/levels';
 import { AlllistComponent } from '../../../../components/alllist/alllist.component';
+import { SelectedlistComponent } from '../../../../components/selectedlist/selectedlist.component';
+import { SortedlistComponent } from '../../../../components/sortedlist/sortedlist.component';
 
 @Component({
   selector: 'app-listsubjects',
@@ -22,6 +24,8 @@ import { AlllistComponent } from '../../../../components/alllist/alllist.compone
     MatButtonModule,
     MatCardModule,
     AlllistComponent,
+    SelectedlistComponent,
+    SortedlistComponent,
     LogoComponent
   ],
   templateUrl: './listsubjects.component.html',
