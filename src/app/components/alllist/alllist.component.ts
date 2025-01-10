@@ -10,10 +10,5 @@ import { addFeature, DescriptorDomain, ISubjectDomain, SubjectDomain } from '../
 })
 export class AlllistComponent {
   subjectDomain = input.required<ISubjectDomain>()
-  showText = input<boolean>(false)
-  characteristics = computed(() => {
-    return addFeature(this.subjectDomain())
-  })
-
 }
 

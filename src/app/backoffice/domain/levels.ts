@@ -27,6 +27,7 @@ export interface ISubjectDomain extends Descriptor {
   limit: number;
   defaultSubject: DescriptorDomain | null | undefined;
   subjects: DescriptorDomain[];
+  title:string
 
   addSubject(subject: Descriptor): void;
   removeSubject(subject: Descriptor): void;
@@ -46,6 +47,48 @@ export interface ISubjectDomain extends Descriptor {
     defaultSubject?: DescriptorDomain;
   }): void;
 }
+
+const defaultSubjectDomain: ISubjectDomain = {
+  id: "",
+  name: "",
+  type: "",
+  multiple: false,
+  limit: 0,
+  defaultSubject: null,
+  subjects: [],
+  title: "",
+
+  addSubject(subject: Descriptor): void {
+
+  },
+  removeSubject(subject: Descriptor): void {
+
+  },
+  updateSubject(subject: Descriptor): void {
+
+  },
+  updateName(name: string): void {
+
+  },
+  update({
+    name,
+    type,
+    multiple,
+    limit,
+    defaultSubject,
+  }: {
+    name: string;
+    type: string;
+    multiple: boolean;
+    limit: number;
+    defaultSubject?: DescriptorDomain;
+  }): void {
+
+  },
+};
+
+export default defaultSubjectDomain;
+
 
 export const defaultSubject: DefaultSubject = {
   name: '',
@@ -260,6 +303,9 @@ export class SubjectDomain implements ISubjectDomain {
 
   get defaultSubject(): DescriptorDomain | undefined {
     return this._defaultSubject;
+  }
+  get title():string{
+    return addFeature(this)
   }
 
   get subjects(): DescriptorDomain[] {

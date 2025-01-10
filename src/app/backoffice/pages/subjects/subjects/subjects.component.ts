@@ -26,7 +26,7 @@ export class SubjectsComponent {
   protected form: FormGroup = new FormGroup({
     name: new FormControl('', Validators.required)
   });
-  public ISubjectDomain= input<ISubjectDomain>();
+  public ISubjectDomain= input.required<ISubjectDomain>();
   private currentSubject:DescriptorDomain|undefined;
   protected status: Status = Status.Add;
   protected input = viewChild<ElementRef>('input');

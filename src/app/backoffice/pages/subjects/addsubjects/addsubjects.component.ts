@@ -5,7 +5,7 @@ import { SubjectconfigComponent } from '../subjectconfig/subjectconfig.component
 import { SubjectsComponent } from '../subjects/subjects.component';
 
 import { ActivatedRoute } from '@angular/router';
-import { IActionSubject, ISubjectDomain, LevelDomain, SubjectDomain, ModeDomain, CourseDomain } from '../../../domain/levels';
+import defaultSubjectDomain, { IActionSubject, ISubjectDomain, LevelDomain, SubjectDomain, ModeDomain, CourseDomain } from '../../../domain/levels';
 import { LevelService } from '../../levels/level.service';
 
 @Component({
@@ -21,7 +21,7 @@ import { LevelService } from '../../levels/level.service';
 })
 export class AddsubjectsComponent {
   protected config: boolean = false;
-  protected subjectDomain?: ISubjectDomain;
+  protected subjectDomain: ISubjectDomain = defaultSubjectDomain;
   protected currenLevelDomain?: LevelDomain;
   protected title: string = '';
   private action: string = ''
@@ -48,10 +48,10 @@ export class AddsubjectsComponent {
       this.updateTitle(course, mode);
       this.actionSubject =  mode || course
       if (this.action === 'add') {
-        this.subjectDomain = this.createSubjectDomain(mode || course);
+        this.subjectDomain = this.createSubjectDomain(mode || course) ||defaultSubjectDomain;
       }
       else if(this.action === 'edit'){
-        this.subjectDomain = this.actionSubject?.getSubjectById(subjectId)
+        this.subjectDomain = this.actionSubject?.getSubjectById(subjectId) ||defaultSubjectDomain
       }
     }
   }

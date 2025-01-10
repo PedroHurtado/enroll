@@ -1,8 +1,7 @@
 
 <h2>{{subjectDomain().name}}</h2>
-@if(showText()){
-  <p>{{characteristics()}}</p>
-}
+<p>{{subjectDomain().title}}</p>
+
 
 @if(subjectDomain().multiple){
 <mat-selection-list (selectionChange)="onSelectionChange($event)" >

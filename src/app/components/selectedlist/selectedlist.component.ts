@@ -1,7 +1,7 @@
 import { Component, computed, input } from '@angular/core';
 import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
 import { MatListModule, MatSelectionListChange } from '@angular/material/list';
-import { addFeature, Descriptor, ISubjectDomain } from '../../backoffice/domain/levels';
+import { Descriptor, ISubjectDomain } from '../../backoffice/domain/levels';
 @Component({
   selector: 'app-selectedlist',
   imports: [MatListModule],
@@ -18,10 +18,6 @@ import { addFeature, Descriptor, ISubjectDomain } from '../../backoffice/domain/
 export class SelectedlistComponent implements ControlValueAccessor {
   subjectDomain = input.required<ISubjectDomain>()
   designMode = input<boolean>(false)
-  characteristics = computed(() => {
-    return addFeature(this.subjectDomain())
-  })
-  showText = input<boolean>(false)
   disabled = false;
   load = false;
   selected: Descriptor[] = [];
