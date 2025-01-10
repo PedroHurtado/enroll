@@ -35,8 +35,10 @@ export class AddsubjectsComponent {
   }
 
   private initializeSubjectDomain(): void {
-    const { levelId, courseId, modeId, action, subjectId } = this.route.snapshot.params;
+    const { levelId, courseId, modeId, subjectId } = this.route.snapshot.params;
+    const action = this.route.snapshot.url[1].path
     const level = this.loadLevel(levelId);
+
     this.action = action
 
     if (level) {

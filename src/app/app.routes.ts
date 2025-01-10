@@ -41,20 +41,20 @@ export const routes: Routes = [
   },
   //add subjects
   {
-    path: 'subjects/:levelId/:courseId/:action',
+    path: 'subjects/add/:levelId/:courseId',
     loadComponent: () => import('./backoffice/pages/subjects/addsubjects/addsubjects.component').then(m => m.AddsubjectsComponent)
   },
   {
-    path: 'subjects/:levelId/:courseId/:modeId/:action',
+    path: 'subjects/add/:levelId/:courseId/:modeId',
     loadComponent: () => import('./backoffice/pages/subjects/addsubjects/addsubjects.component').then(m => m.AddsubjectsComponent)
   },
   //update
   {
-    path: 'subjects/:levelId/:courseId/:subjectId/:action',
+    path: 'subjects/edit/:levelId/:courseId/:subjectId',
     loadComponent: () => import('./backoffice/pages/subjects/addsubjects/addsubjects.component').then(m => m.AddsubjectsComponent)
   },
   {
-    path: 'subjects/:levelId/:courseId/:modeId/:subjectId/:action',
+    path: 'subjects/edit/:levelId/:courseId/:modeId/:subjectId',
     loadComponent: () => import('./backoffice/pages/subjects/addsubjects/addsubjects.component').then(m => m.AddsubjectsComponent)
   },
 

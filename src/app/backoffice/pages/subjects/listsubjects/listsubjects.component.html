@@ -15,7 +15,7 @@
       fixedTopGap="56">
       <mat-nav-list>
         @for (item of courses(); track item.id) {
-        <a mat-list-item (click)="clickItem(item)">{{item.name}}</a>
+        <a mat-list-item href="" (click)="clickItem(item, $event)">{{item.name}}</a>
         }
       </mat-nav-list>
     </mat-sidenav>
@@ -23,10 +23,10 @@
       <div class="row">
         <h2>{{currentCourse()?.name}}</h2>
         <div class="add">
-          <button type="button" mat-button (click)="toAddRoute()">
+          <a href='' type="button" mat-button (click)="toAddRoute($event)">
             <mat-icon>add</mat-icon>
-            Asignaturas
-          </button>
+            Añadir
+          </a>
         </div>
       </div>
       <div class="subjects">
@@ -34,10 +34,10 @@
         <div class="subject-items">
           <app-alllist [items]="item.subjects" [text]="item.name" />
           <div class="actions">
-            <button  mat-button (click)="toEditRoute(item)">
+            <a  mat-button href="" (click)="toEditRoute(item, $event)">
               <mat-icon>edit</mat-icon>
               Editar
-            </button>
+            </a>
             <button mat-button (click)="remove(item)">
               <mat-icon>delete</mat-icon>
               Eliminar

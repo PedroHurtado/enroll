@@ -117,7 +117,7 @@ export class CourseDomain implements IActionSubject {
     }
   }
   removeMode(mode: ModeDomain) {
-    Utils.builder(this._modalities).add(mode);
+    Utils.builder(this._modalities).remove(mode);
   }
 
   addSubject(subject: SubjectDomain) {

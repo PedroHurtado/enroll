@@ -53,15 +53,18 @@ export class ListsubjectsComponent implements OnDestroy {
     this.loadData();
   }
 
-  toAddRoute(): void {
+  toAddRoute(ev:Event): void {
+    ev.preventDefault()
     const params = this.currentCourse()?.params || [];
-    this.router.navigate(['subjects', ...params, 'add']);
+    this.router.navigate(['subjects','add', ...params]);
   }
-  toEditRoute(subjectDomain:SubjectDomain){
+  toEditRoute(subjectDomain:SubjectDomain, ev:Event){
+    ev.preventDefault()
     const params = this.currentCourse()?.params || []
-     this.router.navigate(['subjects',...params, subjectDomain.id, 'edit'])
+     this.router.navigate(['subjects','edit',...params, subjectDomain.id])
   }
-  clickItem(descriptorParams: DescriptorParams): void {
+  clickItem(descriptorParams: DescriptorParams, ev:Event): void {
+    ev.preventDefault()
     this.currentCourse.set(descriptorParams);
     if (this.isMobile()) {
       this.sidenav()?.close();
