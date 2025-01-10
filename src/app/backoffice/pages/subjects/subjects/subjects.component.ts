@@ -24,7 +24,8 @@ import { DescriptorDomain, ISubjectDomain } from '../../../domain/levels';
 })
 export class SubjectsComponent {
   protected form: FormGroup = new FormGroup({
-    name: new FormControl('', Validators.required)
+    name: new FormControl('', Validators.required),
+    hours:new FormControl(0,Validators.min(0))
   });
   public ISubjectDomain= input.required<ISubjectDomain>();
   private currentSubject:DescriptorDomain|undefined;
@@ -42,7 +43,8 @@ export class SubjectsComponent {
     this.currentSubject = subject
     this.status = Status.Update;
     this.form.setValue({
-      name:subject.name
+      name:subject.name,
+      hours:subject.hours
     })
     this.ngAfterViewInit()
   }
@@ -53,15 +55,15 @@ export class SubjectsComponent {
   }
 
   protected submit(): void {
-    const { name } = this.form.value;
+    const { name, hours } = this.form.value;
     if (!name) return;
 
     if (this.status === Status.Add) {
       this.ISubjectDomain()?.addSubject(
-        DescriptorDomain.create(name)
+        DescriptorDomain.create(name,hours)
       );
     } else if (this.status === Status.Update && this.currentSubject) {
-        this.currentSubject.update(name)
+        this.currentSubject.update(name,hours)
     }
 
     this.resetForm();

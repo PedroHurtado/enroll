@@ -278,7 +278,7 @@ export class SubjectDomain implements ISubjectDomain {
   updateSubject(subject: DescriptorDomain) {
     const updatedDescriptor = Utils.builder(this._subjects).get(subject)
     if (updatedDescriptor) {
-      updatedDescriptor.update(subject.name)
+      updatedDescriptor.update(subject.name, subject.hours)
     }
   }
   get id(): string {
@@ -350,14 +350,17 @@ export class SubjectDomain implements ISubjectDomain {
 export class DescriptorDomain implements Descriptor {
   private _id: string;
   private _name: string
+  private _hours:number
   protected constructor(
-    { id, name }: { id: string; name: string }
+    { id, name, hours }: { id: string; name: string ,hours:number }
   ) {
     this._id = id;
     this._name = name
+    this._hours = hours
   }
-  update(name: string) {
+  update(name: string, hours:number) {
     this._name = name
+    this._hours = hours
   }
   public get id(): string {
     return this._id
@@ -365,9 +368,15 @@ export class DescriptorDomain implements Descriptor {
   public get name(): string {
     return this._name
   }
-  static create(name: string): DescriptorDomain {
+  public get hours():number{
+    return this._hours
+  }
+  static create(name: string, hours:number): DescriptorDomain {
     const descriptor = createDescriptor(name)
-    return new DescriptorDomain(descriptor)
+    return new DescriptorDomain({
+      ...descriptor,
+      hours
+    })
   }
 }
 export class Utils<T extends Descriptor> {

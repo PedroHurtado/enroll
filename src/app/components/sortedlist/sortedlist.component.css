@@ -49,3 +49,10 @@ p{
   padding-left: 1rem;
 }
 
+.row{
+  display: grid;
+  grid-template-columns: 1fr auto;
+  gap:1rem;
+  width: 100%;
+}
+

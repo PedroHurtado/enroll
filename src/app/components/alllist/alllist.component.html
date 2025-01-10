@@ -2,7 +2,13 @@
 <p>{{subjectDomain().title}}</p>
 <mat-list role="list">
   @for (item of subjectDomain().subjects; track item.id) {
-  <mat-list-item role="listitem">{{item.name}}</mat-list-item>
+  <mat-list-item role="listitem">
+    <div class="row">
+      <span>{{item.name}}</span>
+      <span>{{item.hours}} h</span>
+    </div>
+
+  </mat-list-item>
   }
 </mat-list>
 
