@@ -4,11 +4,11 @@
   }
 
   @if(subjectDomain().type ==="selectlist"){
-    <app-selectedlist [subjectDomain]="subjectDomain()" [designMode]="true" />
+    <app-selectedlist [subjectDomain]="subjectDomain()" [disabled]="true" [designMode]="true" />
   }
 
   @if(subjectDomain().type==="orderlist"){
-    <app-sortedlist [subjectDomain]="subjectDomain()"/>
+    <app-sortedlist [subjectDomain]="subjectDomain()" [disabled]="true"/>
   }
 
 </div>

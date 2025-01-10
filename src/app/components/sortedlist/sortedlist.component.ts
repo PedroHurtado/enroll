@@ -1,4 +1,4 @@
-import { Component, computed, input } from '@angular/core';
+import { Component, input, model } from '@angular/core';
 import {
   CdkDrag,
   CdkDragDrop,
@@ -24,7 +24,7 @@ import { addFeature, Descriptor, ISubjectDomain } from '../../backoffice/domain/
 })
 export class SortedlistComponent implements ControlValueAccessor {
   subjectDomain = input.required<ISubjectDomain>()
-  disabled = false;
+  disabled = model<boolean>(false)
   selected: Descriptor[] = [];
   onChange: (value: any[]) => void = () => { };
   onTouched: () => void = () => { };
@@ -43,12 +43,14 @@ export class SortedlistComponent implements ControlValueAccessor {
     this.onTouched();
   }
   setDisabledState?(isDisabled: boolean): void {
-    this.disabled = isDisabled;
+    this.disabled.set(isDisabled);
   }
   drop(event: CdkDragDrop<string[]>) {
-    moveItemInArray(this.subjectDomain().subjects, event.previousIndex, event.currentIndex);
-    this.onChange(this.subjectDomain().subjects.slice(0, this.subjectDomain().limit));
-    this.onTouched();
+    if (!this.disabled()) {
+      moveItemInArray(this.subjectDomain().subjects, event.previousIndex, event.currentIndex);
+      this.onChange(this.subjectDomain().subjects.slice(0, this.subjectDomain().limit));
+      this.onTouched();
+    }
   }
   maxLimit(index: number) {
     return (index >= this.subjectDomain().limit);

@@ -3,7 +3,7 @@
 
 
 @if(subjectDomain().multiple){
-<mat-selection-list (selectionChange)="onSelectionChange($event)" >
+<mat-selection-list (selectionChange)="onSelectionChange($event)">
   @for (item of subjectDomain().subjects; track item.id) {
   <mat-list-option [value]="item.id" [selected]="isSelected(item)">{{item.name}}</mat-list-option>
   }

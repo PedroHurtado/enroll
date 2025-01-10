@@ -1,4 +1,4 @@
-import { Component, computed, input } from '@angular/core';
+import { Component, input, model } from '@angular/core';
 import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
 import { MatListModule, MatSelectionListChange } from '@angular/material/list';
 import { Descriptor, ISubjectDomain } from '../../backoffice/domain/levels';
@@ -18,7 +18,7 @@ import { Descriptor, ISubjectDomain } from '../../backoffice/domain/levels';
 export class SelectedlistComponent implements ControlValueAccessor {
   subjectDomain = input.required<ISubjectDomain>()
   designMode = input<boolean>(false)
-  disabled = false;
+  disabled = model<boolean>(false);
   load = false;
   selected: Descriptor[] = [];
   onChange: (value: any[]) => void = () => { };
@@ -40,25 +40,32 @@ export class SelectedlistComponent implements ControlValueAccessor {
     this.onTouched = fn;
   }
   setDisabledState?(isDisabled: boolean): void {
-    this.disabled = isDisabled;
+    this.disabled.set(isDisabled);
   }
   onSelectionChange(select: MatSelectionListChange) {
-    const result = select.source.selectedOptions.selected.map(item => item.value)
-    this.selected = result;
-    this.onChange(this.selected);
-    this.onTouched();
-  }
-  isSelected(item: any) {
-    if (this.designMode() && this.subjectDomain().defaultSubject === item) {
-      return true
-    }
-    else if (this.subjectDomain().defaultSubject === item && !this.load) {
-      this.load = true;
-      this.selected = [item];
+    if (!this.disabled()) {
+      const result = select.source.selectedOptions.selected.map(item => item.value)
+      this.selected = result;
       this.onChange(this.selected);
       this.onTouched();
-      return true;
+    }
+  }
+  isSelected(item: any) {
+    if(!this.disabled()){
+      if (this.designMode() && this.subjectDomain().defaultSubject === item) {
+        return true
+      }
+      else if (this.subjectDomain().defaultSubject === item && !this.load) {
+        this.load = true;
+        this.selected = [item];
+        this.onChange(this.selected);
+        this.onTouched();
+        return true;
+      }
+      return false;
+
     }
     return false;
+
   }
 }

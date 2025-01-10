@@ -36,10 +36,10 @@
             <app-alllist  [subjectDomain]="item"/>
           }
           @if(item.type === 'selectlist'){
-            <app-selectedlist  [subjectDomain]="item"/>
+            <app-selectedlist  [subjectDomain]="item" [disabled]="true"/>
           }
           @if(item.type === 'orderlist'){
-            <app-sortedlist  [subjectDomain]="item"/>
+            <app-sortedlist  [subjectDomain]="item" [disabled]="true" />
           }
 
           <div class="actions">

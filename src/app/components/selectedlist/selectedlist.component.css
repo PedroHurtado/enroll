@@ -1,9 +1,45 @@
-p{
+
+p {
   padding-left: 1rem;
 }
 
 @media screen and (max-width: 720px) {
-  mat-selection-list{
+  mat-selection-list {
     max-width: 360px;
   }
 }
+
+/*
+::ng-deep .mat-mdc-list-base {
+  --mdc-list-list-item-disabled-label-text-color: rgba(0, 0, 0, 0.87);
+  --mdc-list-list-item-disabled-state-layer-color: white;
+}
+
+::ng-deep .mat-mdc-list-base .mat-mdc-list-option.mdc-list-item--disabled {
+  --mdc-list-list-item-disabled-state-layer-opacity: 0;
+  background-color: white !important;
+}
+
+::ng-deep .mat-mdc-list-base .mat-mdc-list-option.mdc-list-item--disabled .mdc-list-item__content {
+  color: rgba(0, 0, 0, 0.87) !important;
+}
+
+::ng-deep .mdc-list-item--disabled .mdc-list-item__content {
+  opacity: 1 !important;
+}
+
+::ng-deep .mat-mdc-list-option.mdc-list-item--disabled::before {
+  background-color: transparent !important;
+}
+
+
+::ng-deep .mat-mdc-list-option.mdc-list-item--disabled .mdc-checkbox {
+  --mdc-checkbox-disabled-selected-icon-color: #1976d2;
+  --mdc-checkbox-disabled-unselected-icon-color: rgba(0, 0, 0, 0.54);
+}
+
+
+::ng-deep .mat-mdc-list-option.mdc-list-item--disabled .mdc-checkbox__background {
+  opacity: 1 !important;
+}
+*/
