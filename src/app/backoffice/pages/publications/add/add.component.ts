@@ -9,6 +9,7 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import {MatDatepickerModule} from '@angular/material/datepicker';
 import {provideNativeDateAdapter} from '@angular/material/core';
 import { Location } from '@angular/common';
+import { MAT_DATE_LOCALE } from '@angular/material/core';
 @Component({
   selector: 'app-add',
   imports: [
@@ -18,7 +19,10 @@ import { Location } from '@angular/common';
     MatFormFieldModule,
     MatDatepickerModule
   ],
-  providers:[provideNativeDateAdapter()],
+  providers:[
+    provideNativeDateAdapter(),
+    { provide: MAT_DATE_LOCALE, useValue: 'es-ES' }
+  ],
   templateUrl: './add.component.html',
   styleUrl: './add.component.css',
   changeDetection:ChangeDetectionStrategy.OnPush

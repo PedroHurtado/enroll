@@ -8,7 +8,7 @@ import { MatButtonModule } from '@angular/material/button';
 import { MatInputModule } from '@angular/material/input';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatDatepickerModule } from '@angular/material/datepicker';
-import { provideNativeDateAdapter } from '@angular/material/core';
+import { MAT_DATE_LOCALE, provideNativeDateAdapter } from '@angular/material/core';
 import { Location } from '@angular/common';
 
 @Component({
@@ -20,7 +20,10 @@ import { Location } from '@angular/common';
     MatFormFieldModule,
     MatDatepickerModule
   ],
-  providers: [provideNativeDateAdapter()],
+  providers: [
+    provideNativeDateAdapter(),
+    {provide: MAT_DATE_LOCALE, useValue: 'es-ES' }
+  ],
   templateUrl: './edit.component.html',
   styleUrl: './edit.component.css',
   changeDetection: ChangeDetectionStrategy.OnPush
