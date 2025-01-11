@@ -29,7 +29,6 @@ export class LevelsComponent implements ControlValueAccessor {
 
   protected selectedLevel(level: Level, selected: boolean) {
     if(selected){
-
       this.selected.push(level)
     }
     else{
