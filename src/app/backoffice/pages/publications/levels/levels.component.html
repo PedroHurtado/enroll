@@ -9,7 +9,7 @@
 
     <div class="courses-list">
       @for (course of level.courses; track course.id) {
-        <mat-list-option
+        <mat-list-option [selected]="getSelected(level,course)"
           (selectedChange)="selectedCourse(level,course,$event)">
           <span>{{course.name}}</span>
         </mat-list-option>
