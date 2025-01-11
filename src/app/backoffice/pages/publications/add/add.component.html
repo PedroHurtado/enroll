@@ -1,1 +1,41 @@
-<p>add works!</p>
+<div class="container">
+  <h1>Nueva Publicación</h1>
+  <form [formGroup]="form" (ngSubmit)="submit()">
+    <mat-form-field appearance="outline" class="field">
+      <mat-label>Descripción</mat-label>
+      <input type="text" matInput formControlName="name" required #input>
+    </mat-form-field>
+    <div class="dates">
+
+
+      <mat-form-field appearance="outline" class="example-form-field">
+        <mat-label>Fecha de inicio</mat-label>
+        <input matInput [matDatepicker]="start" formControlName="start" />
+        <mat-hint>DD/MM/YYYY</mat-hint>
+        <mat-datepicker-toggle matIconSuffix [for]="start"></mat-datepicker-toggle>
+        <mat-datepicker #start>
+          <mat-datepicker-actions>
+            <button mat-button matDatepickerCancel>Cancelar</button>
+            <button mat-raised-button matDatepickerApply>Aceptar</button>
+          </mat-datepicker-actions>
+        </mat-datepicker>
+      </mat-form-field>
+
+      <mat-form-field appearance="outline" class="example-form-field">
+        <mat-label>Fecha final</mat-label>
+        <input matInput [matDatepicker]="end" formControlName="end" />
+        <mat-hint>DD/MM/YYYY</mat-hint>
+        <mat-datepicker-toggle matIconSuffix [for]="end"></mat-datepicker-toggle>
+        <mat-datepicker #end>
+          <mat-datepicker-actions>
+            <button mat-button matDatepickerCancel>Cancelar</button>
+            <button mat-raised-button matDatepickerApply>Aceptar</button>
+          </mat-datepicker-actions>
+        </mat-datepicker>
+      </mat-form-field>
+    </div>
+    <div class="actions">
+      <button type="submit" mat-flat-button class="submit">Aceptar</button>
+    </div>
+  </form>
+</div>

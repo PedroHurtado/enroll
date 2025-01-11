@@ -1,0 +1,17 @@
+.container{
+  width: 50%;
+  margin: auto;
+  height: 90%;
+}
+.field{
+  width: 100%;
+}
+.dates{
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap:1rem
+}
+.actions{
+  margin-top: 0.5rem;
+}
+

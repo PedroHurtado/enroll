@@ -1,0 +1,17 @@
+.container{
+  height: 100vh;
+}
+table {
+  width: 100%;
+}
+.add{
+  display: flex;
+  justify-content: end;
+  margin-bottom: 1rem;
+  padding-right: 1rem;
+  margin-top: 1rem;
+}
+.align-right {
+  text-align: right;
+}
+

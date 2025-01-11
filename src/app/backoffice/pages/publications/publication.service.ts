@@ -9,10 +9,19 @@ const publications:Publication[] =[]
 export class PublicationService {
 
   constructor() { }
+  getAll(){
+    return publications
+  }
+  get(id:string){
+    return publications.find(p=>p.id === id)
+  }
   add(publication:Publication){
     Utils.builder(publications).add(publication)
   }
   remove(publication:Publication){
     Utils.builder(publications).remove(publication)
+  }
+  update(publication:Publication){
+
   }
 }
