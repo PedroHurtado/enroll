@@ -33,7 +33,7 @@ export class LevelsComponent implements ControlValueAccessor {
       this.selected.push(level)
     }
     else{
-      this.selected=this.selected.filter(l=>l===level)
+      this.selected=this.selected.filter(l=>l!==level)
     }
   }
   selectedCourse(level: Level, course: Descriptor, selected: boolean) {
