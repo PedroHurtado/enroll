@@ -382,7 +382,7 @@ export class DescriptorDomain implements Descriptor {
 export class Utils<T extends Descriptor> {
   protected readonly items: T[] = [];
 
-  constructor(items: T[]) {
+  private constructor(items: T[]) {
     this.items = items;
   }
 

@@ -66,6 +66,17 @@ export const routes: Routes = [
     path: 'subjects/:levelId/:courseId/:modeId',
     loadComponent: () => import('./backoffice/pages/subjects/listsubjects/listsubjects.component').then(m => m.ListsubjectsComponent)
   },
-
+  {
+    path:'publications',
+    loadComponent: ()=>import('./backoffice/pages/publications/list/list.component').then(c=>c.ListComponent)
+  },
+  {
+    path:'publications/add',
+    loadComponent: ()=>import('./backoffice/pages/publications/add/add.component').then(c=>c.AddComponent)
+  },
+  {
+    path:'publications/edit/:id',
+    loadComponent: ()=>import('./backoffice/pages/publications/edit/edit.component').then(c=>c.EditComponent)
+  },
   { path: '', redirectTo: 'login', pathMatch: 'full' },
 ];
