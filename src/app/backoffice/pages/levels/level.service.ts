@@ -25,4 +25,5 @@ export class LevelService {
     this.levels = this.levels.filter(l=>l!==level)
     return this.levels;
   }
+
 }

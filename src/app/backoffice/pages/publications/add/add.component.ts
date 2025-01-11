@@ -10,6 +10,8 @@ import {MatDatepickerModule} from '@angular/material/datepicker';
 import {provideNativeDateAdapter} from '@angular/material/core';
 import { Location } from '@angular/common';
 import { MAT_DATE_LOCALE } from '@angular/material/core';
+import { LevelsComponent } from '../levels/levels.component';
+import { LevelService } from '../../levels/level.service';
 @Component({
   selector: 'app-add',
   imports: [
@@ -17,7 +19,8 @@ import { MAT_DATE_LOCALE } from '@angular/material/core';
     MatButtonModule,
     MatInputModule,
     MatFormFieldModule,
-    MatDatepickerModule
+    MatDatepickerModule,
+    LevelsComponent
   ],
   providers:[
     provideNativeDateAdapter(),
@@ -36,12 +39,27 @@ export class AddComponent {
     levels: new FormControl<Level[]>([], {nonNullable:true, validators:[selectedlistValidator(1)]})
   })
   protected input = viewChild<ElementRef>('input');
+  protected levels:Level[] = []
   constructor(
     private service:PublicationService,
+    private levelService:LevelService,
     private location:Location
 
   ){
-
+    this.loadLevels()
+  }
+  private loadLevels(){
+   this.levels =  this.levelService.getAll().map(l=>{
+      return {
+        id:l.id,
+        name:l.name,
+        courses:l.courses.map(({id,name})=>{
+          return {
+            id,name
+          }
+        })
+      }
+    })
   }
   submit() {
     const { name, start, end, levels } = this.form.getRawValue()

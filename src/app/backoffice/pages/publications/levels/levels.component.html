@@ -1,1 +1,10 @@
-<p>levels works!</p>
+<div class="container">
+@for (level of levels(); track level.id) {
+  <h3>{{level.name}}</h3>
+  <mat-list>
+  @for (course of level.courses; track course.id) {
+    <mat-list-item>{{course.name}}</mat-list-item>
+  }
+  </mat-list>
+}
+</div>
