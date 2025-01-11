@@ -24,8 +24,9 @@ import { addFeature, Descriptor, ISubjectDomain } from '../../backoffice/domain/
 })
 export class SortedlistComponent implements ControlValueAccessor {
   subjectDomain = input.required<ISubjectDomain>()
-  disabled = model<boolean>(false)
+
   selected: Descriptor[] = [];
+  disabled = model<boolean>(false)
   onChange: (value: any[]) => void = () => { };
   onTouched: () => void = () => { };
 

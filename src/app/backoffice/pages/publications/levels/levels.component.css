@@ -1,0 +1,19 @@
+
+
+.container {
+  width: 100%;
+}
+
+.level-header {
+  font-weight: bold;
+  margin-bottom: 8px;
+}
+
+.courses-list {
+  margin-left: 16px;
+}
+
+mat-list-item {
+  display: block;
+  margin: 4px 0;
+}

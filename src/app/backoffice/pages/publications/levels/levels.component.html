@@ -1,10 +1,21 @@
 <div class="container">
-@for (level of levels(); track level.id) {
-  <h3>{{level.name}}</h3>
-  <mat-list>
-  @for (course of level.courses; track course.id) {
-    <mat-list-item>{{course.name}}</mat-list-item>
+  @for (level of levels(); track level.id) {
+  <mat-selection-list>
+    <div class="level-header">
+      <mat-list-option (selectedChange)="selectedLevel(level,$event)">
+        <span>{{level.name}}</span>
+      </mat-list-option>
+    </div>
+
+    <div class="courses-list">
+      @for (course of level.courses; track course.id) {
+        <mat-list-option [selected]="getSelected(level,course)" (selectedChange)="selectedCourse(level,course,$event)">
+          <span>{{course.name}}</span>
+        </mat-list-option>
+      }
+    </div>
+  </mat-selection-list>
   }
-  </mat-list>
-}
 </div>
+
+
