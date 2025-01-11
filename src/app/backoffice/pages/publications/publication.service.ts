@@ -22,6 +22,9 @@ export class PublicationService {
     Utils.builder(publications).remove(publication)
   }
   update(publication:Publication){
-
+    const index = publications.findIndex(p=>p.id===publication.id)
+    if(index>-1){
+      publications[index] = publication
+    }
   }
 }
