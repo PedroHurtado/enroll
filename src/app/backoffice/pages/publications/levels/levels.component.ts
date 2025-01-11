@@ -29,7 +29,7 @@ export class LevelsComponent implements ControlValueAccessor {
 
   protected selectedLevel(level: Level, selected: boolean) {
     if(selected){
-      this.selected.push(level)
+      this.selected.push(this.cloneLevel(level))
     }
     else{
       this.selected=this.selected.filter(l=>l!==level)
@@ -39,7 +39,15 @@ export class LevelsComponent implements ControlValueAccessor {
 
   }
   getSelected(level: Level, course: Descriptor): boolean {
-    return this.selected.includes(level)
+    return !this.selected.every(l=>l.id===level.id)
+  }
+  private cloneLevel(level:Level){
+    return {
+      id:level.id,
+      name:level.name,
+      courses:level.courses.map(({id,name})=>({id,name}))
+    }
+
   }
   writeValue(obj: Level[]): void {
     this.selected = obj
