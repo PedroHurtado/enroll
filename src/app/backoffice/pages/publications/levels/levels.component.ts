@@ -42,13 +42,17 @@ export class LevelsComponent implements ControlValueAccessor {
     })
   }
   protected selectedLevel(level:Level, selected: boolean){
-    level.selected = selected
-    level.courses.forEach(c=>c.selected = selected)
-    this.publish()
+    if(level.selected!==selected){
+      level.selected = selected
+      level.courses.forEach(c=>c.selected = selected)
+      this.publish()
+    }
   }
   protected selectedCourse(course:SelectedDescriptor, selected: boolean) {
-    course.selected = selected
-    this.publish()
+    if(course.selected!==selected){
+      course.selected = selected
+      this.publish()
+    }
   }
   isSelected(selectedDescriptor: SelectedDescriptor) {
     return selectedDescriptor.selected
