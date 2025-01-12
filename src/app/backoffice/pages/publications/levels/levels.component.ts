@@ -21,6 +21,7 @@ export class LevelsComponent implements ControlValueAccessor {
 
   protected levels: Level[] = []
   private disabled: boolean = false
+
   private onChange: (value: any[]) => void = () => { };
   private onTouched: () => void = () => { };
   constructor(private levelService: LevelService) {
@@ -41,18 +42,18 @@ export class LevelsComponent implements ControlValueAccessor {
       return level
     })
   }
-  protected selectedLevel(level:Level, selected: boolean){
+  protected selectedLevel(level: Level, selected: boolean) {
     if(level.selected!==selected){
       level.selected = selected
-      level.courses.forEach(c=>c.selected = selected)
+      level.courses.forEach(c => c.selected = selected)
       this.publish()
     }
   }
-  protected selectedCourse(course:SelectedDescriptor, selected: boolean) {
-    if(course.selected!==selected){
+  protected selectedCourse(course: SelectedDescriptor, selected: boolean) {
+
       course.selected = selected
       this.publish()
-    }
+
   }
   isSelected(selectedDescriptor: SelectedDescriptor) {
     return selectedDescriptor.selected
