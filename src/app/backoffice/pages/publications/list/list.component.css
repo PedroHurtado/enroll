@@ -1,9 +1,3 @@
-.container{
-  height: 100vh;
-}
-table {
-  width: 100%;
-}
 .add{
   display: flex;
   justify-content: end;
@@ -13,5 +7,9 @@ table {
 }
 .align-right {
   text-align: right;
+}
+.row{
+  display: grid;
+  grid-template-columns: 25% 1fr;
 }
 

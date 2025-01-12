@@ -1,4 +1,4 @@
-import { Component, input } from '@angular/core';
+import { Component } from '@angular/core';
 import { Level, SelectedDescriptor } from '../publication';
 import { MatListModule } from '@angular/material/list';
 import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
