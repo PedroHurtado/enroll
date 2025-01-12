@@ -4,7 +4,7 @@
   height: 100%;
 }
 .table-container {
-  max-height: 700px;
+  max-height: 600px;
   overflow: auto;
 }
 
