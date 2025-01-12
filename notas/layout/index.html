@@ -5,6 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Responsive Layout</title>
   <style>
+    /* CSS */
     * {
       margin: 0;
       padding: 0;
@@ -31,7 +32,7 @@
       width: 100%;
       top: 0;
       z-index: 1000;
-      box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
       height: 60px;
     }
 
@@ -39,14 +40,11 @@
       height: 40px;
       display: flex;
       align-items: center;
-      margin: 0 2rem;
-      line-height: 0;
+      margin-right: auto;
     }
 
     .logo svg {
-      height: 40px;
-      width: auto;
-      display: block;
+      height: 100%;
     }
 
     .left-button, .menu-toggle {
@@ -121,35 +119,37 @@
     }
 
     /* Responsive Styles */
-    @media (max-width: 768px) {
-      .header {
-        height: 50px;
+    @media (min-width: 768px) {
+      .sidenav {
+        left: 0;
+        position: relative;
+        height: auto;
+      }
+
+      .content {
+        margin-left: 250px;
+      }
+
+      .left-button {
+        display: none;
       }
 
       .logo {
-        height: 30px;
+        margin-left: 0;
       }
+    }
 
-      .logo svg {
-        height: 30px;
-      }
-
-      .left-button, .menu-toggle {
-        height: 30px;
-        width: 30px;
-        font-size: 1.2rem;
-      }
-
+    @media (max-width: 768px) {
       .menu {
         position: fixed;
-        top: 50px;
+        top: 60px;
         right: -200px;
         flex-direction: column;
         background-color: #f8f9fa;
         padding: 1rem;
         border: 1px solid #ddd;
         width: 200px;
-        height: calc(100vh - 50px);
+        height: calc(100vh - 60px);
         transition: right 0.3s ease;
       }
 
@@ -165,52 +165,11 @@
       .content.with-sidenav {
         margin-left: 0;
       }
-
-      .sidenav.active + .content {
-        margin-left: 250px;
-      }
-    }
-
-    @media (max-width: 576px) {
-      .header {
-        height: 45px;
-      }
-
-      .logo {
-        height: 25px;
-      }
-
-      .logo svg {
-        height: 25px;
-      }
-
-      .left-button, .menu-toggle {
-        height: 25px;
-        width: 25px;
-        font-size: 1rem;
-      }
-
-      .sidenav {
-        width: 100%;
-        left: -100%;
-      }
-
-      .sidenav.active {
-        left: 0;
-      }
-
-      .content.with-sidenav {
-        margin-left: 0;
-      }
-
-      .sidenav.active + .content {
-        margin-left: 0;
-        display: none;
-      }
     }
   </style>
 </head>
 <body>
+  <!-- HTML -->
   <div class="layout">
     <!-- Header -->
     <header class="header">
@@ -219,21 +178,16 @@
         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 48" preserveAspectRatio="xMidYMid meet">
           <!-- Fondo circular -->
           <circle cx="24" cy="24" r="22" fill="#4285F4" />
-
           <!-- Libro abierto estilizado -->
           <path d="M12 29 L24 24 L36 29 L36 34 L24 29 L12 34 Z" fill="#FFFFFF" />
           <path d="M12 34 L24 29 L36 34" fill="none" stroke="#FFFFFF" stroke-width="1" />
-
           <!-- Birrete/Gorro de graduación -->
           <path d="M17 17 L31 17 L24 10 Z" fill="#FFFFFF" />
           <rect x="23" y="8" width="2" height="2" fill="#FFFFFF" />
-
           <!-- Borla del birrete -->
           <path d="M25 10 Q27 12 29 10" fill="none" stroke="#FFFFFF" stroke-width="0.5" />
-
           <!-- Texto estilizado "M" dentro del círculo -->
           <text x="20" y="26" font-family="Arial" font-size="10" fill="#FFFFFF" font-weight="bold">M</text>
-
           <!-- Texto "ENROLL" con letras en colores de Google -->
           <text x="55" y="30" font-family="Arial" font-size="20" font-weight="bold">
             <tspan fill="#4285F4">E</tspan>
@@ -255,7 +209,7 @@
 
     <!-- Main Content -->
     <div class="main-container">
-      <!-- Sidenav (Optional) -->
+      <!-- Sidenav -->
       <aside class="sidenav">Sidebar Content</aside>
 
       <!-- Main Content Area -->
@@ -266,35 +220,30 @@
   </div>
 
   <script>
+    // JavaScript
     const menu = document.querySelector('.menu');
     const menuToggle = document.querySelector('.menu-toggle');
     const leftButton = document.querySelector('.left-button');
     const sidenav = document.querySelector('.sidenav');
     const content = document.querySelector('.content');
 
-    // Toggle menu on mobile
     menuToggle.addEventListener('click', () => {
       menu.classList.toggle('active');
     });
 
-    // Toggle sidenav
     leftButton.addEventListener('click', () => {
       sidenav.classList.toggle('active');
       content.classList.toggle('with-sidenav');
     });
 
-    // Close menu when clicking outside
     document.addEventListener('click', (e) => {
       if (!menu.contains(e.target) && !menuToggle.contains(e.target)) {
         menu.classList.remove('active');
       }
     });
 
-    // Function to check if page should have sidenav
     function initializePage() {
-      // Example: Check if current page should have sidenav
-      const shouldHaveSidenav = true; // Change this based on your routing logic
-
+      const shouldHaveSidenav = true;
       if (!shouldHaveSidenav) {
         sidenav.style.display = 'none';
         leftButton.style.display = 'none';

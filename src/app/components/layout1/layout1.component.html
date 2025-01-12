@@ -1,0 +1,50 @@
+<!-- app.component.html -->
+<div class="app-layout">
+  <!-- Header -->
+  <mat-toolbar class="app-header" color="basic">
+    <button mat-icon-button (click)="toggleSidenav()">
+      <mat-icon>menu</mat-icon>
+    </button>
+
+    <div class="logo">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 48" preserveAspectRatio="xMidYMid meet" class="logo-svg">
+        <circle cx="24" cy="24" r="22" fill="#4285F4" />
+        <path d="M12 29 L24 24 L36 29 L36 34 L24 29 L12 34 Z" fill="#FFFFFF" />
+        <path d="M12 34 L24 29 L36 34" fill="none" stroke="#FFFFFF" stroke-width="1" />
+        <path d="M17 17 L31 17 L24 10 Z" fill="#FFFFFF" />
+        <rect x="23" y="8" width="2" height="2" fill="#FFFFFF" />
+        <path d="M25 10 Q27 12 29 10" fill="none" stroke="#FFFFFF" stroke-width="0.5" />
+        <text x="20" y="26" font-family="Arial" font-size="10" fill="#FFFFFF" font-weight="bold">M</text>
+        <text x="55" y="30" font-family="Arial" font-size="20" font-weight="bold">
+          <tspan fill="#4285F4">E</tspan>
+          <tspan fill="#EA4335">N</tspan>
+          <tspan fill="#FBBC05">R</tspan>
+          <tspan fill="#4285F4">O</tspan>
+          <tspan fill="#34A853">L</tspan>
+          <tspan fill="#EA4335">L</tspan>
+        </text>
+      </svg>
+    </div>
+
+    <div class="menu">
+      <a mat-button routerLink="#">Link 1</a>
+      <a mat-button routerLink="#">Link 2</a>
+      <a mat-button routerLink="#">Link 3</a>
+    </div>
+  </mat-toolbar>
+
+  <!-- Main Content -->
+  <div class="app-main">
+    <!-- Sidenav -->
+    <mat-sidenav-container>
+      <mat-sidenav class="sidenav" mode="side" [opened]="sidenavOpen">
+        <p>Sidebar Content</p>
+      </mat-sidenav>
+
+      <!-- Main Content Area -->
+      <div class="content">
+        <router-outlet/>
+      </div>
+    </mat-sidenav-container>
+  </div>
+</div>
