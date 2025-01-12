@@ -1,11 +1,12 @@
 import { Descriptor } from '../../domain/levels'
-export interface Level extends Descriptor {
-  courses: Descriptor[]
+export interface SelectedDescriptor extends Descriptor{
+  selected:boolean
+}
+export interface Level extends SelectedDescriptor {
+  courses: SelectedDescriptor[]
 }
 
 export interface Publication extends Descriptor {
-  id: string,
-
   start: Date,
   end: Date,
   levels: Level[]

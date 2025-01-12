@@ -10,6 +10,7 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatDatepickerModule } from '@angular/material/datepicker';
 import { MAT_DATE_LOCALE, provideNativeDateAdapter } from '@angular/material/core';
 import { Location } from '@angular/common';
+import { LevelsComponent } from '../levels/levels.component';
 
 @Component({
   selector: 'app-edit',
@@ -18,7 +19,8 @@ import { Location } from '@angular/common';
     MatButtonModule,
     MatInputModule,
     MatFormFieldModule,
-    MatDatepickerModule
+    MatDatepickerModule,
+    LevelsComponent
   ],
   providers: [
     provideNativeDateAdapter(),

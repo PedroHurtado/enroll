@@ -1,9 +1,8 @@
 import { Component, input } from '@angular/core';
-import { Level } from '../publication';
+import { Level, SelectedDescriptor } from '../publication';
 import { MatListModule } from '@angular/material/list';
-import { Descriptor } from '../../../domain/levels';
 import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
-
+import { LevelService } from '../../levels/level.service';
 
 @Component({
   selector: 'app-levels',
@@ -20,40 +19,57 @@ import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
 })
 export class LevelsComponent implements ControlValueAccessor {
 
-  levels = input.required<Level[]>()
-  private selected: Level[] = []
-  private selectedCourses: Descriptor[] = []
+  protected levels: Level[] = []
   private disabled: boolean = false
   private onChange: (value: any[]) => void = () => { };
   private onTouched: () => void = () => { };
-
-  protected selectedLevel(level: Level, selected: boolean) {
-    if(selected){
-      this.selected.push(this.cloneLevel(level))
-    }
-    else{
-      this.selected=this.selected.filter(l=>l!==level)
-    }
+  constructor(private levelService: LevelService) {
+    this.levels = this.loadLevels()
   }
-  selectedCourse(level: Level, course: Descriptor, selected: boolean) {
-
+  private loadLevels(): Level[] {
+    return this.levelService.getAll().map(l => {
+      const level = {
+        id: l.id,
+        name: l.name,
+        selected: true,
+        courses: l.courses.map(({ id, name }) => {
+          return {
+            id, name, selected: true
+          }
+        })
+      }
+      return level
+    })
   }
-  getSelected(level: Level, course: Descriptor): boolean {
-    return !this.selected.every(l=>l.id===level.id)
+  protected selectedLevel(level:Level, selected: boolean){
+    level.selected = selected
+    level.courses.forEach(c=>c.selected = selected)
+    this.publish()
   }
-  private cloneLevel(level:Level){
-    return {
-      id:level.id,
-      name:level.name,
-      courses:level.courses.map(({id,name})=>({id,name}))
-    }
-
+  protected selectedCourse(course:SelectedDescriptor, selected: boolean) {
+    course.selected = selected
+    this.publish()
+  }
+  isSelected(selectedDescriptor: SelectedDescriptor) {
+    return selectedDescriptor.selected
   }
   writeValue(obj: Level[]): void {
-    this.selected = obj
-    this.onChange(this.selected)
-    this.onTouched()
+    const notSelected = obj
+      .flatMap(({ id, name, selected, courses }) => [{ id, name, selected }, ...courses])
+      .filter(v => !v.selected)
+      .map(v => v.id)
+    this.levels.forEach(l => {
+      if (notSelected.includes(l.id)) {
+        l.selected = false
+      }
+      l.courses.forEach(c => {
+        if (notSelected.includes(c.id)) {
+          c.selected = false
+        }
+      })
+    })
   }
+
   registerOnChange(fn: any): void {
     this.onChange = fn
   }
@@ -62,5 +78,9 @@ export class LevelsComponent implements ControlValueAccessor {
   }
   setDisabledState?(isDisabled: boolean): void {
     this.disabled = isDisabled
+  }
+  private publish() {
+    this.onChange(this.levels)
+    this.onTouched()
   }
 }
