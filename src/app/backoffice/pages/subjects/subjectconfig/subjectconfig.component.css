@@ -15,6 +15,11 @@
   width: max-content;
 }
 
+mat-radio-group{
+  margin-top: 0.5rem;
+  margin-bottom: 1rem;
+}
+
 @media screen and (max-width: 720px) {
   .row{
     grid-template-columns: 1fr;
