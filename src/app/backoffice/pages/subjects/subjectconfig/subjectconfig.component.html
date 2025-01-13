@@ -1,74 +1,62 @@
-<div class="container">
-  <form [formGroup]="form" (ngSubmit)="submit()">
+<form [formGroup]="form" (ngSubmit)="submit()">
 
-    <mat-form-field appearance="outline" class="row_field">
-      <mat-label>Título</mat-label>
-      <input #input type="text" matInput formControlName="name" required>
+  <mat-form-field appearance="outline" class="row_field">
+    <mat-label>Título</mat-label>
+    <input #input type="text" matInput formControlName="name" required>
+  </mat-form-field>
+
+  <div class="row">
+    <mat-form-field appearance="outline">
+      <mat-label>Tipo</mat-label>
+      <mat-select formControlName="type">
+        <mat-option value="all">Todas</mat-option>
+        <mat-option value="selectlist">Lista</mat-option>
+        <mat-option value="orderlist">Lista Ordenada</mat-option>
+      </mat-select>
     </mat-form-field>
-
-    <div class="row">
-      <mat-form-field appearance="outline">
-        <mat-label>Tipo</mat-label>
-        <mat-select formControlName="type">
-          <mat-option value="all">Todas</mat-option>
-          <mat-option value="selectlist">Lista</mat-option>
-          <mat-option value="orderlist">Lista Ordenada</mat-option>
-        </mat-select>
-      </mat-form-field>
-      @if (type() !== 'all') {
-        @if (type() === 'selectlist') {
-          <mat-radio-group
-            id="radio-group"
-            formControlName="multiple"
-            aria-label="Selecciona una option"
-            class="mb-3"
-          >
-            <label for="radio-group">Multiple:</label>
-            <mat-radio-button [value]="true">Si</mat-radio-button>
-            <mat-radio-button [value]="false">No</mat-radio-button>
-          </mat-radio-group>
-        }
-
-        @if (shouldShowLimit()) {
-          <mat-form-field appearance="outline">
-            <mat-label>Límite</mat-label>
-            <input
-              type="number"
-              min="0"
-              matInput
-              formControlName="limit"
-            >
-          </mat-form-field>
-        }
-      }
-    </div>
-    @if(shouldShowDefault()){
-      <mat-form-field appearance="outline" class="row_field" >
-        <mat-label>Asignatura por defecto</mat-label>
-        <mat-select formControlName="defaultSubject">
-          @for (item of defaults; track item) {
-            <mat-option [value]="item">
-              @if(item===null){
-                Ninguna
-              }
-              @else{
-                {{item.name}}
-              }
-            </mat-option>
-          }
-        </mat-select>
-      </mat-form-field>
+    @if (type() !== 'all') {
+    @if (type() === 'selectlist') {
+    <mat-radio-group id="radio-group" formControlName="multiple" aria-label="Selecciona una option" class="mb-3">
+      <label for="radio-group">Multiple:</label>
+      <mat-radio-button [value]="true">Si</mat-radio-button>
+      <mat-radio-button [value]="false">No</mat-radio-button>
+    </mat-radio-group>
     }
-    <div class="buttons">
-      <button type="submit" mat-flat-button class="submit">Aceptar</button>
-      <button type="button" mat-button (click)="onChangeView.emit()">Anterior</button>
-    </div>
-    <div>
 
-      <app-previesubject [subjectDomain]="ISubjectDomain()"/>
+    @if (shouldShowLimit()) {
+    <mat-form-field appearance="outline">
+      <mat-label>Límite</mat-label>
+      <input type="number" min="0" matInput formControlName="limit">
+    </mat-form-field>
+    }
+    }
+  </div>
+  @if(shouldShowDefault()){
+  <mat-form-field appearance="outline" class="row_field">
+    <mat-label>Asignatura por defecto</mat-label>
+    <mat-select formControlName="defaultSubject">
+      @for (item of defaults; track item) {
+      <mat-option [value]="item">
+        @if(item===null){
+        Ninguna
+        }
+        @else{
+        {{item.name}}
+        }
+      </mat-option>
+      }
+    </mat-select>
+  </mat-form-field>
+  }
+  <div class="buttons">
+    <button type="submit" mat-flat-button class="submit">Aceptar</button>
+    <button type="button" mat-button (click)="onChangeView.emit()">Anterior</button>
+  </div>
+  <div>
+
+    <app-previesubject [subjectDomain]="ISubjectDomain()" />
 
 
-    </div>
+  </div>
 
-  </form>
-</div>
+</form>

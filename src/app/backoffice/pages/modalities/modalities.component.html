@@ -1,35 +1,33 @@
-<app-header>Modalidades {{currentCourse?.name}}</app-header>
-<app-container>
-  <div class="container">
-    <mat-list role="list">
-      @for (mode of modalities; track mode.id) {
-      <mat-list-item role="listitem" style="height: max-content;">
-        <div class="edit">
-          <span mat-line>{{mode.name}}</span>
-          <button mat-icon-button (click)="update(mode)" color="primary" aria-label="Editar">
-            <mat-icon>edit</mat-icon>
-          </button>
-          <button mat-icon-button (click)="remove(mode)" color="warn" aria-label="Eliminar">
-            <mat-icon>delete</mat-icon>
-          </button>
-        </div>
-      </mat-list-item>
-      }
-      @empty {
-      <mat-list-item role="listitem">No hay modalidades registradas</mat-list-item>
-      }
-    </mat-list>
-    <form [formGroup]="form" (ngSubmit)="submit()">
-      <div class="form">
-        <mat-form-field appearance="outline">
-          <mat-label>Modalidad</mat-label>
-          <input #input matInput type="text" required formControlName="name" />
-        </mat-form-field>
-        <div>
-          <button type="reset" mat-button (click)="resetForm()">Limpiar</button>
-          <button type="submit" mat-flat-button>Añadir</button>
-        </div>
+<div class="container">
+  <h1>Modalidades {{currentCourse?.name}}</h1>
+  <mat-list role="list">
+    @for (mode of modalities; track mode.id) {
+    <mat-list-item role="listitem" style="height: max-content;">
+      <div class="edit">
+        <span mat-line>{{mode.name}}</span>
+        <button mat-icon-button (click)="update(mode)" color="primary" aria-label="Editar">
+          <mat-icon>edit</mat-icon>
+        </button>
+        <button mat-icon-button (click)="remove(mode)" color="warn" aria-label="Eliminar">
+          <mat-icon>delete</mat-icon>
+        </button>
       </div>
-    </form>
-  </div>
-</app-container>
+    </mat-list-item>
+    }
+    @empty {
+    <mat-list-item role="listitem">No hay modalidades registradas</mat-list-item>
+    }
+  </mat-list>
+  <form [formGroup]="form" (ngSubmit)="submit()">
+    <div class="form">
+      <mat-form-field appearance="outline">
+        <mat-label>Modalidad</mat-label>
+        <input #input matInput type="text" required formControlName="name" />
+      </mat-form-field>
+      <div>
+        <button type="reset" mat-button (click)="resetForm()">Limpiar</button>
+        <button type="submit" mat-flat-button>Añadir</button>
+      </div>
+    </div>
+  </form>
+</div>

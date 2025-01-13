@@ -48,6 +48,7 @@ mat-sidenav-content {
   height: 85%;
   overflow: auto;
   padding-right: 1rem;
+  padding-left: 0.5rem;
 }
 .subject-items{
     border: 2px dashed #ccc;

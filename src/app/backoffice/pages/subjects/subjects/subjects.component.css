@@ -1,13 +1,6 @@
-.container {
-  margin-top: 20px;
-  width: 50%;
-  margin: auto;
-}
-
 .form,mat-form-field {
   width: 100%;
 }
-
 .edit{
   display: grid;
   grid-template-columns: 1fr auto 48px 48px;

@@ -1,12 +1,11 @@
-<app-header>Asignaturas {{title}}</app-header>
-<app-container>
+<div class="container">
+  <h1>Asignaturas {{title}}</h1>
   @if(config){
-    <app-subjectconfig [ISubjectDomain]="subjectDomain" (onChangeView)="changeView()" />
+  <app-subjectconfig [ISubjectDomain]="subjectDomain" (onChangeView)="changeView()" />
+
   }
   @else {
-    <app-subjects
-     [ISubjectDomain]="subjectDomain"
-     (onChangeView)="changeView()"
-     />
+  <app-subjects [ISubjectDomain]="subjectDomain" (onChangeView)="changeView()" />
+
   }
-</app-container>
+</div>

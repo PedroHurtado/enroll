@@ -1,64 +1,52 @@
-<div class="container" [class.is-mobile]="isMobile()">
-  <mat-toolbar class="toolbar">
-    @if(isMobile()){
-    <button mat-icon-button (click)="snav.toggle()">
-      <mat-icon>menu</mat-icon>
-    </button>
-    }
-    <app-logo />
-    <h1>Asignaturas</h1>
-  </mat-toolbar>
+<mat-sidenav-container class="sidenav-container" [style.marginTop.px]="isMobile() ? 56 : 0">
+  <mat-sidenav #snav [mode]="isMobile() ? 'over' : 'side'" [opened]="!isMobile()" [fixedInViewport]="isMobile()"
+    fixedTopGap="56">
+    <mat-nav-list>
+      @for (item of courses(); track item.id) {
+      <a [activated]="item===currentCourse()" mat-list-item href="" (click)="clickItem(item, $event)">{{item.name}}</a>
+      }
+    </mat-nav-list>
+  </mat-sidenav>
+  <mat-sidenav-content>
+    <div class="row">
+      <h1>Asignaturas {{currentCourse()?.name}}</h1>
+      <div class="add">
+        <a href='' type="button" mat-button (click)="toAddRoute($event)">
+          <mat-icon>add</mat-icon>
+          Añadir
+        </a>
+      </div>
+    </div>
+    <div class="subjects">
 
-
-  <mat-sidenav-container class="sidenav-container" [style.marginTop.px]="isMobile() ? 56 : 0">
-    <mat-sidenav #snav [mode]="isMobile() ? 'over' : 'side'" [opened]="!isMobile()" [fixedInViewport]="isMobile()"
-      fixedTopGap="56">
-      <mat-nav-list >
-        @for (item of courses(); track item.id) {
-        <a [activated]="item===currentCourse()" mat-list-item href="" (click)="clickItem(item, $event)">{{item.name}}</a>
+      @for (item of currentCourse()?.subjects; track item.id) {
+      <div class="subject-items">
+        @if(item.type === 'all'){
+        <app-alllist [subjectDomain]="item" />
         }
-      </mat-nav-list>
-    </mat-sidenav>
-    <mat-sidenav-content>
-      <div class="row">
-        <h2>{{currentCourse()?.name}}</h2>
-        <div class="add">
-          <a href='' type="button" mat-button (click)="toAddRoute($event)">
-            <mat-icon>add</mat-icon>
-            Añadir
+        @if(item.type === 'selectlist'){
+        <app-selectedlist [subjectDomain]="item" [disabled]="true" />
+        }
+        @if(item.type === 'orderlist'){
+        <app-sortedlist [subjectDomain]="item" [disabled]="true" />
+        }
+
+        <div class="actions">
+          <a mat-button href="" (click)="toEditRoute(item, $event)">
+            <mat-icon>edit</mat-icon>
+            Editar
           </a>
+          <button mat-button (click)="remove(item)">
+            <mat-icon>delete</mat-icon>
+            Eliminar
+          </button>
         </div>
       </div>
-      <div class="subjects">
-        @for (item of currentCourse()?.subjects; track item.id) {
-        <div class="subject-items">
-          @if(item.type === 'all'){
-            <app-alllist  [subjectDomain]="item"/>
-          }
-          @if(item.type === 'selectlist'){
-            <app-selectedlist  [subjectDomain]="item" [disabled]="true"/>
-          }
-          @if(item.type === 'orderlist'){
-            <app-sortedlist  [subjectDomain]="item" [disabled]="true" />
-          }
+      }
+      @empty {
+      <p>No hay asignaturas registradas</p>
+      }
+    </div>
 
-          <div class="actions">
-            <a  mat-button href="" (click)="toEditRoute(item, $event)">
-              <mat-icon>edit</mat-icon>
-              Editar
-            </a>
-            <button mat-button (click)="remove(item)">
-              <mat-icon>delete</mat-icon>
-              Eliminar
-            </button>
-          </div>
-        </div>
-        }
-        @empty {
-          <p>No hay asignaturas registradas</p>
-        }
-      </div>
-
-    </mat-sidenav-content>
-  </mat-sidenav-container>
-</div>
+  </mat-sidenav-content>
+</mat-sidenav-container>

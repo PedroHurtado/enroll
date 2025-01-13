@@ -1,6 +1,5 @@
-<app-header>Cursos de {{currentLevel?.name}}</app-header>
-<app-container>
   <div class="container">
+    <h1>Cursos de {{currentLevel?.name}}</h1>
     <mat-list role="list">
       @for (course of courses; track course.id) {
       <mat-list-item role="listitem" style="height: max-content;">
@@ -36,4 +35,3 @@
       </div>
     </form>
   </div>
-</app-container>

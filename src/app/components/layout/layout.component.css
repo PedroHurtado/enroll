@@ -1,0 +1,16 @@
+.toolbar {
+  position: fixed;
+  width: 100%;
+  height: 48px; /* Altura explícita del toolbar */
+}
+
+.page {
+  height: 100vh;
+  overflow: hidden;
+}
+
+.content {
+  margin-top: 48px; /* Mismo valor que la altura del toolbar */
+  height: calc(100vh - 48px); /* Resta la altura del toolbar */
+  overflow: auto;
+}
