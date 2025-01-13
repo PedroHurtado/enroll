@@ -14,8 +14,7 @@ import { LevelService } from '../../levels/level.service';
     SubjectconfigComponent,
     SubjectsComponent
   ],
-  templateUrl: './addsubjects.component.html',
-  styleUrl: './addsubjects.component.css'
+  templateUrl: './addsubjects.component.html'
 })
 export class AddsubjectsComponent {
   protected config: boolean = false;
