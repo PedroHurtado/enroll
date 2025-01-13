@@ -1,0 +1,39 @@
+@if(isMobile()){
+<div class="menu">
+  <button mat-icon-button [matMenuTriggerFor]="menu">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24">
+      <!-- Fondo circular -->
+      <circle cx="12" cy="12" r="12" fill="#f0f0f0" />
+
+      <!-- Fila superior -->
+      <circle cx="6" cy="6" r="1.5" fill="#666666" />
+      <circle cx="12" cy="6" r="1.5" fill="#666666" />
+      <circle cx="18" cy="6" r="1.5" fill="#666666" />
+
+      <!-- Fila del medio -->
+      <circle cx="6" cy="12" r="1.5" fill="#666666" />
+      <circle cx="12" cy="12" r="1.5" fill="#666666" />
+      <circle cx="18" cy="12" r="1.5" fill="#666666" />
+
+      <!-- Fila inferior -->
+      <circle cx="6" cy="18" r="1.5" fill="#666666" />
+      <circle cx="12" cy="18" r="1.5" fill="#666666" />
+      <circle cx="18" cy="18" r="1.5" fill="#666666" />
+    </svg>
+  </button>
+  <mat-menu #menu xPosition="before">
+    <a mat-menu-item [routerLink]="['/levels']">Nivels</a>
+    <a mat-menu-item [routerLink]="['/publications']">Publicaciones</a>
+    <button mat-menu-item>Matriculas</button>
+    <button mat-menu-item>Grupos</button>
+  </mat-menu>
+</div>
+}
+@else{
+<div class="menu">
+  <a mat-button [routerLink]="['/levels']">Nivels</a>
+  <a mat-button [routerLink]="['/publications']">Publicaciones</a>
+  <button mat-button>Matriculas</button>
+  <button mat-button>Grupos</button>
+</div>
+}

@@ -3,10 +3,11 @@ import { Component, inject, signal } from '@angular/core';
 import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
 import { RouterLink } from '@angular/router';
+import { MenuComponent } from '../menu/menu.component';
 
 @Component({
   selector: 'app-toolbar',
-  imports: [MatButtonModule, MatIconModule, RouterLink],
+  imports: [MatButtonModule, MatIconModule, MenuComponent],
   templateUrl: './toolbar.component.html',
   styleUrl: './toolbar.component.css'
 })

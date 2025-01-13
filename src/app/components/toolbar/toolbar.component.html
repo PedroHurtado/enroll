@@ -32,11 +32,6 @@
       </text>
     </svg>
   </div>
-  <div class="menu" [class.hidden]="isMobile()">
-    <a mat-button [routerLink]="['/levels']">Nivels</a>
-    <a mat-button [routerLink]="['/publications']">Publicaciones</a>
-    <button mat-button>Matriculas</button>
-    <button mat-button>Grupos</button>
-  </div>
+  <app-menu/>
 </div>
 
