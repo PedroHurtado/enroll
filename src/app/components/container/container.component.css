@@ -1,8 +1,11 @@
 :host {
-  height: calc(100vh - 6.25rem);
-  margin: 0 1rem;
-  overflow-y: auto;
-  padding-top: 6.25rem;
-  padding-right: 0.5rem;
+  width: 50%;
+  margin: auto;
   display: block;
+}
+
+@media screen and (max-width: 720px) {
+  :host {
+    width: 95%
+  }
 }

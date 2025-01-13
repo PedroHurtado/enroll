@@ -3,7 +3,6 @@ import { MatInputModule } from '@angular/material/input';
 import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
 import { MatListModule } from '@angular/material/list';
-import { HeaderComponent } from '../../../components/header/header.component';
 import { ContainerComponent } from '../../../components/container/container.component';
 import { LevelDomain, Utils } from '../../domain/levels';
 import { LevelService } from './level.service';
@@ -19,7 +18,6 @@ import { RouterLink } from '@angular/router';
     MatButtonModule,
     MatIconModule,
     MatListModule,
-    HeaderComponent,
     ContainerComponent,
     ReactiveFormsModule,
     RouterLink

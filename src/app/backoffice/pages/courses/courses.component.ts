@@ -6,7 +6,6 @@ import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
 import { MatListModule } from '@angular/material/list';
 import { MatCheckboxModule } from '@angular/material/checkbox';
-import { HeaderComponent } from '../../../components/header/header.component';
 import { ContainerComponent } from '../../../components/container/container.component';
 import { Status } from '../levels/status';
 import { LevelService } from '../levels/level.service';
@@ -23,7 +22,6 @@ import { FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angula
     MatIconModule,
     MatListModule,
     MatCheckboxModule,
-    HeaderComponent,
     ContainerComponent,
     RouterLink,
     ReactiveFormsModule

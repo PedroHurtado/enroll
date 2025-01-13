@@ -11,6 +11,7 @@ import { MatRadioModule } from '@angular/material/radio';
 import { MatSelectModule } from '@angular/material/select';
 import { PreviesubjectComponent } from '../../../../components/previesubject/previesubject.component';
 import {defaultSubject, DefaultSubject, Descriptor, DescriptorDomain, ISubjectDomain} from '../../../domain/levels'
+import { ContainerComponent } from '../../../../components/container/container.component';
 @Component({
   selector: 'app-subjectconfig',
   imports: [
@@ -21,6 +22,7 @@ import {defaultSubject, DefaultSubject, Descriptor, DescriptorDomain, ISubjectDo
     ReactiveFormsModule,
     MatButtonModule,
     MatRadioModule,
+    ContainerComponent,
     PreviesubjectComponent
   ],
   templateUrl: './subjectconfig.component.html',

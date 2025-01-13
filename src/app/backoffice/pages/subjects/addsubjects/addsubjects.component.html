@@ -1,4 +1,4 @@
-<div class="container">
+<app-container>
   <h1>Asignaturas {{title}}</h1>
   @if(config){
   <app-subjectconfig [ISubjectDomain]="subjectDomain" (onChangeView)="changeView()" />
@@ -8,4 +8,4 @@
   <app-subjects [ISubjectDomain]="subjectDomain" (onChangeView)="changeView()" />
 
   }
-</div>
+</app-container>

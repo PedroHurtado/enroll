@@ -26,7 +26,6 @@ import { SortedlistComponent } from '../../../../components/sortedlist/sortedlis
     AlllistComponent,
     SelectedlistComponent,
     SortedlistComponent,
-    LogoComponent
   ],
   templateUrl: './listsubjects.component.html',
   styleUrl: './listsubjects.component.css'

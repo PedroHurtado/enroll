@@ -11,6 +11,7 @@ import { MatDatepickerModule } from '@angular/material/datepicker';
 import { MAT_DATE_LOCALE, provideNativeDateAdapter } from '@angular/material/core';
 import { Location } from '@angular/common';
 import { LevelsComponent } from '../levels/levels.component';
+import { ContainerComponent } from '../../../../components/container/container.component';
 
 @Component({
   selector: 'app-edit',
@@ -20,7 +21,8 @@ import { LevelsComponent } from '../levels/levels.component';
     MatInputModule,
     MatFormFieldModule,
     MatDatepickerModule,
-    LevelsComponent
+    LevelsComponent,
+    ContainerComponent
   ],
   providers: [
     provideNativeDateAdapter(),
