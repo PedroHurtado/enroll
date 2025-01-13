@@ -38,7 +38,4 @@ export class ToolbarComponent {
   activate(ev:any){
     this._sidenav = ev as Sidenav
   }
-  protected isSidenavVisible(){
-    return this._sidenav?.canOpen
-  }
 }

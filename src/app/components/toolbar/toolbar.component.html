@@ -1,4 +1,6 @@
-<div class="container" [class.container-desktop] = "!isMobile() && !isSidenavVisible()">
+<div class="container" [class.container-desktop]="!isMobile()"
+  [class.mobile] = 'isMobile() && !_sidenav?.canOpen'
+>
   <button mat-icon-button aria-label="menu icon" class="hidden" (click)="handlerClick()" [class.show] ="isMobile() && _sidenav?.canOpen">
     <mat-icon>menu</mat-icon>
   </button>

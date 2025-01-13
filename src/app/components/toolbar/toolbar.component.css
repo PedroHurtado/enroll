@@ -28,7 +28,8 @@
 .show{
   display: inline-block;
 }
-.container-desktop{
+.container-desktop, .mobile{
   grid-template-columns: auto 1fr;
 }
+
 
