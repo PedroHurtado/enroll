@@ -19,6 +19,10 @@
   .row {
     grid-template-columns:1fr;
   }
+  .radio-options{
+    display: grid;
+    grid-template-columns: 1fr;
+  }
 }
 
 
