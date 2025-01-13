@@ -1,4 +1,4 @@
-import { Component, input } from '@angular/core';
+import { ChangeDetectionStrategy, Component, ElementRef, input, viewChild } from '@angular/core';
 import { MatCardModule } from '@angular/material/card';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
@@ -18,9 +18,11 @@ import { LogominiComponent } from '../../../components/logomini/logomini.compone
 
   ],
   templateUrl: './confirm.component.html',
-  styleUrl: './confirm.component.css'
+  styleUrl: './confirm.component.css',
+  changeDetection:ChangeDetectionStrategy.OnPush
 })
 export class ConfirmComponent {
+  input = viewChild<ElementRef>('input')
   text = input.required<string>();
   loginForm = new FormGroup({
     oneTime: new FormControl(''),
@@ -28,5 +30,8 @@ export class ConfirmComponent {
   constructor(private router:Router) { }
   handlerSubmit() {
     this.router.navigate(['/enrolls']);
+  }
+  ngAfterViewInit(){
+    this.input()?.nativeElement.focus();
   }
 }

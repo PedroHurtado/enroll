@@ -1,9 +1,16 @@
 :host {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  height: 100vh;
+  display: flex; /* Activar Flexbox */
+  justify-content: center; /* Centrar en el eje X */
+  align-items: center; /* Centrar en el eje Y */
+  width: 70%; /* Ajustar ancho */
+  margin: auto; /* Centrar horizontalmente */
+  height: max-content; /* Ajustar al contenido */
+  position: absolute; /* Posicionamiento relativo al viewport */
+  top: 50%; /* Centrado vertical */
+  left: 50%; /* Centrado horizontal */
+  transform: translate(-50%, -50%); /* Ajustar el contenido al centro */
 }
+
 
 mat-card-title{
   margin-bottom: 25px;

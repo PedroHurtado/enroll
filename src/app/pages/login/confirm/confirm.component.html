@@ -11,7 +11,7 @@
     <form [formGroup]="loginForm" (ngSubmit)="handlerSubmit()">
       <mat-form-field appearance="outline">
         <mat-label>Introduzca On Time Password</mat-label>
-        <input matInput type="text" required autofocus formControlName="oneTime">
+        <input #input matInput type="text" required formControlName="oneTime">
       </mat-form-field>
       <div class="button-container">
         <button mat-raised-button color="primary" type="submit">Login</button>
