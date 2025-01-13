@@ -21,16 +21,12 @@ export class ToolbarComponent {
     this.isMobile.set(this._mobileQuery.matches);
     this._mobileQueryListener = () => {
       this.isMobile.set(this._mobileQuery.matches);
-
     };
     this._mobileQuery.addEventListener('change', this._mobileQueryListener);
+
   }
   ngOnDestroy(): void {
     this._mobileQuery.removeEventListener('change', this._mobileQueryListener);
-  }
-  showSidenavButton(){
-    const {showSidenavButton} = this.route.snapshot.data
-    return showSidenavButton
   }
   handlerClick(){
     if(this.isMobile()){

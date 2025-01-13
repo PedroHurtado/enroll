@@ -9,6 +9,7 @@ export const routes: Routes = [
   {
     path: 'enrolls',
     title:'Matrículas',
+
     loadComponent: () => import('./pages/enroll/enroll/enroll.component').then(m => m.EnrollComponent)
   },
   {
