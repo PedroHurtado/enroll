@@ -13,4 +13,5 @@
   margin-top: 48px; /* Mismo valor que la altura del toolbar */
   height: calc(100vh - 48px); /* Resta la altura del toolbar */
   overflow: auto;
+  padding: 0 1rem;
 }

@@ -11,8 +11,6 @@ import { Router } from '@angular/router';
 @Component({
   selector: 'app-confirm',
   imports: [
-    HeaderComponent,
-    ContainerComponent,
     MatButtonModule,
     MatRadioModule,
     MatCheckboxModule,
@@ -27,9 +25,9 @@ export class ConfirmComponent {
       information: new FormControl(true),
       publish: new FormControl(true),
       exit: new FormControl(true),
-      legal: new FormControl(false),
-      truthful: new FormControl(false),
-      oficial: new FormControl(false),
+      legal: new FormControl(true),
+      truthful: new FormControl(true),
+      oficial: new FormControl(true),
     }
   );
   constructor(private router:Router) { }

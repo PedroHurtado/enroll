@@ -1,12 +1,10 @@
-<div class="container">
-  <h1>Información de la matrícula</h1>
-  @for (item of info; track item) {
-  <h3>{{item.description}}</h3>
-  @for (text of item.texts; track text) {
-  <p>-{{text}}</p>
-  }
-  }
-  <div class="button_row">
-    <a mat-flat-button [routerLink]="['/enrolls/situation']">Siguiente</a>
-  </div>
+<h1>Información de la matrícula</h1>
+@for (item of info; track item) {
+<h3>{{item.description}}</h3>
+@for (text of item.texts; track text) {
+<p>-{{text}}</p>
+}
+}
+<div class="button_row">
+  <a mat-flat-button [routerLink]="['/enrolls/situation']">Siguiente</a>
 </div>
