@@ -13,11 +13,12 @@ table {
   padding: 1rem;
 }
 .add{
-  display: flex;
-  justify-content: end;
-  margin-bottom: 1rem;
-  padding-right: 1rem;
-  margin-top: 1rem;
+  display: grid;
+  grid-template-columns: 1fr auto;
+  justify-content: center;
+  align-items: center;
+  margin: 1rem 0;
+  padding: 0 1rem;
 }
 .align-right {
   text-align: right;
