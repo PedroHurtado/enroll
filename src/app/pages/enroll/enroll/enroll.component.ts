@@ -9,7 +9,6 @@ import { MediaMatcher } from '@angular/cdk/layout';
 import { EnrollService } from '../enroll.service';
 import { Enroll } from '../enroll';
 import { RouterLink } from '@angular/router';
-import { LogoComponent } from '../../../components/logo/logo.component';
 @Component({
   selector: 'app-enrolls',
   standalone: true,
@@ -21,7 +20,7 @@ import { LogoComponent } from '../../../components/logo/logo.component';
     MatButtonModule,
     MatCardModule,
     RouterLink,
-    LogoComponent
+
   ],
   templateUrl: './enroll.component.html',
   styleUrl: './enroll.component.css'

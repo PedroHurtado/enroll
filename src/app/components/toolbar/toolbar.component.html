@@ -1,5 +1,5 @@
-<div class="container">
-  <button mat-icon-button aria-label="menu icon" class=hidden>
+<div class="container" [class.container-desktop] = "!isMobile()">
+  <button mat-icon-button aria-label="menu icon" class="hidden" [class.show] ="isMobile()" >
     <mat-icon>menu</mat-icon>
   </button>
   <div class="logo">
@@ -32,7 +32,7 @@
       </text>
     </svg>
   </div>
-  <div class="menu hidden">
+  <div class="menu" [class.hidden]="isMobile()">
     <a mat-button [routerLink]="['/levels']">Nivels</a>
     <a mat-button [routerLink]="['/publications']">Publicaciones</a>
     <button mat-button>Matriculas</button>

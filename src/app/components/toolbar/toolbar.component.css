@@ -21,8 +21,14 @@
   gap:1rem;
   justify-content: end;
 }
-@media screen and (max-width: 720px) {
-  .hidden{
-    display: none;
-  }
+
+.hidden{
+  display: none;
 }
+.show{
+  display: inline-block;
+}
+.container-desktop{
+  grid-template-columns: auto 1fr;
+}
+
