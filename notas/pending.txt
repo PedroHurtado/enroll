@@ -1,2 +1,1 @@
-ver como se monta el menu en mobile
-y como enlazamos el sinenav con el button sinenav
+

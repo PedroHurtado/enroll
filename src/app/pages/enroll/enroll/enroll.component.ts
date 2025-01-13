@@ -51,6 +51,9 @@ export class EnrollComponent implements OnDestroy,Sidenav {
     };
     this._mobileQuery.addEventListener('change', this._mobileQueryListener);
   }
+  get canOpen(): boolean{
+    return true
+  }
   open(): void {
     this._sidenav()?.toggle()
   }

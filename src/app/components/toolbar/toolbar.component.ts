@@ -16,7 +16,7 @@ export class ToolbarComponent {
   protected readonly isMobile = signal(false);
   private readonly _mobileQuery: MediaQueryList;
   private readonly _mobileQueryListener: () => void;
-  private _sidenav:Sidenav|undefined
+  protected _sidenav:Sidenav|undefined
   constructor(private route:ActivatedRoute) {
     const media = inject(MediaMatcher);
     this._mobileQuery = media.matchMedia('(max-width: 720px)');
@@ -32,11 +32,13 @@ export class ToolbarComponent {
   }
   handlerClick(){
     if(this.isMobile()){
-      this._sidenav?.open()
+      this._sidenav?.canOpen &&  this._sidenav?.open()
     }
   }
   activate(ev:any){
     this._sidenav = ev as Sidenav
-
+  }
+  protected isSidenavVisible(){
+    return this._sidenav?.canOpen
   }
 }

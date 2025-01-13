@@ -56,6 +56,9 @@ export class ListsubjectsComponent implements OnDestroy, Sidenav {
 
     this.loadData();
   }
+  get canOpen(): boolean{
+    return true
+  }
   open(): void {
     this.sidenav()?.toggle()
   }
