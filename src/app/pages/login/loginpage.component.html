@@ -1,9 +1,7 @@
 <h1 class="visually-hidden">Login</h1>
-<div class="login-container">
-  @if (!session) {
-    <app-login  (onLogin)="handlerLogin($event)" />
-  }
-  @else {
-    <app-confirm [text]="session" @slideInOut />
-  }
-</div>
+@if (!session) {
+<app-login (onLogin)="handlerLogin($event)" />
+}
+@else {
+<app-confirm [text]="session" @slideInOut />
+}
