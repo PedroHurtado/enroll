@@ -1,4 +1,4 @@
-import { Component, viewChild } from '@angular/core';
+import { Component} from '@angular/core';
 import { ToolbarComponent } from '../toolbar/toolbar.component';
 import { RouterOutlet } from '@angular/router';
 
@@ -13,7 +13,5 @@ export class LayoutComponent {
   constructor(){
 
   }
-  ngAfterViewInit(){
 
-  }
 }

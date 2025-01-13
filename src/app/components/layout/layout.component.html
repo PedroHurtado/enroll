@@ -1,9 +1,9 @@
 <div class="page">
   <div class="toolbar">
-    <app-toolbar/>
+    <app-toolbar #toolbar/>
   </div>
   <div class="content">
-    <router-outlet/>
+    <router-outlet (activate)="toolbar.activate($event)"/>
   </div>
 </div>
 

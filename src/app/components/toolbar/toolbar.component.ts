@@ -33,4 +33,7 @@ export class ToolbarComponent {
       console.log("snav button")
     }
   }
+  activate(ev:any){
+    console.log(ev)
+  }
 }
