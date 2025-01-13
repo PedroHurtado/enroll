@@ -9,6 +9,7 @@ import { MediaMatcher } from '@angular/cdk/layout';
 import { EnrollService } from '../enroll.service';
 import { Enroll } from '../enroll';
 import { RouterLink } from '@angular/router';
+import { Sidenav } from '../../../components/sidenav';
 @Component({
   selector: 'app-enrolls',
   standalone: true,
@@ -25,11 +26,11 @@ import { RouterLink } from '@angular/router';
   templateUrl: './enroll.component.html',
   styleUrl: './enroll.component.css'
 })
-export class EnrollComponent implements OnDestroy {
+export class EnrollComponent implements OnDestroy,Sidenav {
   protected readonly isMobile = signal(false);
   protected readonly categories = signal<string[]>([]);
   protected readonly enrolls = signal<Enroll[]>([]);
-  private sidenav = viewChild<MatSidenav>('snav');
+  private _sidenav = viewChild<MatSidenav>('snav');
 
   private readonly _mobileQuery: MediaQueryList;
   private readonly _mobileQueryListener: () => void;
@@ -50,6 +51,10 @@ export class EnrollComponent implements OnDestroy {
     };
     this._mobileQuery.addEventListener('change', this._mobileQueryListener);
   }
+  open(): void {
+    this._sidenav()?.toggle()
+  }
+
   ngOnDestroy(): void {
     this._mobileQuery.removeEventListener('change', this._mobileQueryListener);
   }
@@ -66,7 +71,7 @@ export class EnrollComponent implements OnDestroy {
       }
     }
     if(this.isMobile()){
-      this.sidenav()?.close()
+      this._sidenav()?.close()
     }
   }
 }

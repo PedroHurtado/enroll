@@ -9,6 +9,7 @@ import { MediaMatcher } from '@angular/cdk/layout';
 import { CoursesService } from '../courses.service';
 import { Course } from '../course';
 import { RouterLink } from '@angular/router';
+import { Sidenav } from '../../../components/sidenav';
 @Component({
   selector: 'app-courses',
   standalone: true,
@@ -24,7 +25,7 @@ import { RouterLink } from '@angular/router';
   templateUrl: './courses.component.html',
   styleUrl: './courses.component.css'
 })
-export class CoursesComponent implements OnDestroy {
+export class CoursesComponent implements OnDestroy, Sidenav {
   protected readonly isMobile = signal(false);
   protected readonly categories = signal<string[]>([]);
   protected readonly courses = signal<Course[]>([]);
@@ -48,6 +49,9 @@ export class CoursesComponent implements OnDestroy {
 
     };
     this._mobileQuery.addEventListener('change', this._mobileQueryListener);
+  }
+  open(): void {
+    this.sidenav()?.toggle()
   }
   ngOnDestroy(): void {
     this._mobileQuery.removeEventListener('change', this._mobileQueryListener);

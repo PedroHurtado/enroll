@@ -13,6 +13,7 @@ import { CourseDomain, DescriptorParams, LevelDomain, ModeDomain, SubjectDomain,
 import { AlllistComponent } from '../../../../components/alllist/alllist.component';
 import { SelectedlistComponent } from '../../../../components/selectedlist/selectedlist.component';
 import { SortedlistComponent } from '../../../../components/sortedlist/sortedlist.component';
+import { Sidenav } from '../../../../components/sidenav';
 
 @Component({
   selector: 'app-listsubjects',
@@ -30,7 +31,7 @@ import { SortedlistComponent } from '../../../../components/sortedlist/sortedlis
   templateUrl: './listsubjects.component.html',
   styleUrl: './listsubjects.component.css'
 })
-export class ListsubjectsComponent implements OnDestroy {
+export class ListsubjectsComponent implements OnDestroy, Sidenav {
   readonly courses = signal<DescriptorParams[]>([]);
   readonly currentCourse = signal<DescriptorParams | undefined>(undefined);
   readonly isMobile = signal(false);
@@ -54,6 +55,9 @@ export class ListsubjectsComponent implements OnDestroy {
     this.mobileQuery.addEventListener('change', this.mobileQueryListener);
 
     this.loadData();
+  }
+  open(): void {
+    this.sidenav()?.toggle()
   }
 
   toAddRoute(ev:Event): void {
