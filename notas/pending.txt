@@ -1,9 +1,2 @@
-1º Gestión de matrículas
- Fecha desde:
- Indicar la fecha de inicio para la gestión de las matrículas.
- Fecha hasta:
- Indicar la fecha de finalización para la gestión de las matrículas.
-Se podrán agregar todos los niveles que se deseen, permitiendo al usuario seleccionarlos según corresponda.
-
-2º Matriculas
-3º Grupos
+ver como se monta el menu en mobile
+y como enlazamos el sinenav con el button sinenav
