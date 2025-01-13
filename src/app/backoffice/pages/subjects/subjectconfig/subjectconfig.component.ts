@@ -10,8 +10,8 @@ import { MatListModule } from '@angular/material/list';
 import { MatRadioModule } from '@angular/material/radio';
 import { MatSelectModule } from '@angular/material/select';
 import { PreviesubjectComponent } from '../../../../components/previesubject/previesubject.component';
-import {defaultSubject, DefaultSubject, Descriptor, DescriptorDomain, ISubjectDomain} from '../../../domain/levels'
-import { ContainerComponent } from '../../../../components/container/container.component';
+import { DefaultSubject, DescriptorDomain, ISubjectDomain} from '../../../domain/levels'
+
 @Component({
   selector: 'app-subjectconfig',
   imports: [
@@ -22,7 +22,6 @@ import { ContainerComponent } from '../../../../components/container/container.c
     ReactiveFormsModule,
     MatButtonModule,
     MatRadioModule,
-    ContainerComponent,
     PreviesubjectComponent
   ],
   templateUrl: './subjectconfig.component.html',
