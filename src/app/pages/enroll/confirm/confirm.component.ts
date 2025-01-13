@@ -1,6 +1,4 @@
-import { Component, provideExperimentalCheckNoChangesForDebug } from '@angular/core';
-import { HeaderComponent } from '../../../components/header/header.component';
-import { ContainerComponent } from '../../../components/container/container.component';
+import { Component } from '@angular/core';
 import { MatButtonModule } from '@angular/material/button';
 import { MatRadioButton, MatRadioModule } from '@angular/material/radio';
 import { MatCheckboxModule } from '@angular/material/checkbox';
