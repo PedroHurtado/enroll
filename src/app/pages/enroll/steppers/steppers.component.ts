@@ -8,11 +8,8 @@ import { StepfatherComponent } from './components/stepfather/stepfather.componen
 import { StepsituationComponent } from './components/stepsituation/stepsituation.component';
 import { StepothersComponent } from './components/stepothers/stepothers.component';
 import { HealstepComponent } from './components/healstep/healstep.component';
-import { LoginComponent } from '../../login/login/login.component';
-import { ContainerComponent } from '../../../components/container/container.component';
-import { HeaderComponent } from '../../../components/header/header.component';
 import { SubjectsComponent } from './components/subjects/subjects.component';
-import { RouterLink } from '@angular/router';
+
 
 @Component({
   selector: 'app-steppers',
@@ -27,8 +24,7 @@ import { RouterLink } from '@angular/router';
     StepsituationComponent,
     StepothersComponent,
     HealstepComponent,
-    HeaderComponent,
-    ContainerComponent,
+
     SubjectsComponent,
   ],
   templateUrl: './steppers.component.html',

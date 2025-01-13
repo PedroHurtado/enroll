@@ -1,4 +1,4 @@
-:host{
+.container{
   display: grid;
   grid-template-columns: auto auto 1fr;
   align-items: center;
@@ -20,4 +20,9 @@
   display: flex;
   gap:1rem;
   justify-content: end;
+}
+@media screen and (max-width: 720px) {
+  .hidden{
+    display: none;
+  }
 }

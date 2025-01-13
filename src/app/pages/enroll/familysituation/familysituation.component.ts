@@ -7,8 +7,6 @@ import { MatInputModule } from '@angular/material/input';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatButtonModule } from '@angular/material/button';
 import { Router, RouterLink } from '@angular/router';
-import { HeaderComponent } from '../../../components/header/header.component';
-import { ContainerComponent } from '../../../components/container/container.component';
 
 @Component({
   selector: 'app-familysituation',
@@ -20,8 +18,7 @@ import { ContainerComponent } from '../../../components/container/container.comp
     TextFieldModule,
     RouterLink,
     MatButtonModule,
-    HeaderComponent,
-    ContainerComponent,
+
     ReactiveFormsModule
   ],
   templateUrl: './familysituation.component.html',

@@ -1,4 +1,6 @@
-
+.container{
+  padding: 0 1rem;
+}
 .step-content {
   min-height: 200px;
   padding: 20px;

@@ -1,135 +1,135 @@
-<app-header>Mátricula</app-header>
-<app-container>
-  <form [formGroup]="form" (ngSubmit)="submit()">
-    <h2>Declaración de Identidad</h2>
-    <mat-radio-group formControlName="identity">
-      <div class="radio-options">
-        <mat-radio-button value="student">Soy el alumno/a y declaro ser mayor de edad</mat-radio-button>
-        <mat-radio-button value="mother">Soy la madre del alumno</mat-radio-button>
-        <mat-radio-button value="father">Soy el padre del alumno</mat-radio-button>
-        <mat-radio-button value="guardian">Soy el tutor/a legal del alumno</mat-radio-button>
-      </div>
-    </mat-radio-group>
-    @if (identity()==='mother' || identity() =='father' ) {
-    <div>
-      <h2>Situación Familiar</h2>
-      <div class="row">
-        <mat-form-field appearance="outline">
-          <mat-label>Seleccione su situación</mat-label>
-          <mat-select formControlName="situation">
-            <mat-option value="single">Soltero/a</mat-option>
-            <mat-option value="married">Casado/a</mat-option>
-            <mat-option value="divorced">Divorciado/a</mat-option>
-            <mat-option value="widowed">Viudo/a</mat-option>
-          </mat-select>
-        </mat-form-field>
-        @if(situation() ==='divorced'){
-        <mat-form-field appearance="outline">
-          <mat-label>Custodia</mat-label>
-          <mat-select  formControlName="custody">
-            <mat-option value="mother">Madre</mat-option>
-            <mat-option value="father">Padre</mat-option>
-            <mat-option value="both">Ambos</mat-option>
-          </mat-select>
-        </mat-form-field>
-
-        }
-      </div>
+<div class="container">
+<h1>Situación familiar</h1>
+<form [formGroup]="form" (ngSubmit)="submit()">
+  <h2>Declaración de Identidad</h2>
+  <mat-radio-group formControlName="identity">
+    <div class="radio-options">
+      <mat-radio-button value="student">Soy el alumno/a y declaro ser mayor de edad</mat-radio-button>
+      <mat-radio-button value="mother">Soy la madre del alumno</mat-radio-button>
+      <mat-radio-button value="father">Soy el padre del alumno</mat-radio-button>
+      <mat-radio-button value="guardian">Soy el tutor/a legal del alumno</mat-radio-button>
     </div>
-    }
+  </mat-radio-group>
+  @if (identity()==='mother' || identity() =='father' ) {
+  <div>
+    <h2>Situación Familiar</h2>
+    <div class="row">
+      <mat-form-field appearance="outline">
+        <mat-label>Seleccione su situación</mat-label>
+        <mat-select formControlName="situation">
+          <mat-option value="single">Soltero/a</mat-option>
+          <mat-option value="married">Casado/a</mat-option>
+          <mat-option value="divorced">Divorciado/a</mat-option>
+          <mat-option value="widowed">Viudo/a</mat-option>
+        </mat-select>
+      </mat-form-field>
+      @if(situation() ==='divorced'){
+      <mat-form-field appearance="outline">
+        <mat-label>Custodia</mat-label>
+        <mat-select formControlName="custody">
+          <mat-option value="mother">Madre</mat-option>
+          <mat-option value="father">Padre</mat-option>
+          <mat-option value="both">Ambos</mat-option>
+        </mat-select>
+      </mat-form-field>
 
+      }
+    </div>
+  </div>
+  }
+
+  <div>
+    <h2>Datos</h2>
+    <p>alumno/a</p>
+    <div class="row" formGroupName="student">
+      <mat-form-field class="data" appearance="outline">
+        <mat-label>Correo electronico alunmo/a</mat-label>
+        <input matInput required formControlName="email">
+      </mat-form-field>
+      <mat-form-field class="data" appearance="outline">
+        <mat-label>Teléfono alunmo/a</mat-label>
+        <input matInput required formControlName="phone">
+      </mat-form-field>
+    </div>
     <div>
-      <h2>Datos</h2>
-      <p>alumno/a</p>
-      <div class="row" formGroupName="student">
+      @if (
+      (identity()==='mother' || identity() =='father') &&
+      (situation()==='married' || situation()==='divorced')
+      ) {
+      <p>madre</p>
+      <div class="row" formGroupName="mother">
         <mat-form-field class="data" appearance="outline">
-          <mat-label>Correo electronico alunmo/a</mat-label>
+          <mat-label>Correo electronico madre</mat-label>
           <input matInput required formControlName="email">
         </mat-form-field>
         <mat-form-field class="data" appearance="outline">
-          <mat-label>Teléfono alunmo/a</mat-label>
+          <mat-label>Teléfono madre</mat-label>
           <input matInput required formControlName="phone">
         </mat-form-field>
       </div>
-      <div>
-        @if (
-        (identity()==='mother' || identity() =='father') &&
-        (situation()==='married' || situation()==='divorced')
-        ) {
-        <p>madre</p>
-        <div class="row" formGroupName="mother">
-          <mat-form-field class="data" appearance="outline">
-            <mat-label>Correo electronico madre</mat-label>
-            <input matInput required formControlName="email">
-          </mat-form-field>
-          <mat-form-field class="data" appearance="outline">
-            <mat-label>Teléfono madre</mat-label>
-            <input matInput required formControlName="phone">
-          </mat-form-field>
-        </div>
-        <p>padre</p>
-        <div class="row" formGroupName="father">
-          <mat-form-field class="data" appearance="outline">
-            <mat-label>Correo electronico padre</mat-label>
-            <input matInput required formControlName="email">
-          </mat-form-field>
-          <mat-form-field class="data" appearance="outline">
-            <mat-label>Teléfono padre</mat-label>
-            <input matInput required formControlName="phone">
-          </mat-form-field>
-        </div>
-        }
-        @else if (
-        (identity()==='mother')
-        && (situation()==='widowed' || situation()==='single')
-        ) {
-        <p>madre</p>
-        <div class="row" formGroupName="mother">
-          <mat-form-field class="data" appearance="outline">
-            <mat-label>Correo electronico madre</mat-label>
-            <input matInput required formControlName="email">
-          </mat-form-field>
-          <mat-form-field class="data" appearance="outline">
-            <mat-label>Teléfono madre</mat-label>
-            <input matInput required formControlName="phone">
-          </mat-form-field>
-        </div>
-        }
-        @else if (
-        (identity()==='father')
-        && (situation()==='widowed' || situation()==='single')
-        ) {
-        <p>padre</p>
-        <div class="row" formGroupName="father">
-          <mat-form-field class="data" appearance="outline">
-            <mat-label>Correo electronico padre</mat-label>
-            <input matInput required formControlName="email">
-          </mat-form-field>
-          <mat-form-field class="data" appearance="outline">
-            <mat-label>Teléfono padre</mat-label>
-            <input matInput required formControlName="phone">
-          </mat-form-field>
-        </div>
-        }
-        @else if(identity()==='guardian') {
-        <p>tutor/a</p>
-        <div class="row" formGroupName="guardian">
-          <mat-form-field class="data" appearance="outline">
-            <mat-label>Correo electronico tutor/a</mat-label>
-            <input matInput required formControlName="email">
-          </mat-form-field>
-          <mat-form-field class="data" appearance="outline">
-            <mat-label>Teléfono tutor/a</mat-label>
-            <input matInput required formControlName="phone">
-          </mat-form-field>
-        </div>
-        }
+      <p>padre</p>
+      <div class="row" formGroupName="father">
+        <mat-form-field class="data" appearance="outline">
+          <mat-label>Correo electronico padre</mat-label>
+          <input matInput required formControlName="email">
+        </mat-form-field>
+        <mat-form-field class="data" appearance="outline">
+          <mat-label>Teléfono padre</mat-label>
+          <input matInput required formControlName="phone">
+        </mat-form-field>
       </div>
+      }
+      @else if (
+      (identity()==='mother')
+      && (situation()==='widowed' || situation()==='single')
+      ) {
+      <p>madre</p>
+      <div class="row" formGroupName="mother">
+        <mat-form-field class="data" appearance="outline">
+          <mat-label>Correo electronico madre</mat-label>
+          <input matInput required formControlName="email">
+        </mat-form-field>
+        <mat-form-field class="data" appearance="outline">
+          <mat-label>Teléfono madre</mat-label>
+          <input matInput required formControlName="phone">
+        </mat-form-field>
+      </div>
+      }
+      @else if (
+      (identity()==='father')
+      && (situation()==='widowed' || situation()==='single')
+      ) {
+      <p>padre</p>
+      <div class="row" formGroupName="father">
+        <mat-form-field class="data" appearance="outline">
+          <mat-label>Correo electronico padre</mat-label>
+          <input matInput required formControlName="email">
+        </mat-form-field>
+        <mat-form-field class="data" appearance="outline">
+          <mat-label>Teléfono padre</mat-label>
+          <input matInput required formControlName="phone">
+        </mat-form-field>
+      </div>
+      }
+      @else if(identity()==='guardian') {
+      <p>tutor/a</p>
+      <div class="row" formGroupName="guardian">
+        <mat-form-field class="data" appearance="outline">
+          <mat-label>Correo electronico tutor/a</mat-label>
+          <input matInput required formControlName="email">
+        </mat-form-field>
+        <mat-form-field class="data" appearance="outline">
+          <mat-label>Teléfono tutor/a</mat-label>
+          <input matInput required formControlName="phone">
+        </mat-form-field>
+      </div>
+      }
     </div>
+  </div>
 
-    <div class="button_row">
-      <a mat-raised-button [routerLink]="['/enrolls']">Cancelar</a>
-      <button type="submit" mat-flat-button>Aceptar</button>
-    </div>
-  </form>
-</app-container>
+  <div class="button_row">
+    <a mat-raised-button [routerLink]="['/enrolls']">Cancelar</a>
+    <button type="submit" mat-flat-button>Aceptar</button>
+  </div>
+</form>
+</div>
