@@ -2,7 +2,6 @@ import { MediaMatcher } from '@angular/cdk/layout';
 import { Component, inject, signal } from '@angular/core';
 import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
-import { RouterLink } from '@angular/router';
 import { MenuComponent } from '../menu/menu.component';
 
 @Component({
@@ -27,5 +26,10 @@ export class ToolbarComponent {
   }
   ngOnDestroy(): void {
     this._mobileQuery.removeEventListener('change', this._mobileQueryListener);
+  }
+  handlerClick(){
+    if(this.isMobile()){
+      console.log("snav button")
+    }
   }
 }

@@ -1,5 +1,5 @@
 <div class="container" [class.container-desktop] = "!isMobile()">
-  <button mat-icon-button aria-label="menu icon" class="hidden" [class.show] ="isMobile()" >
+  <button mat-icon-button aria-label="menu icon" class="hidden" (click)="handlerClick()" [class.show] ="isMobile()" >
     <mat-icon>menu</mat-icon>
   </button>
   <div class="logo">
