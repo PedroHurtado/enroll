@@ -1,1 +1,4 @@
 Revisión de layout de asignaturas,matriculas y matriculas/add
+Revisión de los tipos de listas de asignaturas para que se alineen
+
+Por ejemplo todas ocupa un espacio y las listas otros
