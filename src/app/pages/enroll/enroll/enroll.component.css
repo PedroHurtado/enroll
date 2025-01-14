@@ -44,7 +44,7 @@ mat-sidenav-content {
 }
 .add{
   display: flex;
-  margin-bottom: 1rem;
+  margin:1rem 0;
   padding: 0 1rem;
 }
 
