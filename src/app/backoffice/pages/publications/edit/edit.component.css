@@ -9,4 +9,9 @@
 .actions{
   margin-top: 0.5rem;
 }
+@media screen and (max-width: 720px) {
+  .dates{
+    grid-template-columns: 1fr;
+  }
+}
 
