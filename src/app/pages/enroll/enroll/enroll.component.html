@@ -10,7 +10,7 @@
     <mat-nav-list (click)="handlerItem($event)">
 
       @for (item of categories(); track item) {
-      <a mat-list-item [attr.data-key]="item">{{item}}</a>
+      <a href="#" mat-list-item [attr.data-key]="item">{{item}}</a>
       }
 
     </mat-nav-list>

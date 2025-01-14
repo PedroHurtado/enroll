@@ -9,7 +9,7 @@
     fixedTopGap="56">
     <mat-nav-list>
       @for (item of courses(); track item.id) {
-      <a [activated]="item===currentCourse()" mat-list-item href="" (click)="clickItem(item, $event)">{{item.name}}</a>
+      <a  mat-list-item href="" (click)="clickItem(item, $event)">{{item.name}}</a>
       }
     </mat-nav-list>
   </mat-sidenav>
