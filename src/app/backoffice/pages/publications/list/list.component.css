@@ -13,12 +13,10 @@ table {
   padding: 1rem;
 }
 .add{
-  display: grid;
-  grid-template-columns: 1fr auto;
-  justify-content: center;
-  align-items: center;
-  margin: 1rem 0;
-  padding: 0 1rem;
+  position: fixed;
+  top: 3rem;
+  right: 1.5rem;
+  z-index: 1000;
 }
 .align-right {
   text-align: right;
@@ -26,5 +24,8 @@ table {
 .row{
   display: grid;
   grid-template-columns: 25% 1fr;
+}
+h1{
+  padding-left: 1rem;
 }
 

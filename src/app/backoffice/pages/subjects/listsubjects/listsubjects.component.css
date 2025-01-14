@@ -31,9 +31,10 @@ mat-sidenav-content {
   padding-top: 0.5rem;
 }
 .add{
-  display: flex;
-  justify-content: end;
-  padding-right: 1rem;
+  position: fixed;
+  top: 3rem;
+  right: 1.5rem;
+  z-index: 1000;
 }
 .row{
   display: grid;
@@ -61,4 +62,7 @@ mat-sidenav-content {
   display: grid;
   grid-template-columns: repeat(2, max-content);
   gap:1rem
+}
+.sidenav-container{
+  margin-top: 3rem !important;
 }

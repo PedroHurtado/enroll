@@ -43,9 +43,13 @@ mat-sidenav-content {
   width: 100%;
 }
 .add{
-  display: flex;
-  margin:1rem 0;
-  padding: 0 1rem;
+  position: fixed;
+  top: 3rem;
+  right: 1.5rem;
+  z-index: 1000;
+}
+.sidenav-container{
+  margin-top: 3rem !important;
 }
 
 

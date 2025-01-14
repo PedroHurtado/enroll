@@ -1,3 +1,9 @@
+<div class="add">
+  <a href='' type="button" mat-button (click)="toAddRoute($event)">
+    <mat-icon>add</mat-icon>
+    Nueva
+  </a>
+</div>
 <mat-sidenav-container class="sidenav-container" [style.marginTop.px]="isMobile() ? 56 : 0">
   <mat-sidenav #snav [mode]="isMobile() ? 'over' : 'side'" [opened]="!isMobile()" [fixedInViewport]="isMobile()"
     fixedTopGap="56">
@@ -10,12 +16,6 @@
   <mat-sidenav-content>
     <div class="row">
       <h1>Asignaturas {{currentCourse()?.name}}</h1>
-      <div class="add">
-        <a href='' type="button" mat-button (click)="toAddRoute($event)">
-          <mat-icon>add</mat-icon>
-          Añadir
-        </a>
-      </div>
     </div>
     <div class="subjects">
 
