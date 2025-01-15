@@ -11,3 +11,10 @@
 			Digitalizacion y Ofimática
 			Herencia y Mitologías Clasicas
 			Música Espectaculo y Comunicación
+
+
+Clasificacion
+  Comunes
+  Modalidad Obligatoria
+  Modalidad Elegir
+  Optativas(2h y 4h)
