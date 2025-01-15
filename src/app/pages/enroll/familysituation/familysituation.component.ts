@@ -103,6 +103,7 @@ export class FamilysituationComponent implements OnInit {
         this.form.patchValue({
           situation: null,
           custody: null,
+          parentalAuthority:null,
           mother: { email: null, phone: null },
           father: { email: null, phone: null },
           guardian: { email: null, phone: null }
@@ -138,6 +139,7 @@ export class FamilysituationComponent implements OnInit {
         this.form.patchValue({
           situation: null,
           custody: null,
+          parentalAuthority:null,
           mother: { email: null, phone: null },
           father: { email: null, phone: null }
         });
