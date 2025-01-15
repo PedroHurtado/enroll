@@ -1,0 +1,13 @@
+1º Bachiller
+	General
+		Economía, Emprendimiento y Actividad Empresarial
+		Todas las de modalidad de primer curso
+	Optativas
+		(4 horas)->elegir 1
+			Segunda Lengua Extranjera I
+			+ Modalidad
+		(2 horas)->elegir 2
+			Anatomía aplicada
+			Digitalizacion y Ofimática
+			Herencia y Mitologías Clasicas
+			Música Espectaculo y Comunicación
