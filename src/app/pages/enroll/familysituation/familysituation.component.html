@@ -13,7 +13,7 @@
   @if (identity()==='mother' || identity() =='father' ) {
   <div>
     <h2>Situación Familiar</h2>
-    <div class="row">
+    <div class="row-1">
       <mat-form-field appearance="outline">
         <mat-label>Seleccione su situación</mat-label>
         <mat-select formControlName="situation">
@@ -27,6 +27,15 @@
       <mat-form-field appearance="outline">
         <mat-label>Custodia</mat-label>
         <mat-select formControlName="custody">
+          <mat-option value="mother">Madre</mat-option>
+          <mat-option value="father">Padre</mat-option>
+          <mat-option value="both">Ambos</mat-option>
+        </mat-select>
+      </mat-form-field>
+
+      <mat-form-field appearance="outline">
+        <mat-label>Patria Potestad</mat-label>
+        <mat-select formControlName="parentalAuthority">
           <mat-option value="mother">Madre</mat-option>
           <mat-option value="father">Padre</mat-option>
           <mat-option value="both">Ambos</mat-option>

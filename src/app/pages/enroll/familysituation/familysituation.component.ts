@@ -40,6 +40,7 @@ export class FamilysituationComponent implements OnInit {
       identity: new FormControl('student'),
       situation: new FormControl(null),
       custody: new FormControl(null),
+      parentalAuthority: new FormControl(null),
       student: new FormGroup({
         email: new FormControl(null),
         phone: new FormControl(null),
