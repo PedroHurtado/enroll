@@ -32,8 +32,8 @@ export class SubjectconfigComponent {
   public ISubjectDomain = model.required<ISubjectDomain>()
   protected type = signal("all")
   protected form = new FormGroup({
-    name: new FormControl('', Validators.required),
-    type: new FormControl("all"),
+    name: new FormControl('common', Validators.required),
+    type: new FormControl("all", Validators.required),
     multiple: new FormControl(false),
     limit: new FormControl(0),
     defaultSubject:new FormControl<DescriptorDomain | null | undefined>(null)

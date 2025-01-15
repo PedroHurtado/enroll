@@ -77,7 +77,7 @@ export class AddsubjectsComponent {
 
   private createSubjectDomain(actionSubject?: IActionSubject): ISubjectDomain | undefined {
     if (actionSubject) {
-      const subjectDomain = SubjectDomain.create(this.title);
+      const subjectDomain = SubjectDomain.create('common');
       actionSubject.addSubject(subjectDomain);
       return subjectDomain;
     }
