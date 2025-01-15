@@ -1,0 +1,166 @@
+openapi: 3.0.1
+info:
+  title: API de Inscripciones
+  description: API para manejar las inscripciones de estudiantes
+  version: 1.0.0
+paths:
+  /enrolls:
+    post:
+      summary: Crear una nueva inscripción
+      description: Registra una nueva inscripción con todos los datos de documentación requeridos
+      operationId: createEnroll
+      requestBody:
+        description: Datos de la inscripción
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/EnrollRequest'
+      responses:
+        201:
+          description: Inscripción creada exitosamente
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/EnrollResponse'
+        400:
+          description: Datos de entrada inválidos
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        409:
+          description: La inscripción ya existe
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+
+components:
+  schemas:
+    EnrollRequest:
+      type: object
+      properties:
+        id:
+          type: string
+          description: Identificador único de la inscripción
+        date:
+          type: string
+          format: date
+          description: Fecha de la inscripción (YYYY-MM-DD)
+        nre:
+          type: string
+          description: Número de Registro del Estudiante
+          minLength: 1
+        dni_observe:
+          type: string
+          description: Observaciones del DNI
+          minLength: 1
+        dni_reverse:
+          type: string
+          description: Reverso del DNI
+          minLength: 1
+        academic_record:
+          type: string
+          description: Registro académico
+          nullable: true
+        healthcards_observe:
+          type: string
+          description: Observaciones de la tarjeta de salud
+          minLength: 1
+        healthcards_reverse:
+          type: string
+          description: Reverso de la tarjeta de salud
+          minLength: 1
+      required:
+        - id
+        - date
+        - nre
+        - dni_observe
+        - dni_reverse
+        - healthcards_observe
+        - healthcards_reverse
+      example:
+        id: "enroll123"
+        date: "2024-01-15"
+        nre: "2024001"
+        dni_observe: "Documento en buen estado"
+        dni_reverse: "Reverso legible"
+        academic_record: "Expediente completo"
+        healthcards_observe: "Tarjeta vigente"
+        healthcards_reverse: "Reverso en buen estado"
+
+    EnrollResponse:
+      type: object
+      properties:
+        id:
+          type: string
+          description: Identificador único de la inscripción
+        date:
+          type: string
+          format: date
+          description: Fecha de la inscripción
+        nre:
+          type: string
+          description: Número de Registro del Estudiante
+        dni_observe:
+          type: string
+          description: Observaciones del DNI
+        dni_reverse:
+          type: string
+          description: Reverso del DNI
+        academic_record:
+          type: string
+          description: Registro académico
+          nullable: true
+        healthcards_observe:
+          type: string
+          description: Observaciones de la tarjeta de salud
+        healthcards_reverse:
+          type: string
+          description: Reverso de la tarjeta de salud
+        status:
+          type: string
+          description: Estado de la inscripción
+          enum: [PENDING, COMPLETED, REJECTED]
+        createdAt:
+          type: string
+          format: date-time
+          description: Fecha y hora de creación del registro
+      required:
+        - id
+        - date
+        - nre
+        - dni_observe
+        - dni_reverse
+        - healthcards_observe
+        - healthcards_reverse
+        - status
+        - createdAt
+      example:
+        id: "enroll123"
+        date: "2024-01-15"
+        nre: "2024001"
+        dni_observe: "Documento en buen estado"
+        dni_reverse: "Reverso legible"
+        academic_record: "Expediente completo"
+        healthcards_observe: "Tarjeta vigente"
+        healthcards_reverse: "Reverso en buen estado"
+        status: "PENDING"
+        createdAt: "2024-01-15T14:30:00Z"
+
+    ErrorResponse:
+      type: object
+      properties:
+        code:
+          type: string
+          description: Código de error
+        message:
+          type: string
+          description: Mensaje descriptivo del error
+      required:
+        - code
+        - message
+      example:
+        code: "INVALID_DATA"
+        message: "Los datos proporcionados son inválidos"
