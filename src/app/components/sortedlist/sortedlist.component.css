@@ -54,5 +54,6 @@ p{
   grid-template-columns: 1fr auto;
   gap:1rem;
   width: 100%;
+  padding-right: 3rem;
 }
 
