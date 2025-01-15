@@ -84,7 +84,8 @@ export class FamilysituationComponent implements OnInit {
 
   private processSituationChange(value: string | null): void {
     if (value === 'divorced') {
-      this.form.patchValue({ custody: 'mother' });
+      this.form.patchValue({ custody: 'both' });
+      this.form.patchValue({ parentalAuthority: 'both' });
     }
 
     const identity = this.form.get('identity')?.value;
