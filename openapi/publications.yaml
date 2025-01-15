@@ -1,0 +1,218 @@
+openapi: 3.0.1
+info:
+  title: API de Gestión de Publicaciones
+  description: API para manejar las publicaciones, incluyendo operaciones CRUD.
+  version: 1.0.0
+paths:
+  /publications/actives:
+    get:
+      summary: Obtener levels y courses activos por fecha
+      description: Devuelve una lista de levels y sus courses que están activos para una fecha específica
+      operationId: getActiveLevelsAndCourses
+      parameters:
+        - name: date
+          in: query
+          required: true
+          description: Fecha para verificar levels y courses activos (formato ISO 8601)
+          schema:
+            type: string
+            format: date
+            example: "2024-01-15"
+      responses:
+        200:
+          description: Lista de levels y courses activos recuperada exitosamente
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Level'
+
+  /publications:
+    get:
+      summary: Obtener todas las publicaciones
+      description: Devuelve una lista paginada de todas las publicaciones.
+      operationId: getPublications
+      parameters:
+        - name: page
+          in: query
+          description: Número de página a recuperar (empieza en 0)
+          required: false
+          schema:
+            type: integer
+            default: 0
+            minimum: 0
+        - name: size
+          in: query
+          description: Cantidad de elementos por página
+          required: false
+          schema:
+            type: integer
+            default: 10
+            minimum: 1
+            maximum: 100
+      responses:
+        200:
+          description: Lista de publicaciones recuperada exitosamente
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  content:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/Publication'
+                  pagination:
+                    type: object
+                    properties:
+                      totalElements:
+                        type: integer
+                        description: Total de elementos disponibles
+                      totalPages:
+                        type: integer
+                        description: Total de páginas disponibles
+                      currentPage:
+                        type: integer
+                        description: Página actual
+                      pageSize:
+                        type: integer
+                        description: Tamaño de página actual
+                      hasNext:
+                        type: boolean
+                        description: Indica si hay más páginas disponibles
+                      hasPrevious:
+                        type: boolean
+                        description: Indica si hay páginas anteriores
+    post:
+      summary: Crear una nueva publicación
+      description: Crea una nueva publicación con los datos proporcionados.
+      operationId: createPublication
+      requestBody:
+        description: Objeto JSON que representa los datos de la nueva publicación.
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Publication'
+      responses:
+        201:
+          description: Publicación creada exitosamente
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Publication'
+
+  /publications/{id}:
+    get:
+      summary: Obtener una publicación específica
+      description: Devuelve una publicación específica utilizando su ID.
+      operationId: getPublicationById
+      parameters:
+        - name: id
+          in: path
+          required: true
+          description: ID de la publicación a obtener
+          schema:
+            type: string
+      responses:
+        200:
+          description: Publicación recuperada exitosamente
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Publication'
+
+    put:
+      summary: Actualizar una publicación existente
+      description: Actualiza los detalles de una publicación específica utilizando su ID.
+      operationId: updatePublication
+      parameters:
+        - name: id
+          in: path
+          required: true
+          description: ID de la publicación a actualizar
+          schema:
+            type: string
+      requestBody:
+        description: Objeto JSON con los datos actualizados de la publicación.
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Publication'
+      responses:
+        200:
+          description: Publicación actualizada exitosamente
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Publication'
+
+    delete:
+      summary: Eliminar una publicación
+      description: Elimina una publicación específica utilizando su ID.
+      operationId: removePublication
+      parameters:
+        - name: id
+          in: path
+          required: true
+          description: ID de la publicación a eliminar
+          schema:
+            type: string
+      responses:
+        204:
+          description: Publicación eliminada exitosamente
+
+components:
+  schemas:
+    Level:
+      type: object
+      properties:
+        id:
+          type: string
+        name:
+          type: string
+        courses:
+          type: array
+          items:
+            $ref: '#/components/schemas/Course'
+      required:
+        - id
+        - name
+        - courses
+
+    Course:
+      type: object
+      properties:
+        id:
+          type: string
+        name:
+          type: string
+      required:
+        - id
+        - name
+
+    Publication:
+      type: object
+      properties:
+        id:
+          type: string
+        name:
+          type: string
+        start:
+          type: string
+          format: date-time
+        end:
+          type: string
+          format: date-time
+        levels:
+          type: array
+          items:
+            $ref: '#/components/schemas/Level'
+      required:
+        - id
+        - name
+        - start
+        - end
+        - levels

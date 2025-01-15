@@ -1,0 +1,135 @@
+openapi: 3.0.1
+info:
+  title: API de Gestión de Niveles
+  description: API para manejar datos relacionados con niveles, cursos, modalidades y asignaturas.
+  version: 1.0.0
+paths:
+  /levels:
+    post:
+      summary: Serialización de Niveles
+      description: Recibe un JSON con los datos de niveles, cursos, modalidades y asignaturas, y los procesa.
+      operationId: serializeLevels
+      requestBody:
+        description: Objeto JSON que representa los datos a procesar.
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                level:
+                  $ref: '#/components/schemas/Level'
+                course:
+                  $ref: '#/components/schemas/Course'
+                mode:
+                  $ref: '#/components/schemas/Mode'
+                subject:
+                  $ref: '#/components/schemas/Subject'
+      responses:
+        200:
+          description: Operación exitosa
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+                    example: "Datos procesados correctamente."
+                  data:
+                    type: object
+    get:
+      summary: Obtener todos los niveles
+      description: Devuelve todos los datos relacionados con niveles, cursos, modalidades y asignaturas.
+      operationId: getAllLevels
+      responses:
+        200:
+          description: Datos recuperados exitosamente
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  levels:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/Level'
+                  courses:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/Course'
+                  modes:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/Mode'
+                  subjects:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/Subject'
+components:
+  schemas:
+    Descriptor:
+      type: object
+      properties:
+        id:
+          type: string
+        name:
+          type: string
+        hours:
+          type: number
+    Subject:
+      type: object
+      properties:
+        id:
+          type: string
+        name:
+          type: string
+        type:
+          type: string
+        multiple:
+          type: boolean
+        limit:
+          type: number
+        defaultSubject:
+          $ref: '#/components/schemas/Descriptor'
+        subjects:
+          type: array
+          items:
+            $ref: '#/components/schemas/Descriptor'
+    Course:
+      type: object
+      properties:
+        id:
+          type: string
+        name:
+          type: string
+        modalities:
+          type: array
+          items:
+            $ref: '#/components/schemas/Mode'
+        subjects:
+          type: array
+          items:
+            $ref: '#/components/schemas/Subject'
+    Mode:
+      type: object
+      properties:
+        id:
+          type: string
+        name:
+          type: string
+        subjects:
+          type: array
+          items:
+            $ref: '#/components/schemas/Subject'
+    Level:
+      type: object
+      properties:
+        id:
+          type: string
+        name:
+          type: string
+        courses:
+          type: array
+          items:
+            $ref: '#/components/schemas/Course'
