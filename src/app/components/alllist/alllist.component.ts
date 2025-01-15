@@ -12,3 +12,4 @@ export class AlllistComponent {
   subjectDomain = input.required<ISubjectDomain>()
 }
 
+

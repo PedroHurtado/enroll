@@ -1,5 +1,5 @@
 import { ChangeDetectionStrategy,
-  Component, ElementRef, input, model, output, signal, viewChild
+  Component,  model, output, signal
 } from '@angular/core';
 import {Location} from '@angular/common';
 import { FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
@@ -43,7 +43,7 @@ export class SubjectconfigComponent {
   protected items = signal<DescriptorDomain[]>([])
   protected defaults:(DescriptorDomain|null)[]=[]
 
-  protected input = viewChild<ElementRef>('input');
+
   constructor(
     private location :Location
    ) {
@@ -94,8 +94,5 @@ export class SubjectconfigComponent {
     const data = this.form.value as DefaultSubject
     this.ISubjectDomain()?.update(data)
     this.location.back()
-  }
-  ngAfterViewInit(): void {
-    this.input()?.nativeElement.focus();
   }
 }

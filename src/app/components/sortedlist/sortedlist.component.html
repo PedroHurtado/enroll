@@ -1,4 +1,4 @@
-<h3>{{subjectDomain().name}}</h3>
+<h3>{{subjectDomain().getTitleString()}}</h3>
 <p>{{subjectDomain().title}}</p>
 <div cdkDropList class="example-list" (cdkDropListDropped)="drop($event)">
   @for (item of subjectDomain().subjects; track item.id;let idx = $index) {
