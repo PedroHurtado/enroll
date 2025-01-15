@@ -1,0 +1,86 @@
+openapi: 3.0.3
+info:
+  title: Authentication API
+  description: API for user login, session confirmation, and logout.
+  version: 1.0.0
+paths:
+  /login:
+    post:
+      summary: User login
+      description: Authenticates a user and provides a session with a one-time password (OTP).
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                emailOrUser:
+                  type: string
+                  description: The email address or username of the user.
+              required:
+                - emailOrUser
+      responses:
+        '200':
+          description: Session and OTP provided successfully.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  session:
+                    type: string
+                    description: The session identifier.
+                  onTimePassword:
+                    type: string
+                    description: The one-time password.
+  /confirm:
+    post:
+      summary: Confirm session
+      description: Confirms the session using the provided one-time password and returns a JWT.
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                session:
+                  type: string
+                  description: The session identifier.
+                onTimePassword:
+                  type: string
+                  description: The one-time password.
+              required:
+                - session
+                - onTimePassword
+      responses:
+        '200':
+          description: JWT returned successfully.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  jwt:
+                    type: string
+                    description: The JSON Web Token.
+  /logout:
+    post:
+      summary: User logout
+      description: Logs the user out by invalidating the JWT.
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                jwt:
+                  type: string
+                  description: The JSON Web Token to invalidate.
+              required:
+                - jwt
+      responses:
+        '200':
+          description: Logout successful.
