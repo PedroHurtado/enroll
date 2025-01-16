@@ -35,7 +35,7 @@ const createFakeLevels = () => {
   });
 
   const bachiller = LevelDomain.create("Bachillerato");
-  ["1º Bachiller", "2º Bachiller"].forEach((grade) => {
+  ["1º Bachillerato", "2º Bachillerato"].forEach((grade) => {
     bachiller.addCourse(CourseDomain.create(grade));
   });
   return [eso,bachiller]

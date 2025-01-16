@@ -9,7 +9,7 @@ Biología    4		4
 
 (Col)De cada materia cuantos alumnos lo han elegido en 1 opcion
 
-		 1		 2		 3		4		5
+		             1		      2		    3		       4		5
 Matemáticas      1  x     	15 x		12	       33		80
 Fisica		 1
 Quimica		 25
@@ -26,3 +26,24 @@ Incompatibilidades(...)
 4ESO-(A...D) tienen que cursar mat,fis,qui->genere una lista
 
 Exportar a Plumier, porque
+
+
+Matematicas	               0	 1	  2	  3	  4	  5	  6	  7
+						25 x  30 x
+
+Recuperar todos los cursos
+
+	1º de Bachillerato
+	2º de Bachillerato
+
+GetCourses
+	Descriptor
+GetSubjects(courseId)
+	CourseId,
+	Subjects:[Descriptor+Count+Selected]
+
+IdSubjects
+Order
+Count
+Selected
+

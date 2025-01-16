@@ -39,7 +39,7 @@ const courses: Course[] = [
     ]
   },
   {
-    id: 5, description: '1º Bachiller', category: { id: 1, description: 'Bachiller' }, subjects: [
+    id: 5, description: '1º Bachillerato', category: { id: 1, description: 'Bachillerato' }, subjects: [
       { id: 1, description: 'Matemáticas' },
       { id: 2, description: 'Lengua' },
       { id: 3, description: 'Inglés' },
@@ -48,7 +48,7 @@ const courses: Course[] = [
     ]
   },
   {
-    id: 6, description: '2º Bachiller', category: { id: 1, description: 'Bachiller' }, subjects: [
+    id: 6, description: '2º Bachillerato', category: { id: 1, description: 'Bachillerato' }, subjects: [
       { id: 1, description: 'Matemáticas' },
       { id: 2, description: 'Lengua' },
       { id: 3, description: 'Inglés' },
