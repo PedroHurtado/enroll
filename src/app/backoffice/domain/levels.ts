@@ -268,6 +268,8 @@ export class SubjectDomain implements ISubjectDomain {
       return 'Comunes'
     }else if(value==='mode'){
       return 'Modalidad'
+    }else if(value==='compulsoryModality'){
+      return 'Modalidad Obligatorias'
     }
     else{
       return 'Optativas'
