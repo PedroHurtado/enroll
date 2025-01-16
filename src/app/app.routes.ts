@@ -113,6 +113,12 @@ export const routes: Routes = [
         title: 'Publicaciones',
         loadComponent: () => import('./backoffice/pages/publications/edit/edit.component').then(c => c.EditComponent)
       },
+      {
+        path:'groups',
+        title:"Grupos",
+        loadComponent: ()=>import('./backoffice/pages/groups/groups.component').then(c=>c.GroupsComponent)
+
+      }
     ]
 
   },
