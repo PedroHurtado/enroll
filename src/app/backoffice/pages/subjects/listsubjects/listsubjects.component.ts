@@ -7,7 +7,6 @@ import { MatButtonModule } from '@angular/material/button';
 import { MatCardModule } from '@angular/material/card';
 import { MediaMatcher } from '@angular/cdk/layout';
 import { ActivatedRoute, Router} from '@angular/router';
-import { LogoComponent } from '../../../../components/logo/logo.component';
 import { LevelService } from '../../levels/level.service';
 import { CourseDomain, DescriptorParams, LevelDomain, ModeDomain, SubjectDomain, Utils } from '../../../domain/levels';
 import { AlllistComponent } from '../../../../components/alllist/alllist.component';

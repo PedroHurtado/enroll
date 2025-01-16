@@ -1,1 +1,16 @@
-<p>groups works!</p>
+<mat-sidenav-container class="sidenav-container" [style.marginTop.px]="isMobile() ? 56 : 0">
+  <mat-sidenav #snav [mode]="isMobile() ? 'over' : 'side'" [opened]="!isMobile()" [fixedInViewport]="isMobile()"
+    fixedTopGap="56">
+    <mat-nav-list >
+      @for (course of courses(); track course.id) {
+        <a [activated]="course===selectedCourse" href="#" mat-list-item (click)="handlerClick(course,$event)">{{course.name}}</a>
+      }
+    </mat-nav-list>
+  </mat-sidenav>
+
+  <mat-sidenav-content>
+    <h1>{{selectedCourse?.name}}</h1>
+    <span>No hay asignaturas seleccionadas</span>
+  </mat-sidenav-content>
+</mat-sidenav-container>
+
