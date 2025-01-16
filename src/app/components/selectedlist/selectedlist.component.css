@@ -1,7 +1,5 @@
 
-p {
-  padding-left: 1rem;
-}
+
 
 @media screen and (max-width: 720px) {
   mat-selection-list {
