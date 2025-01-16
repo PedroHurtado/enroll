@@ -267,7 +267,7 @@ export class SubjectDomain implements ISubjectDomain {
     if(value === 'common'){
       return 'Comunes'
     }else if(value==='mode'){
-      return 'Modalidad'
+      return 'Modalidad a elegir'
     }else if(value==='compulsoryModality'){
       return 'Modalidad Obligatorias'
     }
@@ -446,7 +446,7 @@ export function addFeature(subjectDomain: ISubjectDomain): string {
         : "Tienes que elegir 1 asignatura";
 
     case "orderlist":
-      return `Ordena ${limit} segun tus preferencias`.trim();
+      return `Ordena ${limit} según tus preferencias`.trim();
 
     default:
       return "Tipo: Desconocido".trim();
