@@ -10,7 +10,14 @@
 
   <mat-sidenav-content>
     <h1>{{selectedCourse?.name}}</h1>
-    <span>No hay asignaturas seleccionadas</span>
+    @for (subject of subjects(); track subject.id ) {
+      @for (item of subject.subjects; track item) {
+        @for (item of getKeys(item); track $index) {
+          <div>{{item[0]}}</div>
+          <div>{{item[1]}}</div>
+        }
+      }
+    }
   </mat-sidenav-content>
 </mat-sidenav-container>
 
