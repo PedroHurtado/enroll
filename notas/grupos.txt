@@ -1,0 +1,28 @@
+Obligatorias(1)
+Elegir(4)->2 cursar
+
+Matematicas 0		25			Quimica 0  15	Latin  0  12
+Fisica	    1		15
+-----------------------------descartado-------------------------------------------------------------------------
+Quimica     3		5
+Biología    4		4
+
+(Col)De cada materia cuantos alumnos lo han elegido en 1 opcion
+
+		 1		 2		 3		4		5
+Matemáticas      1  x     	15 x		12	       33		80
+Fisica		 1
+Quimica		 25
+
+
+Se cuenta en modalidad que pueda elegir más de uno y optativas
+
+Personal del centro
+
+Rango en asignaturas
+
+Incompatibilidades(...)
+
+4ESO-(A...D) tienen que cursar mat,fis,qui->genere una lista
+
+Exportar a Plumier, porque

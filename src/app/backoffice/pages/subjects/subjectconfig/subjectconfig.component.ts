@@ -31,6 +31,8 @@ import { DefaultSubject, DescriptorDomain, ISubjectDomain} from '../../../domain
 export class SubjectconfigComponent {
   public ISubjectDomain = model.required<ISubjectDomain>()
   protected type = signal("all")
+  protected showAddModalities=signal<boolean>(false)
+
   protected form = new FormGroup({
     name: new FormControl('common', Validators.required),
     type: new FormControl("all", Validators.required),
@@ -71,6 +73,12 @@ export class SubjectconfigComponent {
     this.form.valueChanges.subscribe(values => {
       const data = values as DefaultSubject
       this.ISubjectDomain().update(data)
+      if(data.name === 'electives'){
+        this.showAddModalities.set(true)
+      }
+      else{
+        this.showAddModalities.set(false)
+      }
     })
   }
   ngOnInit(){
@@ -90,7 +98,9 @@ export class SubjectconfigComponent {
   protected shouldShowDefault(): boolean {
     return this.form.get('multiple')?.value === false && this.type() === 'selectlist';
   }
-  submit() {
+
+
+  protected submit() {
     const data = this.form.value as DefaultSubject
     this.ISubjectDomain()?.update(data)
     this.location.back()
