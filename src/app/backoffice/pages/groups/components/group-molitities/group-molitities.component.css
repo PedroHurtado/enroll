@@ -1,10 +1,41 @@
-.row{
-  display: grid;
-  grid-template-columns: repeat(5,1fr);
-  gap: 1rem;
+.container {
+  padding: 1rem;
 }
-.modality{
-  box-sizing: border-box;
-  border: 1px solid black;
-  padding: 0 0.5rem;
+
+.row {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 0.5rem;
+}
+
+.group-container {
+  border: 1px solid #666666;
+}
+
+.group-header {
+  padding: 0.75rem;
+  border-bottom: 1px solid #666666;
+}
+
+.group-content {
+  padding: 0;
+}
+
+.section-title {
+  padding: 0.75rem;
+  border-bottom: 1px solid #666666;
+  font-weight: bold;
+}
+
+.modality-item {
+  padding: 0.75rem;
+  border-bottom: 1px solid #666666;
+}
+
+.modality-item:last-child {
+  border-bottom: none;
+}
+
+.modality-section:not(:last-child) .modality-item:last-child {
+  border-bottom: 1px solid #666666;
 }

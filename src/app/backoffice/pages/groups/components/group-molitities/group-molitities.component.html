@@ -1,23 +1,35 @@
-<div>
+<div class="container">
   <div class="row">
     @for (modality of modalities(); track modality) {
-    <div>
-    <div class="modality">{{modality.name}}-({{modality.enrolls.length}} {{getText(modality.enrolls.length)}})</div>
-        <div>
-        @if(modality.compulsoryModality.length>0){
-          @for (item of modality.compulsoryModality; track item) {
-            <div>{{item.name}}-({{item.enrolls.length}} {{getText(item.enrolls.length)}})</div>
+      <div class="group-container">
+        <div class="group-header">
+          {{modality.name}}-({{modality.enrolls.length}} {{getText(modality.enrolls.length)}})
+        </div>
+
+        <div class="group-content">
+          @if(modality.compulsoryModality.length > 0) {
+            <div class="modality-section">
+              <div class="section-title">Modalidad Obligatorias</div>
+              @for (item of modality.compulsoryModality; track item) {
+                <div class="modality-item">
+                  {{item.name}}-({{item.enrolls.length}} {{getText(item.enrolls.length)}})
+                </div>
+              }
+            </div>
           }
-        }
-        @if(modality.modalityElectives.length){
-          @for (item of modality.modalityElectives; track item) {
-            <div>{{item.name}}-({{item.enrolls.length}} {{getText(item.enrolls.length)}})</div>
+
+          @if(modality.modalityElectives.length) {
+            <div class="modality-section">
+              <div class="section-title">Modalidad a Elegir</div>
+              @for (item of modality.modalityElectives; track item) {
+                <div class="modality-item">
+                  {{item.name}}-({{item.enrolls.length}} {{getText(item.enrolls.length)}})
+                </div>
+              }
+            </div>
           }
-        }
         </div>
       </div>
     }
-
-
   </div>
 </div>
