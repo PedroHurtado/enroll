@@ -4,12 +4,14 @@ import { Sidenav } from '../../../components/sidenav';
 import { MatListModule } from '@angular/material/list';
 import { GroupsService,  Course } from './groups.service';
 import { Descriptor } from '../../domain/levels';
+import { GroupMolititiesComponent } from './components/group-molitities/group-molitities.component';
 
 @Component({
   selector: 'app-groups',
   imports: [
     MatSidenavModule,
-    MatListModule
+    MatListModule,
+    GroupMolititiesComponent
   ],
   templateUrl: './groups.component.html',
   styleUrl: './groups.component.css'

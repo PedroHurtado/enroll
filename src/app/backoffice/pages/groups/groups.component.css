@@ -41,5 +41,10 @@ mat-sidenav-content {
 .sidenav-container{
   margin-top: 3rem !important;
 }
+.title{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
 
 

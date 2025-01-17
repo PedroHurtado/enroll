@@ -10,10 +10,11 @@
 
   <mat-sidenav-content>
     @if(course()){
-      <h1>{{course()?.name}} - ({{course()?.enrolls?.length}} matrículas)</h1>
+      <h1 class="title">{{course()?.name}} - ({{course()?.enrolls?.length}} matrículas)</h1>
+      <app-group-molitities [modalities]="course()?.modalities"/>
     }
     @else{
-      <h1>No hay matriculas para {{selectedCourse?.name}}</h1>
+      <h1 class="title">No hay matriculas para {{selectedCourse?.name}}</h1>
     }
   </mat-sidenav-content>
 </mat-sidenav-container>

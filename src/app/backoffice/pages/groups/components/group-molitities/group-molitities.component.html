@@ -1,0 +1,23 @@
+<div>
+  <div class="row">
+    @for (modality of modalities(); track modality) {
+    <div>
+    <div class="modality">{{modality.name}}-({{modality.enrolls.length}} Matrículas)</div>
+        <div>
+        @if(modality.compulsoryModality.length>0){
+          @for (item of modality.compulsoryModality; track item) {
+            <div>{{item.name}}-({{item.enrolls.length}})</div>
+          }
+        }
+        @if(modality.modalityElectives.length){
+          @for (item of modality.modalityElectives; track item) {
+            <div>{{item.name}}-({{item.enrolls.length}})</div>
+          }
+        }
+        </div>
+      </div>
+    }
+
+
+  </div>
+</div>

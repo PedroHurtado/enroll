@@ -1,0 +1,10 @@
+.row{
+  display: grid;
+  grid-template-columns: repeat(5,1fr);
+  gap: 1rem;
+}
+.modality{
+  box-sizing: border-box;
+  border: 1px solid black;
+  padding: 0 0.5rem;
+}

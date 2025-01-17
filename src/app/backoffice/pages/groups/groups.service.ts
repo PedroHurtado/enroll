@@ -35,6 +35,14 @@ export class GroupsService {
   getCourses(): Descriptor[] {
     return [
       {
+        id: "550e8400-e29b-41d4-a716-446655440004",
+        name: "1º Bachillerato"
+      },
+      {
+        id: "550e8400-e29b-41d4-a716-446655440005",
+        name: "2º Bachillerato"
+      },
+      {
         id: "550e8400-e29b-41d4-a716-446655440000",
         name: "1º ESO"
       },
@@ -49,15 +57,8 @@ export class GroupsService {
       {
         id: "550e8400-e29b-41d4-a716-446655440003",
         name: "4º ESO"
-      },
-      {
-        id: "550e8400-e29b-41d4-a716-446655440004",
-        name: "1º Bachillerato"
-      },
-      {
-        id: "550e8400-e29b-41d4-a716-446655440005",
-        name: "2º Bachillerato"
       }
+
     ];
   }
   getCourse(id: string): Course | undefined {
@@ -73,7 +74,34 @@ export class GroupsService {
         modalities: [
           {
             id: "8f7b5db2-3ed6-4e3a-8a2c-37d42951b7c1",
-            name: "Artes - Artes Plásticas, Imagen y Diseño",
+            name: "Artes Plásticas, Imagen y Diseño",
+            enrolls: [
+              { id: "3c4d5e6f-7890-1112-1234-56789abcdef2", name: "María López" },
+              { id: "4d5e6f7g-8901-1213-1234-56789abcdef3", name: "Pedro Sánchez" }
+            ],
+            compulsoryModality: [
+              {
+                id: "1d7e9af3-12c4-4b5d-8e6f-9c0a2b3d4e5f",
+                name: "Dibujo Artístico I",
+                enrolls: [
+                  { id: "5e6f7g8h-9012-1314-1234-56789abcdef4", name: "Laura García" }
+                ]
+              }
+            ],
+            modalityElectives: [
+              {
+                id: "2f8d6c4e-23a5-4b6c-9d7e-8f1c3d5b7a9e",
+                name: "Cultura Audiovisual",
+                enrolls: [
+                  { id: "6f7g8h9i-0123-1415-1234-56789abcdef5", name: "Luis Gómez" },
+                  { id: "7g8h9i0j-1234-1516-1234-56789abcdef6", name: "Paula Torres" }
+                ]
+              }
+            ]
+          },
+          {
+            id: "8f7b5db2-3ed6-4e3a-8a2c-37d42951b7c1",
+            name: "Ciencias y Tecnología",
             enrolls: [
               { id: "3c4d5e6f-7890-1112-1234-56789abcdef2", name: "María López" },
               { id: "4d5e6f7g-8901-1213-1234-56789abcdef3", name: "Pedro Sánchez" }
