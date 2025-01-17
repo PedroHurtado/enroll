@@ -9,4 +9,8 @@ import { Modality } from '../../groups.service';
 })
 export class GroupMolititiesComponent {
   public modalities= input<Modality[]>()
+  protected getText(length:number){
+      return length===1?'Mátricula':'Matriculas'
+
+  }
 }
