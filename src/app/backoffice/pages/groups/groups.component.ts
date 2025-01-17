@@ -2,7 +2,7 @@ import { Component, signal, viewChild } from '@angular/core';
 import { MatSidenav, MatSidenavModule } from '@angular/material/sidenav';
 import { Sidenav } from '../../../components/sidenav';
 import { MatListModule } from '@angular/material/list';
-import { GroupsService, Data } from './groups.service';
+import { GroupsService,  Course } from './groups.service';
 import { Descriptor } from '../../domain/levels';
 
 @Component({
@@ -20,7 +20,7 @@ export class GroupsComponent implements Sidenav {
   protected readonly isMobile = signal<boolean>(false);
   protected courses = signal<Descriptor[]>([]);
   protected selectedCourse: Descriptor | undefined;
-  protected subjects = signal<Data[]>([]);
+  protected course = signal<Course|undefined>(undefined);
 
   constructor(private service: GroupsService) {
     this.initializeCourses();
@@ -32,7 +32,7 @@ export class GroupsComponent implements Sidenav {
 
     if (courses.length > 0) {
       this.selectedCourse = courses[0];
-      this.subjects.set(this.loadSubjects(this.selectedCourse.id));
+      this.course.set(this.loadCourse(this.selectedCourse.id));
     }
   }
 
@@ -40,8 +40,8 @@ export class GroupsComponent implements Sidenav {
     return this.service.getCourses();
   }
 
-  private loadSubjects(id: string): Data[] {
-    return this.service.getSubjects(id);
+  private loadCourse(id: string): Course|undefined {
+    return this.service.getCourse(id);
   }
 
   get canOpen(): boolean {
@@ -57,7 +57,7 @@ export class GroupsComponent implements Sidenav {
     this.selectedCourse = course;
 
     if (this.selectedCourse) {
-      this.subjects.set(this.loadSubjects(this.selectedCourse.id));
+      this.course.set(this.loadCourse(this.selectedCourse.id));
     }
   }
   protected getKeys(obj:any):any[]{

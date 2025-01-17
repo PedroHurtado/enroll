@@ -9,14 +9,11 @@
   </mat-sidenav>
 
   <mat-sidenav-content>
-    <h1>{{selectedCourse?.name}}</h1>
-    @for (subject of subjects(); track subject.id ) {
-      @for (item of subject.subjects; track item) {
-        @for (item of getKeys(item); track $index) {
-          <div>{{item[0]}}</div>
-          <div>{{item[1]}}</div>
-        }
-      }
+    @if(course()){
+      <h1>{{course()?.name}} - ({{course()?.enrolls?.length}} matrículas)</h1>
+    }
+    @else{
+      <h1>No hay matriculas para {{selectedCourse?.name}}</h1>
     }
   </mat-sidenav-content>
 </mat-sidenav-container>

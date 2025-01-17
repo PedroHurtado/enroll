@@ -264,11 +264,11 @@ export class SubjectDomain implements ISubjectDomain {
   }
   getTitleString(): string {
     const value = this.name
-    if(value === 'common'){
+    if(value === 'Common'){
       return 'Comunes'
-    }else if(value==='mode'){
+    }else if(value==='Modality'){
       return 'Modalidad a elegir'
-    }else if(value==='compulsoryModality'){
+    }else if(value==='CompulsoryModality'){
       return 'Modalidad Obligatorias'
     }
     else{

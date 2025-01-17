@@ -34,7 +34,7 @@ export class SubjectconfigComponent {
   protected showAddModalities=signal<boolean>(false)
 
   protected form = new FormGroup({
-    name: new FormControl('common', Validators.required),
+    name: new FormControl('Common', Validators.required),
     type: new FormControl("all", Validators.required),
     multiple: new FormControl(false),
     limit: new FormControl(0),
