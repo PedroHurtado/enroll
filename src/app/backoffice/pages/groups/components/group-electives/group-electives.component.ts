@@ -1,9 +1,13 @@
 import { Component, input } from '@angular/core';
 import { PositionWhitEnrolls } from '../../groups.service';
+import { MatButtonModule } from '@angular/material/button';
 
 @Component({
   selector: 'app-group-electives',
-  imports: [],
+  imports: [
+    MatButtonModule
+
+  ],
   templateUrl: './group-electives.component.html',
   styleUrl: './group-electives.component.css'
 })
