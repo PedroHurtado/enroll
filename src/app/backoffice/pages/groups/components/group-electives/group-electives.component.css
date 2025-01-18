@@ -45,6 +45,8 @@ h2{
   justify-content: center;
   width: 36px;
   height: 36px;
+  color: var(--mdc-text-button-label-text-color, var(--mat-sys-primary));
+
 }
 
 .navigate svg {
