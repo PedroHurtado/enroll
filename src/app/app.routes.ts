@@ -118,6 +118,34 @@ export const routes: Routes = [
         title:"Grupos",
         loadComponent: ()=>import('./backoffice/pages/groups/groups.component').then(c=>c.GroupsComponent)
 
+      },
+
+      {
+        path:'alumns',
+        title:"Alumnos",
+        loadComponent: ()=>import('./backoffice/pages/groups/components/group-alumns/group-alumns.component').then(c=>c.GroupAlumnsComponent)
+
+      },
+
+      {
+        path:'alumns',
+        title:"Alumnos",
+        loadComponent: ()=>import('./backoffice/pages/groups/components/group-alumns/group-alumns.component').then(c=>c.GroupAlumnsComponent)
+
+      },
+
+      {
+        path:'alumns',
+        title:"Alumnos",
+        loadComponent: ()=>import('./backoffice/pages/groups/components/group-alumns/group-alumns.component').then(c=>c.GroupAlumnsComponent)
+
+      },
+
+      {
+        path:'alumns',
+        title:"Alumnos",
+        loadComponent: ()=>import('./backoffice/pages/groups/components/group-alumns/group-alumns.component').then(c=>c.GroupAlumnsComponent)
+
       }
     ]
 
