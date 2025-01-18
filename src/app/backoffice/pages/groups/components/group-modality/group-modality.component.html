@@ -2,17 +2,30 @@
   <div class="row">
     @for (modality of modalities(); track modality) {
     <div class="group-container">
+      <div class="modality-item row-number">
+        <div class="left">{{modality.name}}</div>
+        <div class="right">
+          <span>{{modality.enrolls.length}}</span>
+          <a class="navigate" href="" mat-icon-button aria-label="Ver alumnos">
+            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
+              stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <title id="navigateIcon {{modality.id}}">Icono de navegación</title>
+              <path d="M9 18l6-6-6-6" />
+            </svg>
+          </a>
+        </div>
+      </div>
 
       <div class="group-content">
         @if(modality.compulsoryModality.length > 0) {
         <div class="modality-section">
-          <div class="section-title">Modalidad Obligatorias</div>
+          <div class="section-title">Modalidad Obligatoria</div>
           @for (item of modality.compulsoryModality; track item) {
-          <div class="modality-item">
-            <div class="row-number">
-              <div class="left">{{modality.name}}</div>
-              <div class="right">{{modality.enrolls.length}}</div>
-              <a class="navigate" href="" mat-icon-button aria-label="Ver alunmos">
+          <div class="modality-item row-number">
+            <div class="left">{{item.name}}</div>
+            <div class="right">
+              <span>{{item.enrolls.length}}</span>
+              <a class="navigate" href="" mat-icon-button aria-label="Ver alumnos">
                 <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
                   stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
                   <title id="navigateIcon {{item.id}}">Icono de navegación</title>
@@ -25,15 +38,16 @@
         </div>
         }
 
-        @if(modality.modalityElectives.length) {
+
+        @if(modality.modalityElectives.length > 0) {
         <div class="modality-section">
           <div class="section-title">Modalidad a Elegir</div>
           @for (item of modality.modalityElectives; track item) {
-          <div class="modality-item">
-            <div class="row-number">
-              <div class="left">{{modality.name}}</div>
-              <div class="right">{{modality.enrolls.length}}</div>
-              <a class="navigate" href="" mat-icon-button aria-label="Ver alunmos">
+          <div class="modality-item row-number">
+            <div class="left">{{item.name}}</div>
+            <div class="right">
+              <span>{{item.enrolls.length}}</span>
+              <a class="navigate" href="" mat-icon-button aria-label="Ver alumnos">
                 <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
                   stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
                   <title id="navigateIcon {{item.id}}">Icono de navegación</title>

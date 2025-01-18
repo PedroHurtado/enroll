@@ -33,10 +33,10 @@ h2{
 
 .grid-item {
   display: grid;
-  align-items: center;
-  justify-content: right;
   grid-template-columns: 1fr auto;
-  gap:0.25rem;
+  align-items: center;
+  justify-content: center;
+  gap:0.5rem;
   border: 1px solid #666666;;
 }
 .navigate {
@@ -45,7 +45,6 @@ h2{
   justify-content: center;
   width: 36px;
   height: 36px;
-  color: var(--mdc-text-button-label-text-color, var(--mat-sys-primary));
 
 }
 

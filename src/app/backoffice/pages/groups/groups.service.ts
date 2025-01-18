@@ -123,7 +123,7 @@ export class GroupsService {
             compulsoryModality: [
               {
                 id: "1d7e9af3-12c4-4b5d-8e6f-9c0a2b3d4e5f",
-                name: "Dibujo Artístico I",
+                name: "Matemáticas",
                 enrolls: [
                   { id: "5e6f7g8h-9012-1314-1234-56789abcdef4", name: "Laura García" }
                 ]
@@ -132,7 +132,7 @@ export class GroupsService {
             modalityElectives: [
               {
                 id: "2f8d6c4e-23a5-4b6c-9d7e-8f1c3d5b7a9e",
-                name: "Cultura Audiovisual",
+                name: "Física y Química",
                 enrolls: [
                   { id: "6f7g8h9i-0123-1415-1234-56789abcdef5", name: "Luis Gómez" },
                   { id: "7g8h9i0j-1234-1516-1234-56789abcdef6", name: "Paula Torres" }
