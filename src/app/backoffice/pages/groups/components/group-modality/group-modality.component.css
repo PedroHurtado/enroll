@@ -39,3 +39,17 @@
 .modality-section:not(:last-child) .modality-item:last-child {
   border-bottom: 1px solid #666666;
 }
+.row-number{
+  display: grid;
+  grid-template-columns: 1fr auto;
+}
+.right{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.right{
+  display: flex;
+  align-items:start;
+  justify-content:start;
+}

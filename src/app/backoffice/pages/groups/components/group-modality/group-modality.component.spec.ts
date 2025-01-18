@@ -1,6 +1,6 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { GroupMolititiesComponent } from './group-molitities.component';
+import { GroupMolititiesComponent } from './group-modality.component';
 
 describe('GroupMolititiesComponent', () => {
   let component: GroupMolititiesComponent;

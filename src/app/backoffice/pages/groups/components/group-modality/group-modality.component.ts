@@ -2,10 +2,10 @@ import { Component, input } from '@angular/core';
 import { Modality } from '../../groups.service';
 
 @Component({
-  selector: 'app-group-molitities',
+  selector: 'app-group-modality',
   imports: [],
-  templateUrl: './group-molitities.component.html',
-  styleUrl: './group-molitities.component.css'
+  templateUrl: './group-modality.component.html',
+  styleUrl: './group-modality.component.css'
 })
 export class GroupMolititiesComponent {
   public modalities= input<Modality[]>()
