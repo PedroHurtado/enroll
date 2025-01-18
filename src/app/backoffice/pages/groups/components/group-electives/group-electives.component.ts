@@ -15,6 +15,7 @@ import { RouterLink } from '@angular/router';
 })
 export class GroupElectivesComponent {
   electives=input<PositionWhitEnrolls[]|undefined>(undefined)
+  courseId= input<string>()
 
   protected getEnrollsCountByPosition(elective: any, position: number): number {
     const pos = elective.positions.find((p: any) => p.position === position);

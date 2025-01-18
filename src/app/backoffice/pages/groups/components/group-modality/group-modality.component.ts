@@ -14,6 +14,7 @@ import { RouterLink } from '@angular/router';
 })
 export class GroupModalityComponent {
   public modalities= input<Modality[]>()
+  public courseId = input<string>()
   protected getText(length:number){
       return length===1?'Mátricula':'Matriculas'
 
