@@ -1,18 +1,18 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { GroupModalityComponent } from './group-modality.component';
+import { GroupElectivesComponent } from './group-electives.component';
 
-describe('GroupModalityComponent', () => {
-  let component: GroupModalityComponent;
-  let fixture: ComponentFixture<GroupModalityComponent>;
+describe('GroupElectivesComponent', () => {
+  let component: GroupElectivesComponent;
+  let fixture: ComponentFixture<GroupElectivesComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [GroupModalityComponent]
+      imports: [GroupElectivesComponent]
     })
     .compileComponents();
 
-    fixture = TestBed.createComponent(GroupModalityComponent);
+    fixture = TestBed.createComponent(GroupElectivesComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

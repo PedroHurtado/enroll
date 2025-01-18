@@ -39,10 +39,7 @@
 .modality-section:not(:last-child) .modality-item:last-child {
   border-bottom: 1px solid #666666;
 }
-.row-number{
-  display: grid;
-  grid-template-columns: 1fr auto;
-}
+
 .right{
   display: flex;
   align-items: center;
@@ -53,3 +50,24 @@
   align-items:start;
   justify-content:start;
 }
+.row-number {
+  display: grid;
+  grid-template-columns: 1fr auto auto;
+  gap: 0.5rem;
+  align-items: center; /* Alinea verticalmente todo el contenido */
+}
+
+
+.navigate {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 36px;
+  height: 36px;
+}
+
+.navigate svg {
+  width: 100%;
+  height: 100%;
+}
+

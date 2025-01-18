@@ -1,0 +1,31 @@
+.grid-container {
+  display: grid;
+  grid-template-columns: max-content repeat(10, 1fr);
+  padding: 20px;
+  margin: 0 auto;
+}
+
+.grid-header {
+  padding: 8px;
+  text-align: right;
+  font-weight: bold;
+  border: 1px solid #666666;
+}
+
+.grid-item {
+  padding: 8px;
+  text-align: right;
+  border: 1px solid #666666;;
+}
+
+.subject-name {
+  text-align: left;
+  font-weight: bold;
+  padding: 8px;
+  border: 1px solid #666666;;
+}
+h2{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}

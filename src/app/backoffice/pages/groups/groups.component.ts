@@ -4,14 +4,16 @@ import { Sidenav } from '../../../components/sidenav';
 import { MatListModule } from '@angular/material/list';
 import { GroupsService,  Course } from './groups.service';
 import { Descriptor } from '../../domain/levels';
-import { GroupMolititiesComponent } from './components/group-modality/group-modality.component';
+import { GroupModalityComponent } from './components/group-modality/group-modality.component';
+import { GroupElectivesComponent } from './components/group-electives/group-electives.component';
 
 @Component({
   selector: 'app-groups',
   imports: [
     MatSidenavModule,
     MatListModule,
-    GroupMolititiesComponent
+    GroupModalityComponent,
+    GroupElectivesComponent
   ],
   templateUrl: './groups.component.html',
   styleUrl: './groups.component.css'

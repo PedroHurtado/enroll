@@ -26,6 +26,20 @@ export interface Course extends DescriptorWithEnrolls {
   electives: PositionWhitEnrolls[];
 }
 
+function uuidv4(): string {
+  return crypto.randomUUID()
+}
+
+function createStudents(count: number) {
+  const firstNames = ["Carlos", "María", "Juan", "Ana", "Luis", "Carmen", "José", "Laura", "Pedro", "Lucía"];
+  const lastNames = ["García", "Martínez", "López", "Hernández", "González", "Pérez", "Rodríguez", "Sánchez", "Ramírez", "Torres"];
+
+  return Array.from({ length: count }, () => ({
+    id: uuidv4(),
+    name: `${firstNames[Math.floor(Math.random() * firstNames.length)]} ${lastNames[Math.floor(Math.random() * lastNames.length)]}`
+  }));
+}
+
 @Injectable({
   providedIn: 'root'
 })
@@ -129,70 +143,48 @@ export class GroupsService {
         ],
         electives: [
           {
-            id: "0b6c4d2e-01c3-4d4e-bf5g-6h9e1h3j5l7n",
-            name: "Segunda Lengua Extranjera I",
+            id: uuidv4(),
+            name: "Matemáticas",
             positions: [
-              {
-                position: 1,
-                enrolls: [
-                  { id: "9i0j1k2l-3456-1718-1234-56789abcdef8", name: "David Morales" },
-                  { id: "0j1k2l3m-4567-1819-1234-56789abcdef9", name: "Isabel Vega" }
-                ]
-              },
-              {
-                position: 2,
-                enrolls: [
-                  { id: "1k2l3m4n-5678-1920-1234-56789abcde01", name: "Tomás Castillo" }
-                ]
-              },
-              {
-                position: 3,
-                enrolls: [
-                  { id: "2l3m4n5o-6789-2021-1234-56789abcde02", name: "Beatriz Navarro" }
-                ]
-              },
-              {
-                position: 4,
-                enrolls: [
-                  { id: "3m4n5o6p-7890-2122-1234-56789abcde03", name: "Sofía Ruiz" }
-                ]
-              }
+              { position: 1, enrolls: createStudents(10) },
+              { position: 2, enrolls: createStudents(15) },
+              { position: 3, enrolls: createStudents(5) },
+              { position: 4, enrolls: createStudents(3) },
+              { position: 5, enrolls: createStudents(2) },
+
             ]
           },
           {
-            id: "1c7d5e3f-12d4-4e5f-cg6h-7i0f2i4k6m8o",
-            name: "Anatomía Aplicada",
+            id: uuidv4(),
+            name: "Física",
             positions: [
-              {
-                position: 1,
-                enrolls: [
-                  { id: "4n5o6p7q-8901-2223-1234-56789abcde04", name: "Tomás Castillo" }
-                ]
-              },
-              {
-                position: 2,
-                enrolls: [
-                  { id: "5o6p7q8r-9012-2324-1234-56789abcde05", name: "Nuria Fernández" }
-                ]
-              },
-              {
-                position: 3,
-                enrolls: [
-                  { id: "6p7q8r9s-0123-2425-1234-56789abcde06", name: "Alejandro López" }
-                ]
-              },
-              {
-                position: 4,
-                enrolls: [
-                  { id: "7q8r9s0t-1234-2526-1234-56789abcde07", name: "Raúl Sánchez" }
-                ]
-              },
-              {
-                position: 5,
-                enrolls: [
-                  { id: "8r9s0t1u-2345-2627-1234-56789abcde08", name: "Clara Jiménez" }
-                ]
-              }
+              { position: 1, enrolls: createStudents(10) },
+              { position: 2, enrolls: createStudents(15) },
+              { position: 3, enrolls: createStudents(5) },
+              { position: 4, enrolls: createStudents(3) },
+              { position: 5, enrolls: createStudents(2) },
+            ]
+          },
+          {
+            id: uuidv4(),
+            name: "Química",
+            positions: [
+              { position: 1, enrolls: createStudents(10) },
+              { position: 2, enrolls: createStudents(15) },
+              { position: 3, enrolls: createStudents(5) },
+              { position: 4, enrolls: createStudents(3) },
+              { position: 5, enrolls: createStudents(2) },
+            ]
+          },
+          {
+            id: uuidv4(),
+            name: "Lengua",
+            positions: [
+              { position: 1, enrolls: createStudents(10) },
+              { position: 2, enrolls: createStudents(15) },
+              { position: 3, enrolls: createStudents(5) },
+              { position: 4, enrolls: createStudents(3) },
+              { position: 5, enrolls: createStudents(2) },
             ]
           }
         ]
