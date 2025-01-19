@@ -1,16 +1,21 @@
 import { Component, signal } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-import { GroupsService } from '../../groups.service';
+import { Alumn, GroupsService } from '../../groups.service';
+import { MatTableDataSource, MatTableModule } from '@angular/material/table';
 import { Descriptor } from '../../../../domain/levels';
 
 @Component({
   selector: 'app-group-alumns',
-  imports: [],
+  imports: [
+    MatTableModule,
+  ],
   templateUrl: './group-alumns.component.html',
   styleUrl: './group-alumns.component.css'
 })
 export class GroupAlumnsComponent {
-  protected enrolls =signal<Descriptor[]|undefined>([])
+  protected alumn =signal<Alumn|undefined>(undefined)
+  protected readonly dataSource: MatTableDataSource<Descriptor>
+  protected displayedColumns: string[] = ['name'];
   constructor(
     private readonly route: ActivatedRoute,
     private readonly service: GroupsService
@@ -21,16 +26,21 @@ export class GroupAlumnsComponent {
 
     switch (type) {
       case 'modality':
-        this.enrolls.set(this.handleModalityEnrolls(subtype, courseId, modalityId, subjectId));
+        this.alumn.set(this.handleModalityEnrolls(subtype, courseId, modalityId, subjectId));
         break;
       case 'electives':
-        this.enrolls.set(this.service.getElectivesEnrolls(courseId, subjectId, position));
+        this.alumn.set(this.service.getElectivesEnrolls(courseId, subjectId, position));
         break;
       default:
         break;
     }
+    if(this.alumn()){
+      this.dataSource = new MatTableDataSource(this.alumn()?.enrolls)
+    }else{
+      this.dataSource = new MatTableDataSource()
+    }
   }
-  private handleModalityEnrolls(subtype: string, courseId: string, modalityId: string, subjectId: string): Descriptor[] | undefined {
+  private handleModalityEnrolls(subtype: string, courseId: string, modalityId: string, subjectId: string): Alumn | undefined {
     switch (subtype) {
       case 'compulsory':
         return this.service.getModaliyCompulsoryEnrolls(courseId, modalityId, subjectId);

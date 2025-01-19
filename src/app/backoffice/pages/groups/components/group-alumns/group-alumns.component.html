@@ -1,6 +1,26 @@
-@for (item of enrolls(); track item.id) {
-  <p>{{item.name}}</p>
-}
-@empty {
-  <p>No existen alumnos</p>
-}
+<div class="container">
+  @if(alumn()){
+  <div class="header">
+    @if(alumn()?.courseName){
+    <h1>{{alumn()?.courseName}}</h1>
+    }
+    @if(alumn()?.modalityName){
+    <h2>{{alumn()?.modalityName}}</h2>
+    }
+    @if(alumn()?.subjectName){
+    <h2>{{alumn()?.subjectName}}</h2>
+    }
+  </div>
+  <div class="table-container">
+    <table mat-table [dataSource]="dataSource" multiTemplateDataRows>
+      <ng-container matColumnDef="name">
+        <th mat-header-cell *matHeaderCellDef>Nombre</th>
+        <td mat-cell *matCellDef="let element">{{element.name}}</td>
+      </ng-container>
+      <tr mat-header-row *matHeaderRowDef="displayedColumns;sticky: true"></tr>
+      <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+    </table>
+  </div>
+
+  }
+</div>

@@ -1,0 +1,31 @@
+.container {
+  width: 50%;
+  margin: auto;
+  padding-top: 150px; /* Ajusta este valor según la altura de tu header para evitar que el contenido se oculte debajo */
+}
+
+.header {
+  position: fixed;
+  top: 65px;
+  width: 50%; /* Mismo ancho que el container */
+  z-index: 2;
+}
+
+.table-container {
+  max-height: 70vh; /* Ajusta este valor según necesites */
+  overflow: auto;
+  position: relative;
+}
+
+.mat-table {
+  width: 100%;
+}
+
+.mat-header-row {
+  position: sticky;
+  top: 0;
+  z-index: 1;
+  background: white;
+}
+
+
