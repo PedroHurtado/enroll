@@ -128,21 +128,21 @@ export const routes: Routes = [
       },
 
       {
-        path:'alumns/modality/compulsory/:courseId/:modalityId',
+        path:'alumns/modality/compulsory/:courseId/:modalityId/:subjectId',
         title:"Alumnos",
         loadComponent: ()=>import('./backoffice/pages/groups/components/group-alumns/group-alumns.component').then(c=>c.GroupAlumnsComponent)
 
       },
 
       {
-        path:'alumns',
+        path:'alumns/modality/electives/:courseId/:modalityId/:subjectId',
         title:"Alumnos",
         loadComponent: ()=>import('./backoffice/pages/groups/components/group-alumns/group-alumns.component').then(c=>c.GroupAlumnsComponent)
 
       },
 
       {
-        path:'alumns',
+        path:'alumns/electives/:courseId/:subjectId',
         title:"Alumnos",
         loadComponent: ()=>import('./backoffice/pages/groups/components/group-alumns/group-alumns.component').then(c=>c.GroupAlumnsComponent)
 
