@@ -1,1 +1,6 @@
-<p>group-alumns works!</p>
+@for (item of enrolls(); track item.id) {
+  <p>{{item.name}}</p>
+}
+@empty {
+  <p>No existen alumnos</p>
+}

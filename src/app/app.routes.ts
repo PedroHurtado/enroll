@@ -142,7 +142,7 @@ export const routes: Routes = [
       },
 
       {
-        path:'alumns/electives/:courseId/:subjectId',
+        path:'alumns/electives/:courseId/:subjectId/:position',
         title:"Alumnos",
         loadComponent: ()=>import('./backoffice/pages/groups/components/group-alumns/group-alumns.component').then(c=>c.GroupAlumnsComponent)
 

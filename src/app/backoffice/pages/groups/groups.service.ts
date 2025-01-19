@@ -143,7 +143,7 @@ export class GroupsService {
         ],
         electives: [
           {
-            id: uuidv4(),
+            id: "1a2b3c4d-5678-9101-1234-56789abcdef0",
             name: "Matemáticas",
             positions: [
               { position: 1, enrolls: createStudents(10) },
@@ -151,11 +151,10 @@ export class GroupsService {
               { position: 3, enrolls: createStudents(5) },
               { position: 4, enrolls: createStudents(3) },
               { position: 5, enrolls: createStudents(2) },
-
             ]
           },
           {
-            id: uuidv4(),
+            id: "2b3c4d5e-6789-1011-1234-56789abcdef1",
             name: "Física",
             positions: [
               { position: 1, enrolls: createStudents(10) },
@@ -166,7 +165,7 @@ export class GroupsService {
             ]
           },
           {
-            id: uuidv4(),
+            id: "3c4d5e6f-7890-1112-1234-56789abcdef2",
             name: "Química",
             positions: [
               { position: 1, enrolls: createStudents(10) },
@@ -177,7 +176,7 @@ export class GroupsService {
             ]
           },
           {
-            id: uuidv4(),
+            id: "4d5e6f7g-8901-1213-1234-56789abcdef3",
             name: "Lengua",
             positions: [
               { position: 1, enrolls: createStudents(10) },
@@ -188,10 +187,50 @@ export class GroupsService {
             ]
           }
         ]
+
       }
     ]
     return courses.find(c=>c.id === id)
-
-
   }
+  getModaliyEnrolls(courseId:string,modalityId:string):Descriptor[]|undefined{
+    const course = this.getCourse(courseId)
+    if(course){
+      const modality= course.modalities.find(m=>m.id===modalityId)
+      if(modality){
+        return modality.enrolls
+      }
+    }
+    return undefined
+  }
+  getModaliyCompulsoryEnrolls(courseId:string,modalityId:string, subjectId:string){
+    const course = this.getCourse(courseId)
+    if(course){
+      const modality= course.modalities.find(m=>m.id===modalityId)
+      if(modality){
+        return modality.compulsoryModality.find(s=>s.id === subjectId)?.enrolls
+      }
+    }
+    return undefined
+  }
+  getModaliyElectivesEnrolls(courseId:string,modalityId:string, subjectId:string){
+    const course = this.getCourse(courseId)
+    if(course){
+      const modality= course.modalities.find(m=>m.id===modalityId)
+      if(modality){
+        return modality.modalityElectives.find(s=>s.id === subjectId)?.enrolls
+      }
+    }
+    return undefined
+  }
+  getElectivesEnrolls(courseId:string,subjectId:string, position:number):Descriptor[]|undefined{
+    const course = this.getCourse(courseId)
+    if(course){
+      const elective = course.electives.find(e=>e.id === subjectId)
+      if(elective){
+        return elective.positions.find(p=>p.position === Number(position))?.enrolls
+      }
+    }
+    return undefined
+  }
+
 }
