@@ -56,3 +56,6 @@ h2{
   display: flex;
   justify-content: right;
 }
+.first{
+  border:none
+}

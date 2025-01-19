@@ -3,7 +3,7 @@
     @for (modality of modalities(); track modality) {
     <div class="group-container">
       <div class="modality-item row-number">
-        <div class="left">{{modality.name}}</div>
+        <h2 class="left"><strong>{{modality.name}}</strong></h2>
         <div class="right">
           <span>{{modality.enrolls.length}}</span>
           <a class="navigate" [routerLink]="['/alumns/modality/', courseId, modality.id]" mat-icon-button aria-label="Ver alumnos">
