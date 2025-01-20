@@ -4,7 +4,7 @@
   <!-- Header con área para arrastrar -->
   <div class="panel-header" cdkDragHandle>
     <mat-icon>drag_indicator</mat-icon>
-    <span>{{ title }}</span>
+    <span>{{ title() }}</span>
     <button mat-icon-button (click)="minimize()">
       <mat-icon>{{ isMinimized ? 'expand_more' : 'remove' }}</mat-icon>
     </button>
@@ -15,6 +15,14 @@
 
   <!-- Contenido del panel -->
   <div class="panel-content" [class.minimized]="isMinimized">
-    <ng-content></ng-content>
+    <mat-accordion multi>
+    @for (item of groups(); track item.id) {
+      <mat-expansion-panel>
+        <mat-expansion-panel-header>
+          <mat-panel-title> {{item.name}} </mat-panel-title>
+        </mat-expansion-panel-header>
+      </mat-expansion-panel>
+    }
+    </mat-accordion>
   </div>
 </div>

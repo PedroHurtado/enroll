@@ -21,8 +21,8 @@
         <div class="modality-section">
           <div class="section-title">Modalidad Obligatoria</div>
           @for (item of modality.compulsoryModality; track item) {
-          <div class="modality-item row-number">
-            <div class="left">{{item.name}}</div>
+          <div class="modality-item row-number" cdkDrag>
+            <div class="left" >{{item.name}}</div>
             <div class="right">
               <span>{{item.enrolls.length}}</span>
               <a class="navigate" [routerLink]="['/alumns/modality/compulsory', courseId(), modality.id, item.id]" mat-icon-button aria-label="Ver alumnos">
@@ -41,9 +41,9 @@
 
         @if(modality.modalityElectives.length > 0) {
         <div class="modality-section">
-          <div class="section-title">Modalidad a Elegir</div>
+          <div class="section-title" >Modalidad a Elegir</div>
           @for (item of modality.modalityElectives; track item) {
-          <div class="modality-item row-number">
+          <div class="modality-item row-number" cdkDrag>
             <div class="left">{{item.name}}</div>
             <div class="right">
               <span>{{item.enrolls.length}}</span>

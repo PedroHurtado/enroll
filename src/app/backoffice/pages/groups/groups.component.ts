@@ -22,7 +22,9 @@ import { FloatingComponent } from './components/floating/floating.component';
     MatDialogModule,
     MatIconModule,
     MatButtonModule,
-    FloatingComponent
+    FloatingComponent,
+
+
   ],
   templateUrl: './groups.component.html',
   styleUrl: './groups.component.css'

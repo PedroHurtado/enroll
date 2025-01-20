@@ -1,22 +1,26 @@
 import { CdkDragEnd, CdkDragStart } from '@angular/cdk/drag-drop';
-import { Component, Input } from '@angular/core';
+import { Component, input, Input } from '@angular/core';
 import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
 import {DragDropModule} from '@angular/cdk/drag-drop';
+import { Descriptor } from '../../../../domain/levels';
+import {MatExpansionModule} from '@angular/material/expansion';
 
 @Component({
   selector: 'app-floating',
   imports: [
     MatButtonModule,
     MatIconModule,
-    DragDropModule
+    DragDropModule,
+    MatExpansionModule
   ],
   templateUrl: './floating.component.html',
   styleUrl: './floating.component.css'
 })
 export class FloatingComponent {
-  @Input() title: string = 'Floating Panel';
-  isMinimized = false;
+  public title = input.required<string>();
+  public groups = input.required<Descriptor[]>();
+  protected isMinimized = false;
 
   onDragStart(event: CdkDragStart) {
     document.body.style.cursor = 'grabbing';
