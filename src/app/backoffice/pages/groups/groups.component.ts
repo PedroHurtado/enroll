@@ -10,6 +10,7 @@ import { MatDialog, MatDialogModule } from '@angular/material/dialog';
 import { DialogComponent } from './components/dialog/dialog.component'
 import {MatIconModule} from '@angular/material/icon';
 import { MatButtonModule } from '@angular/material/button';
+import { FloatingComponent } from './components/floating/floating.component';
 
 @Component({
   selector: 'app-groups',
@@ -20,7 +21,8 @@ import { MatButtonModule } from '@angular/material/button';
     GroupElectivesComponent,
     MatDialogModule,
     MatIconModule,
-    MatButtonModule
+    MatButtonModule,
+    FloatingComponent
   ],
   templateUrl: './groups.component.html',
   styleUrl: './groups.component.css'
