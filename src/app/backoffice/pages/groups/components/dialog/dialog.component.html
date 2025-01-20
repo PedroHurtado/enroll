@@ -1,8 +1,14 @@
-<h2>{{data.course.name}}</h2>
-<mat-dialog-content class="mat-typography">
-  <p>dialog</p>
-</mat-dialog-content>
-<mat-dialog-actions align="end">
-  <button mat-button mat-dialog-close>Cancel</button>
-  <button mat-button [mat-dialog-close]="true" cdkFocusInitial>Aceptar</button>
-</mat-dialog-actions>
+<h2>Grupos de {{data.course.name}}</h2>
+
+<form [formGroup]="form" (ngSubmit)="submit()">
+  <mat-dialog-content class="mat-typography">
+    <mat-form-field appearance="outline">
+      <mat-label>Número de grupos</mat-label>
+      <input formControlName="groups" matInput type="number" min="1" required />
+    </mat-form-field>
+  </mat-dialog-content>
+  <mat-dialog-actions align="end">
+    <button mat-button mat-dialog-close>Cancel</button>
+    <button type="submit" mat-button>Aceptar</button>
+  </mat-dialog-actions>
+</form>

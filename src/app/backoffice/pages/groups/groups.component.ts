@@ -30,6 +30,7 @@ export class GroupsComponent implements Sidenav {
 
   protected readonly isMobile = signal<boolean>(false);
   protected courses = signal<Descriptor[]>([]);
+  protected groups = signal<Descriptor[]>([])
   protected selectedCourse: Descriptor | undefined;
   protected course = signal<Course | undefined>(undefined);
   protected readonly dialog = inject(MatDialog);
@@ -37,11 +38,15 @@ export class GroupsComponent implements Sidenav {
     const dialogRef = this.dialog.open(DialogComponent,{
       data:{
         course:this.course() as Descriptor
-      }
+      },
+      ariaLabel: 'Grupos del curso',
+      role: 'dialog'
     });
 
-    dialogRef.afterClosed().subscribe(result => {
-      console.log(`Dialog result: ${result}`);
+    dialogRef.afterClosed().subscribe((result:number|undefined) => {
+      if(result){
+        this.groups.set(this.service.createGroups(this.course(),result))
+      }
     });
   }
   constructor(private service: GroupsService) {

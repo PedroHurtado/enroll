@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { Descriptor } from '../../domain/levels';
+import { createDescriptor, Descriptor, DescriptorDomain } from '../../domain/levels';
 
 
 export interface WithEnrolls {
@@ -8,9 +8,9 @@ export interface WithEnrolls {
 
 export interface DescriptorWithEnrolls extends Descriptor, WithEnrolls { }
 
-export interface Position{
-  position:number
-  enrolls:Descriptor[]
+export interface Position {
+  position: number
+  enrolls: Descriptor[]
 }
 export interface PositionWhitEnrolls extends Descriptor {
   positions: Position[];
@@ -25,11 +25,11 @@ export interface Course extends DescriptorWithEnrolls {
   modalities: Modality[];
   electives: PositionWhitEnrolls[];
 }
-export interface Alumn{
-  courseName:string,
-  modalityName?:string,
-  subjectName?:string,
-  enrolls:Descriptor[]
+export interface Alumn {
+  courseName: string,
+  modalityName?: string,
+  subjectName?: string,
+  enrolls: Descriptor[]
 }
 
 function uuidv4(): string {
@@ -83,7 +83,7 @@ export class GroupsService {
   }
   getCourse(id: string): Course | undefined {
 
-    const courses:Course[] = [
+    const courses: Course[] = [
       {
         id: "550e8400-e29b-41d4-a716-446655440004",
         name: "1º Bachillerato",
@@ -196,14 +196,14 @@ export class GroupsService {
 
       }
     ]
-    return courses.find(c=>c.id === id)
+    return courses.find(c => c.id === id)
   }
-  getModaliyEnrolls(courseId:string,modalityId:string):Alumn|undefined{
+  getModaliyEnrolls(courseId: string, modalityId: string): Alumn | undefined {
     const course = this.getCourse(courseId)
-    if(course){
-      const courseName= course.name
-      const modality= course.modalities.find(m=>m.id===modalityId)
-      if(modality){
+    if (course) {
+      const courseName = course.name
+      const modality = course.modalities.find(m => m.id === modalityId)
+      if (modality) {
         const modalityName = modality.name
 
         return {
@@ -216,67 +216,76 @@ export class GroupsService {
     }
     return undefined
   }
-  getModaliyCompulsoryEnrolls(courseId:string,modalityId:string, subjectId:string):Alumn|undefined{
+  getModaliyCompulsoryEnrolls(courseId: string, modalityId: string, subjectId: string): Alumn | undefined {
     const course = this.getCourse(courseId)
-    if(course){
+    if (course) {
       const courseName = course.name
-      const modality= course.modalities.find(m=>m.id===modalityId)
+      const modality = course.modalities.find(m => m.id === modalityId)
       const modalityName = modality?.name
-      if(modality){
-        const subject =  modality.compulsoryModality.find(s=>s.id === subjectId)
-        if(subject){
+      if (modality) {
+        const subject = modality.compulsoryModality.find(s => s.id === subjectId)
+        if (subject) {
           const subjectName = subject.name
-          return{
+          return {
             courseName,
             modalityName,
             subjectName,
-            enrolls:subject.enrolls
+            enrolls: subject.enrolls
           }
         }
       }
     }
     return undefined
   }
-  getModaliyElectivesEnrolls(courseId:string,modalityId:string, subjectId:string):Alumn|undefined{
+  getModaliyElectivesEnrolls(courseId: string, modalityId: string, subjectId: string): Alumn | undefined {
     const course = this.getCourse(courseId)
-    if(course){
+    if (course) {
       const courseName = course.name
-      const modality= course.modalities.find(m=>m.id===modalityId)
+      const modality = course.modalities.find(m => m.id === modalityId)
       const modalityName = modality?.name
-      if(modality){
-        const subject =  modality.modalityElectives.find(s=>s.id === subjectId)
-        if(subject){
+      if (modality) {
+        const subject = modality.modalityElectives.find(s => s.id === subjectId)
+        if (subject) {
           const subjectName = subject.name
-          return{
+          return {
             courseName,
             modalityName,
             subjectName,
-            enrolls:subject.enrolls
+            enrolls: subject.enrolls
           }
         }
       }
     }
     return undefined
   }
-  getElectivesEnrolls(courseId:string,subjectId:string, position:number):Alumn|undefined{
+  getElectivesEnrolls(courseId: string, subjectId: string, position: number): Alumn | undefined {
     const course = this.getCourse(courseId)
-    if(course){
+    if (course) {
       const courseName = course.name
-      const elective = course.electives.find(e=>e.id === subjectId)
-      if(elective){
+      const elective = course.electives.find(e => e.id === subjectId)
+      if (elective) {
         const subjectName = elective.name
-        const _position =  elective.positions.find(p=>p.position === Number(position))
-        if(_position){
+        const _position = elective.positions.find(p => p.position === Number(position))
+        if (_position) {
           return {
             courseName,
             subjectName,
-            enrolls:_position.enrolls
+            enrolls: _position.enrolls
           }
         }
 
       }
     }
     return undefined
+  }
+  public createGroups(course:Descriptor|undefined,groups: number):Descriptor[] {
+    const alphabet = Array.from({ length: 26 }, (_, i) => String.fromCharCode(65 + i))
+      .filter(letter => letter !== 'Ñ');
+    const result = alphabet.splice(0,groups)
+    return result.map(l=>{
+      const name = `${course?.name|| ''}-${l}`
+      return createDescriptor(name)
+  })
   }
 
 }

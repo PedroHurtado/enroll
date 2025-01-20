@@ -426,7 +426,7 @@ export class Utils<T extends Descriptor> {
 }
 
 
-function createDescriptor(name: string): Descriptor {
+export function createDescriptor(name: string): Descriptor {
   return {
     id: crypto.randomUUID(),
     name
