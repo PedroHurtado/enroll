@@ -18,6 +18,7 @@
     cdkDropList
     (cdkDropListEntered)="onEnter($event)"
     (cdkDropListExited)="onExit($event)"
+
   >
     @for (item of target; track $index) {
       <div>{{ item }}</div>

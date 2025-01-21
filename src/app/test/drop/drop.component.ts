@@ -13,7 +13,9 @@ export class DropComponent {
   source: string[] = ['Item 1', 'Item 2', 'Item 3'];
   target: string[] = [];
   onEnter(ev:CdkDragEnter<string>){
+
     const draggedElement = ev.item.element.nativeElement;
+    return
 
     //draggedElement.style.setProperty('position', 'relative', 'important');
     //draggedElement.style.setProperty('left', '0', 'important');
