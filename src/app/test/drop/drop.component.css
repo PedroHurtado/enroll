@@ -1,0 +1,12 @@
+
+.container{
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  padding: 1rem;
+}
+.target, .source{
+  border: 1px solid blue;
+}
+.source{
+  cursor: move;
+}

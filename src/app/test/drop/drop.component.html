@@ -1,0 +1,20 @@
+<div cdkDropListGroup class="container">
+
+
+  <div cdkDropList class="source"
+    [cdkDropListData]="source"
+  >
+    @for (item of source; track $index) {
+    <div cdkDrag >
+      {{item}}
+      <div *cdkDragPreview>Elemento Drag</div>
+    </div>
+    }
+  </div>
+
+  <div class="target" cdkDropList (cdkDropListDropped)="onDrop($event)">
+    @for (item of target; track $index) {
+      <div>{{item}}</div>
+    }
+  </div>
+</div>

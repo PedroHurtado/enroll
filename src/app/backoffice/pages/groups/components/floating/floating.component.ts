@@ -30,6 +30,9 @@ export class FloatingComponent {
     document.body.style.cursor = 'default';
   }
 
+  onDrop(){
+    console.log("drop")
+  }
   minimize() {
     this.isMinimized = !this.isMinimized;
   }

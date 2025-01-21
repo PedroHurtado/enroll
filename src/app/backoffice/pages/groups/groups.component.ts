@@ -11,7 +11,7 @@ import { DialogComponent } from './components/dialog/dialog.component'
 import {MatIconModule} from '@angular/material/icon';
 import { MatButtonModule } from '@angular/material/button';
 import { FloatingComponent } from './components/floating/floating.component';
-
+import {DragDropModule} from '@angular/cdk/drag-drop';
 @Component({
   selector: 'app-groups',
   imports: [
@@ -23,7 +23,7 @@ import { FloatingComponent } from './components/floating/floating.component';
     MatIconModule,
     MatButtonModule,
     FloatingComponent,
-
+    DragDropModule
 
   ],
   templateUrl: './groups.component.html',
@@ -94,4 +94,5 @@ export class GroupsComponent implements Sidenav {
   protected getKeys(obj: any): any[] {
     return Object.entries(obj)
   }
+
 }

@@ -6,7 +6,8 @@
         <h2 class="left"><strong>{{modality.name}}</strong></h2>
         <div class="right">
           <span>{{modality.enrolls.length}}</span>
-          <a class="navigate" [routerLink]="['/alumns/modality', courseId(), modality.id]" mat-icon-button aria-label="Ver alumnos">
+          <a class="navigate" [routerLink]="['/alumns/modality', courseId(), modality.id]" mat-icon-button
+            aria-label="Ver alumnos">
             <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
               stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
               <title id="navigateIcon {{modality.id}}">Icono de navegación</title>
@@ -16,17 +17,18 @@
         </div>
       </div>
 
-      <div class="group-content" cdkDropList>
+      <div class="group-content">
         @if(modality.compulsoryModality.length > 0) {
-        <div class="modality-section">
+        <div class="modality-section cursor-drag" cdkDropList>
           <div class="section-title">Modalidad Obligatoria</div>
           @for (item of modality.compulsoryModality; track item) {
           <div class="modality-item row-number cursor-drag" cdkDrag>
             <div *cdkDragPreview>Esta es una zona drag</div>
-            <div class="left" >{{item.name}}</div>
+            <div class="left">{{item.name}}</div>
             <div class="right">
               <span>{{item.enrolls.length}}</span>
-              <a class="navigate" [routerLink]="['/alumns/modality/compulsory', courseId(), modality.id, item.id]" mat-icon-button aria-label="Ver alumnos">
+              <a class="navigate" [routerLink]="['/alumns/modality/compulsory', courseId(), modality.id, item.id]"
+                mat-icon-button aria-label="Ver alumnos">
                 <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
                   stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
                   <title id="navigateIcon {{item.id}}">Icono de navegación</title>
@@ -42,14 +44,15 @@
 
         @if(modality.modalityElectives.length > 0) {
         <div class="modality-section cursor-drag" cdkDropList>
-          <div class="section-title" >Modalidad a Elegir</div>
+          <div class="section-title">Modalidad a Elegir</div>
           @for (item of modality.modalityElectives; track item) {
           <div class="modality-item row-number" cdkDrag>
             <div *cdkDragPreview>Esta es una zona drag</div>
             <div class="left">{{item.name}}</div>
             <div class="right">
               <span>{{item.enrolls.length}}</span>
-              <a class="navigate" [routerLink]="['/alumns/modality/electives', courseId(), modality.id, item.id]" mat-icon-button aria-label="Ver alumnos">
+              <a class="navigate" [routerLink]="['/alumns/modality/electives', courseId(), modality.id, item.id]"
+                mat-icon-button aria-label="Ver alumnos">
                 <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
                   stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
                   <title id="navigateIcon {{item.id}}">Icono de navegación</title>
