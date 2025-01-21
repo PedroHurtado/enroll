@@ -16,12 +16,13 @@
         </div>
       </div>
 
-      <div class="group-content">
+      <div class="group-content" cdkDropList>
         @if(modality.compulsoryModality.length > 0) {
         <div class="modality-section">
           <div class="section-title">Modalidad Obligatoria</div>
           @for (item of modality.compulsoryModality; track item) {
-          <div class="modality-item row-number" cdkDrag>
+          <div class="modality-item row-number cursor-drag" cdkDrag>
+            <div *cdkDragPreview>Esta es una zona drag</div>
             <div class="left" >{{item.name}}</div>
             <div class="right">
               <span>{{item.enrolls.length}}</span>
@@ -40,10 +41,11 @@
 
 
         @if(modality.modalityElectives.length > 0) {
-        <div class="modality-section">
+        <div class="modality-section cursor-drag" cdkDropList>
           <div class="section-title" >Modalidad a Elegir</div>
           @for (item of modality.modalityElectives; track item) {
           <div class="modality-item row-number" cdkDrag>
+            <div *cdkDragPreview>Esta es una zona drag</div>
             <div class="left">{{item.name}}</div>
             <div class="right">
               <span>{{item.enrolls.length}}</span>

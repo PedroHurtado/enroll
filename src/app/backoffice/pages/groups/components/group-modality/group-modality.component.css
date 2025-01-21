@@ -36,6 +36,9 @@
 .modality-item:last-child {
   border-bottom: none;
 }
+.cursor-drag{
+  cursor: move;
+}
 
 .modality-section:not(:last-child) .modality-item:last-child {
   border-bottom: 1px solid #666666;
