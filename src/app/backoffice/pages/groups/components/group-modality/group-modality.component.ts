@@ -20,4 +20,7 @@ export class GroupModalityComponent {
       return length===1?'Mátricula':'Matriculas'
 
   }
+  canEnter(){
+    return false;
+  }
 }

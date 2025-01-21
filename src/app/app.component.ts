@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { DropComponent } from './test/drop/drop.component';
 import { RouterOutlet } from '@angular/router';
 //import { DropComponent } from './test/drop/drop.component';
 
@@ -7,8 +8,8 @@ import { RouterOutlet } from '@angular/router';
 @Component({
   selector: 'app-root',
   imports: [
-    RouterOutlet,
     //DropComponent
+    RouterOutlet,
   ],
   templateUrl: './app.component.html',
 })

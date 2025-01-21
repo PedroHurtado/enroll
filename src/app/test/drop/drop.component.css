@@ -1,28 +1,31 @@
-.container {
-  display: flex;
-  gap: 16px;
+.cdk-drag-placeholder {
+  display: none !important;
 }
 
-.source, .target {
-  width: 200px;
-  min-height: 150px;
-  border: 1px solid #ccc;
-  padding: 8px;
+
+.target.cdk-drop-list-dragging * {
+  display: none !important;
+}
+
+
+.cdk-drag-preview {
+  display: block !important;
+  opacity: 0.5;
+}
+
+
+.container {
   display: flex;
-  flex-direction: column;
-  gap: 8px;
+  gap: 20px;
+}
+
+.source,
+.target {
+  border: 1px solid #ccc;
+  min-height: 200px;
+  width: 200px;
+  padding: 10px;
 }
 .source{
   cursor: move;
 }
-
-.drag-preview {
-  background-color: #d1e7ff;
-  border: 1px solid #0d6efd;
-  border-radius: 4px;
-  padding: 4px 8px;
-  font-weight: bold;
-  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.2);
-}
-
-

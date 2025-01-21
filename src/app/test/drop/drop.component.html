@@ -1,16 +1,24 @@
 <div cdkDropListGroup class="container">
-  <!-- Lista de origen -->
-  <div cdkDropList class="source" [cdkDropListData]="source">
+  <div
+    cdkDropList
+    class="source"
+    [cdkDropListData]="source"
+    [cdkDropListSortingDisabled]="true"
+  >
     @for (item of source; track $index) {
-      <div cdkDrag (cdkDragMoved)="onMove($event)">
+      <div cdkDrag >
         <div>{{ item }}</div>
         <div *cdkDragPreview class="drag-preview">{{ item }}</div>
       </div>
     }
   </div>
 
-  <!-- Lista de destino -->
-  <div cdkDropList class="target" (cdkDropListDropped)="onDrop($event)">
+  <div
+    cdkDropList
+    class="target"
+    (cdkDropListDropped)="onDrop($event)"
+    [cdkDropListAutoScrollDisabled]="true"
+  >
     @for (item of target; track $index) {
       <div>{{ item }}</div>
     }

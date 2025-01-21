@@ -21,6 +21,7 @@
         @if(modality.compulsoryModality.length > 0) {
         <div class="modality-section cursor-drag" cdkDropList
         [cdkDropListSortingDisabled]="true"
+        [cdkDropListEnterPredicate]="canEnter"
         >
           <div class="section-title">Modalidad Obligatoria</div>
           @for (item of modality.compulsoryModality; track item) {
@@ -47,6 +48,7 @@
         @if(modality.modalityElectives.length > 0) {
         <div class="modality-section cursor-drag" cdkDropList
         [cdkDropListSortingDisabled]="true"
+        [cdkDropListEnterPredicate]="canEnter"
         >
           <div class="section-title">Modalidad a Elegir</div>
           @for (item of modality.modalityElectives; track item) {

@@ -21,4 +21,7 @@ export class GroupElectivesComponent {
     const pos = elective.positions.find((p: any) => p.position === position);
     return pos ? pos.enrolls.length : 0;
   }
+  canDrop(){
+    return false;
+  }
 }
