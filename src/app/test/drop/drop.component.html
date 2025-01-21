@@ -7,17 +7,17 @@
   >
     @for (item of source; track $index) {
       <div cdkDrag >
-        <div>{{ item }}</div>
-        <div *cdkDragPreview class="drag-preview">{{ item }}</div>
+        <div class="drag-item">{{ item }}</div>
+        <div *cdkDragPreview class="drag-preview">Moviendo :{{ item }}</div>
       </div>
     }
   </div>
 
   <div
-    cdkDropList
     class="target"
-    (cdkDropListDropped)="onDrop($event)"
-    [cdkDropListAutoScrollDisabled]="true"
+    cdkDropList
+    (cdkDropListEntered)="onEnter($event)"
+    (cdkDropListExited)="onExit($event)"
   >
     @for (item of target; track $index) {
       <div>{{ item }}</div>

@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { CdkDrag, CdkDragDrop, CdkDragMove, CdkDropList, DragDropModule } from '@angular/cdk/drag-drop';
+import { CdkDragDrop, CdkDragEnter, CdkDragExit, DragDropModule } from '@angular/cdk/drag-drop';
 @Component({
   selector: 'app-drop',
   imports: [
@@ -12,18 +12,21 @@ export class DropComponent {
 
   source: string[] = ['Item 1', 'Item 2', 'Item 3'];
   target: string[] = [];
+  onEnter(ev:CdkDragEnter<string>){
+    const draggedElement = ev.item.element.nativeElement;
 
-  isDragging = false;
-  currentDragItem: any = null;
+    //draggedElement.style.setProperty('position', 'relative', 'important');
+    //draggedElement.style.setProperty('left', '0', 'important');
+    //draggedElement.style.setProperty('opacity', '1', 'important');
+    //console.log(draggedElement.parentNode)
 
-
-
-  onDrop(event: CdkDragDrop<string[]>) {
-
-    //this.target.push(this.currentDragItem);
-    console.log("Drop")
-
-
+  }
+  onExit(ev:CdkDragExit<string>){
+    const draggedElement = ev.item.element.nativeElement;
+    //draggedElement.style.removeProperty('position');
+    //draggedElement.style.removeProperty('left');
+    //draggedElement.style.removeProperty('opacity');
+    //console.log(draggedElement.parentNode)
   }
 }
 

@@ -1,19 +1,3 @@
-.cdk-drag-placeholder {
-  display: none !important;
-}
-
-
-.target.cdk-drop-list-dragging * {
-  display: none !important;
-}
-
-
-.cdk-drag-preview {
-  display: block !important;
-  opacity: 0.5;
-}
-
-
 .container {
   display: flex;
   gap: 20px;
@@ -29,3 +13,30 @@
 .source{
   cursor: move;
 }
+
+
+.drag-item {
+  border: 1px solid #ccc;
+  padding: 8px;
+  margin: 4px 0;
+  background: #f9f9f9;
+  cursor: grab;
+}
+
+.drag-preview {
+  background: #e0e0e0;
+  border: 1px dashed #999;
+  padding: 8px;
+  opacity: 0.9;
+}
+
+
+
+
+
+
+
+
+
+
+
