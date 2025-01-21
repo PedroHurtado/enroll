@@ -11,13 +11,11 @@
   @for (position of [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]; track position) {
   @let total = getEnrollsCountByPosition(elective, position);
   @if(total){
-  <div class="grid-item"
-    cdkDrag
-    [cdkDragData]="elective"
-    cdkDragClone
-    (cdkDragStarted)="onDragStarted($event)"
-    >
+  <div class="grid-item" cdkDrag>
+    <div *cdkDragPreview>Esta es una zona drag</div>
     <div class="right">{{total}}</div>
+
+
     <a [routerLink]="['/alumns/electives', courseId(), elective.id, position]" class="navigate" mat-icon-button
       aria-label="Ver alunmos">
       <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
@@ -27,7 +25,6 @@
       </svg>
     </a>
   </div>
-
   }
   @else {
   <div class="center">----</div>

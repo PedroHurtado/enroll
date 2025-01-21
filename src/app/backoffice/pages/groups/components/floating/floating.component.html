@@ -15,7 +15,7 @@
 
   <!-- Contenido del panel -->
   <div class="panel-content" [class.minimized]="isMinimized">
-    <mat-accordion multi>
+    <mat-accordion>
     @for (item of groups(); track item.id) {
       <mat-expansion-panel>
         <mat-expansion-panel-header>
