@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { CdkDragDrop, DragDropModule } from '@angular/cdk/drag-drop';
+import { CdkDragDrop, CdkDragMove, DragDropModule } from '@angular/cdk/drag-drop';
 @Component({
   selector: 'app-drop',
   imports: [
@@ -9,10 +9,17 @@ import { CdkDragDrop, DragDropModule } from '@angular/cdk/drag-drop';
   styleUrl: './drop.component.css'
 })
 export class DropComponent {
-  source:any[] =[1,2,3,4]
-  target:any[]=[]
-  onDrop(ev:CdkDragDrop<string[]>){
+
+  protected source:any[] =[1,2,3,4]
+  protected target:any[]=[]
+
+  protected onDrop(ev:CdkDragDrop<string[]>){
     const data = this.source[ev.previousIndex]
     this.target.push(data)
   }
+  protected onMove(ev:CdkDragMove<string[]>){
+    console.log("On Move")
+  }
+
+
 }
