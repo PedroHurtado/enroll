@@ -19,7 +19,7 @@
 
       <div class="group-content">
         @if(modality.compulsoryModality.length > 0) {
-        <div class="modality-section cursor-drag" cdkDropList [cdkDropListSortingDisabled]="true"
+        <div class="modality-section" cdkDropList [cdkDropListSortingDisabled]="true"
           [cdkDropListEnterPredicate]="canEnter">
           <div class="section-title">Modalidad Obligatoria</div>
           @for (item of modality.compulsoryModality; track item) {
@@ -64,12 +64,12 @@
 
 
         @if(modality.modalityElectives.length > 0) {
-        <div class="modality-section cursor-drag" cdkDropList [cdkDropListSortingDisabled]="true"
+        <div class="modality-section" cdkDropList [cdkDropListSortingDisabled]="true"
           [cdkDropListEnterPredicate]="canEnter">
           <div class="section-title">Modalidad a Elegir</div>
           @for (item of modality.modalityElectives; track item) {
           <div class="subjects">
-            <div class="modality-item row-number" cdkDrag>
+            <div class="modality-item row-number cursor-drag" cdkDrag>
               <div *cdkDragPreview class="preview">
                 <div>{{item.name}}</div>
                 <div>{{item.enrolls.length}}</div>
@@ -87,7 +87,7 @@
                 </a>
               </div>
             </div>
-            <div class="modality-item row-number ghost-list">
+            <div class="modality-item row-number ghost-list cursor-drag">
               <div class="left">{{item.name}}</div>
               <div class="right">
                 <span>{{item.enrolls.length}}</span>
