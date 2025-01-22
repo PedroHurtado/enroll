@@ -87,6 +87,9 @@
 }
 
 .subjects{
+  display: grid;
+  grid-auto-rows: minmax(min-content, auto);
+  grid-auto-flow: row;
   position: relative;
 }
 
