@@ -47,6 +47,8 @@
 .row-number {
   display: grid;
   grid-template-columns: 1fr auto;
+  grid-auto-rows: minmax(min-content, auto);
+  grid-auto-flow: row;
   align-items: center;
   justify-content: center;
 }
@@ -82,4 +84,28 @@
   background: linear-gradient(to bottom, #ffffff, #f9f9f9);
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
   color: #333333;
+}
+
+.subjects{
+  position: relative;
+}
+
+.ghost-list {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+}
+
+.ghost-list .navigate {
+  pointer-events: auto;
+}
+
+* {
+  box-sizing: border-box;
+}
+[cdkdrag]  {
+  opacity: 0;
 }

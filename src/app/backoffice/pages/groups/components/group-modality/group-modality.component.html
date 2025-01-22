@@ -19,58 +19,87 @@
 
       <div class="group-content">
         @if(modality.compulsoryModality.length > 0) {
-        <div class="modality-section cursor-drag" cdkDropList
-        [cdkDropListSortingDisabled]="true"
-        [cdkDropListEnterPredicate]="canEnter"
-        >
+        <div class="modality-section cursor-drag" cdkDropList [cdkDropListSortingDisabled]="true"
+          [cdkDropListEnterPredicate]="canEnter">
           <div class="section-title">Modalidad Obligatoria</div>
           @for (item of modality.compulsoryModality; track item) {
-          <div class="modality-item row-number cursor-drag" cdkDrag>
-            <div *cdkDragPreview class="preview">
-              <div>{{item.name}}</div>
-              <div>{{item.enrolls.length}}</div>
+          <div class="subjects">
+            <div class="modality-item row-number cursor-drag" cdkDrag>
+              <div *cdkDragPreview class="preview">
+                <div>{{item.name}}</div>
+                <div>{{item.enrolls.length}}</div>
+              </div>
+              <div class="left">{{item.name}}</div>
+              <div class="right">
+                <span>{{item.enrolls.length}}</span>
+                <a class="navigate" [routerLink]="['/alumns/modality/compulsory', courseId(), modality.id, item.id]"
+                  mat-icon-button aria-label="Ver alumnos">
+                  <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
+                    stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <title id="navigateIcon {{item.id}}">Icono de navegación</title>
+                    <path d="M9 18l6-6-6-6" />
+                  </svg>
+                </a>
+              </div>
             </div>
-            <div class="left">{{item.name}}</div>
-            <div class="right">
-              <span>{{item.enrolls.length}}</span>
-              <a class="navigate" [routerLink]="['/alumns/modality/compulsory', courseId(), modality.id, item.id]"
-                mat-icon-button aria-label="Ver alumnos">
-                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
-                  stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                  <title id="navigateIcon {{item.id}}">Icono de navegación</title>
-                  <path d="M9 18l6-6-6-6" />
-                </svg>
-              </a>
+            <div class="modality-item row-number cursor-drag ghost-list">
+              <div class="left">{{item.name}}</div>
+              <div class="right">
+                <span>{{item.enrolls.length}}</span>
+                <a class="navigate" [routerLink]="['/alumns/modality/compulsory', courseId(), modality.id, item.id]"
+                  mat-icon-button aria-label="Ver alumnos">
+                  <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
+                    stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <title id="navigateIcon {{item.id}}">Icono de navegación</title>
+                    <path d="M9 18l6-6-6-6" />
+                  </svg>
+                </a>
+              </div>
             </div>
           </div>
+
           }
         </div>
         }
 
 
         @if(modality.modalityElectives.length > 0) {
-        <div class="modality-section cursor-drag" cdkDropList
-        [cdkDropListSortingDisabled]="true"
-        [cdkDropListEnterPredicate]="canEnter"
-        >
+        <div class="modality-section cursor-drag" cdkDropList [cdkDropListSortingDisabled]="true"
+          [cdkDropListEnterPredicate]="canEnter">
           <div class="section-title">Modalidad a Elegir</div>
           @for (item of modality.modalityElectives; track item) {
-          <div class="modality-item row-number" cdkDrag>
-            <div *cdkDragPreview class="preview">
-              <div>{{item.name}}</div>
-              <div>{{item.enrolls.length}}</div>
+          <div class="subjects">
+            <div class="modality-item row-number" cdkDrag>
+              <div *cdkDragPreview class="preview">
+                <div>{{item.name}}</div>
+                <div>{{item.enrolls.length}}</div>
+              </div>
+              <div class="left">{{item.name}}</div>
+              <div class="right">
+                <span>{{item.enrolls.length}}</span>
+                <a class="navigate" [routerLink]="['/alumns/modality/electives', courseId(), modality.id, item.id]"
+                  mat-icon-button aria-label="Ver alumnos">
+                  <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
+                    stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <title id="navigateIcon {{item.id}}">Icono de navegación</title>
+                    <path d="M9 18l6-6-6-6" />
+                  </svg>
+                </a>
+              </div>
             </div>
-            <div class="left">{{item.name}}</div>
-            <div class="right">
-              <span>{{item.enrolls.length}}</span>
-              <a class="navigate" [routerLink]="['/alumns/modality/electives', courseId(), modality.id, item.id]"
-                mat-icon-button aria-label="Ver alumnos">
-                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
-                  stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                  <title id="navigateIcon {{item.id}}">Icono de navegación</title>
-                  <path d="M9 18l6-6-6-6" />
-                </svg>
-              </a>
+            <div class="modality-item row-number ghost-list">
+              <div class="left">{{item.name}}</div>
+              <div class="right">
+                <span>{{item.enrolls.length}}</span>
+                <a class="navigate" [routerLink]="['/alumns/modality/electives', courseId(), modality.id, item.id]"
+                  mat-icon-button aria-label="Ver alumnos">
+                  <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
+                    stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <title id="navigateIcon {{item.id}}">Icono de navegación</title>
+                    <path d="M9 18l6-6-6-6" />
+                  </svg>
+                </a>
+              </div>
             </div>
           </div>
           }
