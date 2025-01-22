@@ -44,12 +44,12 @@ mat-sidenav-content {
 }
 .add{
   position: fixed;
-  top: 3rem;
-  right: 1.5rem;
+  top: 4rem;
+  right: 2rem;
   z-index: 1000;
 }
 .sidenav-container{
-  margin-top: 3rem !important;
+  margin-top: 4rem !important;
 }
 
 

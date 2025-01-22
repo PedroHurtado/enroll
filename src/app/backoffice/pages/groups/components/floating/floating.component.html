@@ -15,9 +15,11 @@
 
   <!-- Contenido del panel -->
   <div class="panel-content" [class.minimized]="isMinimized">
+    <p>Arrastra asignaturas al grupo deseado</p>
     <mat-accordion>
     @for (item of groups(); track item.id) {
-      <mat-expansion-panel cdkDropList (cdkDropListDropped)="onDrop()">
+      <mat-expansion-panel cdkDropList
+      >
         <mat-expansion-panel-header>
           <mat-panel-title> {{item.name}} </mat-panel-title>
         </mat-expansion-panel-header>

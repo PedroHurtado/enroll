@@ -1,4 +1,4 @@
-import { Component, inject, signal, viewChild } from '@angular/core';
+import { AfterViewInit, Component, ElementRef, inject, OnDestroy, signal, viewChild } from '@angular/core';
 import { MatSidenav, MatSidenavModule } from '@angular/material/sidenav';
 import { Sidenav } from '../../../components/sidenav';
 import { MatListModule } from '@angular/material/list';
@@ -29,9 +29,9 @@ import {DragDropModule} from '@angular/cdk/drag-drop';
   templateUrl: './groups.component.html',
   styleUrl: './groups.component.css'
 })
-export class GroupsComponent implements Sidenav {
+export class GroupsComponent implements Sidenav{
   private _sidenav = viewChild<MatSidenav>('snav');
-
+  private _container = viewChild<ElementRef>('container');
   protected readonly isMobile = signal<boolean>(false);
   protected courses = signal<Descriptor[]>([]);
   protected groups = signal<Descriptor[]>([])
@@ -56,6 +56,8 @@ export class GroupsComponent implements Sidenav {
   constructor(private service: GroupsService) {
     this.initializeCourses();
   }
+
+
 
   private initializeCourses(): void {
     const courses = this.loadCourses();

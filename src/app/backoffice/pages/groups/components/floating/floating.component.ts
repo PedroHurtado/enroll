@@ -1,4 +1,4 @@
-import { CdkDragEnd, CdkDragStart } from '@angular/cdk/drag-drop';
+import { CdkDragDrop, CdkDragEnd, CdkDragEnter, CdkDragExit, CdkDragMove, CdkDragStart } from '@angular/cdk/drag-drop';
 import { Component, input, Input } from '@angular/core';
 import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
@@ -25,18 +25,12 @@ export class FloatingComponent {
   onDragStart(event: CdkDragStart) {
     document.body.style.cursor = 'grabbing';
   }
-
   onDragEnd(event: CdkDragEnd) {
     document.body.style.cursor = 'default';
-  }
-
-  onDrop(){
-    console.log("drop")
   }
   minimize() {
     this.isMinimized = !this.isMinimized;
   }
-
   close() {
     // Implementa la lógica de cierre según tus necesidades
   }
