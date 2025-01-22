@@ -26,7 +26,10 @@
           <div class="section-title">Modalidad Obligatoria</div>
           @for (item of modality.compulsoryModality; track item) {
           <div class="modality-item row-number cursor-drag" cdkDrag>
-            <div *cdkDragPreview>Acabo de iniciar el drag</div>
+            <div *cdkDragPreview class="preview">
+              <div>{{item.name}}</div>
+              <div>{{item.enrolls.length}}</div>
+            </div>
             <div class="left">{{item.name}}</div>
             <div class="right">
               <span>{{item.enrolls.length}}</span>
@@ -53,7 +56,10 @@
           <div class="section-title">Modalidad a Elegir</div>
           @for (item of modality.modalityElectives; track item) {
           <div class="modality-item row-number" cdkDrag>
-            <div *cdkDragPreview>Acabo de iniciar el drag</div>
+            <div *cdkDragPreview class="preview">
+              <div>{{item.name}}</div>
+              <div>{{item.enrolls.length}}</div>
+            </div>
             <div class="left">{{item.name}}</div>
             <div class="right">
               <span>{{item.enrolls.length}}</span>
