@@ -1,24 +1,44 @@
+<!-- drop.component.html -->
 <div cdkDropListGroup class="container">
-  <div
-    cdkDropList
-    class="source"
-    [cdkDropListData]="source"
-    [cdkDropListSortingDisabled]="true"
-  >
-    @for (item of source; track $index) {
-      <div cdkDrag >
-        <div class="drag-item">{{ item }}</div>
-        <div *cdkDragPreview class="drag-preview">Moviendo :{{ item }}</div>
-      </div>
-    }
+  <div class="source-container">
+    <!-- Lista real para el drag&drop -->
+    <div
+      cdkDropList
+      class="source"
+      [cdkDropListData]="source"
+      [cdkDropListSortingDisabled]="true"
+      (cdkDropListDropped)="onDrop($event)"
+    >
+      @for (item of source; track $index) {
+        <div
+          cdkDrag
+          [cdkDragData]="$index"
+          class="drag-item-wrapper"
+        >
+          <div *cdkDragPreview class="drag-preview">Moviendo: {{ item }}</div>
+        </div>
+      }
+    </div>
+
+    <!-- Lista fantasma que siempre permanece visible -->
+    <div class="ghost-list">
+      @for (item of ghostItems; track $index) {
+        <div
+          class="ghost-item"
+        >
+          {{ item }}
+        </div>
+      }
+    </div>
   </div>
 
   <div
     class="target"
     cdkDropList
+    (cdkDropListDropped)="onDrop($event)"
   >
     @for (item of target; track $index) {
-      <div>{{ item }}</div>
+      <div class="target-item">{{ item }}</div>
     }
   </div>
 </div>
