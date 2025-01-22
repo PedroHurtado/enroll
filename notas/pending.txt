@@ -1,20 +1,3 @@
-1º Bachiller
-	General
-		Economía, Emprendimiento y Actividad Empresarial
-		Todas las de modalidad de primer curso
-	Optativas
-		(4 horas)->elegir 1
-			Segunda Lengua Extranjera I
-			+ Modalidad
-		(2 horas)->elegir 2
-			Anatomía aplicada
-			Digitalizacion y Ofimática
-			Herencia y Mitologías Clasicas
-			Música Espectaculo y Comunicación
-
-
-Clasificacion
-  Comunes
-  Modalidad Obligatoria
-  Modalidad Elegir
-  Optativas(2h y 4h)
+1. Drag and drop(siguen habiendo problemas)
+2. Capturar la asignatura una vez
+que se haga drag
