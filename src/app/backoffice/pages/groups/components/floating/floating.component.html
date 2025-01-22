@@ -19,6 +19,7 @@
     <mat-accordion>
     @for (item of groups(); track item.id) {
       <mat-expansion-panel cdkDropList
+        (cdkDropListDropped)="drop($event, item)"
       >
         <mat-expansion-panel-header>
           <mat-panel-title> {{item.name}} </mat-panel-title>

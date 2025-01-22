@@ -31,6 +31,10 @@ export class FloatingComponent {
   minimize() {
     this.isMinimized = !this.isMinimized;
   }
+  drop(ev: CdkDragDrop<Descriptor[]>, descriptor:Descriptor) {
+
+
+  }
   close() {
     // Implementa la lógica de cierre según tus necesidades
   }

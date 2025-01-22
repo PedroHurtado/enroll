@@ -1,5 +1,8 @@
 <h2><strong>Materias Optativas</strong></h2>
-<div cdkDropList [cdkDropListSortingDisabled]="true" [cdkDropListEnterPredicate]="canDrop">
+<div cdkDropList
+[cdkDropListData]="electives"
+[cdkDropListSortingDisabled]="true"
+[cdkDropListEnterPredicate]="canDrop">
   <div class="container">
     <div class="grid-container">
 
