@@ -106,6 +106,6 @@
 * {
   box-sizing: border-box;
 }
-[cdkdrag]  {
+.cdk-drag {
   opacity: 0;
 }

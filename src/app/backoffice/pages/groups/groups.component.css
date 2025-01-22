@@ -5,12 +5,6 @@
   z-index: 2;
 }
 
-
-.sidenav-container {
-  flex: 1;
-  height: 85%;
-}
-
 .is-mobile .sidenav-container {
   flex: 1 0 auto;
 }
@@ -40,7 +34,7 @@ mat-sidenav-content {
 }
 .sidenav-container{
   margin-top: 4rem !important;
-  height: 85vh;
+  height: 80vh;
 }
 .title{
   display: flex;

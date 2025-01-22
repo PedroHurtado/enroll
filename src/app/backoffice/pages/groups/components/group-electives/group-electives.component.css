@@ -107,6 +107,6 @@ h2 {
   box-sizing: border-box;
 }
 
-[cdkDrag] {
+.cdk-drag {
   opacity: 0;
 }
