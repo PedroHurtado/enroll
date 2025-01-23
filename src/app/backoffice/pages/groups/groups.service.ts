@@ -106,6 +106,13 @@ export class GroupsService {
                 enrolls: [
                   { id: "5e6f7g8h-9012-1314-1234-56789abcdef4", name: "Laura García" }
                 ]
+              },
+              {
+                id: "1d7e9af3-12c4-4b5d-8e6f-9c0a2b3d4e5f",
+                name: "Dibujo Artístico II",
+                enrolls: [
+                  { id: "5e6f7g8h-9012-1314-1234-56789abcdef4", name: "Laura García" }
+                ]
               }
             ],
             modalityElectives: [

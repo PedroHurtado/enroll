@@ -40,6 +40,8 @@
   cursor: move;
 }
 
+}
+
 .modality-section:not(:last-child) .modality-item:last-child {
   border-bottom: 1px solid #666666;
 }
@@ -47,8 +49,6 @@
 .row-number {
   display: grid;
   grid-template-columns: 1fr auto;
-  grid-auto-rows: minmax(min-content, auto);
-  grid-auto-flow: row;
   align-items: center;
   justify-content: center;
 }
@@ -87,10 +87,11 @@
 }
 
 .subjects{
+  position: relative;
   display: grid;
   grid-auto-rows: minmax(min-content, auto);
   grid-auto-flow: row;
-  position: relative;
+  min-height: calc(52px +  0.75rem);
 }
 
 .ghost-list {
@@ -100,6 +101,7 @@
   width: 100%;
   height: 100%;
   pointer-events: none;
+  z-index: 1;
 }
 
 .ghost-list .navigate {
@@ -112,3 +114,5 @@
 .cdk-drag {
   opacity: 0;
 }
+
+
