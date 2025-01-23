@@ -29,7 +29,7 @@
 }
 
 .modality-item {
-  padding: 0.75rem;
+  padding: 0  0.75rem;
   border-bottom: 1px solid #666666;
 }
 
@@ -38,8 +38,6 @@
 }
 .cursor-drag{
   cursor: move;
-}
-
 }
 
 .modality-section:not(:last-child) .modality-item:last-child {
@@ -91,7 +89,8 @@
   display: grid;
   grid-auto-rows: minmax(min-content, auto);
   grid-auto-flow: row;
-  min-height: calc(52px +  0.75rem);
+  /*min-height: calc(52px +  0.75rem);*/
+  min-height: 52px
 }
 
 .ghost-list {

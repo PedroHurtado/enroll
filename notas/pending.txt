@@ -1,3 +1,2 @@
-1. Drag and drop(siguen habiendo problemas)
 2. Capturar la asignatura una vez
 que se haga drag
