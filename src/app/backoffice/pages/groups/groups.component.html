@@ -5,8 +5,8 @@
     Crear Grupos
   </button>
 </div>
-@if(this.groups().length>0){
-  <app-floating [title]="course()?.name || ''" [groups]="this.groups()"/>
+@if(this.group()){
+  <app-floating [group]="this.group()"/>
 }
 
 <mat-sidenav-container #container class="sidenav-container" [style.marginTop.px]="isMobile() ? 56 : 0">

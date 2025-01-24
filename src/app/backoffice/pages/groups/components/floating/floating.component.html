@@ -4,7 +4,7 @@
   <!-- Header con área para arrastrar -->
   <div class="panel-header" cdkDragHandle>
     <mat-icon>drag_indicator</mat-icon>
-    <span>{{ title() }}</span>
+    <span>{{ group()?.courseName }}</span>
     <button mat-icon-button (click)="minimize()">
       <mat-icon>{{ isMinimized ? 'expand_more' : 'remove' }}</mat-icon>
     </button>
@@ -13,11 +13,10 @@
     </button>
   </div>
 
-  <!-- Contenido del panel -->
   <div class="panel-content" [class.minimized]="isMinimized">
     <p>Arrastra asignaturas al grupo deseado</p>
     <mat-accordion>
-    @for (item of groups(); track item.id) {
+    @for (item of group()?.groups; track item.id) {
       <mat-expansion-panel cdkDropList
         (cdkDropListDropped)="drop($event, item)"
       >

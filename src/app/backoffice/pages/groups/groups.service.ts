@@ -31,6 +31,18 @@ export interface Alumn {
   subjectName?: string,
   enrolls: Descriptor[]
 }
+export interface Group {
+  courseId: string,
+  courseName: string,
+  groups:
+  {
+    id: string,
+    name: string
+    subjects: Descriptor[]
+  }[]
+
+}
+
 
 function uuidv4(): string {
   return crypto.randomUUID()
@@ -45,6 +57,9 @@ function createStudents(count: number) {
     name: `${firstNames[Math.floor(Math.random() * firstNames.length)]} ${lastNames[Math.floor(Math.random() * lastNames.length)]}`
   }));
 }
+
+const alphabet = Array.from({ length: 26 }, (_, i) => String.fromCharCode(65 + i))
+  .filter(letter => letter !== 'Ñ');
 
 @Injectable({
   providedIn: 'root'
@@ -285,14 +300,23 @@ export class GroupsService {
     }
     return undefined
   }
-  public createGroups(course:Descriptor|undefined,groups: number):Descriptor[] {
-    const alphabet = Array.from({ length: 26 }, (_, i) => String.fromCharCode(65 + i))
-      .filter(letter => letter !== 'Ñ');
-    const result = alphabet.splice(0,groups)
-    return result.map(l=>{
-      const name = `${course?.name|| ''}-${l}`
-      return createDescriptor(name)
-  })
+  public createGroups(course: Descriptor | undefined, groups: number): Group {
+
+    const result = alphabet.splice(0, groups)
+
+    return {
+      courseId: course?.id || '',
+      courseName: course?.name || '',
+      groups: result.map((l) => ({
+        id: uuidv4(),
+        name: `${course?.name || ''}-${l}`,
+        subjects: [] as Descriptor[],
+      })),
+    };
+
+
   }
 
 }
+
+

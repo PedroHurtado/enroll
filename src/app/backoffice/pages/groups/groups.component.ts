@@ -2,7 +2,7 @@ import { AfterViewInit, Component, ElementRef, inject, OnDestroy, signal, viewCh
 import { MatSidenav, MatSidenavModule } from '@angular/material/sidenav';
 import { Sidenav } from '../../../components/sidenav';
 import { MatListModule } from '@angular/material/list';
-import { GroupsService, Course } from './groups.service';
+import { GroupsService, Course, Group } from './groups.service';
 import { Descriptor } from '../../domain/levels';
 import { GroupModalityComponent } from './components/group-modality/group-modality.component';
 import { GroupElectivesComponent } from './components/group-electives/group-electives.component';
@@ -34,7 +34,7 @@ export class GroupsComponent implements Sidenav{
   private _container = viewChild<ElementRef>('container');
   protected readonly isMobile = signal<boolean>(false);
   protected courses = signal<Descriptor[]>([]);
-  protected groups = signal<Descriptor[]>([])
+  protected group = signal<Group|undefined>(undefined);
   protected selectedCourse: Descriptor | undefined;
   protected course = signal<Course | undefined>(undefined);
   protected readonly dialog = inject(MatDialog);
@@ -49,7 +49,7 @@ export class GroupsComponent implements Sidenav{
 
     dialogRef.afterClosed().subscribe((result:number|undefined) => {
       if(result){
-        this.groups.set(this.service.createGroups(this.course(),result))
+        this.group.set(this.service.createGroups(this.course(),result))
       }
     });
   }

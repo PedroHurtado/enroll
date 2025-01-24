@@ -5,6 +5,7 @@ import { MatIconModule } from '@angular/material/icon';
 import {DragDropModule} from '@angular/cdk/drag-drop';
 import { Descriptor } from '../../../../domain/levels';
 import {MatExpansionModule} from '@angular/material/expansion';
+import { Group } from '../../groups.service';
 
 @Component({
   selector: 'app-floating',
@@ -18,8 +19,7 @@ import {MatExpansionModule} from '@angular/material/expansion';
   styleUrl: './floating.component.css'
 })
 export class FloatingComponent {
-  public title = input.required<string>();
-  public groups = input.required<Descriptor[]>();
+  public group = input.required<Group|undefined>();
   protected isMinimized = false;
 
   onDragStart(event: CdkDragStart) {
