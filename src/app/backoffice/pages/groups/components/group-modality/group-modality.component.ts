@@ -1,5 +1,5 @@
-import { Component, input } from '@angular/core';
-import { Modality } from '../../groups.service';
+import { Component, computed, input, Signal } from '@angular/core';
+import { DescriptorWithEnrolls, GroupSubject, Modality } from '../../groups.service';
 import { MatButtonModule } from '@angular/material/button';
 import { RouterLink } from '@angular/router';
 import {DragDropModule} from '@angular/cdk/drag-drop';
@@ -16,11 +16,23 @@ import {DragDropModule} from '@angular/cdk/drag-drop';
 export class GroupModalityComponent {
   public modalities= input<Modality[]>()
   public courseId = input<string>()
+
   protected getText(length:number){
       return length===1?'Mátricula':'Matriculas'
 
   }
   canEnter(){
     return false;
+  }
+  protected getData(
+    descripor:DescriptorWithEnrolls[],
+    type:string
+  ):GroupSubject[]{
+    return descripor.map(({id,name}, index) => ({
+      id,
+      name,
+      type,
+      position: index + 1,
+    }));
   }
 }

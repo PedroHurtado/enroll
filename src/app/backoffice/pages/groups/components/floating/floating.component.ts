@@ -5,7 +5,7 @@ import { MatIconModule } from '@angular/material/icon';
 import {DragDropModule} from '@angular/cdk/drag-drop';
 import { Descriptor } from '../../../../domain/levels';
 import {MatExpansionModule} from '@angular/material/expansion';
-import { Group } from '../../groups.service';
+import { Group, GroupGroup, GroupSubject } from '../../groups.service';
 
 @Component({
   selector: 'app-floating',
@@ -31,9 +31,11 @@ export class FloatingComponent {
   minimize() {
     this.isMinimized = !this.isMinimized;
   }
-  drop(ev: CdkDragDrop<Descriptor[]>, descriptor:Descriptor) {
-
-
+  drop(ev: CdkDragDrop<GroupSubject[]>, group:GroupGroup) {
+    const groupSubject:GroupSubject = ev.previousContainer.data[ev.previousIndex]
+    if(!group.subjects.find(s => s.id === groupSubject.id)){
+      group.subjects.push(groupSubject)
+    }
   }
   close() {
     // Implementa la lógica de cierre según tus necesidades

@@ -34,13 +34,14 @@ export interface Alumn {
 export interface Group {
   courseId: string,
   courseName: string,
-  groups:
-  {
-    id: string,
-    name: string
-    subjects: Descriptor[]
-  }[]
-
+  groups:GroupGroup[]
+}
+export interface GroupGroup extends Descriptor {
+  subjects: GroupSubject[]
+}
+export interface GroupSubject extends Descriptor{
+  type:string,
+  position:number
 }
 
 
@@ -123,7 +124,7 @@ export class GroupsService {
                 ]
               },
               {
-                id: "1d7e9af3-12c4-4b5d-8e6f-9c0a2b3d4e5f",
+                id: "8d99301d-d991-48dd-868f-d34e072fb149 ",
                 name: "Dibujo Artístico II",
                 enrolls: [
                   { id: "5e6f7g8h-9012-1314-1234-56789abcdef4", name: "Laura García" }
@@ -150,7 +151,7 @@ export class GroupsService {
             ],
             compulsoryModality: [
               {
-                id: "1d7e9af3-12c4-4b5d-8e6f-9c0a2b3d4e5f",
+                id: "977a331c-a912-4fe2-97c8-e30b0265fe8d",
                 name: "Matemáticas",
                 enrolls: [
                   { id: "5e6f7g8h-9012-1314-1234-56789abcdef4", name: "Laura García" }
@@ -159,7 +160,7 @@ export class GroupsService {
             ],
             modalityElectives: [
               {
-                id: "2f8d6c4e-23a5-4b6c-9d7e-8f1c3d5b7a9e",
+                id: "3876a4c4-fbe6-4a06-8c07-3f679db0156e",
                 name: "Física y Química",
                 enrolls: [
                   { id: "6f7g8h9i-0123-1415-1234-56789abcdef5", name: "Luis Gómez" },
@@ -174,7 +175,7 @@ export class GroupsService {
             id: "1a2b3c4d-5678-9101-1234-56789abcdef0",
             name: "Matemáticas",
             positions: [
-              { position: 1, enrolls: createStudents(10) },
+              { position: 1, enrolls: createStudents(45) },
               { position: 2, enrolls: createStudents(15) },
               { position: 3, enrolls: createStudents(5) },
               { position: 4, enrolls: createStudents(3) },
@@ -310,7 +311,7 @@ export class GroupsService {
       groups: result.map((l) => ({
         id: uuidv4(),
         name: `${course?.name || ''}-${l}`,
-        subjects: [] as Descriptor[],
+        subjects: [] as GroupSubject[],
       })),
     };
 

@@ -1,5 +1,5 @@
-import { Component, input } from '@angular/core';
-import { PositionWhitEnrolls } from '../../groups.service';
+import { Component, computed, input, Signal, signal } from '@angular/core';
+import { GroupSubject, PositionWhitEnrolls } from '../../groups.service';
 import { MatButtonModule } from '@angular/material/button';
 import { RouterLink } from '@angular/router';
 import {CdkDragEnter, DragDropModule} from '@angular/cdk/drag-drop';
@@ -16,6 +16,18 @@ import {CdkDragEnter, DragDropModule} from '@angular/cdk/drag-drop';
 export class GroupElectivesComponent {
   electives=input<PositionWhitEnrolls[]|undefined>(undefined)
   courseId= input<string>()
+  protected data: Signal<GroupSubject[]> = computed(() => {
+    return (
+      this.electives()?.flatMap(subject =>
+        subject.positions.map(position => ({
+          id: subject.id,
+          name: subject.name,
+          type: "electives",
+          position: position.position,
+        }))
+      ) || []
+    );
+  });
 
   protected getEnrollsCountByPosition(elective: any, position: number): number {
     const pos = elective.positions.find((p: any) => p.position === position);
