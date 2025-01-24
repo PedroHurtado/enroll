@@ -1,2 +1,1 @@
-2. Capturar la asignatura una vez
-que se haga drag
+Eliminar subjects del grupo y abrir el grupo al permitir drag
