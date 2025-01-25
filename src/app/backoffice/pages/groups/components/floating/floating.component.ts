@@ -40,6 +40,12 @@ export class FloatingComponent {
     this.index = index;
     group.subjects.push(groupSubject)
   }
+  remove(group:GroupGroup, groupSubject:GroupSubject){
+    const index = group.subjects.indexOf(groupSubject)
+    if(index>-1){
+      group.subjects.splice(index,1)
+    }
+  }
   close() {
     // Implementa la lógica de cierre según tus necesidades
   }

@@ -25,7 +25,14 @@
           <mat-panel-title> {{item.name}} </mat-panel-title>
         </mat-expansion-panel-header>
         @for (subject of item.subjects; track subject) {
-          <p>{{subject.name}}</p>
+          <div class="row">
+            <p>{{subject.name}}</p>
+            <p>{{subject.total}}</p>
+            <button mat-icon-button  aria-label="Eliminar" (click)="remove(item,subject)">
+              <mat-icon>delete</mat-icon>
+            </button>
+          </div>
+
         }
       </mat-expansion-panel>
     }

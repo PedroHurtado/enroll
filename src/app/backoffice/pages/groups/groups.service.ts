@@ -41,7 +41,8 @@ export interface GroupGroup extends Descriptor {
 }
 export interface GroupSubject extends Descriptor{
   type:string,
-  position:number
+  position:number,
+  total:number
 }
 
 

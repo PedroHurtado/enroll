@@ -41,3 +41,10 @@
 :host {
   position: absolute;
 }
+.row{
+  display: grid;
+  grid-template-columns: 1fr auto auto;
+  justify-content: center;
+  align-items: center;
+  gap:0.5rem
+}

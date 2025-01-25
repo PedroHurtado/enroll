@@ -28,11 +28,12 @@ export class GroupModalityComponent {
     descripor:DescriptorWithEnrolls[],
     type:string
   ):GroupSubject[]{
-    return descripor.map(({id,name}, index) => ({
+    return descripor.map(({id,name,enrolls}, index) => ({
       id,
       name,
       type,
       position: index + 1,
+      total:enrolls.length
     }));
   }
 }

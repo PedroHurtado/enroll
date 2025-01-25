@@ -24,6 +24,7 @@ export class GroupElectivesComponent {
           name: subject.name,
           type: "electives",
           position: position.position,
+          total:position.enrolls.length
         }))
       ) || []
     );
