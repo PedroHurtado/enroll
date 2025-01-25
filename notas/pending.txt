@@ -1,2 +1,3 @@
 Guardar el estado de los grupos
 Mobile en grupos
+Restar el numero de alumnos a los origenes
