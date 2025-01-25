@@ -21,6 +21,7 @@ import { Group, GroupGroup, GroupSubject } from '../../groups.service';
 export class FloatingComponent {
   public group = input.required<Group|undefined>();
   protected isMinimized = false;
+  private index:number=-1
 
   onDragStart(event: CdkDragStart) {
     document.body.style.cursor = 'grabbing';
@@ -31,8 +32,12 @@ export class FloatingComponent {
   minimize() {
     this.isMinimized = !this.isMinimized;
   }
-  drop(ev: CdkDragDrop<GroupSubject[]>, group:GroupGroup) {
+  isSelected(index:number){
+    return this.index === index;
+  }
+  drop(ev: CdkDragDrop<GroupSubject[]>, group:GroupGroup, index:number) {
     const groupSubject:GroupSubject = ev.previousContainer.data[ev.previousIndex]
+    this.index = index;
     if(!group.subjects.find(s => s.id === groupSubject.id)){
       group.subjects.push(groupSubject)
     }

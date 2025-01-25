@@ -16,9 +16,10 @@
   <div class="panel-content" [class.minimized]="isMinimized">
     <p>Arrastra asignaturas al grupo deseado</p>
     <mat-accordion>
-    @for (item of group()?.groups; track item.id) {
-      <mat-expansion-panel cdkDropList
-        (cdkDropListDropped)="drop($event, item)"
+    @for (item of group()?.groups; track item.id; let idx=$index) {
+      <mat-expansion-panel [expanded]="isSelected(idx)"  cdkDropList
+        (cdkDropListDropped)="drop($event, item, idx)"
+
       >
         <mat-expansion-panel-header>
           <mat-panel-title> {{item.name}} </mat-panel-title>
