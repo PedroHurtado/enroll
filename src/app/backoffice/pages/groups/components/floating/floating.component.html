@@ -8,9 +8,6 @@
     <button mat-icon-button (click)="minimize()">
       <mat-icon>{{ isMinimized ? 'expand_more' : 'remove' }}</mat-icon>
     </button>
-    <button mat-icon-button (click)="close()">
-      <mat-icon>close</mat-icon>
-    </button>
   </div>
 
   <div class="panel-content" [class.minimized]="isMinimized">

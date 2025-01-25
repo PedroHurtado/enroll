@@ -46,7 +46,4 @@ export class FloatingComponent {
       group.subjects.splice(index,1)
     }
   }
-  close() {
-    // Implementa la lógica de cierre según tus necesidades
-  }
 }
