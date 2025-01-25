@@ -1,1 +1,2 @@
-Eliminar subjects del grupo y abrir el grupo al permitir drag
+Guardar el estado de los grupos
+Mobile en grupos
