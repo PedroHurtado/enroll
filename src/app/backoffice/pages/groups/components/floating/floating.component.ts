@@ -38,9 +38,7 @@ export class FloatingComponent {
   drop(ev: CdkDragDrop<GroupSubject[]>, group:GroupGroup, index:number) {
     const groupSubject:GroupSubject = ev.previousContainer.data[ev.previousIndex]
     this.index = index;
-    if(!group.subjects.find(s => s.id === groupSubject.id)){
-      group.subjects.push(groupSubject)
-    }
+    group.subjects.push(groupSubject)
   }
   close() {
     // Implementa la lógica de cierre según tus necesidades
