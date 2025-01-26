@@ -148,6 +148,25 @@ paths:
       responses:
         '204':
           description: Confirmación realizada
+  /enrolls/{id}/subjects:
+    put:
+      summary: Actualizar asignaturas de un registro de inscripción
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+            format: uuid
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Subjects'
+      responses:
+        '204':
+          description: Asignaturas actualizadas correctamente
 
 components:
   schemas:
@@ -379,3 +398,57 @@ components:
         legal: true
         truthful: true
         oficial: true
+    Subject:
+      type: object
+      properties:
+        id:
+          type: string
+          format: uuid
+        name:
+          type: string
+      required:
+        - id
+        - name
+    Subjects:
+      type: object
+      properties:
+        commons:
+          type: array
+          items:
+            $ref: '#/components/schemas/Subject'
+          description: Asignaturas comunes
+        compulsoryModality:
+          type: array
+          items:
+            $ref: '#/components/schemas/Subject'
+          description: Asignaturas obligatorias de modalidad
+        modalityElectives:
+          type: array
+          items:
+            $ref: '#/components/schemas/Subject'
+          description: Asignaturas optativas de modalidad
+        electives:
+          type: array
+          items:
+            $ref: '#/components/schemas/Subject'
+          description: Asignaturas optativas
+      required:
+        - commons
+        - compulsoryModality
+        - modalityElectives
+        - electives
+      example:
+        commons:
+          - id: "a1234567-89ab-cdef-0123-456789abcdef"
+            name: "Lengua y Literatura"
+          - id: "b1234567-89ab-cdef-0123-456789abcdef"
+            name: "Matemáticas"
+        compulsoryModality:
+          - id: "c1234567-89ab-cdef-0123-456789abcdef"
+            name: "Física"
+        modalityElectives:
+          - id: "d1234567-89ab-cdef-0123-456789abcdef"
+            name: "Arte"
+        electives:
+          - id: "e1234567-89ab-cdef-0123-456789abcdef"
+            name: "Música"
