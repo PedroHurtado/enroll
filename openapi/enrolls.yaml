@@ -49,7 +49,16 @@ paths:
         content:
           multipart/form-data:
             schema:
-              $ref: '#/components/schemas/FilesArray'  # Asegúrate de que esto sea correcto
+              type: object
+              properties:
+                files:
+                  type: array
+                  items:
+                    type: string
+                    format: binary
+                  description: Archivos relacionados con la situación familiar
+              required:
+                - files
       responses:
         '204':
           description: Situación familiar actualizada
@@ -106,7 +115,28 @@ paths:
         content:
           multipart/form-data:
             schema:
-              $ref: '#/components/schemas/FilesArray'  # Ahora es un array de archivos
+              type: object
+              properties:
+                school_insurance:
+                  type: array
+                  items:
+                    type: string
+                    format: binary
+                  description: Archivos relacionados con el seguro escolar
+                ampa:
+                  type: array
+                  items:
+                    type: string
+                    format: binary
+                  description: Archivos relacionados con la AMPA
+                school_transportation:
+                  type: array
+                  items:
+                    type: string
+                    format: binary
+                  description: Archivos relacionados con el transporte escolar
+              required:
+                - school_insurance
       responses:
         '204':
           description: Otros datos actualizados
@@ -125,7 +155,35 @@ paths:
         content:
           multipart/form-data:
             schema:
-              $ref: '#/components/schemas/Health'
+              type: object
+              properties:
+                condition1:
+                  type: boolean
+                  description: Condición 1
+                  default: false
+                condition2:
+                  type: boolean
+                  description: Condición 2
+                  default: false
+                condition3:
+                  type: boolean
+                  description: Condición 3
+                  default: false
+                condition4:
+                  type: boolean
+                  description: Condición 4
+                  default: false
+                files:
+                  type: array
+                  items:
+                    type: string
+                    format: binary
+                  description: Archivos relacionados con el estado de salud
+              required:
+                - condition1
+                - condition2
+                - condition3
+                - condition4
       responses:
         '204':
           description: Datos de salud actualizados
@@ -142,7 +200,7 @@ paths:
       requestBody:
         required: true
         content:
-          multipart/form-data:
+          application/json:
             schema:
               $ref: '#/components/schemas/Confirm'
       responses:
@@ -246,7 +304,29 @@ components:
       items:
         type: string
         format: binary
-      description: Archivos relacionados con situaciones o registros. # Esto es ahora un array de archivos
+      description: Archivos relacionados con situaciones o registros.
+    SchoolData:
+      type: object
+      properties:
+        school_insurance:
+          type: array
+          items:
+            type: string
+            format: binary
+          description: Archivos relacionados con el seguro escolar
+        ampa:
+          type: array
+          items:
+            type: string
+            format: binary
+          description: Archivos relacionados con la AMPA
+        school_transportation:
+          type: array
+          items:
+            type: string
+            format: binary
+          description: Archivos relacionados con el transporte escolar
+      required: []
     Mother:
       type: object
       properties:
@@ -276,41 +356,35 @@ components:
       properties:
         condition1:
           type: boolean
-          description: Condición 1, por defecto es false
+          description: Condición 1
+          default: false
         condition2:
           type: boolean
-          description: Condición 2, por defecto es false
+          description: Condición 2
+          default: false
         condition3:
           type: boolean
-          description: Condición 3, por defecto es false
+          description: Condición 3
+          default: false
         condition4:
           type: boolean
-          description: Condición 4, por defecto es false
+          description: Condición 4
+          default: false
         files:
           type: array
           items:
             type: string
             format: binary
-          nullable: true
           description: Archivos relacionados con el estado de salud
+      required:
+        - condition1
+        - condition2
+        - condition3
+        - condition4
     Confirm:
       type: object
       properties:
         information:
           type: boolean
           description: Campo para aceptar la información, por defecto es true
-        publish:
-          type: boolean
-          description: Campo para aceptar la publicación, por defecto es true
-        exit:
-          type: boolean
-          description: Campo para aceptar la salida, por defecto es true
-        legal:
-          type: boolean
-          description: Campo para aceptar las condiciones legales, por defecto es true
-        truthful:
-          type: boolean
-          description: Campo para confirmar la veracidad de la información, por defecto es true
-        oficial:
-          type: boolean
-          description: Campo para aceptar que la información es oficial, por defecto es true
+
