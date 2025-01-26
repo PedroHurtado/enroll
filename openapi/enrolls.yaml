@@ -4,6 +4,70 @@ info:
   version: 1.0.0
 paths:
   /enrolls:
+    get:
+      summary: Obtener registros de inscripción con paginación y filtrado
+      parameters:
+        - name: page
+          in: query
+          required: false
+          schema:
+            type: integer
+            default: 1
+            description: Página de resultados
+        - name: limit
+          in: query
+          required: false
+          schema:
+            type: integer
+            default: 10
+            description: Número de registros por página
+        - name: name
+          in: query
+          required: false
+          schema:
+            type: string
+            description: Filtrar por nombre de estudiante
+        - name: status
+          in: query
+          required: false
+          schema:
+            type: string
+            enum: [active, inactive]
+            description: Filtrar por estado de inscripción
+      responses:
+        '200':
+          description: Lista de registros de inscripción con éxito
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  data:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/Enroll'
+                  pagination:
+                    type: object
+                    properties:
+                      currentPage:
+                        type: integer
+                      totalPages:
+                        type: integer
+                      totalItems:
+                        type: integer
+              example:
+                data:
+                  - identity: student
+                    situation: married
+                    custody: both
+                    parentalAuthority: both
+                    student:
+                      email: "student@example.com"
+                      phone: "123456789"
+                pagination:
+                  currentPage: 1
+                  totalPages: 10
+                  totalItems: 100
     post:
       summary: Crear un nuevo registro de inscripción
       requestBody:
