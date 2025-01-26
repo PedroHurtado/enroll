@@ -15,25 +15,6 @@ paths:
       responses:
         '201':
           description: Inscripción creada con éxito
-  /enrolls/{id}/alumn:
-    put:
-      summary: Actualizar datos del alumno
-      parameters:
-        - name: id
-          in: path
-          required: true
-          schema:
-            type: string
-            format: uuid
-      requestBody:
-        required: true
-        content:
-          multipart/form-data:
-            schema:
-              $ref: '#/components/schemas/Alumn'
-      responses:
-        '204':
-          description: Datos del alumno actualizados correctamente
   /enrolls/{id}/familysituation:
     put:
       summary: Actualizar situación familiar
@@ -49,7 +30,17 @@ paths:
         content:
           multipart/form-data:
             schema:
-              $ref: '#/components/schemas/FilesArray'
+              type: object
+              properties:
+                files:
+                  type: array
+                  items:
+                    type: string
+                    format: binary
+                  minItems: 1
+                  description: Archivos relacionados con la situación familiar
+              required:
+                - files
       responses:
         '204':
           description: Situación familiar actualizada
@@ -200,38 +191,32 @@ components:
         mother:
           type: object
           properties:
-            dni_observe:
+            email:
               type: string
-              format: binary
-              description: DNI observado, imagen requerida
-            dni_reverse:
+              format: email
+            phone:
               type: string
-              format: binary
-              description: DNI invertido, imagen requerida
-          required: [dni_observe, dni_reverse]
+          required: [email, phone]
         father:
           type: object
           properties:
-            dni_observe:
+            email:
               type: string
-              format: binary
-              description: DNI observado, imagen requerida
-            dni_reverse:
+              format: email
+            phone:
               type: string
-              format: binary
-              description: DNI invertido, imagen requerida
-          required: [dni_observe, dni_reverse]
+          required: [email, phone]
         guardian:
           type: object
           properties:
             email:
               type: string
               format: email
-              nullable: true
             phone:
               type: string
-              nullable: true
-          required: []
+          required:
+            - email
+            - phone
       required:
         - identity
         - student
@@ -244,22 +229,19 @@ components:
           email: "student@example.com"
           phone: "123456789"
         mother:
-          dni_observe: "data:image/png;base64,example1"
-          dni_reverse: "data:image/png;base64,example2"
+          email: "mother@example.com"
+          phone: "987654321"
         father:
-          dni_observe: "data:image/png;base64,example3"
-          dni_reverse: "data:image/png;base64,example4"
+          email: "father@example.com"
+          phone: "123498765"
+        guardian:
+          email: "guardian@example.com"
+          phone: "321654987"
     Alumn:
       type: object
       properties:
         nre:
           type: string
-        dni_observe:
-          type: string
-          format: binary
-        dni_reverse:
-          type: string
-          format: binary
         academic_record:
           type: array
           items:
@@ -273,8 +255,6 @@ components:
           format: binary
       required:
         - nre
-        - dni_observe
-        - dni_reverse
         - healthcards_observe
         - healthcards_reverse
     FilesArray:
