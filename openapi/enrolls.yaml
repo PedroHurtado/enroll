@@ -1,166 +1,316 @@
-openapi: 3.0.1
+openapi: 3.0.0
 info:
-  title: API de Inscripciones
-  description: API para manejar las inscripciones de estudiantes
+  title: Enroll API
   version: 1.0.0
 paths:
   /enrolls:
     post:
-      summary: Crear una nueva inscripción
-      description: Registra una nueva inscripción con todos los datos de documentación requeridos
-      operationId: createEnroll
+      summary: Crear un nuevo registro de inscripción
       requestBody:
-        description: Datos de la inscripción
         required: true
         content:
           application/json:
             schema:
-              $ref: '#/components/schemas/EnrollRequest'
+              $ref: '#/components/schemas/PostEnroll'
       responses:
-        201:
-          description: Inscripción creada exitosamente
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/EnrollResponse'
-        400:
-          description: Datos de entrada inválidos
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/ErrorResponse'
-        409:
-          description: La inscripción ya existe
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/ErrorResponse'
+        '201':
+          description: Inscripción creada con éxito
+  /enrolls/{id}/alumn:
+    put:
+      summary: Actualizar datos del alumno
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+            format: uuid
+      requestBody:
+        required: true
+        content:
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/Alumn'
+      responses:
+        '204':
+          description: Datos del alumno actualizados correctamente
+  /enrolls/{id}/familysituation:
+    put:
+      summary: Actualizar situación familiar
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+            format: uuid
+      requestBody:
+        required: true
+        content:
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/FilesArray'  # Asegúrate de que esto sea correcto
+      responses:
+        '204':
+          description: Situación familiar actualizada
+  /enrolls/{id}/mother:
+    put:
+      summary: Actualizar datos de la madre
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+            format: uuid
+      requestBody:
+        required: true
+        content:
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/Mother'
+      responses:
+        '204':
+          description: Datos de la madre actualizados
+  /enrolls/{id}/father:
+    put:
+      summary: Actualizar datos del padre
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+            format: uuid
+      requestBody:
+        required: true
+        content:
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/Father'
+      responses:
+        '204':
+          description: Datos del padre actualizados
+  /enrolls/{id}/other:
+    put:
+      summary: Actualizar otros datos
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+            format: uuid
+      requestBody:
+        required: true
+        content:
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/FilesArray'  # Ahora es un array de archivos
+      responses:
+        '204':
+          description: Otros datos actualizados
+  /enrolls/{id}/health:
+    put:
+      summary: Actualizar datos de salud
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+            format: uuid
+      requestBody:
+        required: true
+        content:
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/Health'
+      responses:
+        '204':
+          description: Datos de salud actualizados
+  /enrolls/{id}/confirm:
+    put:
+      summary: Confirmar datos
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+            format: uuid
+      requestBody:
+        required: true
+        content:
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/Confirm'
+      responses:
+        '204':
+          description: Confirmación realizada
 
 components:
   schemas:
-    EnrollRequest:
+    PostEnroll:
       type: object
       properties:
-        id:
+        identity:
           type: string
-          description: Identificador único de la inscripción
-        date:
+          enum: [student, mother, father, guardian]
+        situation:
           type: string
-          format: date
-          description: Fecha de la inscripción (YYYY-MM-DD)
+          enum: [single, married, divorced, widowed]
+          nullable: true
+        custody:
+          type: string
+          enum: [mother, father, both]
+          nullable: true
+        parentalAuthority:
+          type: string
+          enum: [mother, father, both]
+          nullable: true
+        student:
+          type: object
+          properties:
+            email:
+              type: string
+              format: email
+            phone:
+              type: string
+          required: [email, phone]
+        mother:
+          type: object
+          properties:
+            dni_observe:
+              type: string
+              format: binary
+              description: DNI observado, imagen requerida
+            dni_reverse:
+              type: string
+              format: binary
+              description: DNI invertido, imagen requerida
+          required: [dni_observe, dni_reverse]
+        father:
+          type: object
+          properties:
+            dni_observe:
+              type: string
+              format: binary
+              description: DNI observado, imagen requerida
+            dni_reverse:
+              type: string
+              format: binary
+              description: DNI invertido, imagen requerida
+          required: [dni_observe, dni_reverse]
+        guardian:
+          type: object
+          properties:
+            email:
+              type: string
+              format: email
+              nullable: true
+            phone:
+              type: string
+              nullable: true
+          required: []
+    Alumn:
+      type: object
+      properties:
         nre:
           type: string
-          description: Número de Registro del Estudiante
-          minLength: 1
         dni_observe:
           type: string
-          description: Observaciones del DNI
-          minLength: 1
+          format: binary
         dni_reverse:
           type: string
-          description: Reverso del DNI
-          minLength: 1
+          format: binary
         academic_record:
-          type: string
-          description: Registro académico
-          nullable: true
+          type: array
+          items:
+            type: string
+            format: binary
         healthcards_observe:
           type: string
-          description: Observaciones de la tarjeta de salud
-          minLength: 1
+          format: binary
         healthcards_reverse:
           type: string
-          description: Reverso de la tarjeta de salud
-          minLength: 1
+          format: binary
       required:
-        - id
-        - date
         - nre
         - dni_observe
         - dni_reverse
         - healthcards_observe
         - healthcards_reverse
-      example:
-        id: "enroll123"
-        date: "2024-01-15"
-        nre: "2024001"
-        dni_observe: "Documento en buen estado"
-        dni_reverse: "Reverso legible"
-        academic_record: "Expediente completo"
-        healthcards_observe: "Tarjeta vigente"
-        healthcards_reverse: "Reverso en buen estado"
-
-    EnrollResponse:
+    FilesArray:
+      type: array
+      items:
+        type: string
+        format: binary
+      description: Archivos relacionados con situaciones o registros. # Esto es ahora un array de archivos
+    Mother:
       type: object
       properties:
-        id:
-          type: string
-          description: Identificador único de la inscripción
-        date:
-          type: string
-          format: date
-          description: Fecha de la inscripción
-        nre:
-          type: string
-          description: Número de Registro del Estudiante
         dni_observe:
           type: string
-          description: Observaciones del DNI
+          format: binary
         dni_reverse:
           type: string
-          description: Reverso del DNI
-        academic_record:
-          type: string
-          description: Registro académico
-          nullable: true
-        healthcards_observe:
-          type: string
-          description: Observaciones de la tarjeta de salud
-        healthcards_reverse:
-          type: string
-          description: Reverso de la tarjeta de salud
-        status:
-          type: string
-          description: Estado de la inscripción
-          enum: [PENDING, COMPLETED, REJECTED]
-        createdAt:
-          type: string
-          format: date-time
-          description: Fecha y hora de creación del registro
+          format: binary
       required:
-        - id
-        - date
-        - nre
         - dni_observe
         - dni_reverse
-        - healthcards_observe
-        - healthcards_reverse
-        - status
-        - createdAt
-      example:
-        id: "enroll123"
-        date: "2024-01-15"
-        nre: "2024001"
-        dni_observe: "Documento en buen estado"
-        dni_reverse: "Reverso legible"
-        academic_record: "Expediente completo"
-        healthcards_observe: "Tarjeta vigente"
-        healthcards_reverse: "Reverso en buen estado"
-        status: "PENDING"
-        createdAt: "2024-01-15T14:30:00Z"
-
-    ErrorResponse:
+    Father:
       type: object
       properties:
-        code:
+        dni_observe:
           type: string
-          description: Código de error
-        message:
+          format: binary
+        dni_reverse:
           type: string
-          description: Mensaje descriptivo del error
+          format: binary
       required:
-        - code
-        - message
-      example:
-        code: "INVALID_DATA"
-        message: "Los datos proporcionados son inválidos"
+        - dni_observe
+        - dni_reverse
+    Health:
+      type: object
+      properties:
+        condition1:
+          type: boolean
+          description: Condición 1, por defecto es false
+        condition2:
+          type: boolean
+          description: Condición 2, por defecto es false
+        condition3:
+          type: boolean
+          description: Condición 3, por defecto es false
+        condition4:
+          type: boolean
+          description: Condición 4, por defecto es false
+        files:
+          type: array
+          items:
+            type: string
+            format: binary
+          nullable: true
+          description: Archivos relacionados con el estado de salud
+    Confirm:
+      type: object
+      properties:
+        information:
+          type: boolean
+          description: Campo para aceptar la información, por defecto es true
+        publish:
+          type: boolean
+          description: Campo para aceptar la publicación, por defecto es true
+        exit:
+          type: boolean
+          description: Campo para aceptar la salida, por defecto es true
+        legal:
+          type: boolean
+          description: Campo para aceptar las condiciones legales, por defecto es true
+        truthful:
+          type: boolean
+          description: Campo para confirmar la veracidad de la información, por defecto es true
+        oficial:
+          type: boolean
+          description: Campo para aceptar que la información es oficial, por defecto es true
