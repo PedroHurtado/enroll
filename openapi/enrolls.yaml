@@ -11,7 +11,7 @@ paths:
         content:
           application/json:
             schema:
-              $ref: '#/components/schemas/PostEnroll'
+              $ref: '#/components/schemas/Enroll'
       responses:
         '201':
           description: Inscripción creada con éxito
@@ -49,16 +49,7 @@ paths:
         content:
           multipart/form-data:
             schema:
-              type: object
-              properties:
-                files:
-                  type: array
-                  items:
-                    type: string
-                    format: binary
-                  description: Archivos relacionados con la situación familiar
-              required:
-                - files
+              $ref: '#/components/schemas/FilesArray'
       responses:
         '204':
           description: Situación familiar actualizada
@@ -115,28 +106,7 @@ paths:
         content:
           multipart/form-data:
             schema:
-              type: object
-              properties:
-                school_insurance:
-                  type: array
-                  items:
-                    type: string
-                    format: binary
-                  description: Archivos relacionados con el seguro escolar
-                ampa:
-                  type: array
-                  items:
-                    type: string
-                    format: binary
-                  description: Archivos relacionados con la AMPA
-                school_transportation:
-                  type: array
-                  items:
-                    type: string
-                    format: binary
-                  description: Archivos relacionados con el transporte escolar
-              required:
-                - school_insurance
+              $ref: '#/components/schemas/Other'
       responses:
         '204':
           description: Otros datos actualizados
@@ -155,35 +125,7 @@ paths:
         content:
           multipart/form-data:
             schema:
-              type: object
-              properties:
-                condition1:
-                  type: boolean
-                  description: Condición 1
-                  default: false
-                condition2:
-                  type: boolean
-                  description: Condición 2
-                  default: false
-                condition3:
-                  type: boolean
-                  description: Condición 3
-                  default: false
-                condition4:
-                  type: boolean
-                  description: Condición 4
-                  default: false
-                files:
-                  type: array
-                  items:
-                    type: string
-                    format: binary
-                  description: Archivos relacionados con el estado de salud
-              required:
-                - condition1
-                - condition2
-                - condition3
-                - condition4
+              $ref: '#/components/schemas/Health'
       responses:
         '204':
           description: Datos de salud actualizados
@@ -209,7 +151,7 @@ paths:
 
 components:
   schemas:
-    PostEnroll:
+    Enroll:
       type: object
       properties:
         identity:
@@ -271,6 +213,23 @@ components:
               type: string
               nullable: true
           required: []
+      required:
+        - identity
+        - student
+      example:
+        identity: student
+        situation: married
+        custody: both
+        parentalAuthority: both
+        student:
+          email: "student@example.com"
+          phone: "123456789"
+        mother:
+          dni_observe: "data:image/png;base64,example1"
+          dni_reverse: "data:image/png;base64,example2"
+        father:
+          dni_observe: "data:image/png;base64,example3"
+          dni_reverse: "data:image/png;base64,example4"
     Alumn:
       type: object
       properties:
@@ -304,8 +263,8 @@ components:
       items:
         type: string
         format: binary
-      description: Archivos relacionados con situaciones o registros.
-    SchoolData:
+      description: Archivos relacionados con situaciones o registros
+    Other:
       type: object
       properties:
         school_insurance:
@@ -319,14 +278,15 @@ components:
           items:
             type: string
             format: binary
-          description: Archivos relacionados con la AMPA
+          description: Archivos relacionados con el AMPA
         school_transportation:
           type: array
           items:
             type: string
             format: binary
           description: Archivos relacionados con el transporte escolar
-      required: []
+      required:
+        - school_insurance
     Mother:
       type: object
       properties:
@@ -356,25 +316,22 @@ components:
       properties:
         condition1:
           type: boolean
-          description: Condición 1
-          default: false
+          description: Condición 1, por defecto es false
         condition2:
           type: boolean
-          description: Condición 2
-          default: false
+          description: Condición 2, por defecto es false
         condition3:
           type: boolean
-          description: Condición 3
-          default: false
+          description: Condición 3, por defecto es false
         condition4:
           type: boolean
-          description: Condición 4
-          default: false
+          description: Condición 4, por defecto es false
         files:
           type: array
           items:
             type: string
             format: binary
+          nullable: true
           description: Archivos relacionados con el estado de salud
       required:
         - condition1
@@ -386,5 +343,39 @@ components:
       properties:
         information:
           type: boolean
-          description: Campo para aceptar la información, por defecto es true
-
+          description: Confirmación de la información proporcionada
+          default: true
+        publish:
+          type: boolean
+          description: Confirmación de la publicación de la información
+          default: true
+        exit:
+          type: boolean
+          description: Confirmación de salida o cancelación
+          default: true
+        legal:
+          type: boolean
+          description: Confirmación de cumplimiento legal
+          default: true
+        truthful:
+          type: boolean
+          description: Confirmación de veracidad de la información
+          default: true
+        oficial:
+          type: boolean
+          description: Confirmación de ser información oficial
+          default: true
+      required:
+        - information
+        - publish
+        - exit
+        - legal
+        - truthful
+        - oficial
+      example:
+        information: true
+        publish: true
+        exit: true
+        legal: true
+        truthful: true
+        oficial: true
