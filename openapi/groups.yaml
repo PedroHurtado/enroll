@@ -1,0 +1,189 @@
+openapi: "3.0.0"
+info:
+    title: API de Gestión de Grupos
+    description: API para gestionar los grupos de un curso, incluyendo la creación y obtención de información sobre materias y grupos.
+    version: "1.0.0"
+paths:
+    /grupos/{courseId}:
+        get:
+            summary: Obtener información de un grupo por curso y periodo
+            description: Devuelve un solo registro de un grupo asociado a un curso con base en el ID del curso y el periodo.
+            operationId: getGroupByCourseAndPeriod
+            parameters:
+                - name: courseId
+                  in: path
+                  required: true
+                  description: ID del curso a obtener
+                  schema:
+                      type: string
+                      format: uuid
+                - name: periodStart
+                  in: query
+                  required: true
+                  description: "Anio de inicio del periodo (ejemplo - 2024)"
+                  schema:
+                      type: integer
+                      minimum: 2000
+                      maximum: 9999
+                - name: periodEnd
+                  in: query
+                  required: true
+                  description: "Anio de fin del periodo (ejemplo - 2025)"
+                  schema:
+                      type: integer
+                      minimum: 2000
+                      maximum: 9999
+            responses:
+                '200':
+                    description: Grupo encontrado exitosamente
+                    content:
+                        application/json:
+                            schema:
+                                $ref: '#/components/schemas/Group'
+                '404':
+                    description: Grupo no encontrado
+                    content:
+                        application/json:
+                            schema:
+                                $ref: '#/components/schemas/Error'
+                '400':
+                    description: Datos de entrada inválidos
+                    content:
+                        application/json:
+                            schema:
+                                $ref: '#/components/schemas/Error'
+                '500':
+                    description: Error en el servidor
+                    content:
+                        application/json:
+                            schema:
+                                $ref: '#/components/schemas/Error'
+    /grupos:
+        post:
+            summary: Crear grupos
+            description: Crea un grupo para un curso específico, incluyendo información sobre las materias y sus configuraciones.
+            operationId: createGroup
+            requestBody:
+                required: true
+                content:
+                    application/json:
+                        schema:
+                            $ref: '#/components/schemas/Group'
+            responses:
+                '201':
+                    description: Grupo creado exitosamente
+                    headers:
+                        Location:
+                            schema:
+                                type: string
+                            description: URL del recurso creado
+                '400':
+                    description: Datos de entrada inválidos
+                    content:
+                        application/json:
+                            schema:
+                                $ref: '#/components/schemas/Error'
+                '500':
+                    description: Error en el servidor
+                    content:
+                        application/json:
+                            schema:
+                                $ref: '#/components/schemas/Error'
+components:
+    schemas:
+        Error:
+            type: object
+            properties:
+                code:
+                    type: string
+                message:
+                    type: string
+            required:
+                - code
+                - message
+        Group:
+            type: object
+            properties:
+                courseId:
+                    type: string
+                    format: uuid
+                courseName:
+                    type: string
+                    minLength: 1
+                    maxLength: 100
+                periodStart:
+                    type: integer
+                    minimum: 2000
+                    maximum: 9999
+                    description: "Anio de inicio del periodo"
+                periodEnd:
+                    type: integer
+                    minimum: 2000
+                    maximum: 9999
+                    description: "Anio de fin del periodo"
+                groups:
+                    type: array
+                    items:
+                        $ref: '#/components/schemas/GroupGroup'
+            required:
+                - courseId
+                - courseName
+                - periodStart
+                - periodEnd
+                - groups
+        GroupGroup:
+            type: object
+            properties:
+                id:
+                    type: string
+                    format: uuid
+                name:
+                    type: string
+                    minLength: 1
+                    maxLength: 100
+                subjects:
+                    type: array
+                    items:
+                        $ref: '#/components/schemas/GroupSubject'
+                    minItems: 1
+            required:
+                - id
+                - name
+                - subjects
+        GroupSubject:
+            type: object
+            properties:
+                id:
+                    type: string
+                    format: uuid
+                name:
+                    type: string
+                    minLength: 1
+                    maxLength: 100
+                type:
+                    type: string
+                    enum:
+                        - electives
+                        - compulsoryModality
+                        - modalityElectives
+                modalityId:
+                    type: string
+                    format: uuid
+                modalityName:
+                    type: string
+                    minLength: 1
+                    maxLength: 100
+                position:
+                    type: integer
+                    minimum: 1
+                total:
+                    type: integer
+                    minimum: 1
+            required:
+                - id
+                - name
+                - type
+                - modalityId
+                - modalityName
+                - position
+                - total
