@@ -3,6 +3,7 @@ import { DescriptorWithEnrolls, GroupSubject, Modality } from '../../groups.serv
 import { MatButtonModule } from '@angular/material/button';
 import { RouterLink } from '@angular/router';
 import {DragDropModule} from '@angular/cdk/drag-drop';
+import { Descriptor } from '../../../../domain/levels';
 @Component({
   selector: 'app-group-modality',
   imports: [
@@ -25,10 +26,13 @@ export class GroupModalityComponent {
     return false;
   }
   protected getData(
+    modality:Descriptor,
     descripor:DescriptorWithEnrolls[],
     type:string
   ):GroupSubject[]{
     return descripor.map(({id,name,enrolls}, index) => ({
+      modalityId:modality.id,
+      modalityname:modality.name,
       id,
       name,
       type,

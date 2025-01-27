@@ -40,6 +40,8 @@ export interface GroupGroup extends Descriptor {
   subjects: GroupSubject[]
 }
 export interface GroupSubject extends Descriptor{
+  modalityId?:string,
+  modalityname?:string
   type:string,
   position:number,
   total:number

@@ -20,7 +20,7 @@
       <div class="group-content">
         @if(modality.compulsoryModality.length > 0) {
         <div class="modality-section" cdkDropList
-          [cdkDropListData]="getData( modality.compulsoryModality,'compulsoryModality')"
+          [cdkDropListData]="getData(modality, modality.compulsoryModality,'compulsoryModality')"
           [cdkDropListSortingDisabled]="true" [cdkDropListEnterPredicate]="canEnter">
           <div class="section-title">Modalidad Obligatoria</div>
           @for (item of modality.compulsoryModality; track item) {
@@ -65,7 +65,7 @@
 
         @if(modality.modalityElectives.length > 0) {
         <div class="modality-section" cdkDropList [cdkDropListSortingDisabled]="true"
-          [cdkDropListData]="getData(modality.modalityElectives,'modalityElectives')" [cdkDropListEnterPredicate]="canEnter">
+          [cdkDropListData]="getData(modality,modality.modalityElectives,'modalityElectives')" [cdkDropListEnterPredicate]="canEnter">
           <div class="section-title">Modalidad a Elegir</div>
           @for (item of modality.modalityElectives; track item) {
           <div class="subjects">
