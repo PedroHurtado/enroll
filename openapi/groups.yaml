@@ -183,7 +183,5 @@ components:
                 - id
                 - name
                 - type
-                - modalityId
-                - modalityName
                 - position
                 - total
