@@ -5,3 +5,14 @@ Restar el numero de alumnos a los origenes
 Group->Alumn->Todas las opciones elegidas desde electives
 Si un alunmo no sale la primera opción se puede
 elegir una opción
+
+Una vez configurados los grupos, por los criterios que se estimen
+
+se cambian alumnos de grupo siempre que en el grupo de destino
+se curse esa asignatura
+
+Group   (source)        Group   (target)
+  subject
+    alumn
+                          subject
+                          alumn
