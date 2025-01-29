@@ -113,7 +113,7 @@ export class GroupsService {
         modalities: [
           {
             id: "8f7b5db2-3ed6-4e3a-8a2c-37d42951b7c1",
-            name: "Artes Plásticas, Imagen y Diseño",
+            name: "Humanidades y Ciencias Sociales",
             enrolls: [
               { id: "3c4d5e6f-7890-1112-1234-56789abcdef2", name: "María López" },
               { id: "4d5e6f7g-8901-1213-1234-56789abcdef3", name: "Pedro Sánchez" }
@@ -189,7 +189,7 @@ export class GroupsService {
             id: "2b3c4d5e-6789-1011-1234-56789abcdef1",
             name: "Física",
             positions: [
-              { position: 1, enrolls: createStudents(10) },
+              { position: 1, enrolls: createStudents(2) },
               { position: 2, enrolls: createStudents(15) },
               { position: 3, enrolls: createStudents(5) },
               { position: 4, enrolls: createStudents(3) },
@@ -209,7 +209,7 @@ export class GroupsService {
           },
           {
             id: "4d5e6f7g-8901-1213-1234-56789abcdef3",
-            name: "Lengua",
+            name: "Latín",
             positions: [
               { position: 1, enrolls: createStudents(10) },
               { position: 2, enrolls: createStudents(15) },

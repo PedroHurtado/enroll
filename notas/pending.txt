@@ -1,3 +1,5 @@
 Guardar el estado de los grupos
 Mobile en grupos
 Restar el numero de alumnos a los origenes
+
+Group->Alumn->Todas las opciones elegidas desde electives
