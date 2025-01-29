@@ -16,3 +16,8 @@ Group   (source)        Group   (target)
     alumn
                           subject
                           alumn
+
+
+Enviar correo a los tutores legales(madre/padre/tutor)
+
+En el caso de alumno > 18-Correo a el ?
