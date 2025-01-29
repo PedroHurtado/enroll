@@ -3,3 +3,5 @@ Mobile en grupos
 Restar el numero de alumnos a los origenes
 
 Group->Alumn->Todas las opciones elegidas desde electives
+Si un alunmo no sale la primera opción se puede
+elegir una opción
