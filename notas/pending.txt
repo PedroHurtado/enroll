@@ -21,3 +21,5 @@ Group   (source)        Group   (target)
 Enviar correo a los tutores legales(madre/padre/tutor)
 
 En el caso de alumno > 18-Correo a el ?
+
+Grabar inicidencias al cambiar alumnos de asignaturas electives
